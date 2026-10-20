@@ -1,0 +1,25 @@
+{
+  "description": "Casos de normalização da busca (especificação 9.10 e 9.13). Usados por SearchNormalizerTest (backend) e search-normalizer.test.ts (frontend) para as duas implementações não divergirem.",
+  "cases": [
+    { "input": "Castanha-do-Pará", "expected": "castanha do para" },
+    { "input": "castanha do para", "expected": "castanha do para" },
+    { "input": "  CASTANHA   DO  PARÁ  ", "expected": "castanha do para" },
+    { "input": "Açaí", "expected": "acai" },
+    { "input": "acai", "expected": "acai" },
+    { "input": "Farinha d'água", "expected": "farinha d agua" },
+    { "input": "Maniçoba", "expected": "manicoba" },
+    { "input": "Taperebá", "expected": "tapereba" },
+    { "input": "Óleo de copaíba", "expected": "oleo de copaiba" },
+    { "input": "Brazil nut", "expected": "brazil nut" },
+    { "input": "Nuez de Brasil", "expected": "nuez de brasil" },
+    { "input": "Cupuaçu (polpa)", "expected": "cupuacu polpa" },
+    { "input": "Pulpa de asaí", "expected": "pulpa de asai" },
+    { "input": "baño de olor", "expected": "bano de olor" },
+    { "input": "Cerâmica marajoara", "expected": "ceramica marajoara" },
+    { "input": "pato-no-tucupi!", "expected": "pato no tucupi" },
+    { "input": "cumarú", "expected": "cumaru" },
+    { "input": "Jambú", "expected": "jambu" },
+    { "input": "", "expected": "" },
+    { "input": "---", "expected": "" }
+  ]
+}

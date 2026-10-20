@@ -1,0 +1,474 @@
+{
+  "notice": "Dados de demonstração (especificação 10.4). Boxes, nomes e preços são fictícios; descrições e traduções marcadas TODO-revisar devem ser revisadas com feirantes e falantes nativos antes de publicar. Coordenadas da Feira da 25 são aproximadas (TODO: confirmar no painel).",
+  "users": [
+    { "email": "admin@nandesk.local", "name": "Administração NANDESK", "role": "ADMIN", "markets": [] },
+    { "email": "moderador@nandesk.local", "name": "Moderação NANDESK", "role": "MODERATOR", "markets": [] },
+    { "email": "ana@nandesk.local", "name": "Ana", "role": "COLLABORATOR", "markets": ["ver-o-peso"] },
+    { "email": "beto@nandesk.local", "name": "Beto", "role": "COLLABORATOR", "markets": ["feira-da-25"] }
+  ],
+  "markets": [
+    {
+      "slug": "ver-o-peso",
+      "name": "Ver-o-Peso",
+      "address": "Av. Boulevard Castilhos França, Campina, Belém - PA",
+      "latitude": -1.452500,
+      "longitude": -48.503500,
+      "radius": 250,
+      "openingHours": [
+        { "days": ["MON", "TUE", "WED", "THU", "FRI", "SAT"], "opens": "05:00", "closes": "18:00" },
+        { "days": ["SUN"], "opens": "05:00", "closes": "13:00" }
+      ],
+      "translations": {
+        "pt-BR": {
+          "description": "Mercado a céu aberto na beira da baía do Guajará, com ervas, banhos de cheiro, castanhas, farinhas, açaí, peixes e comidas típicas. TODO-revisar",
+          "howToGetThere": "Fica no centro histórico, ao lado da Estação das Docas. Ônibus que passam pela Av. Presidente Vargas param a duas quadras."
+        },
+        "en": {
+          "description": "Open-air market on Guajará Bay selling herbs, scented baths, nuts, cassava flours, açaí, fish and traditional food. TODO-revisar",
+          "howToGetThere": "In the historic center, next to Estação das Docas. Buses along Av. Presidente Vargas stop two blocks away."
+        },
+        "es": {
+          "description": "Mercado al aire libre junto a la bahía de Guajará, con hierbas, baños aromáticos, nueces, harinas, asaí, pescados y comida típica. TODO-revisar",
+          "howToGetThere": "Está en el centro histórico, al lado de la Estação das Docas. Los autobuses de la Av. Presidente Vargas paran a dos cuadras."
+        }
+      },
+      "sectors": [
+        { "slug": "ervas-e-banhos", "sort": 1, "names": { "pt-BR": "Ervas e banhos de cheiro", "en": "Herbs and scented baths", "es": "Hierbas y baños aromáticos" } },
+        { "slug": "castanhas-e-farinhas", "sort": 2, "names": { "pt-BR": "Castanhas e farinhas", "en": "Nuts and flours", "es": "Nueces y harinas" } },
+        { "slug": "frutas-e-acai", "sort": 3, "names": { "pt-BR": "Frutas e açaí", "en": "Fruits and açaí", "es": "Frutas y asaí" } },
+        { "slug": "peixes", "sort": 4, "names": { "pt-BR": "Peixes", "en": "Fish", "es": "Pescados" } },
+        { "slug": "refeicoes", "sort": 5, "names": { "pt-BR": "Refeições e comidas típicas", "en": "Meals and traditional food", "es": "Comidas y platos típicos" } },
+        { "slug": "artesanato", "sort": 6, "names": { "pt-BR": "Artesanato", "en": "Handicrafts", "es": "Artesanía" } }
+      ]
+    },
+    {
+      "slug": "feira-da-25",
+      "name": "Feira da 25",
+      "address": "Av. 25 de Setembro, Marco, Belém - PA",
+      "latitude": -1.440500,
+      "longitude": -48.470500,
+      "radius": 250,
+      "openingHours": [
+        { "days": ["TUE", "WED", "THU", "FRI", "SAT"], "opens": "06:00", "closes": "17:00" },
+        { "days": ["SUN"], "opens": "06:00", "closes": "12:00" }
+      ],
+      "translations": {
+        "pt-BR": {
+          "description": "Feira de bairro no Marco, com hortifrúti, peixes, carnes, farinhas e lanches regionais. Posição no mapa aproximada. TODO-revisar",
+          "howToGetThere": "Na Av. 25 de Setembro, bairro do Marco. Ônibus da Av. Almirante Barroso param perto."
+        },
+        "en": {
+          "description": "Neighborhood market in Marco with produce, fish, meat, cassava flours and regional snacks. Map position is approximate. TODO-revisar",
+          "howToGetThere": "On Av. 25 de Setembro, Marco neighborhood. Buses along Av. Almirante Barroso stop nearby."
+        },
+        "es": {
+          "description": "Feria de barrio en Marco, con frutas y verduras, pescados, carnes, harinas y bocadillos regionales. Posición en el mapa aproximada. TODO-revisar",
+          "howToGetThere": "En la Av. 25 de Setembro, barrio de Marco. Los autobuses de la Av. Almirante Barroso paran cerca."
+        }
+      },
+      "sectors": [
+        { "slug": "hortifruti", "sort": 1, "names": { "pt-BR": "Hortifrúti", "en": "Fruits and vegetables", "es": "Frutas y verduras" } },
+        { "slug": "peixes-e-carnes", "sort": 2, "names": { "pt-BR": "Peixes e carnes", "en": "Fish and meat", "es": "Pescados y carnes" } },
+        { "slug": "mercearia-e-farinhas", "sort": 3, "names": { "pt-BR": "Mercearia e farinhas", "en": "Groceries and flours", "es": "Abarrotes y harinas" } },
+        { "slug": "refeicoes", "sort": 4, "names": { "pt-BR": "Refeições", "en": "Meals", "es": "Comidas" } }
+      ]
+    }
+  ],
+  "categories": [
+    { "slug": "ervas-e-banhos", "icon": "leaf", "sort": 1, "names": { "pt-BR": "Ervas e banhos de cheiro", "en": "Herbs and scented baths", "es": "Hierbas y baños aromáticos" } },
+    { "slug": "castanhas-e-sementes", "icon": "nut", "sort": 2, "names": { "pt-BR": "Castanhas e sementes", "en": "Nuts and seeds", "es": "Nueces y semillas" } },
+    { "slug": "frutas-e-polpas", "icon": "cherry", "sort": 3, "names": { "pt-BR": "Frutas e polpas", "en": "Fruits and pulps", "es": "Frutas y pulpas" } },
+    { "slug": "farinhas-e-mandioca", "icon": "wheat", "sort": 4, "names": { "pt-BR": "Farinhas e derivados da mandioca", "en": "Cassava flours and products", "es": "Harinas y derivados de la yuca" } },
+    { "slug": "temperos-e-molhos", "icon": "soup", "sort": 5, "names": { "pt-BR": "Temperos e molhos", "en": "Seasonings and sauces", "es": "Condimentos y salsas" } },
+    { "slug": "oleos-e-essencias", "icon": "droplet", "sort": 6, "names": { "pt-BR": "Óleos e essências", "en": "Oils and essences", "es": "Aceites y esencias" } },
+    { "slug": "comidas-tipicas", "icon": "utensils", "sort": 7, "names": { "pt-BR": "Comidas típicas", "en": "Traditional food", "es": "Comidas típicas" } },
+    { "slug": "peixes-e-mariscos", "icon": "fish", "sort": 8, "names": { "pt-BR": "Peixes e mariscos", "en": "Fish and seafood", "es": "Pescados y mariscos" } },
+    { "slug": "artesanato", "icon": "shapes", "sort": 9, "names": { "pt-BR": "Artesanato", "en": "Handicrafts", "es": "Artesanía" } }
+  ],
+  "products": [
+    {
+      "slug": "castanha-do-para", "category": "castanhas-e-sementes", "unit": "KG",
+      "names": { "pt-BR": "Castanha-do-pará", "en": "Brazil nut", "es": "Nuez de Brasil" },
+      "descriptions": {
+        "pt-BR": "Semente da castanheira amazônica, vendida com ou sem casca. Come-se crua, torrada ou em doces. TODO-revisar",
+        "en": "Seed of the Amazon Brazil-nut tree, sold shelled or in the shell. Eaten raw, roasted or in sweets. TODO-revisar",
+        "es": "Semilla del castaño amazónico, vendida con o sin cáscara. Se come cruda, tostada o en dulces. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["castanha-do-brasil", "castanha"], "en": ["brazil nuts"], "es": ["castaña de Brasil"] }
+    },
+    {
+      "slug": "acai-polpa", "category": "frutas-e-polpas", "unit": "LITER", "seasonMonths": [8, 9, 10, 11, 12],
+      "names": { "pt-BR": "Açaí (polpa)", "en": "Açaí pulp", "es": "Pulpa de asaí" },
+      "descriptions": {
+        "pt-BR": "Polpa do fruto do açaizeiro, batida na hora. Em Belém se toma com farinha d'água ou tapioca, acompanhando peixe frito ou camarão. TODO-revisar",
+        "en": "Pulp of the açaí palm fruit, freshly processed. In Belém it is eaten unsweetened with cassava flour, alongside fried fish or shrimp. TODO-revisar",
+        "es": "Pulpa del fruto de la palmera de asaí, batida al momento. En Belém se come con harina de yuca, acompañando pescado frito o camarón. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["acai", "açaí"], "en": ["acai"], "es": ["asai", "açaí"] }
+    },
+    {
+      "slug": "banho-de-cheiro", "category": "ervas-e-banhos", "unit": "BOTTLE",
+      "names": { "pt-BR": "Banho de cheiro", "en": "Scented herbal bath", "es": "Baño aromático de hierbas" },
+      "descriptions": {
+        "pt-BR": "Mistura de ervas, raízes e cascas aromáticas para o banho, tradição paraense nas viradas de ano e na quadra junina. TODO-revisar",
+        "en": "Blend of aromatic herbs, roots and barks for bathing, a Pará tradition around New Year and the June festivities. TODO-revisar",
+        "es": "Mezcla de hierbas, raíces y cortezas aromáticas para el baño, tradición de Pará en Año Nuevo y en las fiestas de junio. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["banho-de-cheiro", "cheiro"], "en": ["herbal bath"], "es": ["baño de olor"] }
+    },
+    {
+      "slug": "priprioca", "category": "ervas-e-banhos", "unit": "BUNCH",
+      "names": { "pt-BR": "Priprioca", "en": "Priprioca (aromatic root)", "es": "Priprioca (raíz aromática)" },
+      "descriptions": {
+        "pt-BR": "Raiz de cheiro amadeirado, usada em banhos de cheiro e na perfumaria regional. TODO-revisar",
+        "en": "Woody-scented root used in scented baths and regional perfumery. TODO-revisar",
+        "es": "Raíz de aroma amaderado, usada en baños aromáticos y en la perfumería regional. TODO-revisar"
+      },
+      "aliases": {}
+    },
+    {
+      "slug": "patchouli", "category": "ervas-e-banhos", "unit": "BUNCH",
+      "names": { "pt-BR": "Patchouli", "en": "Patchouli", "es": "Pachulí" },
+      "descriptions": {
+        "pt-BR": "Erva de cheiro forte vendida em maços, usada em banhos de cheiro e em sachês para perfumar roupas. TODO-revisar",
+        "en": "Strongly scented herb sold in bunches, used in scented baths and sachets to perfume clothes. TODO-revisar",
+        "es": "Hierba de aroma intenso vendida en atados, usada en baños aromáticos y en saquitos para perfumar la ropa. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["patchouly", "oriza"] }
+    },
+    {
+      "slug": "cumaru", "category": "castanhas-e-sementes", "unit": "PACKAGE",
+      "names": { "pt-BR": "Cumaru", "en": "Tonka bean", "es": "Haba tonka" },
+      "descriptions": {
+        "pt-BR": "Semente escura de cheiro adocicado, usada para perfumar banhos, sachês e artesanato. TODO-revisar",
+        "en": "Dark seed with a sweet scent, used to perfume baths, sachets and crafts. TODO-revisar",
+        "es": "Semilla oscura de aroma dulce, usada para perfumar baños, saquitos y artesanías. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["cumarú"] }
+    },
+    {
+      "slug": "tucupi", "category": "temperos-e-molhos", "unit": "BOTTLE",
+      "names": { "pt-BR": "Tucupi", "en": "Tucupi (cassava broth)", "es": "Tucupí (caldo de yuca)" },
+      "descriptions": {
+        "pt-BR": "Caldo amarelo extraído da mandioca brava e cozido por horas. Base do tacacá e do pato no tucupi. TODO-revisar",
+        "en": "Yellow broth pressed from wild cassava and cooked for hours. The base of tacacá and duck in tucupi. TODO-revisar",
+        "es": "Caldo amarillo extraído de la yuca brava y cocido durante horas. Base del tacacá y del pato en tucupí. TODO-revisar"
+      },
+      "aliases": {}
+    },
+    {
+      "slug": "jambu", "category": "temperos-e-molhos", "unit": "BUNCH",
+      "names": { "pt-BR": "Jambu", "en": "Jambu (toothache plant)", "es": "Jambú" },
+      "descriptions": {
+        "pt-BR": "Erva de folhas que deixam a boca levemente dormente. Vai no tacacá, no pato no tucupi e em pratos com tucupi. TODO-revisar",
+        "en": "Leafy herb that leaves a light tingling numbness in the mouth. Used in tacacá, duck in tucupi and other tucupi dishes. TODO-revisar",
+        "es": "Hierba cuyas hojas dejan un leve hormigueo en la boca. Va en el tacacá, el pato en tucupí y otros platos con tucupí. TODO-revisar"
+      },
+      "aliases": { "en": ["paracress"] }
+    },
+    {
+      "slug": "farinha-dagua", "category": "farinhas-e-mandioca", "unit": "KG",
+      "names": { "pt-BR": "Farinha d'água", "en": "Cassava flour (farinha d'água)", "es": "Harina de yuca (farinha d'água)" },
+      "descriptions": {
+        "pt-BR": "Farinha de mandioca deixada de molho antes de torrar, grossa e crocante. Acompanha o açaí, o peixe e o feijão. TODO-revisar",
+        "en": "Coarse, crunchy cassava flour made from soaked cassava before toasting. Eaten with açaí, fish and beans. TODO-revisar",
+        "es": "Harina de yuca remojada antes de tostar, gruesa y crocante. Acompaña el asaí, el pescado y los frijoles. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["farinha de mandioca", "farinha d agua"] }
+    },
+    {
+      "slug": "farinha-de-tapioca", "category": "farinhas-e-mandioca", "unit": "KG",
+      "names": { "pt-BR": "Farinha de tapioca", "en": "Tapioca flour", "es": "Harina de tapioca" },
+      "descriptions": {
+        "pt-BR": "Bolinhas de goma de mandioca torrada. Vai no açaí, em mingaus e em doces. TODO-revisar",
+        "en": "Toasted cassava starch pearls. Added to açaí, porridges and sweets. TODO-revisar",
+        "es": "Bolitas tostadas de almidón de yuca. Se agregan al asaí, a las papillas y a los dulces. TODO-revisar"
+      },
+      "aliases": {}
+    },
+    {
+      "slug": "goma-de-tapioca", "category": "farinhas-e-mandioca", "unit": "KG",
+      "names": { "pt-BR": "Goma de tapioca", "en": "Tapioca starch", "es": "Almidón de yuca" },
+      "descriptions": {
+        "pt-BR": "Amido de mandioca hidratado, usado para fazer tapioca na frigideira e para engrossar o tacacá. TODO-revisar",
+        "en": "Hydrated cassava starch used to make pan tapioca crepes and to thicken tacacá. TODO-revisar",
+        "es": "Almidón de yuca hidratado, para hacer tapioca en sartén y espesar el tacacá. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["polvilho", "goma"] }
+    },
+    {
+      "slug": "cupuacu-polpa", "category": "frutas-e-polpas", "unit": "KG", "seasonMonths": [1, 2, 3, 4],
+      "names": { "pt-BR": "Cupuaçu (polpa)", "en": "Cupuaçu pulp", "es": "Pulpa de cupuazú" },
+      "descriptions": {
+        "pt-BR": "Polpa ácida e perfumada de fruto amazônico parente do cacau. Vira suco, creme e doce. TODO-revisar",
+        "en": "Tart, fragrant pulp of an Amazon fruit related to cacao. Used for juice, mousse and sweets. TODO-revisar",
+        "es": "Pulpa ácida y perfumada de una fruta amazónica pariente del cacao. Se usa en jugos, cremas y dulces. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["cupuacu"], "en": ["cupuacu"] }
+    },
+    {
+      "slug": "bacuri", "category": "frutas-e-polpas", "unit": "KG", "seasonMonths": [1, 2, 3, 4],
+      "names": { "pt-BR": "Bacuri", "en": "Bacuri fruit", "es": "Bacurí" },
+      "descriptions": {
+        "pt-BR": "Fruto de casca grossa e polpa branca muito perfumada, usado em sorvetes, cremes e doces. TODO-revisar",
+        "en": "Thick-skinned fruit with very fragrant white pulp, used in ice cream, mousses and sweets. TODO-revisar",
+        "es": "Fruta de cáscara gruesa y pulpa blanca muy perfumada, usada en helados, cremas y dulces. TODO-revisar"
+      },
+      "aliases": {}
+    },
+    {
+      "slug": "pupunha", "category": "frutas-e-polpas", "unit": "BUNCH", "seasonMonths": [1, 2, 3, 4],
+      "names": { "pt-BR": "Pupunha", "en": "Peach palm fruit", "es": "Pejibaye (chontaduro)" },
+      "descriptions": {
+        "pt-BR": "Fruto de palmeira vendido em cachos. Cozido em água e sal, é comido com café. TODO-revisar",
+        "en": "Palm fruit sold in bunches. Boiled in salted water and eaten with coffee. TODO-revisar",
+        "es": "Fruto de palmera vendido en racimos. Se cuece en agua con sal y se come con café. TODO-revisar"
+      },
+      "aliases": { "es": ["chontaduro", "pejibaye"] }
+    },
+    {
+      "slug": "tapereba", "category": "frutas-e-polpas", "unit": "KG",
+      "names": { "pt-BR": "Taperebá", "en": "Yellow mombin", "es": "Jobo" },
+      "descriptions": {
+        "pt-BR": "Fruto pequeno, amarelo e ácido, também chamado cajá. Usado em sucos e sorvetes. TODO-revisar",
+        "en": "Small, yellow, tart fruit also known as cajá. Used in juices and ice cream. TODO-revisar",
+        "es": "Fruta pequeña, amarilla y ácida, también llamada cajá. Se usa en jugos y helados. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["cajá", "taperebá"], "en": ["caja"] }
+    },
+    {
+      "slug": "muruci", "category": "frutas-e-polpas", "unit": "KG",
+      "names": { "pt-BR": "Muruci", "en": "Nance fruit", "es": "Nance" },
+      "descriptions": {
+        "pt-BR": "Fruto amarelo pequeno de cheiro marcante, usado em suco, sorvete e licor. TODO-revisar",
+        "en": "Small yellow fruit with a striking aroma, used in juice, ice cream and liqueur. TODO-revisar",
+        "es": "Fruta amarilla pequeña de aroma intenso, usada en jugos, helados y licores. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["murici"] }
+    },
+    {
+      "slug": "oleo-de-andiroba", "category": "oleos-e-essencias", "unit": "BOTTLE",
+      "names": { "pt-BR": "Óleo de andiroba", "en": "Andiroba oil", "es": "Aceite de andiroba" },
+      "descriptions": {
+        "pt-BR": "Óleo amargo extraído das sementes da andirobeira, presente em sabonetes e cosméticos artesanais da região. TODO-revisar",
+        "en": "Bitter oil pressed from andiroba tree seeds, found in the region's handmade soaps and cosmetics. TODO-revisar",
+        "es": "Aceite amargo extraído de las semillas de la andiroba, presente en jabones y cosméticos artesanales de la región. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["andiroba"] }
+    },
+    {
+      "slug": "oleo-de-copaiba", "category": "oleos-e-essencias", "unit": "BOTTLE",
+      "names": { "pt-BR": "Óleo de copaíba", "en": "Copaiba oil", "es": "Aceite de copaiba" },
+      "descriptions": {
+        "pt-BR": "Óleo-resina retirado do tronco da copaibeira, tradição amazônica presente em cosméticos artesanais. TODO-revisar",
+        "en": "Oleoresin tapped from the copaiba tree trunk, an Amazon tradition found in handmade cosmetics. TODO-revisar",
+        "es": "Oleorresina extraída del tronco de la copaiba, tradición amazónica presente en cosméticos artesanales. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["copaiba", "copaíba"] }
+    },
+    {
+      "slug": "manicoba", "category": "comidas-tipicas", "unit": "PORTION",
+      "names": { "pt-BR": "Maniçoba", "en": "Maniçoba (traditional dish)", "es": "Maniçoba (plato típico)" },
+      "descriptions": {
+        "pt-BR": "Folha de mandioca moída cozida por cerca de sete dias com carnes de porco e boi. Prato do Círio de Nazaré. TODO-revisar",
+        "en": "Ground cassava leaves cooked for about seven days with pork and beef. A dish of the Círio de Nazaré festival. TODO-revisar",
+        "es": "Hojas de yuca molidas cocidas unos siete días con carnes de cerdo y res. Plato del Círio de Nazaré. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["manicoba"] }
+    },
+    {
+      "slug": "tacaca", "category": "comidas-tipicas", "unit": "PORTION",
+      "names": { "pt-BR": "Tacacá", "en": "Tacacá (traditional soup)", "es": "Tacacá (sopa típica)" },
+      "descriptions": {
+        "pt-BR": "Caldo quente de tucupi com goma, jambu e camarão seco, servido na cuia no fim da tarde. TODO-revisar",
+        "en": "Hot tucupi broth with tapioca starch, jambu and dried shrimp, served in a gourd bowl in the late afternoon. TODO-revisar",
+        "es": "Caldo caliente de tucupí con almidón, jambú y camarón seco, servido en totuma al final de la tarde. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["tacaca"] }
+    },
+    {
+      "slug": "pato-no-tucupi", "category": "comidas-tipicas", "unit": "PORTION",
+      "names": { "pt-BR": "Pato no tucupi", "en": "Duck in tucupi", "es": "Pato en tucupí" },
+      "descriptions": {
+        "pt-BR": "Pato assado e depois cozido no tucupi, servido com jambu, arroz e farinha. Almoço tradicional do Círio. TODO-revisar",
+        "en": "Duck roasted and then simmered in tucupi, served with jambu, rice and cassava flour. Traditional Círio lunch. TODO-revisar",
+        "es": "Pato asado y luego cocido en tucupí, servido con jambú, arroz y harina. Almuerzo tradicional del Círio. TODO-revisar"
+      },
+      "aliases": { "en": ["duck tucupi"] }
+    },
+    {
+      "slug": "filhote", "category": "peixes-e-mariscos", "unit": "KG",
+      "names": { "pt-BR": "Filhote", "en": "Filhote catfish", "es": "Bagre filhote" },
+      "descriptions": {
+        "pt-BR": "Peixe de couro grande dos rios amazônicos, vendido em postas. Vai frito, assado ou na caldeirada. TODO-revisar",
+        "en": "Large Amazon river catfish sold in steaks. Fried, baked or in fish stew. TODO-revisar",
+        "es": "Gran bagre de los ríos amazónicos vendido en rodajas. Se fríe, se asa o va en caldereta. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["piraíba"] }
+    },
+    {
+      "slug": "pirarucu-seco", "category": "peixes-e-mariscos", "unit": "KG",
+      "names": { "pt-BR": "Pirarucu seco", "en": "Dried pirarucu", "es": "Paiche seco" },
+      "descriptions": {
+        "pt-BR": "Peixe amazônico salgado e seco ao sol, vendido em mantas. Dessalga antes de cozinhar ou desfiar. TODO-revisar",
+        "en": "Amazon fish salted and sun-dried, sold in slabs. Soak to remove salt before cooking or shredding. TODO-revisar",
+        "es": "Pescado amazónico salado y secado al sol, vendido en mantas. Se desala antes de cocinar o desmenuzar. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["pirarucu"], "es": ["paiche"] }
+    },
+    {
+      "slug": "camarao-regional", "category": "peixes-e-mariscos", "unit": "KG",
+      "names": { "pt-BR": "Camarão regional", "en": "Regional shrimp", "es": "Camarón regional" },
+      "descriptions": {
+        "pt-BR": "Camarão pequeno da região, vendido fresco ou seco e salgado. O seco vai no tacacá. TODO-revisar",
+        "en": "Small local shrimp sold fresh or dried and salted. The dried kind goes in tacacá. TODO-revisar",
+        "es": "Camarón pequeño de la región, vendido fresco o seco y salado. El seco va en el tacacá. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["camarão seco", "camarao"] }
+    },
+    {
+      "slug": "brinquedo-de-miriti", "category": "artesanato", "unit": "UNIT",
+      "names": { "pt-BR": "Brinquedo de miriti", "en": "Miriti toy", "es": "Juguete de miriti" },
+      "descriptions": {
+        "pt-BR": "Brinquedos coloridos esculpidos na bucha leve da palmeira miriti, artesanato de Abaetetuba ligado ao Círio. TODO-revisar",
+        "en": "Colorful toys carved from the light pith of the miriti palm, a craft from Abaetetuba linked to the Círio. TODO-revisar",
+        "es": "Juguetes coloridos tallados en la médula liviana de la palmera miriti, artesanía de Abaetetuba ligada al Círio. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["miriti"] }
+    },
+    {
+      "slug": "ceramica-marajoara", "category": "artesanato", "unit": "UNIT",
+      "names": { "pt-BR": "Cerâmica marajoara", "en": "Marajoara pottery", "es": "Cerámica marajoara" },
+      "descriptions": {
+        "pt-BR": "Peças de cerâmica com grafismos inspirados na arte dos povos antigos da Ilha do Marajó. TODO-revisar",
+        "en": "Pottery decorated with patterns inspired by the art of the ancient peoples of Marajó Island. TODO-revisar",
+        "es": "Piezas de cerámica con grafismos inspirados en el arte de los pueblos antiguos de la Isla de Marajó. TODO-revisar"
+      },
+      "aliases": { "pt-BR": ["marajoara"] }
+    }
+  ],
+  "stalls": [
+    {
+      "market": "ver-o-peso", "sector": "castanhas-e-farinhas", "code": "12", "name": "Empório das Castanhas",
+      "consentMethod": "SIGNED_FORM", "verifiedDaysAgo": 8,
+      "offerings": [
+        { "product": "castanha-do-para", "price": "45.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "cumaru", "price": "6.00", "unit": "PACKAGE", "availability": "AVAILABLE" },
+        { "product": "farinha-dagua", "price": "12.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "farinha-de-tapioca", "price": "14.00", "unit": "KG", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "ver-o-peso", "sector": "ervas-e-banhos", "code": "47", "name": "Ervas da Tradição",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 3,
+      "offerings": [
+        { "product": "banho-de-cheiro", "price": "10.00", "unit": "BOTTLE", "availability": "AVAILABLE" },
+        { "product": "priprioca", "price": "5.00", "unit": "BUNCH", "availability": "AVAILABLE" },
+        { "product": "patchouli", "price": "4.00", "unit": "BUNCH", "availability": "AVAILABLE" },
+        { "product": "cumaru", "price": "5.00", "unit": "PACKAGE", "availability": "AVAILABLE" },
+        { "product": "oleo-de-andiroba", "price": "25.00", "unit": "BOTTLE", "availability": "AVAILABLE" },
+        { "product": "oleo-de-copaiba", "price": "30.00", "unit": "BOTTLE", "availability": "OUT_OF_STOCK" }
+      ]
+    },
+    {
+      "market": "ver-o-peso", "sector": "ervas-e-banhos", "code": "51", "name": "Cheiros do Pará",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 70,
+      "offerings": [
+        { "product": "banho-de-cheiro", "price": "8.00", "unit": "BOTTLE", "availability": "AVAILABLE" },
+        { "product": "patchouli", "price": null, "unit": "BUNCH", "availability": "AVAILABLE" },
+        { "product": "oleo-de-copaiba", "price": "28.00", "unit": "BOTTLE", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "ver-o-peso", "sector": "frutas-e-acai", "code": "103", "name": "Açaí do Porto",
+      "consentMethod": "SIGNED_FORM", "verifiedDaysAgo": 1,
+      "offerings": [
+        { "product": "acai-polpa", "price": "25.00", "unit": "LITER", "availability": "SEASONAL" },
+        { "product": "cupuacu-polpa", "price": "18.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "bacuri", "price": "22.00", "unit": "KG", "availability": "SEASONAL" },
+        { "product": "tapereba", "price": "12.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "muruci", "price": "10.00", "unit": "KG", "availability": "OUT_OF_STOCK" },
+        { "product": "pupunha", "price": "15.00", "unit": "BUNCH", "availability": "SEASONAL" }
+      ]
+    },
+    {
+      "market": "ver-o-peso", "sector": "castanhas-e-farinhas", "code": "18", "name": "Farinhas do Guamá",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 20,
+      "offerings": [
+        { "product": "farinha-dagua", "price": "10.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "goma-de-tapioca", "price": "9.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "farinha-de-tapioca", "price": "13.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "tucupi", "price": "8.00", "unit": "BOTTLE", "availability": "AVAILABLE" },
+        { "product": "jambu", "price": "3.00", "unit": "BUNCH", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "ver-o-peso", "sector": "peixes", "code": "205", "name": "Peixaria Boca do Rio",
+      "consentMethod": "SIGNED_FORM", "verifiedDaysAgo": 5,
+      "offerings": [
+        { "product": "filhote", "price": "48.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "pirarucu-seco", "price": "60.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "camarao-regional", "price": "35.00", "unit": "KG", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "ver-o-peso", "sector": "refeicoes", "code": "9", "name": "Sabores da Doca",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 12,
+      "offerings": [
+        { "product": "manicoba", "price": "25.00", "unit": "PORTION", "availability": "AVAILABLE" },
+        { "product": "tacaca", "price": "20.00", "unit": "PORTION", "availability": "AVAILABLE" },
+        { "product": "pato-no-tucupi", "price": "35.00", "unit": "PORTION", "availability": "AVAILABLE" },
+        { "product": "acai-polpa", "price": "15.00", "unit": "PORTION", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "ver-o-peso", "sector": "artesanato", "code": "301", "name": "Arte Miriti",
+      "consentMethod": "SIGNED_FORM", "verifiedDaysAgo": 25,
+      "offerings": [
+        { "product": "brinquedo-de-miriti", "price": "15.00", "unit": "UNIT", "availability": "AVAILABLE" },
+        { "product": "ceramica-marajoara", "price": "40.00", "unit": "UNIT", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-25", "sector": "hortifruti", "code": "7", "name": "Hortifrúti da 25",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 4,
+      "offerings": [
+        { "product": "jambu", "price": "2.50", "unit": "BUNCH", "availability": "AVAILABLE" },
+        { "product": "pupunha", "price": "12.00", "unit": "BUNCH", "availability": "SEASONAL" },
+        { "product": "tapereba", "price": "10.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "cupuacu-polpa", "price": "16.00", "unit": "KG", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-25", "sector": "mercearia-e-farinhas", "code": "14", "name": "Mercearia do Marco",
+      "consentMethod": "SIGNED_FORM", "verifiedDaysAgo": 15,
+      "offerings": [
+        { "product": "farinha-dagua", "price": "9.50", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "goma-de-tapioca", "price": "8.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "tucupi", "price": "7.00", "unit": "BOTTLE", "availability": "AVAILABLE" },
+        { "product": "castanha-do-para", "price": "42.00", "unit": "KG", "availability": "OUT_OF_STOCK" }
+      ]
+    },
+    {
+      "market": "feira-da-25", "sector": "peixes-e-carnes", "code": "22", "name": "Peixes da 25",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 2,
+      "offerings": [
+        { "product": "filhote", "price": "45.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "camarao-regional", "price": "32.00", "unit": "KG", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-25", "sector": "refeicoes", "code": "3", "name": "Tacacá da 25",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 6,
+      "offerings": [
+        { "product": "tacaca", "price": "18.00", "unit": "PORTION", "availability": "AVAILABLE" },
+        { "product": "manicoba", "price": "22.00", "unit": "PORTION", "availability": "SEASONAL" }
+      ]
+    }
+  ],
+  "commissionRules": [
+    { "taskType": "NEW_STALL", "amount": "8.00" },
+    { "taskType": "UPDATE_STALL", "amount": "4.00" },
+    { "taskType": "VERIFY_REPORT", "amount": "3.00" }
+  ]
+}
