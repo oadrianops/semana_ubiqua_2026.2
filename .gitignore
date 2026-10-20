@@ -1,0 +1,38 @@
+# Material de referência local da equipe (não versionar: contém material de terceiros e dados pessoais)
+/file/
+
+# Segredos e ambiente
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Sistema e IDEs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.iml
+
+# Backend
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/data/
+*.log
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/dev-dist/
+frontend/coverage/
+frontend/playwright-report/
+frontend/test-results/
+frontend/blob-report/
+frontend/.lighthouseci/
+node_modules/
+
+# Claude Code (local)
+.claude/settings.local.json
