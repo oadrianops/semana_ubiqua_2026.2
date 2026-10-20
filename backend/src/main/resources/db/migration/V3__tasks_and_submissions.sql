@@ -1,0 +1,105 @@
+-- V3 — tarefas ("corridas"), tentativas, envios e fotos do envio (RF-13 a RF-20; 9.7; RN-01, RN-25, RN-27).
+
+CREATE TABLE update_tasks (
+    id                  BIGINT         NOT NULL AUTO_INCREMENT,
+    public_id           CHAR(36)       NOT NULL,
+    type                VARCHAR(20)    NOT NULL,
+    status              VARCHAR(20)    NOT NULL,
+    origin              VARCHAR(20)    NOT NULL,
+    market_id           BIGINT         NOT NULL,
+    stall_id            BIGINT         NULL,
+    suggested_sector_id BIGINT         NULL,
+    instructions        VARCHAR(500)   NULL,
+    priority            INT            NOT NULL DEFAULT 2,
+    commission_amount   DECIMAL(10, 2) NOT NULL,
+    created_by          BIGINT         NULL,
+    cancel_reason       VARCHAR(255)   NULL,
+    published_at        DATETIME(6)    NULL,
+    closed_at           DATETIME(6)    NULL,
+    created_at          DATETIME(6)    NOT NULL,
+    updated_at          DATETIME(6)    NOT NULL,
+    version             INT            NOT NULL DEFAULT 0,
+    -- Segunda barreira, no banco, para a RN-25 (uma tarefa ativa por box). Não mapeada na entidade.
+    active_stall_id     BIGINT GENERATED ALWAYS AS (
+        IF(status IN ('ON_HOLD', 'OPEN', 'ACCEPTED', 'CHECKED_IN', 'SUBMITTED'), stall_id, NULL)) STORED,
+    CONSTRAINT pk_update_tasks PRIMARY KEY (id),
+    CONSTRAINT uk_update_tasks_public_id UNIQUE (public_id),
+    CONSTRAINT uk_update_tasks_active_stall UNIQUE (active_stall_id),
+    CONSTRAINT fk_update_tasks_market FOREIGN KEY (market_id) REFERENCES markets (id),
+    CONSTRAINT fk_update_tasks_stall FOREIGN KEY (stall_id) REFERENCES stalls (id),
+    CONSTRAINT fk_update_tasks_suggested_sector FOREIGN KEY (suggested_sector_id) REFERENCES sectors (id),
+    CONSTRAINT fk_update_tasks_created_by FOREIGN KEY (created_by) REFERENCES users (id),
+    INDEX idx_update_tasks_status_market (status, market_id),
+    INDEX idx_update_tasks_stall_status (stall_id, status)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE task_assignments (
+    id                     BIGINT        NOT NULL AUTO_INCREMENT,
+    task_id                BIGINT        NOT NULL,
+    collaborator_id        BIGINT        NOT NULL,
+    accepted_at            DATETIME(6)   NOT NULL,
+    checkin_deadline_at    DATETIME(6)   NOT NULL,
+    checked_in_at          DATETIME(6)   NULL,
+    submission_deadline_at DATETIME(6)   NULL,
+    checkin_latitude       DECIMAL(9, 6) NULL,
+    checkin_longitude      DECIMAL(9, 6) NULL,
+    checkin_accuracy_m     INT           NULL,
+    checkin_distance_m     INT           NULL,
+    checkin_flag           VARCHAR(20)   NULL,
+    outcome                VARCHAR(20)   NULL,
+    outcome_at             DATETIME(6)   NULL,
+    expiry_warned_at       DATETIME(6)   NULL,
+    submitted_at           DATETIME(6)   NULL,
+    created_at             DATETIME(6)   NOT NULL,
+    -- Segunda barreira, no banco, para a RN-01 (uma tentativa em andamento por tarefa). Não mapeada na entidade.
+    active_task_id         BIGINT GENERATED ALWAYS AS (IF(outcome IS NULL, task_id, NULL)) STORED,
+    CONSTRAINT pk_task_assignments PRIMARY KEY (id),
+    CONSTRAINT uk_task_assignments_active_task UNIQUE (active_task_id),
+    CONSTRAINT fk_task_assignments_task FOREIGN KEY (task_id) REFERENCES update_tasks (id),
+    CONSTRAINT fk_task_assignments_collaborator FOREIGN KEY (collaborator_id) REFERENCES users (id),
+    INDEX idx_task_assignments_collaborator_outcome (collaborator_id, outcome),
+    INDEX idx_task_assignments_checked_in_at (checked_in_at),
+    INDEX idx_task_assignments_collaborator_submitted (collaborator_id, submitted_at)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE submissions (
+    id               BIGINT       NOT NULL AUTO_INCREMENT,
+    public_id        CHAR(36)     NOT NULL,
+    task_id          BIGINT       NOT NULL,
+    assignment_id    BIGINT       NOT NULL,
+    collaborator_id  BIGINT       NOT NULL,
+    changeset        JSON         NOT NULL,
+    final_changeset  JSON         NULL,
+    status           VARCHAR(20)  NOT NULL,
+    idempotency_key  CHAR(36)     NOT NULL,
+    request_hash     CHAR(64)     NOT NULL,
+    reviewed_by      BIGINT       NULL,
+    reviewed_at      DATETIME(6)  NULL,
+    rejection_reason VARCHAR(30)  NULL,
+    review_comment   VARCHAR(500) NULL,
+    created_at       DATETIME(6)  NOT NULL,
+    updated_at       DATETIME(6)  NOT NULL,
+    version          INT          NOT NULL DEFAULT 0,
+    CONSTRAINT pk_submissions PRIMARY KEY (id),
+    CONSTRAINT uk_submissions_public_id UNIQUE (public_id),
+    CONSTRAINT uk_submissions_assignment UNIQUE (assignment_id),
+    CONSTRAINT uk_submissions_collaborator_idempotency UNIQUE (collaborator_id, idempotency_key),
+    CONSTRAINT fk_submissions_task FOREIGN KEY (task_id) REFERENCES update_tasks (id),
+    CONSTRAINT fk_submissions_assignment FOREIGN KEY (assignment_id) REFERENCES task_assignments (id),
+    CONSTRAINT fk_submissions_collaborator FOREIGN KEY (collaborator_id) REFERENCES users (id),
+    CONSTRAINT fk_submissions_reviewed_by FOREIGN KEY (reviewed_by) REFERENCES users (id),
+    INDEX idx_submissions_status_created (status, created_at)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
+
+CREATE TABLE submission_photos (
+    id            BIGINT       NOT NULL AUTO_INCREMENT,
+    submission_id BIGINT       NOT NULL,
+    file_id       BIGINT       NOT NULL,
+    role          VARCHAR(20)  NOT NULL,
+    product_slug  VARCHAR(120) NULL,
+    sort_order    INT          NOT NULL,
+    CONSTRAINT pk_submission_photos PRIMARY KEY (id),
+    CONSTRAINT uk_submission_photos_file UNIQUE (file_id),
+    CONSTRAINT fk_submission_photos_submission FOREIGN KEY (submission_id) REFERENCES submissions (id),
+    CONSTRAINT fk_submission_photos_file FOREIGN KEY (file_id) REFERENCES stored_files (id)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci;
