@@ -1,0 +1,11 @@
+# Perfil prod: logs JSON, Swagger desligado, cookie Secure e mesma origem (sem CORS) — 16.5.
+logging:
+  structured:
+    format:
+      console: ecs
+
+app:
+  auth:
+    refresh-cookie-secure: ${APP_REFRESH_COOKIE_SECURE:true}
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:}
