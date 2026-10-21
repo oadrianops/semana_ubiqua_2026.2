@@ -1,0 +1,109 @@
+{
+  "a11y": { "skipToContent": "Ir al contenido" },
+  "nav": {
+    "home": "NANDESK, página de inicio",
+    "main": "Navegación principal",
+    "markets": "Ferias",
+    "search": "Buscar producto",
+    "collaborate": "Colaborar",
+    "admin": "Panel",
+    "login": "Entrar",
+    "notifications": "Notificaciones",
+    "notificationsUnread_one": "Notificaciones: {{count}} sin leer",
+    "notificationsUnread_other": "Notificaciones: {{count}} sin leer",
+    "language": "Idioma",
+    "tasks": "Tareas",
+    "history": "Historial",
+    "earnings": "Ganancias",
+    "profile": "Perfil",
+    "collaborator": "Navegación del colaborador"
+  },
+  "demoNotice": "Datos de demostración: puestos y precios ficticios, solo para probar la app.",
+  "footer": {
+    "tagline": "En qué feria y en qué puesto encontrar lo que buscas en el Ver-o-Peso y en la Feira da 25. Datos mantenidos por la comunidad y revisados antes de publicarse.",
+    "contact": "Contacto:",
+    "navLabel": "Enlaces del pie de página",
+    "about": "Sobre NANDESK",
+    "vendors": "Soy feriante",
+    "privacy": "Privacidad",
+    "terms": "Términos de uso",
+    "becomeCollaborator": "Quiero colaborar"
+  },
+  "network": {
+    "offline": "Sin conexión. Mostrando los datos guardados en el dispositivo.",
+    "slow": "Conexión lenta. Cargando primero lo esencial.",
+    "queued_one": "En cola: {{count}} envío esperando señal",
+    "queued_other": "En cola: {{count}} envíos esperando señal",
+    "sent_one": "Enviado: {{count}} actualización salió de la cola.",
+    "sent_other": "Enviado: {{count}} actualizaciones salieron de la cola."
+  },
+  "state": {
+    "loading": "Cargando",
+    "notFoundTitle": "No encontramos esto",
+    "notFoundBody": "Puede haber sido retirado o la dirección está incompleta.",
+    "errorTitle": "No fue posible cargar ahora",
+    "errorBody": "Inténtalo de nuevo en un momento. Lo que ya estaba guardado sigue disponible.",
+    "offlineTitle": "Sin conexión y sin datos guardados",
+    "offlineBody": "Cuando haya señal, esta pantalla carga sola. Las ferias guardadas funcionan sin internet.",
+    "forbiddenTitle": "Esta área no es de tu perfil",
+    "forbiddenBody": "Entra con una cuenta de moderación o administración para continuar."
+  },
+  "action": {
+    "retry": "Intentar de nuevo",
+    "close": "Cerrar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "back": "Volver"
+  },
+  "pwa": {
+    "updateAvailable": "Hay una nueva versión.",
+    "update": "Actualizar",
+    "installTitle": "Instalar NANDESK",
+    "installBody": "Se abre desde la pantalla de inicio y funciona sin internet en las ferias guardadas.",
+    "iosHelp": "En iPhone: toca Compartir y luego \"Agregar a inicio\".",
+    "install": "Instalar",
+    "notNow": "Ahora no"
+  },
+  "map": { "open": "Abrir", "reportProblem": "Reportar un problema en el mapa" },
+  "freshness": {
+    "never": "aún sin verificar",
+    "today": "verificado hoy",
+    "daysAgo_one": "verificado hace {{count}} día",
+    "daysAgo_other": "verificado hace {{count}} días",
+    "outdated": "La información puede estar desactualizada: este puesto no se verifica hace más de 60 días."
+  },
+  "availability": { "AVAILABLE": "disponible", "OUT_OF_STOCK": "agotado", "SEASONAL": "de temporada" },
+  "price": { "ask": "precio en el puesto" },
+  "unitShort": {
+    "KG": "el kilo",
+    "UNIT": "la unidad",
+    "LITER": "el litro",
+    "BUNCH": "el atado",
+    "PORTION": "la porción",
+    "PACKAGE": "el paquete",
+    "BOTTLE": "la botella",
+    "DOZEN": "la docena"
+  },
+  "unit": {
+    "KG": "kilo",
+    "UNIT": "unidad",
+    "LITER": "litro",
+    "BUNCH": "atado",
+    "PORTION": "porción",
+    "PACKAGE": "paquete",
+    "BOTTLE": "botella",
+    "DOZEN": "docena"
+  },
+  "stall": { "code": "Puesto {{code}}" },
+  "board": { "stallsCount_one": "{{count}} puesto", "stallsCount_other": "{{count}} puestos" },
+  "offline": {
+    "savedAt": "Datos guardados el {{date}} a las {{time}}.",
+    "mayBeOutdated": "Pueden estar desactualizados; se actualizan solos cuando haya señal."
+  },
+  "search": {
+    "label": "Buscar producto",
+    "placeholder": "¿Qué buscas? Ej.: nuez de Brasil",
+    "submit": "Buscar",
+    "suggestions": "Sugerencias"
+  }
+}

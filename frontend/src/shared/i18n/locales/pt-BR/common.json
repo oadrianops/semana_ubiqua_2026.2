@@ -1,0 +1,109 @@
+{
+  "a11y": { "skipToContent": "Pular para o conteúdo" },
+  "nav": {
+    "home": "NANDESK, página inicial",
+    "main": "Navegação principal",
+    "markets": "Feiras",
+    "search": "Buscar produto",
+    "collaborate": "Colaborar",
+    "admin": "Painel",
+    "login": "Entrar",
+    "notifications": "Notificações",
+    "notificationsUnread_one": "Notificações: {{count}} não lida",
+    "notificationsUnread_other": "Notificações: {{count}} não lidas",
+    "language": "Idioma",
+    "tasks": "Tarefas",
+    "history": "Histórico",
+    "earnings": "Ganhos",
+    "profile": "Perfil",
+    "collaborator": "Navegação do colaborador"
+  },
+  "demoNotice": "Dados de demonstração: boxes e preços fictícios, só para testar o app.",
+  "footer": {
+    "tagline": "Em qual feira e em qual box encontrar o que você procura no Ver-o-Peso e na Feira da 25. Dados mantidos pela comunidade e revisados antes de publicar.",
+    "contact": "Contato:",
+    "navLabel": "Links do rodapé",
+    "about": "Sobre a NANDESK",
+    "vendors": "Sou feirante",
+    "privacy": "Privacidade",
+    "terms": "Termos de uso",
+    "becomeCollaborator": "Quero colaborar"
+  },
+  "network": {
+    "offline": "Sem conexão. Mostrando os dados salvos no aparelho.",
+    "slow": "Conexão lenta. Carregando o essencial primeiro.",
+    "queued_one": "Na fila: {{count}} envio aguardando sinal",
+    "queued_other": "Na fila: {{count}} envios aguardando sinal",
+    "sent_one": "Enviado: {{count}} atualização saiu da fila.",
+    "sent_other": "Enviado: {{count}} atualizações saíram da fila."
+  },
+  "state": {
+    "loading": "Carregando",
+    "notFoundTitle": "Não encontramos isso",
+    "notFoundBody": "Pode ter sido removido ou o endereço está incompleto.",
+    "errorTitle": "Não foi possível carregar agora",
+    "errorBody": "Tente de novo em instantes. O que já estava salvo continua disponível.",
+    "offlineTitle": "Sem conexão e sem dados salvos",
+    "offlineBody": "Quando houver sinal, esta tela carrega sozinha. Feiras salvas funcionam sem internet.",
+    "forbiddenTitle": "Esta área não é do seu perfil",
+    "forbiddenBody": "Entre com uma conta de moderação ou administração para continuar."
+  },
+  "action": {
+    "retry": "Tentar de novo",
+    "close": "Fechar",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "back": "Voltar"
+  },
+  "pwa": {
+    "updateAvailable": "Nova versão disponível.",
+    "update": "Atualizar",
+    "installTitle": "Instalar a NANDESK",
+    "installBody": "Abre direto da tela inicial e funciona sem internet nas feiras salvas.",
+    "iosHelp": "No iPhone: toque em Compartilhar e depois em \"Adicionar à Tela de Início\".",
+    "install": "Instalar",
+    "notNow": "Agora não"
+  },
+  "map": { "open": "Abrir", "reportProblem": "Reportar problema no mapa" },
+  "freshness": {
+    "never": "ainda não verificado",
+    "today": "verificado hoje",
+    "daysAgo_one": "verificado há {{count}} dia",
+    "daysAgo_other": "verificado há {{count}} dias",
+    "outdated": "As informações podem estar desatualizadas: este box não é verificado há mais de 60 dias."
+  },
+  "availability": { "AVAILABLE": "disponível", "OUT_OF_STOCK": "em falta", "SEASONAL": "da safra" },
+  "price": { "ask": "preço no box" },
+  "unitShort": {
+    "KG": "o quilo",
+    "UNIT": "a unidade",
+    "LITER": "o litro",
+    "BUNCH": "o maço",
+    "PORTION": "a porção",
+    "PACKAGE": "o pacote",
+    "BOTTLE": "a garrafa",
+    "DOZEN": "a dúzia"
+  },
+  "unit": {
+    "KG": "quilo",
+    "UNIT": "unidade",
+    "LITER": "litro",
+    "BUNCH": "maço",
+    "PORTION": "porção",
+    "PACKAGE": "pacote",
+    "BOTTLE": "garrafa",
+    "DOZEN": "dúzia"
+  },
+  "stall": { "code": "Box {{code}}" },
+  "board": { "stallsCount_one": "{{count}} box", "stallsCount_other": "{{count}} boxes" },
+  "offline": {
+    "savedAt": "Dados salvos em {{date}} às {{time}}.",
+    "mayBeOutdated": "Podem estar desatualizados; atualizam sozinhos quando houver sinal."
+  },
+  "search": {
+    "label": "Buscar produto",
+    "placeholder": "O que você procura? Ex.: jambu",
+    "submit": "Buscar",
+    "suggestions": "Sugestões"
+  }
+}

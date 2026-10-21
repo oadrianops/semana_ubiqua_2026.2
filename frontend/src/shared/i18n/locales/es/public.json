@@ -1,0 +1,229 @@
+{
+  "home": {
+    "title": "Mira en qué puesto venden lo que buscas.",
+    "lead": "Ver-o-Peso y Feira da 25: producto, feria, puesto y precio de referencia, con la fecha de la última verificación.",
+    "quickLabel": "Más buscados:",
+    "quick": {
+      "jambu": "jambú",
+      "banhoDeCheiro": "baño aromático",
+      "castanha": "nuez de Brasil",
+      "tacaca": "tacacá"
+    },
+    "marketsTitle": "Ferias",
+    "seeMap": "Ver en el mapa",
+    "categoriesTitle": "Categorías",
+    "productsCount_one": "{{count}} producto",
+    "productsCount_other": "{{count}} productos",
+    "stallsCount_one": "{{count}} puesto",
+    "stallsCount_other": "{{count}} puestos",
+    "todayHours": "Hoy: de {{opens}} a {{closes}}",
+    "closedToday": "Cerrada hoy",
+    "collaborateTitle": "La comunidad mantiene los puestos al día.",
+    "collaborateBody": "Los colaboradores van a la feria, revisan los productos con el feriante y envían fotos. Cada envío se revisa antes de aparecer aquí y genera una comisión.",
+    "collaborateLink": "Cómo funciona"
+  },
+  "search": {
+    "title": "Buscar producto",
+    "resultsFor": "Dónde encontrar \"{{q}}\"",
+    "filters": "Filtros",
+    "market": "Feria",
+    "allMarkets": "Todas las ferias",
+    "category": "Categoría",
+    "allCategories": "Todas las categorías",
+    "availableOnly": "Solo disponibles",
+    "fromSaved": "Resultado de los datos guardados en el dispositivo (sin conexión).",
+    "emptyQueryTitle": "Escribe el nombre de un producto",
+    "emptyQueryBody": "Puedes escribir sin tildes y en portugués, inglés o español: \"acai\", \"brazil nut\", \"nuez de Brasil\".",
+    "offlineNoSaved": "Para buscar sin internet, abre una feria con señal y toca \"Guardar para usar sin internet\".",
+    "noResultsTitle": "Todavía ningún puesto con \"{{q}}\"",
+    "didYouMean": "Quizás quisiste decir:",
+    "noResultsBody": "Revisa cómo lo escribiste o navega por las categorías:",
+    "priceNote": "Precios de referencia, verificados en la fecha indicada. Pueden variar en el puesto."
+  },
+  "markets": {
+    "title": "Ferias",
+    "lead": "Las ferias de la primera versión de NANDESK. Toca una feria para ver sectores y puestos.",
+    "viewMode": "Ver como",
+    "list": "Lista",
+    "map": "Mapa",
+    "mapLabel": "Mapa de las ferias de Belém",
+    "seeStalls": "Ver puestos",
+    "directions": "Cómo llegar"
+  },
+  "market": {
+    "offlineNotSaved": "Esta feria aún no está guardada en el dispositivo. Ábrela una vez con señal y funcionará sin internet.",
+    "sectors": "Sectores",
+    "allSectors": "Todos",
+    "stallsTitle": "Puestos",
+    "productsCount_one": "{{count}} producto",
+    "productsCount_other": "{{count}} productos",
+    "loadMore": "Cargar más puestos",
+    "saveOffline": "Guardar para usar sin internet",
+    "savedOffline": "Guardada en el dispositivo",
+    "saveHint": "Guarda los puestos y precios de esta feria en el celular para consultarlos aun sin señal.",
+    "savedHint": "Se actualiza sola cada vez que haya señal. Toca de nuevo para dejar de guardarla.",
+    "showMap": "Ver en el mapa",
+    "hideMap": "Ocultar mapa",
+    "mapLabel": "Mapa de {{name}}"
+  },
+  "weekday": {
+    "MON": "lun",
+    "TUE": "mar",
+    "WED": "mié",
+    "THU": "jue",
+    "FRI": "vie",
+    "SAT": "sáb",
+    "SUN": "dom"
+  },
+  "stall": {
+    "fallbackName": "Puesto {{code}}",
+    "vendor": "Feriante: {{name}}",
+    "verifiedLabel": "Datos del puesto:",
+    "photoAlt": "Foto del puesto {{code}} — {{market}}",
+    "boardTitle": "Qué vende",
+    "productsCount_one": "{{count}} producto",
+    "productsCount_other": "{{count}} productos",
+    "priceNote": "Precio de referencia, verificado en la fecha indicada. Puede variar en el puesto.",
+    "wrongTitle": "¿Información equivocada?",
+    "wrongBody": "Avísanos si un producto se acabó, el precio cambió mucho o el puesto se mudó. Alguien de la comunidad lo revisará.",
+    "wrongAction": "Avisar de un error",
+    "reportOffline": "Sin conexión: el aviso necesita señal para enviarse.",
+    "offlineNotSaved": "Este puesto aún no está guardado en el dispositivo. Abre la feria con señal y guárdala para usar sin internet."
+  },
+  "report": {
+    "title": "Avisar sobre el puesto {{code}}",
+    "description": "El aviso es anónimo. Con 3 avisos, alguien de la comunidad va al puesto a revisar.",
+    "reason": "¿Qué está mal?",
+    "reasons": {
+      "PRODUCT_NOT_FOUND": "Producto no encontrado",
+      "PRICE_MISMATCH": "Precio muy diferente",
+      "STALL_CLOSED_OR_MOVED": "Puesto cerrado o se mudó",
+      "OTHER": "Otro"
+    },
+    "product": "¿Sobre qué producto?",
+    "wholeStall": "Todo el puesto",
+    "comment": "Comentario (opcional)",
+    "commentHint": "Hasta 500 caracteres. No escribas nombres ni teléfonos.",
+    "website": "No completes este campo",
+    "submit": "Enviar aviso",
+    "sent": "Aviso enviado. Gracias por ayudar.",
+    "error": "No fue posible enviar el aviso ahora. Inténtalo de nuevo en un momento."
+  },
+  "product": {
+    "unit": "Se vende por",
+    "season": "Temporada",
+    "culturalNote": "Descripción cultural, sin indicaciones de uso medicinal. Revisada con feriantes.",
+    "whereTitle": "Dónde encontrarlo",
+    "stallsTotal_one": "{{count}} puesto",
+    "stallsTotal_other": "{{count}} puestos",
+    "noneTitle": "Ningún puesto con este producto ahora",
+    "noneBody": "La comunidad actualiza los puestos. Vuelve más tarde o escribe al equipo."
+  },
+  "category": {
+    "stallsCount_one": "en {{count}} puesto",
+    "stallsCount_other": "en {{count}} puestos",
+    "noStalls": "aún sin puesto"
+  },
+  "info": {
+    "about": {
+      "title": "Sobre NANDESK",
+      "lead": "Una plataforma de las ferias de Belém para responder una pregunta simple: ¿en qué feria y en qué puesto encuentro esto?",
+      "sections": [
+        {
+          "title": "Por qué existe",
+          "body": "Los feriantes del Ver-o-Peso y de la Feira da 25 venden productos que solo existen en Pará, pero casi no aparecen en internet. Quien busca nuez de Brasil, jambú o baños aromáticos no sabe adónde ir, y el turista además enfrenta la barrera del idioma."
+        },
+        {
+          "title": "Cómo llegan los datos",
+          "body": "El feriante no necesita usar la app. Colaboradores de la comunidad reciben tareas, van a la feria, hacen check-in por GPS, conversan con el feriante y envían fotos y precios. Un moderador revisa cada envío antes de publicarlo, y toda información muestra cuándo fue verificada."
+        },
+        {
+          "title": "Cómo gana el colaborador",
+          "body": "Cada envío aprobado genera una comisión, registrada en el extracto del colaborador. El pago se hace fuera de la plataforma, por PIX o en efectivo, por el equipo del programa. NANDESK no hace pagos en línea: la venta sigue en el puesto, como siempre."
+        },
+        {
+          "title": "Sin internet",
+          "body": "Las ferias están llenas y la señal va y viene. Instala la app, guarda las ferias y consulta puestos y precios aun sin conexión. Los envíos de los colaboradores esperan en una cola y salen solos cuando vuelve la señal."
+        },
+        {
+          "title": "Quién lo hace",
+          "body": "Proyecto académico de la carrera de Ciencia de la Computación de la UNAMA, hecho por Adriano Pinheiro da Silva, Leonardo Farias de Souza y Victor Santiago dos Santos Abreu. Código abierto bajo la licencia MIT."
+        }
+      ],
+      "cta": "Quiero colaborar"
+    },
+    "vendors": {
+      "title": "Soy feriante",
+      "lead": "Tu puesto aparece en NANDESK solo con tu permiso, y puedes pedir salir en cualquier momento.",
+      "sections": [
+        {
+          "title": "Qué aparece",
+          "body": "El número y el nombre del puesto, la feria y el sector, los productos que vendes y, si quieres, el precio de referencia y una foto del puesto. Tu nombre solo aparece si lo autorizas por separado."
+        },
+        {
+          "title": "Quién lo actualiza",
+          "body": "Colaboradores de la comunidad pasan por tu puesto, revisan los productos contigo y envían la información. No necesitas cuenta, celular ni tiempo."
+        },
+        {
+          "title": "Cómo salir",
+          "body": "Habla con cualquier colaborador, con la moderación o escribe a {{email}}. El puesto desaparece de la plataforma al momento, y las fotos se borran en hasta 30 días."
+        },
+        {
+          "title": "Pago",
+          "body": "NANDESK no te cobra nada y no intermedia ventas. El cliente sigue comprando directo en tu puesto, como ya te pagan hoy."
+        }
+      ],
+      "cta": "Hablar con el equipo: {{email}}"
+    },
+    "privacy": {
+      "title": "Política de privacidad",
+      "lead": "Borrador para revisión jurídica antes del lanzamiento público. Recogemos lo mínimo necesario, por el menor tiempo posible.",
+      "sections": [
+        {
+          "title": "Visitantes",
+          "body": "Para buscar y ver puestos no necesitas cuenta. Las búsquedas se registran sin IP y sin usuario, solo para los indicadores. No usamos rastreadores ni analítica de terceros."
+        },
+        {
+          "title": "Colaboradores",
+          "body": "Guardamos nombre, correo, teléfono (opcional) y la clave PIX, cifrada y visible solo para la administración al hacer un pago, con registro de acceso. La ubicación se usa solo en el check-in; las coordenadas se borran después de 90 días."
+        },
+        {
+          "title": "Fotos",
+          "body": "Las fotos no deben mostrar personas identificables sin consentimiento. Los metadatos (incluido el GPS) se eliminan al enviar. Las fotos de envíos aprobados se borran después de 90 días; las rechazadas, después de 30."
+        },
+        {
+          "title": "Tus derechos",
+          "body": "En tu perfil puedes exportar tus datos en JSON y pedir que se elimine tu cuenta. Dudas sobre datos personales: {{email}}."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Términos de uso",
+      "lead": "Borrador para revisión antes del lanzamiento público. Versión 2026-10.",
+      "sections": [
+        {
+          "title": "La plataforma",
+          "body": "NANDESK muestra información de puestos de las ferias de Belém mantenida por la comunidad. Los precios son de referencia y pueden variar en el puesto."
+        },
+        {
+          "title": "Colaboradores",
+          "body": "Para aceptar tareas debes tener 18 años o más, dar información verdadera y estar en la feria al hacer check-in. Los envíos falsos, fotos repetidas o de personas sin consentimiento se rechazan y bajan tu reputación."
+        },
+        {
+          "title": "Comisiones",
+          "body": "La comisión solo se acredita cuando se aprueba el envío. El monto aparece antes de aceptar. Los pagos se hacen fuera de la plataforma por el equipo del programa, a partir de R$ 10,00 de saldo."
+        },
+        {
+          "title": "Feriantes",
+          "body": "Ningún puesto se publica sin el consentimiento del feriante, que puede pedir que lo retiren en cualquier momento."
+        }
+      ]
+    }
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "body": "La dirección puede estar incompleta o la página fue retirada.",
+    "home": "Ir al inicio",
+    "search": "Buscar un producto"
+  }
+}

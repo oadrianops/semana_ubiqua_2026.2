@@ -1,0 +1,262 @@
+{
+  "type": {
+    "UPDATE_STALL": "Atualizar box",
+    "NEW_STALL": "Cadastrar box novo",
+    "VERIFY_REPORT": "Verificar denúncia"
+  },
+  "status": {
+    "ON_HOLD": "Em espera",
+    "OPEN": "Aberta",
+    "ACCEPTED": "Aceita",
+    "CHECKED_IN": "Check-in feito",
+    "SUBMITTED": "Enviada",
+    "COMPLETED": "Concluída",
+    "CANCELLED": "Cancelada"
+  },
+  "outcome": {
+    "RELEASED": "Você desistiu",
+    "EXPIRED": "Prazo vencido",
+    "APPROVED": "Aprovada",
+    "REJECTED": "Recusada"
+  },
+  "submission": {
+    "PENDING": "Em revisão",
+    "APPROVED": "Aprovado: comissão creditada",
+    "REJECTED": "Recusado"
+  },
+  "rejection": {
+    "ILLEGIBLE_PHOTO": "Foto ilegível",
+    "INCONSISTENT_DATA": "Dados não batem com as fotos",
+    "OUT_OF_MARKET": "Fora da feira",
+    "PRIVACY": "Foto expõe pessoas ou dados",
+    "DUPLICATE": "Envio repetido",
+    "OUTDATED": "Informação desatualizada",
+    "OTHER": "Outro motivo"
+  },
+  "blocked": {
+    "REPUTATION_TOO_LOW": "Sua reputação está abaixo do mínimo para aceitar tarefas. Um moderador vai revisar sua conta.",
+    "ACCOUNT_NOT_VERIFIED": "Confirme seu e-mail para aceitar tarefas. O link está na sua caixa de entrada."
+  },
+  "tasks": {
+    "title": "Tarefas",
+    "lead": "Escolha uma tarefa, vá até o box e envie o que viu. Cada envio aprovado vale a comissão indicada.",
+    "activeTitle": "Em andamento",
+    "openTitle": "Abertas agora",
+    "count_one": "{{count}} tarefa",
+    "count_other": "{{count}} tarefas",
+    "market": "Feira",
+    "allMarkets": "Todas as feiras",
+    "type": "Tipo",
+    "allTypes": "Todos os tipos",
+    "sortByDistance": "Ordenar pela distância",
+    "sortedByDistance": "Ordenado pela distância",
+    "locationDenied": "Sem acesso à localização. A lista segue na ordem de prioridade.",
+    "distance": "a {{km}} km",
+    "emptyTitle": "Nenhuma tarefa aberta agora",
+    "emptyBody": "Ative as notificações para saber quando abrir uma tarefa nas suas feiras.",
+    "offline": "Sem conexão. As tarefas aparecem quando o sinal voltar; seus envios na fila continuam salvos.",
+    "pushOffer": "Receba aviso quando abrir tarefa nas suas feiras.",
+    "pushIos": "No iPhone, os avisos funcionam depois de instalar o app na tela de início.",
+    "enablePush": "Ativar notificações",
+    "pushOn": "Notificações ativadas.",
+    "pushDenied": "As notificações estão bloqueadas nas configurações do navegador.",
+    "pushDisabled": "Notificações indisponíveis neste servidor.",
+    "pushError": "Não foi possível ativar as notificações agora."
+  },
+  "step": { "label": "Etapas da tarefa", "accept": "Aceitar", "checkIn": "Check-in", "send": "Enviar" },
+  "deadline": {
+    "checkIn": "Prazo para o check-in",
+    "submit": "Prazo para enviar",
+    "left": "faltam {{time}} · até {{at}}",
+    "expired": "prazo vencido"
+  },
+  "summary": {
+    "market": "Feira",
+    "stall": "Box",
+    "sector": "Setor",
+    "commission": "Comissão",
+    "deadlines": "Depois de aceitar: 2 horas para o check-in na feira e 1 hora para enviar."
+  },
+  "accept": {
+    "body": "A tarefa fica reservada para você. Se não der para ir, desista: ela volta para a lista sem prejuízo.",
+    "action": "Aceitar por {{amount}}",
+    "done": "Tarefa aceita. O prazo do check-in já está contando.",
+    "failed": "Não foi possível aceitar. Outra pessoa pode ter aceitado antes."
+  },
+  "checkIn": {
+    "body": "Quando estiver na {{market}}, toque no botão. Vale estar a até {{radius}} m do centro da feira.",
+    "action": "Fazer check-in aqui",
+    "done": "Check-in feito. Agora você tem 1 hora para enviar.",
+    "doneLow": "Check-in feito com GPS impreciso. O envio segue, e a moderação confere.",
+    "outOfRange": "Você está a {{km}} km da feira. Chegue mais perto e tente de novo.",
+    "denied": "O navegador bloqueou a localização. Libere o acesso nas configurações do site e tente de novo.",
+    "timeout": "O GPS demorou para responder. Vá para um lugar mais aberto e tente de novo.",
+    "unavailable": "Não foi possível obter a localização neste aparelho.",
+    "failed": "Não foi possível fazer o check-in agora.",
+    "help": "A localização só confere se você está na feira; ela não fica guardada no aparelho."
+  },
+  "release": {
+    "action": "Desistir da tarefa",
+    "afterCheckIn": "Desistir (a tarefa volta para a lista)",
+    "done": "Você desistiu. A tarefa voltou para a lista.",
+    "failed": "Não foi possível desistir agora."
+  },
+  "form": {
+    "stallTitle": "Dados do box",
+    "code": "Número do box",
+    "codeHint": "Como está escrito na placa do box, por exemplo 142 ou A-07.",
+    "displayName": "Nome do box",
+    "optional": "Opcional.",
+    "sector": "Setor",
+    "sectorUnknown": "Não sei o setor",
+    "vendorName": "Nome do feirante",
+    "vendorNameHint": "Opcional. Só aparece se o feirante autorizar abaixo.",
+    "notes": "Observações para a moderação",
+    "notesHint": "Opcional. Algo que ajude a conferir o envio."
+  },
+  "consent": {
+    "title": "Consentimento do feirante",
+    "body": "Pergunte ao feirante se ele aceita que o box apareça na NANDESK. Sem a resposta \"sim\", o box não pode ser cadastrado.",
+    "publish": "O feirante aceita que o box apareça no app.",
+    "showName": "O feirante aceita mostrar o nome dele.",
+    "method": "Como o consentimento foi dado",
+    "VERBAL": "De forma verbal",
+    "SIGNED_FORM": "Termo assinado"
+  },
+  "verify": {
+    "title": "O que você encontrou?",
+    "body": "Confira no box se o problema da denúncia é real.",
+    "yes": "O problema existe",
+    "no": "Está tudo certo",
+    "comment": "Comentário (opcional)"
+  },
+  "offerings": {
+    "current": "Produtos do box",
+    "currentHint": "Para cada produto: confirme se continua igual, altere o preço ou retire se não tem mais.",
+    "confirmAll": "Confirmar todos sem mudança",
+    "action": {
+      "CONFIRM": "Continua igual",
+      "UPDATE": "Mudou",
+      "REMOVE": "Não tem mais",
+      "KEEP": "Não conferi"
+    },
+    "new": "Produtos novos",
+    "add": "Adicionar produto",
+    "product": "Produto",
+    "change": "trocar",
+    "suggest": "Não está na lista: sugerir \"{{name}}\"",
+    "suggestName": "Nome do produto sugerido",
+    "suggestCategory": "Categoria",
+    "backToCatalog": "Procurar na lista de novo",
+    "removeRow": "Retirar este produto do envio",
+    "price": "Preço de referência",
+    "priceHint": "Opcional. Ex.: 12,50",
+    "unit": "Unidade",
+    "availability": "Disponibilidade"
+  },
+  "photo": {
+    "title": "Fotos",
+    "hint": "De 1 a 5 fotos. Fotografe a placa do box e os produtos; evite rostos e documentos.",
+    "hintNew": "De 1 a 5 fotos, com pelo menos uma da fachada do box. Evite rostos e documentos.",
+    "take_one": "Tirar foto ({{count}} de {{max}})",
+    "take_other": "Tirar foto ({{count}} de {{max}})",
+    "max": "Limite de {{max}} fotos",
+    "label": "Foto {{n}}",
+    "remove": "Retirar a foto {{n}}",
+    "role": "O que aparece na foto {{n}}",
+    "roles": {
+      "STALL": "Fachada do box",
+      "OFFERING": "Produto",
+      "SUGGESTION": "Produto sugerido",
+      "EVIDENCE": "Evidência"
+    },
+    "unreadable": "Não foi possível ler esta imagem. Tire a foto de novo.",
+    "state": {
+      "pending": "Aguardando envio",
+      "uploading": "Enviando…",
+      "uploaded": "Foto recebida",
+      "waiting": "Aguardando sinal",
+      "failed": "Foto não aceita: tire de novo"
+    }
+  },
+  "errors": {
+    "title": "Falta pouco. Confira:",
+    "photoRequired": "Tire pelo menos uma foto.",
+    "stallPhotoRequired": "Inclua uma foto da fachada do box.",
+    "codeRequired": "Informe o número do box.",
+    "consentRequired": "Marque o consentimento do feirante para o box aparecer.",
+    "verificationRequired": "Diga se o problema da denúncia existe.",
+    "priceInvalid": "Escreva o preço só com números, por exemplo 12,50.",
+    "productRequired": "Escolha o produto ou escreva o nome da sugestão.",
+    "productDuplicated": "Cada produto só pode aparecer uma vez."
+  },
+  "submit": {
+    "action": "Enviar atualização",
+    "hint": "Sem sinal? O envio fica na fila do aparelho e segue sozinho quando a conexão voltar.",
+    "sending": "Enviando. Pode fechar o app: o envio continua.",
+    "queued": "Sem sinal agora. O envio ficou na fila e segue quando a conexão voltar."
+  },
+  "submitted": {
+    "received": "Recebido. Agora a moderação revisa.",
+    "queued": "Na fila, aguardando sinal",
+    "back": "Voltar para as tarefas"
+  },
+  "outbox": {
+    "DRAFT": "Rascunho",
+    "QUEUED": "Na fila",
+    "UPLOADING_PHOTOS": "Enviando fotos",
+    "SUBMITTING": "Enviando dados",
+    "SENT": "Enviado",
+    "RETRY_WAIT": "Aguardando sinal para tentar de novo",
+    "NEEDS_ACTION": "Precisa da sua atenção"
+  },
+  "needsAction": {
+    "RESERVATION_EXPIRED": "O prazo da tarefa venceu antes do envio chegar. Ela voltou para a lista.",
+    "TASK_NOT_AVAILABLE": "Esta tarefa não está mais disponível.",
+    "CHECKIN_REQUIRED": "Faça o check-in na feira antes de enviar.",
+    "CONSENT_REQUIRED": "Falta o consentimento do feirante.",
+    "INVALID_PHOTO": "Uma das fotos não foi aceita. Tire de novo.",
+    "VALIDATION_ERROR": "Algum dado não foi aceito. Confira e envie de novo.",
+    "DAILY_SUBMISSION_LIMIT_REACHED": "Você chegou ao limite de envios de hoje.",
+    "IDEMPOTENCY_KEY_REUSED": "Este envio já foi recebido com outro conteúdo.",
+    "FORBIDDEN": "Sua conta não pode enviar esta tarefa.",
+    "OTHER": "O envio não foi aceito. Confira a tarefa.",
+    "discard": "Descartar este envio"
+  },
+  "history": {
+    "title": "Histórico",
+    "lead": "Suas tarefas, do aceite ao resultado da moderação.",
+    "emptyTitle": "Nenhuma tarefa ainda",
+    "emptyBody": "Quando você aceitar uma tarefa, ela aparece aqui com o resultado.",
+    "seeTasks": "Ver tarefas abertas"
+  },
+  "earnings": {
+    "title": "Ganhos",
+    "lead": "Comissões creditadas por envio aprovado. O repasse é feito pela equipe, por PIX, fora do app.",
+    "balance": "Saldo a receber",
+    "paidOut": "Já repassado",
+    "minimum": "Repasse a partir de",
+    "pixSet": "Chave PIX: {{key}}.",
+    "pixMissing": "Cadastre uma chave PIX para receber.",
+    "pixLink": "Ir para o perfil",
+    "statement": "Extrato",
+    "after": "saldo {{value}}",
+    "emptyTitle": "Nenhum lançamento ainda",
+    "emptyBody": "Cada envio aprovado gera um crédito aqui."
+  },
+  "ledger": { "CREDIT": "Comissão", "PAYOUT": "Repasse", "REVERSAL": "Estorno", "ADJUSTMENT": "Ajuste" },
+  "reputation": {
+    "title": "Reputação",
+    "body": "Calculada sobre suas últimas {{window}} tarefas. Abaixo de {{minimum}}, novas tarefas ficam bloqueadas até a revisão.",
+    "approved": "Aprovadas",
+    "rejected": "Recusadas",
+    "expired": "Vencidas"
+  },
+  "notifications": {
+    "title": "Notificações",
+    "markAll": "Marcar todas como lidas",
+    "new": "novo",
+    "emptyTitle": "Nenhuma notificação",
+    "emptyBody": "Avisos de tarefas, prazos e resultados aparecem aqui."
+  }
+}

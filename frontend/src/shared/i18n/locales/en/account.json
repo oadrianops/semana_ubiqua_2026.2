@@ -1,0 +1,104 @@
+{
+  "fields": { "name": "Name", "email": "Email", "password": "Password" },
+  "errors": {
+    "name": "Write your name with at least 2 letters.",
+    "email": "Check the email: the @ or the domain is missing.",
+    "passwordShort": "Use at least 8 characters for the password.",
+    "passwordLong": "Use at most 128 characters for the password.",
+    "required": "Fill in this field.",
+    "terms": "To create the account, accept the terms of use and the privacy policy.",
+    "adult": "Collaborating is for people aged 18 or over."
+  },
+  "login": {
+    "title": "Sign in",
+    "lead": "To collaborate on tasks or moderate submissions. Searching for products needs no account.",
+    "submit": "Sign in",
+    "failed": "Wrong email or password. Check them and try again.",
+    "forgot": "I forgot my password",
+    "noAccount": "No account yet?",
+    "signup": "Create a collaborator account"
+  },
+  "signup": {
+    "title": "Create a collaborator account",
+    "lead": "Update stalls at the markets and earn a commission for each approved submission. The team pays out by PIX.",
+    "passwordHint": "At least 8 characters. Avoid common passwords such as 12345678.",
+    "acceptPrefix": "I have read and accept the",
+    "terms": "terms of use",
+    "and": "and the",
+    "privacy": "privacy policy",
+    "adult": "I declare that I am 18 or older.",
+    "submit": "Create account",
+    "failed": "We couldn't create the account right now. Try again in a moment.",
+    "hasAccount": "Already have an account?",
+    "login": "Sign in",
+    "checkTitle": "Check your email",
+    "checkBody": "We sent a confirmation link to {{email}}. Open it to start accepting tasks.",
+    "goLogin": "Go to sign in"
+  },
+  "verify": {
+    "title": "Email confirmation",
+    "ok": "Email confirmed. You can now accept tasks.",
+    "login": "Sign in",
+    "error": "This link has expired or was already used. Sign in to get a new one."
+  },
+  "forgot": {
+    "title": "I forgot my password",
+    "lead": "Enter the account email. If it exists, we send a link to create a new password.",
+    "submit": "Send link",
+    "sent": "If the email is registered, the link arrives in a few minutes. Check your spam folder too."
+  },
+  "reset": {
+    "title": "Create a new password",
+    "newPassword": "New password",
+    "submit": "Save new password",
+    "ok": "Password changed. Your other sessions were signed out.",
+    "invalid": "This link has expired or was already used. Ask for a new one under \"I forgot my password\".",
+    "failed": "We couldn't change the password right now. Try again in a moment."
+  },
+  "profile": {
+    "title": "Profile",
+    "logout": "Sign out",
+    "personal": "Your details",
+    "name": "Name",
+    "phone": "Phone",
+    "optional": "Optional.",
+    "language": "Language for the app and emails",
+    "save": "Save details",
+    "saved": "Details saved.",
+    "saveError": "We couldn't save right now. Try again."
+  },
+  "pix": {
+    "title": "PIX key for payouts",
+    "current": "Registered key: {{key}}",
+    "none": "No key registered yet.",
+    "why": "The key is stored encrypted and only shown masked. The team uses it to pay your earnings outside the app.",
+    "type": "Key type",
+    "key": "Key",
+    "save": "Save key",
+    "replace": "Replace key",
+    "saved": "PIX key saved.",
+    "error": "Check the key and try again.",
+    "types": { "CPF": "CPF", "EMAIL": "Email", "PHONE": "Phone", "RANDOM": "Random key" }
+  },
+  "markets": {
+    "title": "Markets you follow",
+    "body": "You get a notice when a task opens at these markets.",
+    "save": "Save markets",
+    "saved": "Markets saved.",
+    "error": "We couldn't save the markets right now."
+  },
+  "privacy": {
+    "title": "Privacy and data",
+    "body": "Download a copy of your data or ask to delete the account. On deletion, your personal data is anonymized; financial records are kept for the legal period, without your name.",
+    "export": "Download my data",
+    "exportError": "We couldn't create the file right now.",
+    "delete": "Delete my account",
+    "confirmTitle": "Delete the account?",
+    "confirmBody": "You are signed out and can no longer sign in with this email. Any unpaid balance is handled by the team before anonymization.",
+    "confirmWord": "DELETE",
+    "confirmLabel": "To confirm, type {{word}}",
+    "confirmAction": "Delete account",
+    "deleted": "Deletion request registered.",
+    "deleteError": "We couldn't register the request right now."
+  }
+}

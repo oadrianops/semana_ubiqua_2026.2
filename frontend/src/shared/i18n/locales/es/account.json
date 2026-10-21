@@ -1,0 +1,104 @@
+{
+  "fields": { "name": "Nombre", "email": "Correo electrónico", "password": "Contraseña" },
+  "errors": {
+    "name": "Escribe tu nombre con al menos 2 letras.",
+    "email": "Revisa el correo: falta la @ o el dominio.",
+    "passwordShort": "Usa al menos 8 caracteres en la contraseña.",
+    "passwordLong": "Usa como máximo 128 caracteres en la contraseña.",
+    "required": "Completa este campo.",
+    "terms": "Para crear la cuenta, acepta los términos de uso y la política de privacidad.",
+    "adult": "Colaborar es solo para mayores de 18 años."
+  },
+  "login": {
+    "title": "Entrar",
+    "lead": "Para colaborar con tareas o moderar envíos. Para buscar productos no hace falta cuenta.",
+    "submit": "Entrar",
+    "failed": "Correo o contraseña incorrectos. Revísalos y vuelve a intentarlo.",
+    "forgot": "Olvidé la contraseña",
+    "noAccount": "¿Aún no tienes cuenta?",
+    "signup": "Crear cuenta de colaborador"
+  },
+  "signup": {
+    "title": "Crear cuenta de colaborador",
+    "lead": "Actualiza puestos en las ferias y gana una comisión por cada envío aprobado. El equipo paga por PIX.",
+    "passwordHint": "Al menos 8 caracteres. Evita contraseñas comunes como 12345678.",
+    "acceptPrefix": "He leído y acepto los",
+    "terms": "términos de uso",
+    "and": "y la",
+    "privacy": "política de privacidad",
+    "adult": "Declaro que tengo 18 años o más.",
+    "submit": "Crear cuenta",
+    "failed": "No pudimos crear la cuenta ahora. Inténtalo de nuevo en un momento.",
+    "hasAccount": "¿Ya tienes cuenta?",
+    "login": "Entrar",
+    "checkTitle": "Revisa tu correo",
+    "checkBody": "Enviamos un enlace de confirmación a {{email}}. Ábrelo para empezar a aceptar tareas.",
+    "goLogin": "Ir a entrar"
+  },
+  "verify": {
+    "title": "Confirmación de correo",
+    "ok": "Correo confirmado. Ya puedes aceptar tareas.",
+    "login": "Entrar",
+    "error": "Este enlace venció o ya se usó. Entra en tu cuenta para recibir uno nuevo."
+  },
+  "forgot": {
+    "title": "Olvidé la contraseña",
+    "lead": "Escribe el correo de la cuenta. Si existe, enviamos un enlace para crear una contraseña nueva.",
+    "submit": "Enviar enlace",
+    "sent": "Si el correo está registrado, el enlace llega en unos minutos. Revisa también el spam."
+  },
+  "reset": {
+    "title": "Crear contraseña nueva",
+    "newPassword": "Contraseña nueva",
+    "submit": "Guardar contraseña nueva",
+    "ok": "Contraseña cambiada. Se cerraron las otras sesiones.",
+    "invalid": "Este enlace venció o ya se usó. Pide uno nuevo en \"Olvidé la contraseña\".",
+    "failed": "No pudimos cambiar la contraseña ahora. Inténtalo de nuevo en un momento."
+  },
+  "profile": {
+    "title": "Perfil",
+    "logout": "Salir",
+    "personal": "Tus datos",
+    "name": "Nombre",
+    "phone": "Teléfono",
+    "optional": "Opcional.",
+    "language": "Idioma de la app y de los correos",
+    "save": "Guardar datos",
+    "saved": "Datos guardados.",
+    "saveError": "No pudimos guardar ahora. Inténtalo de nuevo."
+  },
+  "pix": {
+    "title": "Clave PIX para el pago",
+    "current": "Clave registrada: {{key}}",
+    "none": "Aún no hay clave registrada.",
+    "why": "La clave se guarda cifrada y solo se muestra enmascarada. El equipo la usa para pagarte fuera de la app.",
+    "type": "Tipo de clave",
+    "key": "Clave",
+    "save": "Guardar clave",
+    "replace": "Cambiar clave",
+    "saved": "Clave PIX guardada.",
+    "error": "Revisa la clave y vuelve a intentarlo.",
+    "types": { "CPF": "CPF", "EMAIL": "Correo", "PHONE": "Teléfono", "RANDOM": "Clave aleatoria" }
+  },
+  "markets": {
+    "title": "Ferias que sigues",
+    "body": "Recibes un aviso cuando se abre una tarea en estas ferias.",
+    "save": "Guardar ferias",
+    "saved": "Ferias guardadas.",
+    "error": "No pudimos guardar las ferias ahora."
+  },
+  "privacy": {
+    "title": "Privacidad y datos",
+    "body": "Descarga una copia de tus datos o pide eliminar la cuenta. Al eliminarla, tus datos personales se anonimizan; los registros financieros se guardan durante el plazo legal, sin tu nombre.",
+    "export": "Descargar mis datos",
+    "exportError": "No pudimos generar el archivo ahora.",
+    "delete": "Eliminar mi cuenta",
+    "confirmTitle": "¿Eliminar la cuenta?",
+    "confirmBody": "Sales de la app y ya no puedes entrar con este correo. El saldo no pagado lo resuelve el equipo antes de la anonimización.",
+    "confirmWord": "ELIMINAR",
+    "confirmLabel": "Para confirmar, escribe {{word}}",
+    "confirmAction": "Eliminar cuenta",
+    "deleted": "Solicitud de eliminación registrada.",
+    "deleteError": "No pudimos registrar la solicitud ahora."
+  }
+}

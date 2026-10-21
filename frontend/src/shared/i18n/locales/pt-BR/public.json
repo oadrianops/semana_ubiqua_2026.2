@@ -1,0 +1,229 @@
+{
+  "home": {
+    "title": "Veja em qual box vende o que você procura.",
+    "lead": "Ver-o-Peso e Feira da 25: produto, feira, box e preço de referência, com a data da última conferência.",
+    "quickLabel": "Procurados:",
+    "quick": {
+      "jambu": "jambu",
+      "banhoDeCheiro": "banho de cheiro",
+      "castanha": "castanha-do-pará",
+      "tacaca": "tacacá"
+    },
+    "marketsTitle": "Feiras",
+    "seeMap": "Ver no mapa",
+    "categoriesTitle": "Categorias",
+    "productsCount_one": "{{count}} produto",
+    "productsCount_other": "{{count}} produtos",
+    "stallsCount_one": "{{count}} box",
+    "stallsCount_other": "{{count}} boxes",
+    "todayHours": "Hoje: {{opens}} às {{closes}}",
+    "closedToday": "Fechada hoje",
+    "collaborateTitle": "Quem atualiza os boxes é a comunidade.",
+    "collaborateBody": "Colaboradores vão até a feira, conferem os produtos com o feirante e enviam fotos. Cada envio é revisado antes de aparecer aqui e rende uma comissão.",
+    "collaborateLink": "Como funciona"
+  },
+  "search": {
+    "title": "Buscar produto",
+    "resultsFor": "Onde encontrar \"{{q}}\"",
+    "filters": "Filtros",
+    "market": "Feira",
+    "allMarkets": "Todas as feiras",
+    "category": "Categoria",
+    "allCategories": "Todas as categorias",
+    "availableOnly": "Somente disponíveis",
+    "fromSaved": "Resultado dos dados salvos no aparelho (sem conexão).",
+    "emptyQueryTitle": "Digite o nome de um produto",
+    "emptyQueryBody": "Pode escrever sem acento e em português, inglês ou espanhol: \"acai\", \"brazil nut\", \"nuez de Brasil\".",
+    "offlineNoSaved": "Para buscar sem internet, abra uma feira com sinal e toque em \"Salvar para usar sem internet\".",
+    "noResultsTitle": "Nenhum box com \"{{q}}\" por enquanto",
+    "didYouMean": "Você quis dizer:",
+    "noResultsBody": "Confira a grafia ou navegue pelas categorias:",
+    "priceNote": "Preços de referência, conferidos na data indicada. Podem variar no box."
+  },
+  "markets": {
+    "title": "Feiras",
+    "lead": "As feiras da primeira versão da NANDESK. Toque numa feira para ver setores e boxes.",
+    "viewMode": "Ver como",
+    "list": "Lista",
+    "map": "Mapa",
+    "mapLabel": "Mapa das feiras de Belém",
+    "seeStalls": "Ver boxes",
+    "directions": "Como chegar"
+  },
+  "market": {
+    "offlineNotSaved": "Esta feira ainda não foi salva no aparelho. Abra com sinal uma vez e ela passa a funcionar sem internet.",
+    "sectors": "Setores",
+    "allSectors": "Todos",
+    "stallsTitle": "Boxes",
+    "productsCount_one": "{{count}} produto",
+    "productsCount_other": "{{count}} produtos",
+    "loadMore": "Carregar mais boxes",
+    "saveOffline": "Salvar para usar sem internet",
+    "savedOffline": "Salva no aparelho",
+    "saveHint": "Guarda os boxes e preços desta feira no celular para consultar mesmo sem sinal.",
+    "savedHint": "Atualiza sozinha sempre que houver sinal. Toque de novo para deixar de salvar.",
+    "showMap": "Ver no mapa",
+    "hideMap": "Esconder mapa",
+    "mapLabel": "Mapa do {{name}}"
+  },
+  "weekday": {
+    "MON": "seg",
+    "TUE": "ter",
+    "WED": "qua",
+    "THU": "qui",
+    "FRI": "sex",
+    "SAT": "sáb",
+    "SUN": "dom"
+  },
+  "stall": {
+    "fallbackName": "Box {{code}}",
+    "vendor": "Feirante: {{name}}",
+    "verifiedLabel": "Dados do box:",
+    "photoAlt": "Foto do box {{code}} — {{market}}",
+    "boardTitle": "O que vende",
+    "productsCount_one": "{{count}} produto",
+    "productsCount_other": "{{count}} produtos",
+    "priceNote": "Preço de referência, conferido na data indicada. Pode variar no box.",
+    "wrongTitle": "Informação errada?",
+    "wrongBody": "Avise se um produto acabou, o preço mudou muito ou o box mudou de lugar. Uma pessoa da comunidade vai conferir.",
+    "wrongAction": "Avisar sobre um erro",
+    "reportOffline": "Sem conexão: o aviso precisa de sinal para ser enviado.",
+    "offlineNotSaved": "Este box ainda não está salvo no aparelho. Abra a feira com sinal e salve para usar sem internet."
+  },
+  "report": {
+    "title": "Avisar sobre o box {{code}}",
+    "description": "O aviso é anônimo. Com 3 avisos, alguém da comunidade vai até o box conferir.",
+    "reason": "O que está errado?",
+    "reasons": {
+      "PRODUCT_NOT_FOUND": "Produto não encontrado",
+      "PRICE_MISMATCH": "Preço muito diferente",
+      "STALL_CLOSED_OR_MOVED": "Box fechado ou mudou de lugar",
+      "OTHER": "Outro"
+    },
+    "product": "Sobre qual produto?",
+    "wholeStall": "O box todo",
+    "comment": "Comentário (opcional)",
+    "commentHint": "Até 500 caracteres. Não escreva nomes nem telefones.",
+    "website": "Não preencha este campo",
+    "submit": "Enviar aviso",
+    "sent": "Aviso enviado. Obrigado por ajudar.",
+    "error": "Não foi possível enviar o aviso agora. Tente de novo em instantes."
+  },
+  "product": {
+    "unit": "Vendido por",
+    "season": "Safra",
+    "culturalNote": "Descrição cultural, sem indicação de uso medicinal. Revisada com feirantes.",
+    "whereTitle": "Onde encontrar",
+    "stallsTotal_one": "{{count}} box",
+    "stallsTotal_other": "{{count}} boxes",
+    "noneTitle": "Nenhum box com este produto agora",
+    "noneBody": "Os boxes são atualizados pela comunidade. Volte depois ou avise a equipe pelo contato."
+  },
+  "category": {
+    "stallsCount_one": "em {{count}} box",
+    "stallsCount_other": "em {{count}} boxes",
+    "noStalls": "ainda sem box"
+  },
+  "info": {
+    "about": {
+      "title": "Sobre a NANDESK",
+      "lead": "Uma plataforma das feiras de Belém para responder uma pergunta simples: em qual feira e em qual box eu encontro isto?",
+      "sections": [
+        {
+          "title": "Por que existe",
+          "body": "Os feirantes do Ver-o-Peso e da Feira da 25 vendem produtos que só existem no Pará, mas quase não aparecem na internet. Quem procura castanha-do-pará, jambu ou banho de cheiro não sabe para onde ir, e o turista ainda enfrenta a barreira do idioma."
+        },
+        {
+          "title": "Como os dados chegam aqui",
+          "body": "O feirante não precisa usar o app. Colaboradores da comunidade recebem tarefas, vão até a feira, fazem check-in pelo GPS, conversam com o feirante e enviam fotos e preços. Uma pessoa da moderação revisa cada envio antes de publicar, e toda informação mostra quando foi conferida."
+        },
+        {
+          "title": "Como o colaborador ganha",
+          "body": "Cada envio aprovado rende uma comissão, registrada no extrato do colaborador. O repasse é feito por fora da plataforma, por PIX ou em dinheiro, pela equipe do programa. A NANDESK não faz pagamentos online: a venda continua no box, como sempre foi."
+        },
+        {
+          "title": "Sem internet",
+          "body": "As feiras são lugares cheios e o sinal oscila. Instale o app, salve as feiras e consulte boxes e preços mesmo sem conexão. Os envios dos colaboradores ficam numa fila e seguem sozinhos quando o sinal volta."
+        },
+        {
+          "title": "Quem faz",
+          "body": "Projeto acadêmico do curso de Ciência da Computação da UNAMA, feito por Adriano Pinheiro da Silva, Leonardo Farias de Souza e Victor Santiago dos Santos Abreu. Código aberto sob a licença MIT."
+        }
+      ],
+      "cta": "Quero colaborar"
+    },
+    "vendors": {
+      "title": "Sou feirante",
+      "lead": "Seu box aparece na NANDESK só com a sua permissão, e você pode pedir para sair a qualquer momento.",
+      "sections": [
+        {
+          "title": "O que aparece",
+          "body": "O número e o nome do box, a feira e o setor, os produtos que você vende e, se você quiser, o preço de referência e uma foto do box. Seu nome só aparece se você autorizar separadamente."
+        },
+        {
+          "title": "Quem atualiza",
+          "body": "Colaboradores da comunidade passam no seu box, conferem os produtos com você e enviam as informações. Você não precisa de conta, de celular nem de tempo."
+        },
+        {
+          "title": "Como sair",
+          "body": "Fale com qualquer colaborador, com a moderação ou escreva para {{email}}. O box some da plataforma na hora, e as fotos são apagadas em até 30 dias."
+        },
+        {
+          "title": "Pagamento",
+          "body": "A NANDESK não cobra nada de você e não intermedeia vendas. O cliente continua comprando direto no seu box, do jeito que você já recebe."
+        }
+      ],
+      "cta": "Falar com a equipe: {{email}}"
+    },
+    "privacy": {
+      "title": "Política de privacidade",
+      "lead": "Rascunho para revisão jurídica antes do lançamento público. Coletamos o mínimo necessário, pelo menor tempo possível.",
+      "sections": [
+        {
+          "title": "Visitantes",
+          "body": "Para buscar e ver boxes você não precisa de conta. As buscas são registradas sem IP e sem usuário, só para os indicadores. Não usamos rastreadores nem analytics de terceiros."
+        },
+        {
+          "title": "Colaboradores",
+          "body": "Guardamos nome, e-mail, telefone (opcional) e a chave PIX, cifrada e visível só para a administração no momento de um repasse, com registro de acesso. A localização é usada só no check-in; as coordenadas são apagadas após 90 dias."
+        },
+        {
+          "title": "Fotos",
+          "body": "As fotos não devem mostrar pessoas identificáveis sem consentimento. Os metadados (incluindo GPS) são removidos no envio. Fotos de envios aprovados são apagadas após 90 dias; as rejeitadas, após 30."
+        },
+        {
+          "title": "Seus direitos",
+          "body": "No perfil você pode exportar seus dados em JSON e pedir a exclusão da conta. Dúvidas sobre dados pessoais: {{email}}."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Termos de uso",
+      "lead": "Rascunho para revisão antes do lançamento público. Versão 2026-10.",
+      "sections": [
+        {
+          "title": "A plataforma",
+          "body": "A NANDESK mostra informações de boxes das feiras de Belém mantidas pela comunidade. Os preços são de referência e podem variar no box."
+        },
+        {
+          "title": "Colaboradores",
+          "body": "Para aceitar tarefas é preciso ter 18 anos ou mais, informar dados verdadeiros e estar na feira no check-in. Envios falsos, fotos repetidas ou de pessoas sem consentimento são rejeitados e reduzem a reputação."
+        },
+        {
+          "title": "Comissões",
+          "body": "A comissão só é creditada quando o envio é aprovado. O valor aparece antes do aceite. Os repasses são feitos fora da plataforma pela equipe do programa, a partir de R$ 10,00 de saldo."
+        },
+        {
+          "title": "Feirantes",
+          "body": "Nenhum box é publicado sem o consentimento do feirante, que pode pedir a remoção a qualquer momento."
+        }
+      ]
+    }
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "body": "O endereço pode estar incompleto ou a página foi removida.",
+    "home": "Ir para o início",
+    "search": "Buscar um produto"
+  }
+}

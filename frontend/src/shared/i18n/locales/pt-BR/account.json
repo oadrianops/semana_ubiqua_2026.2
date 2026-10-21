@@ -1,0 +1,104 @@
+{
+  "fields": { "name": "Nome", "email": "E-mail", "password": "Senha" },
+  "errors": {
+    "name": "Escreva seu nome com pelo menos 2 letras.",
+    "email": "Confira o e-mail: falta o @ ou o domínio.",
+    "passwordShort": "Use pelo menos 8 caracteres na senha.",
+    "passwordLong": "Use no máximo 128 caracteres na senha.",
+    "required": "Preencha este campo.",
+    "terms": "Para criar a conta, aceite os termos de uso e a política de privacidade.",
+    "adult": "Colaborar é só para maiores de 18 anos."
+  },
+  "login": {
+    "title": "Entrar",
+    "lead": "Para colaborar com tarefas ou moderar envios. Para buscar produtos, não precisa de conta.",
+    "submit": "Entrar",
+    "failed": "E-mail ou senha incorretos. Confira e tente de novo.",
+    "forgot": "Esqueci a senha",
+    "noAccount": "Ainda não tem conta?",
+    "signup": "Criar conta de colaborador"
+  },
+  "signup": {
+    "title": "Criar conta de colaborador",
+    "lead": "Atualize boxes nas feiras e ganhe uma comissão por envio aprovado. O repasse é feito por PIX pela equipe.",
+    "passwordHint": "Pelo menos 8 caracteres. Evite senhas comuns, como 12345678.",
+    "acceptPrefix": "Li e aceito os",
+    "terms": "termos de uso",
+    "and": "e a",
+    "privacy": "política de privacidade",
+    "adult": "Declaro que tenho 18 anos ou mais.",
+    "submit": "Criar conta",
+    "failed": "Não foi possível criar a conta agora. Tente de novo em instantes.",
+    "hasAccount": "Já tem conta?",
+    "login": "Entrar",
+    "checkTitle": "Confira seu e-mail",
+    "checkBody": "Enviamos um link de confirmação para {{email}}. Abra o link para começar a aceitar tarefas.",
+    "goLogin": "Ir para o login"
+  },
+  "verify": {
+    "title": "Confirmação de e-mail",
+    "ok": "E-mail confirmado. Já pode aceitar tarefas.",
+    "login": "Entrar",
+    "error": "Este link venceu ou já foi usado. Entre na sua conta para receber um novo."
+  },
+  "forgot": {
+    "title": "Esqueci a senha",
+    "lead": "Informe o e-mail da conta. Se ele existir, enviamos um link para criar uma senha nova.",
+    "submit": "Enviar link",
+    "sent": "Se o e-mail estiver cadastrado, o link chega em alguns minutos. Confira também o spam."
+  },
+  "reset": {
+    "title": "Criar senha nova",
+    "newPassword": "Senha nova",
+    "submit": "Salvar senha nova",
+    "ok": "Senha trocada. As outras sessões foram encerradas.",
+    "invalid": "Este link venceu ou já foi usado. Peça um novo em \"Esqueci a senha\".",
+    "failed": "Não foi possível trocar a senha agora. Tente de novo em instantes."
+  },
+  "profile": {
+    "title": "Perfil",
+    "logout": "Sair",
+    "personal": "Seus dados",
+    "name": "Nome",
+    "phone": "Telefone",
+    "optional": "Opcional.",
+    "language": "Idioma do app e dos e-mails",
+    "save": "Salvar dados",
+    "saved": "Dados salvos.",
+    "saveError": "Não foi possível salvar agora. Tente de novo."
+  },
+  "pix": {
+    "title": "Chave PIX para repasse",
+    "current": "Chave cadastrada: {{key}}",
+    "none": "Nenhuma chave cadastrada ainda.",
+    "why": "A chave fica guardada cifrada e só aparece mascarada. A equipe usa para repassar seus ganhos, por fora do app.",
+    "type": "Tipo de chave",
+    "key": "Chave",
+    "save": "Salvar chave",
+    "replace": "Trocar chave",
+    "saved": "Chave PIX salva.",
+    "error": "Confira a chave e tente de novo.",
+    "types": { "CPF": "CPF", "EMAIL": "E-mail", "PHONE": "Telefone", "RANDOM": "Chave aleatória" }
+  },
+  "markets": {
+    "title": "Feiras de interesse",
+    "body": "Você recebe aviso quando abrir tarefa nestas feiras.",
+    "save": "Salvar feiras",
+    "saved": "Feiras de interesse salvas.",
+    "error": "Não foi possível salvar as feiras agora."
+  },
+  "privacy": {
+    "title": "Privacidade e dados",
+    "body": "Baixe uma cópia dos seus dados ou peça a exclusão da conta. Ao excluir, seus dados pessoais são anonimizados; os registros financeiros ficam guardados pelo prazo legal, sem o seu nome.",
+    "export": "Baixar meus dados",
+    "exportError": "Não foi possível gerar o arquivo agora.",
+    "delete": "Excluir minha conta",
+    "confirmTitle": "Excluir a conta?",
+    "confirmBody": "Você sai do app e não consegue mais entrar com este e-mail. Saldo não repassado é tratado pela equipe antes da anonimização.",
+    "confirmWord": "EXCLUIR",
+    "confirmLabel": "Para confirmar, escreva {{word}}",
+    "confirmAction": "Excluir conta",
+    "deleted": "Pedido de exclusão registrado.",
+    "deleteError": "Não foi possível registrar o pedido agora."
+  }
+}

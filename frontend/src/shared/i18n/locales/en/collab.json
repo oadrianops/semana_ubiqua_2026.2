@@ -1,0 +1,262 @@
+{
+  "type": {
+    "UPDATE_STALL": "Update stall",
+    "NEW_STALL": "Register new stall",
+    "VERIFY_REPORT": "Check a report"
+  },
+  "status": {
+    "ON_HOLD": "On hold",
+    "OPEN": "Open",
+    "ACCEPTED": "Accepted",
+    "CHECKED_IN": "Checked in",
+    "SUBMITTED": "Submitted",
+    "COMPLETED": "Completed",
+    "CANCELLED": "Cancelled"
+  },
+  "outcome": {
+    "RELEASED": "You gave it up",
+    "EXPIRED": "Deadline passed",
+    "APPROVED": "Approved",
+    "REJECTED": "Rejected"
+  },
+  "submission": {
+    "PENDING": "Under review",
+    "APPROVED": "Approved: commission credited",
+    "REJECTED": "Rejected"
+  },
+  "rejection": {
+    "ILLEGIBLE_PHOTO": "Unreadable photo",
+    "INCONSISTENT_DATA": "Data doesn't match the photos",
+    "OUT_OF_MARKET": "Outside the market",
+    "PRIVACY": "Photo shows people or personal data",
+    "DUPLICATE": "Repeated submission",
+    "OUTDATED": "Outdated information",
+    "OTHER": "Other reason"
+  },
+  "blocked": {
+    "REPUTATION_TOO_LOW": "Your reputation is below the minimum to accept tasks. A moderator will review your account.",
+    "ACCOUNT_NOT_VERIFIED": "Confirm your email to accept tasks. The link is in your inbox."
+  },
+  "tasks": {
+    "title": "Tasks",
+    "lead": "Pick a task, go to the stall and send what you saw. Each approved submission earns the commission shown.",
+    "activeTitle": "In progress",
+    "openTitle": "Open now",
+    "count_one": "{{count}} task",
+    "count_other": "{{count}} tasks",
+    "market": "Market",
+    "allMarkets": "All markets",
+    "type": "Type",
+    "allTypes": "All types",
+    "sortByDistance": "Sort by distance",
+    "sortedByDistance": "Sorted by distance",
+    "locationDenied": "No access to your location. The list stays in priority order.",
+    "distance": "{{km}} km away",
+    "emptyTitle": "No open tasks right now",
+    "emptyBody": "Turn on notifications to know when a task opens at your markets.",
+    "offline": "No connection. Tasks appear when the signal returns; your queued submissions stay saved.",
+    "pushOffer": "Get a notice when a task opens at your markets.",
+    "pushIos": "On iPhone, notices work after you add the app to the home screen.",
+    "enablePush": "Turn on notifications",
+    "pushOn": "Notifications on.",
+    "pushDenied": "Notifications are blocked in the browser settings.",
+    "pushDisabled": "Notifications are not available on this server.",
+    "pushError": "We couldn't turn on notifications right now."
+  },
+  "step": { "label": "Task steps", "accept": "Accept", "checkIn": "Check in", "send": "Send" },
+  "deadline": {
+    "checkIn": "Check-in deadline",
+    "submit": "Submission deadline",
+    "left": "{{time}} left · until {{at}}",
+    "expired": "deadline passed"
+  },
+  "summary": {
+    "market": "Market",
+    "stall": "Stall",
+    "sector": "Section",
+    "commission": "Commission",
+    "deadlines": "After accepting: 2 hours to check in at the market and 1 hour to send."
+  },
+  "accept": {
+    "body": "The task is reserved for you. If you can't go, give it up: it returns to the list with no penalty.",
+    "action": "Accept for {{amount}}",
+    "done": "Task accepted. The check-in clock is running.",
+    "failed": "We couldn't accept it. Someone else may have accepted first."
+  },
+  "checkIn": {
+    "body": "When you are at {{market}}, tap the button. You need to be within {{radius}} m of the market centre.",
+    "action": "Check in here",
+    "done": "Checked in. You now have 1 hour to send.",
+    "doneLow": "Checked in with imprecise GPS. You can continue; moderation will check.",
+    "outOfRange": "You are {{km}} km from the market. Get closer and try again.",
+    "denied": "The browser blocked location. Allow access in the site settings and try again.",
+    "timeout": "The GPS took too long to answer. Move to a more open spot and try again.",
+    "unavailable": "We couldn't get the location on this device.",
+    "failed": "We couldn't check in right now.",
+    "help": "Location only confirms that you are at the market; it is not stored on the device."
+  },
+  "release": {
+    "action": "Give up the task",
+    "afterCheckIn": "Give up (the task returns to the list)",
+    "done": "You gave it up. The task is back on the list.",
+    "failed": "We couldn't do that right now."
+  },
+  "form": {
+    "stallTitle": "Stall details",
+    "code": "Stall number",
+    "codeHint": "As written on the stall sign, for example 142 or A-07.",
+    "displayName": "Stall name",
+    "optional": "Optional.",
+    "sector": "Section",
+    "sectorUnknown": "I don't know the section",
+    "vendorName": "Vendor's name",
+    "vendorNameHint": "Optional. Only shown if the vendor agrees below.",
+    "notes": "Notes for moderation",
+    "notesHint": "Optional. Anything that helps check the submission."
+  },
+  "consent": {
+    "title": "Vendor's consent",
+    "body": "Ask the vendor whether they agree to the stall appearing on NANDESK. Without a \"yes\", the stall can't be registered.",
+    "publish": "The vendor agrees to the stall appearing in the app.",
+    "showName": "The vendor agrees to show their name.",
+    "method": "How consent was given",
+    "VERBAL": "Verbally",
+    "SIGNED_FORM": "Signed form"
+  },
+  "verify": {
+    "title": "What did you find?",
+    "body": "Check at the stall whether the reported problem is real.",
+    "yes": "The problem is real",
+    "no": "Everything is fine",
+    "comment": "Comment (optional)"
+  },
+  "offerings": {
+    "current": "Stall products",
+    "currentHint": "For each product: confirm it is unchanged, change the price or remove it if it's gone.",
+    "confirmAll": "Confirm all as unchanged",
+    "action": { "CONFIRM": "Unchanged", "UPDATE": "Changed", "REMOVE": "Gone", "KEEP": "Not checked" },
+    "new": "New products",
+    "add": "Add product",
+    "product": "Product",
+    "change": "change",
+    "suggest": "Not on the list: suggest \"{{name}}\"",
+    "suggestName": "Suggested product name",
+    "suggestCategory": "Category",
+    "backToCatalog": "Search the list again",
+    "removeRow": "Remove this product from the submission",
+    "price": "Reference price",
+    "priceHint": "Optional. E.g. 12.50",
+    "unit": "Unit",
+    "availability": "Availability"
+  },
+  "photo": {
+    "title": "Photos",
+    "hint": "1 to 5 photos. Shoot the stall sign and the products; avoid faces and documents.",
+    "hintNew": "1 to 5 photos, at least one of the stall front. Avoid faces and documents.",
+    "take_one": "Take photo ({{count}} of {{max}})",
+    "take_other": "Take photo ({{count}} of {{max}})",
+    "max": "Limit of {{max}} photos",
+    "label": "Photo {{n}}",
+    "remove": "Remove photo {{n}}",
+    "role": "What photo {{n}} shows",
+    "roles": {
+      "STALL": "Stall front",
+      "OFFERING": "Product",
+      "SUGGESTION": "Suggested product",
+      "EVIDENCE": "Evidence"
+    },
+    "unreadable": "We couldn't read this image. Take the photo again.",
+    "state": {
+      "pending": "Waiting to send",
+      "uploading": "Sending…",
+      "uploaded": "Photo received",
+      "waiting": "Waiting for signal",
+      "failed": "Photo not accepted: take it again"
+    }
+  },
+  "errors": {
+    "title": "Almost there. Check:",
+    "photoRequired": "Take at least one photo.",
+    "stallPhotoRequired": "Include a photo of the stall front.",
+    "codeRequired": "Enter the stall number.",
+    "consentRequired": "Tick the vendor's consent for the stall to appear.",
+    "verificationRequired": "Say whether the reported problem is real.",
+    "priceInvalid": "Write the price with numbers only, for example 12.50.",
+    "productRequired": "Pick the product or write the suggested name.",
+    "productDuplicated": "Each product can appear only once."
+  },
+  "submit": {
+    "action": "Send update",
+    "hint": "No signal? The submission waits in the device queue and goes out on its own when the connection returns.",
+    "sending": "Sending. You can close the app: it keeps going.",
+    "queued": "No signal right now. The submission is queued and will go out when the connection returns."
+  },
+  "submitted": {
+    "received": "Received. Moderation will review it now.",
+    "queued": "Queued, waiting for signal",
+    "back": "Back to tasks"
+  },
+  "outbox": {
+    "DRAFT": "Draft",
+    "QUEUED": "Queued",
+    "UPLOADING_PHOTOS": "Sending photos",
+    "SUBMITTING": "Sending data",
+    "SENT": "Sent",
+    "RETRY_WAIT": "Waiting for signal to try again",
+    "NEEDS_ACTION": "Needs your attention"
+  },
+  "needsAction": {
+    "RESERVATION_EXPIRED": "The task deadline passed before the submission arrived. It returned to the list.",
+    "TASK_NOT_AVAILABLE": "This task is no longer available.",
+    "CHECKIN_REQUIRED": "Check in at the market before sending.",
+    "CONSENT_REQUIRED": "The vendor's consent is missing.",
+    "INVALID_PHOTO": "One of the photos was not accepted. Take it again.",
+    "VALIDATION_ERROR": "Some data was not accepted. Check it and send again.",
+    "DAILY_SUBMISSION_LIMIT_REACHED": "You reached today's submission limit.",
+    "IDEMPOTENCY_KEY_REUSED": "This submission was already received with different content.",
+    "FORBIDDEN": "Your account can't submit this task.",
+    "OTHER": "The submission was not accepted. Check the task.",
+    "discard": "Discard this submission"
+  },
+  "history": {
+    "title": "History",
+    "lead": "Your tasks, from acceptance to the moderation result.",
+    "emptyTitle": "No tasks yet",
+    "emptyBody": "When you accept a task, it shows up here with the result.",
+    "seeTasks": "See open tasks"
+  },
+  "earnings": {
+    "title": "Earnings",
+    "lead": "Commissions credited per approved submission. The team pays out by PIX, outside the app.",
+    "balance": "Balance to receive",
+    "paidOut": "Already paid",
+    "minimum": "Payout from",
+    "pixSet": "PIX key: {{key}}.",
+    "pixMissing": "Register a PIX key to get paid.",
+    "pixLink": "Go to profile",
+    "statement": "Statement",
+    "after": "balance {{value}}",
+    "emptyTitle": "No entries yet",
+    "emptyBody": "Each approved submission creates a credit here."
+  },
+  "ledger": {
+    "CREDIT": "Commission",
+    "PAYOUT": "Payout",
+    "REVERSAL": "Reversal",
+    "ADJUSTMENT": "Adjustment"
+  },
+  "reputation": {
+    "title": "Reputation",
+    "body": "Based on your last {{window}} tasks. Below {{minimum}}, new tasks are blocked until a review.",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "expired": "Expired"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAll": "Mark all as read",
+    "new": "new",
+    "emptyTitle": "No notifications",
+    "emptyBody": "Notices about tasks, deadlines and results show up here."
+  }
+}
