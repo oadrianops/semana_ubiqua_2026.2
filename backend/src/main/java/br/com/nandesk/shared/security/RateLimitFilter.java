@@ -33,7 +33,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
     private final ProblemFactory problems;
     private final JsonMapper jsonMapper;
     private final LocaleResolver localeResolver;
-    private final int loginPerMinute;
+    private final AppProperties.RateLimits limits;
 
     public RateLimitFilter(
             RateLimiter limiter,
@@ -41,7 +41,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
             JsonMapper jsonMapper,
             LocaleResolver localeResolver,
             AppProperties properties) {
-        this.loginPerMinute = properties.auth().loginAttemptsPerMinute();
+        this.limits = properties.rateLimits();
         this.limiter = limiter;
         this.problems = problems;
         this.jsonMapper = jsonMapper;
@@ -71,26 +71,28 @@ public class RateLimitFilter extends OncePerRequestFilter {
         if ("POST".equals(method)) {
             switch (path) {
                 case API + "/auth/login":
-                    return Optional.of(new Rule("login:" + ip, loginPerMinute, MINUTE));
+                    return Optional.of(new Rule("login:" + ip, limits.loginPerMinute(), MINUTE));
                 case API + "/auth/register":
-                    return Optional.of(new Rule("register:" + ip, 3, HOUR));
+                    return Optional.of(new Rule("register:" + ip, limits.registerPerHour(), HOUR));
                 case API + "/auth/password/forgot":
-                    return Optional.of(new Rule("forgot:" + ip, 3, HOUR));
+                    return Optional.of(new Rule("forgot:" + ip, limits.forgotPerHour(), HOUR));
                 case API + "/reports":
-                    return Optional.of(new Rule("reports:" + ip, 5, HOUR));
+                    return Optional.of(new Rule("reports:" + ip, limits.reportsPerHour(), HOUR));
                 case API + "/telemetry/web-vitals":
-                    return Optional.of(new Rule("vitals:" + ip, 10, MINUTE));
+                    return Optional.of(new Rule("vitals:" + ip, limits.vitalsPerMinute(), MINUTE));
                 case API + "/uploads":
                     return Optional.of(new Rule(
-                            "uploads:" + user.map(u -> u.publicId().toString()).orElse(ip), 30, MINUTE));
+                            "uploads:" + user.map(u -> u.publicId().toString()).orElse(ip),
+                            limits.uploadsPerMinute(),
+                            MINUTE));
                 default:
                     break;
             }
         }
         if ("GET".equals(method) && path.startsWith(API + "/search")) {
-            return Optional.of(new Rule("search:" + ip, 60, MINUTE));
+            return Optional.of(new Rule("search:" + ip, limits.searchPerMinute(), MINUTE));
         }
-        return user.map(u -> new Rule("user:" + u.publicId(), 300, MINUTE));
+        return user.map(u -> new Rule("user:" + u.publicId(), limits.userPerMinute(), MINUTE));
     }
 
     private void reject(HttpServletRequest request, HttpServletResponse response, long waitSeconds) throws IOException {

@@ -37,6 +37,7 @@ public record AppProperties(
         @DefaultValue @Valid Jwt jwt,
         @DefaultValue @Valid Crypto crypto,
         @DefaultValue @Valid Auth auth,
+        @DefaultValue @Valid RateLimits rateLimits,
         @DefaultValue @Valid Mail mail,
         @DefaultValue @Valid Push push,
         @DefaultValue @Valid Storage storage,
@@ -128,9 +129,18 @@ public record AppProperties(
             @DefaultValue("false") boolean refreshCookieSecure,
             @DefaultValue("5") int lockoutThreshold,
             @DefaultValue("24h") Duration emailVerificationTtl,
-            @DefaultValue("30m") Duration passwordResetTtl,
-            // Tabela 12.3: 5 tentativas de login por minuto por IP; só o stack de E2E aumenta.
-            @DefaultValue("5") @Min(1) int loginAttemptsPerMinute) {}
+            @DefaultValue("30m") Duration passwordResetTtl) {}
+
+    /** Limites da tabela 12.3 (padrões de produção). Só os stacks de teste (E2E e *IT) aumentam. */
+    public record RateLimits(
+            @DefaultValue("5") @Min(1) int loginPerMinute,
+            @DefaultValue("3") @Min(1) int registerPerHour,
+            @DefaultValue("3") @Min(1) int forgotPerHour,
+            @DefaultValue("5") @Min(1) int reportsPerHour,
+            @DefaultValue("10") @Min(1) int vitalsPerMinute,
+            @DefaultValue("30") @Min(1) int uploadsPerMinute,
+            @DefaultValue("60") @Min(1) int searchPerMinute,
+            @DefaultValue("300") @Min(1) int userPerMinute) {}
 
     /**
      * E-mail transacional. Sem SMTP configurado ({@code enabled=false}), as contas são verificadas
@@ -144,7 +154,9 @@ public record AppProperties(
     public record Push(
             String vapidPublicKey,
             String vapidPrivateKey,
-            @DefaultValue("mailto:contato@nandesk.com.br") String vapidSubject) {
+            @DefaultValue("mailto:contato@nandesk.com.br") String vapidSubject,
+            // Expressões dos endereços de push aceitos; vazio = serviços dos navegadores (PushEndpointPolicy).
+            @DefaultValue List<String> allowedEndpointPatterns) {
 
         public boolean configured() {
             return vapidPublicKey != null

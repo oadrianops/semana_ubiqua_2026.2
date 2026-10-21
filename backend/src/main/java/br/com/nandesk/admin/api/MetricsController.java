@@ -42,8 +42,7 @@ public class MetricsController {
             @Size(max = 60) String route,
             @Size(max = 20) String connection) {}
 
-    public record VitalsBatch(
-            @Valid @NotNull @Size(max = 10) List<Vital> metrics) {}
+    public record VitalsBatch(@NotNull @Size(max = 10) List<@Valid Vital> metrics) {}
 
     @Operation(summary = "Painel de indicadores (RF-32)")
     @GetMapping("/api/v1/admin/metrics/overview")
