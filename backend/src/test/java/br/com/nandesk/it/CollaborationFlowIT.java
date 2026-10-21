@@ -275,8 +275,8 @@ class CollaborationFlowIT extends IntegrationTest {
     }
 
     @Test
-    @Tag("RN-14")
-    @DisplayName("RN-14 RN-11: conflito de versão pede confirmação; quem envia não modera; recusa reabre a tarefa")
+    @Tag("RN-26")
+    @DisplayName("RN-26 RN-11: conflito de versão pede confirmação; quem envia não modera; recusa reabre a tarefa")
     void moderationRules() {
         Fixtures fx = fx();
         Fixtures.Person a = fx.newCollaborator();

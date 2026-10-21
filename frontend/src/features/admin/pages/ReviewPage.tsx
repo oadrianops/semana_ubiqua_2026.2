@@ -14,7 +14,7 @@ import { REJECTION_REASONS, type PhotoView, type RejectionReason, type Submissio
 import { AdminHeader, errorMessage, Pill, SectionTitle, show } from '../ui';
 
 /**
- * Revisão de um envio (RF-22): antes e depois lado a lado, conflitos de versão (RN-14), check-in, fotos
+ * Revisão de um envio (RF-22): antes e depois lado a lado, conflitos de versão (RN-26), check-in, fotos
  * restritas e as decisões. Quem enviou não modera o próprio envio (RN-11).
  */
 export default function ReviewPage() {

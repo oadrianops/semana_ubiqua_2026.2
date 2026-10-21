@@ -83,7 +83,7 @@ describe('RF-18 formulário de envio', () => {
     expect(parsePrice('0')).toBeUndefined();
   });
 
-  it('RN-04 RN-06 NEW_STALL exige foto da fachada, número e consentimento', () => {
+  it('RN-13 RN-06 NEW_STALL exige foto da fachada, número e consentimento', () => {
     const t = task({ type: 'NEW_STALL', stall: null });
     expect(validateForm(t, empty, [])).toEqual(
       expect.arrayContaining([
@@ -238,7 +238,7 @@ describe('RF-18 formulário de envio', () => {
     expect(cs.verification).toBeNull();
   });
 
-  it('RN-04 NEW_STALL leva consentimento e setor sugerido; VERIFY_REPORT leva a verificação', () => {
+  it('RN-13 NEW_STALL leva consentimento e setor sugerido; VERIFY_REPORT leva a verificação', () => {
     const fresh = buildChangeSet(task({ type: 'NEW_STALL', stall: null, suggestedSectorSlug: 'ervas' }), {
       ...empty,
       code: ' A-07 ',
@@ -330,7 +330,7 @@ describe('RF-18 RNF-03 envio pela fila', () => {
     await removeItem('task-1');
   });
 
-  it('RN-04 cadastro de box novo pede o consentimento antes de enviar', async () => {
+  it('RN-13 cadastro de box novo pede o consentimento antes de enviar', async () => {
     server.use(
       http.get('/api/v1/markets/ver-o-peso', () =>
         HttpResponse.json({

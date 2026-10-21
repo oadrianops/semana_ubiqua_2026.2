@@ -18,7 +18,7 @@ const STATUSES: ProductStatus[] = ['ACTIVE', 'PENDING', 'INACTIVE', 'MERGED'];
 
 /**
  * Catálogo (RF-31): produtos com nome, descrição e sinônimos nos 3 idiomas (os sinônimos alimentam a busca —
- * RN-23). A coluna de completude mostra o que falta traduzir.
+ * RF-02). A coluna de completude mostra o que falta traduzir.
  */
 export default function CatalogAdminPage() {
   const { t } = useTranslation('admin');

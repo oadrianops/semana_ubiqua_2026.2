@@ -97,7 +97,7 @@ class AccountIT extends IntegrationTest {
     }
 
     @Test
-    @Tag("RN-24")
+    @Tag("RF-09")
     @DisplayName("RF-09: após 5 senhas erradas a conta fica bloqueada por um tempo")
     void lockout() {
         Fixtures.Person p = fx().newCollaborator();

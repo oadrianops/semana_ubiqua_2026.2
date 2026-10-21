@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 class ProductAliasTest {
 
     @Test
-    @DisplayName("RN-23: sinônimos que só diferem em acento ou maiúscula viram um só (como a collation do banco)")
+    @DisplayName("RF-02: sinônimos que só diferem em acento ou maiúscula viram um só (como a collation do banco)")
     void deduplicatesLikeTheDatabaseCollation() {
         Product product = new Product("acai-polpa", null, PriceUnit.LITER, ProductStatus.ACTIVE);
 

@@ -21,8 +21,8 @@ class AdministrationIT extends IntegrationTest {
     }
 
     @Test
-    @Tag("RF-28")
-    @DisplayName("RF-28 RN-04: cadastro de box novo exige consentimento; aprovado, o box aparece; revogado, sai do ar")
+    @Tag("RN-13")
+    @DisplayName("RF-28 RN-13: cadastro de box novo exige consentimento; aprovado, o box aparece; revogado, sai do ar")
     void newStallWithConsent() {
         Fixtures fx = fx();
         Fixtures.Person p = fx.newCollaborator();

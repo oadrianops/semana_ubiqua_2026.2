@@ -14,8 +14,8 @@ import type { AdminStall } from '../types';
 import { AdminHeader, errorMessage, Pager, Pill, selectClass } from '../ui';
 
 /**
- * Boxes (RF-30): dados, setor, estado e consentimento do feirante (RN-04). Revogar o consentimento tira o box do
- * ar na hora e agenda a remoção das fotos (RN-19).
+ * Boxes (RF-30): dados, setor, estado e consentimento do feirante (RN-13). Revogar o consentimento tira o box do
+ * ar na hora e agenda a remoção das fotos (RN-13).
  */
 export default function StallsAdminPage() {
   const { t, i18n } = useTranslation('admin');
