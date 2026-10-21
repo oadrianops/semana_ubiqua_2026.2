@@ -60,7 +60,6 @@ export async function initI18n() {
       resources: { 'pt-BR': { common: commonPt, public: publicPt } },
       fallbackLng: 'pt-BR',
       supportedLngs: [...LANGUAGES],
-      nonExplicitSupportedLngs: true,
       load: 'currentOnly',
       ns: ['common', 'public'],
       defaultNS: 'common',

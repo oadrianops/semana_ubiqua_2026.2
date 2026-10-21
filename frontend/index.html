@@ -22,10 +22,105 @@
     <meta property="og:description" content="Veja em qual feira e em qual box vende o que você procura." />
     <meta property="og:image" content="/brand/png/nandesk-logo-1200.png" />
     <meta property="og:type" content="website" />
+    <!--
+      App shell (RNF-03, CA-7): enquanto o JavaScript chega pela rede da feira, a primeira tela já mostra a marca
+      e uma busca que funciona sem script (GET /search). O React substitui este conteúdo ao iniciar.
+      Cores e medidas iguais às de src/shared/ui/tokens.css (Açaí 900, Tucupi 400, raio de controle 10px).
+    -->
+    <style>
+      body {
+        margin: 0;
+        background: #fff;
+        color: #2b1330;
+        font-family: 'Atkinson Hyperlegible Next Variable', system-ui, sans-serif;
+      }
+      .sh-band {
+        background: #2b1330;
+        color: #fff;
+        padding: 0 max(1rem, env(safe-area-inset-left)) 2rem;
+      }
+      .sh-wrap {
+        max-width: 72rem;
+        margin: 0 auto;
+      }
+      .sh-top {
+        display: flex;
+        align-items: center;
+        min-height: 4rem;
+      }
+      .sh-band h1 {
+        font-family: 'Archivo Variable', system-ui, sans-serif;
+        font-weight: 800;
+        font-size: 1.875rem;
+        line-height: 1.15;
+        max-width: 18ch;
+        margin: 1.5rem 0 1rem;
+      }
+      .sh-form {
+        display: flex;
+        gap: 0.5rem;
+        max-width: 42rem;
+      }
+      .sh-form label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+      }
+      .sh-form input {
+        flex: 1;
+        min-height: 3.5rem;
+        border: 0;
+        border-radius: 10px;
+        padding: 0 1rem;
+        font: inherit;
+        font-size: 1.125rem;
+        color: #2b1330;
+      }
+      .sh-form button {
+        min-height: 3.5rem;
+        border: 0;
+        border-radius: 10px;
+        padding: 0 1.25rem;
+        background: #f2b23a;
+        color: #2b1330;
+        font: inherit;
+        font-weight: 700;
+        font-size: 1.125rem;
+      }
+      @media (min-width: 768px) {
+        .sh-band h1 {
+          font-size: 2.75rem;
+          margin-top: 2.5rem;
+        }
+      }
+    </style>
     <script src="/config.js"></script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div class="sh-band">
+        <div class="sh-wrap">
+          <div class="sh-top">
+            <img src="/brand/svg/nandesk-logo-reversed.svg" alt="NANDESK" width="124" height="20" />
+          </div>
+          <h1>Veja em qual box vende o que você procura.</h1>
+          <form class="sh-form" action="/search" method="get" role="search">
+            <label for="sh-q">Buscar produto</label>
+            <input
+              id="sh-q"
+              name="q"
+              type="search"
+              autocomplete="off"
+              enterkeyhint="search"
+              placeholder="O que você procura? Ex.: jambu"
+            />
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </div>
     <noscript>A NANDESK precisa de JavaScript para funcionar.</noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
