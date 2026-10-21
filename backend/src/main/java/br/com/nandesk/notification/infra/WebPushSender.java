@@ -1,5 +1,6 @@
 package br.com.nandesk.notification.infra;
 
+import br.com.nandesk.notification.domain.PushEndpointPolicy;
 import br.com.nandesk.shared.config.AppProperties;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -34,6 +35,7 @@ public class WebPushSender {
     private final HttpClient http =
             HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(5)).build();
     private final WebPushCrypto.Vapid vapid;
+    private final PushEndpointPolicy endpoints;
 
     public WebPushSender(AppProperties properties, Clock clock) {
         this.config = properties.push();
@@ -47,6 +49,7 @@ public class WebPushSender {
             }
         }
         this.vapid = keys;
+        this.endpoints = new PushEndpointPolicy(config.allowedEndpointPatterns());
     }
 
     public boolean enabled() {
@@ -56,6 +59,9 @@ public class WebPushSender {
     public Result send(String endpoint, String p256dh, String auth, String payloadJson) {
         if (vapid == null) {
             return Result.DISABLED;
+        }
+        if (!endpoints.allows(endpoint)) {
+            return Result.GONE;
         }
         try {
             URI uri = URI.create(endpoint);

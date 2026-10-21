@@ -2,6 +2,7 @@ package br.com.nandesk.notification.application;
 
 import br.com.nandesk.notification.domain.Notification;
 import br.com.nandesk.notification.domain.NotificationType;
+import br.com.nandesk.notification.domain.PushEndpointPolicy;
 import br.com.nandesk.notification.domain.PushSubscription;
 import br.com.nandesk.notification.infra.NotificationRepository;
 import br.com.nandesk.notification.infra.PushSubscriptionRepository;
@@ -12,6 +13,7 @@ import br.com.nandesk.shared.crypto.Hashing;
 import br.com.nandesk.shared.i18n.AppLocale;
 import br.com.nandesk.shared.time.BelemTime;
 import br.com.nandesk.shared.web.BusinessException;
+import br.com.nandesk.shared.web.ErrorCode;
 import br.com.nandesk.shared.web.PageResponse;
 import br.com.nandesk.user.application.UserAccountService;
 import br.com.nandesk.user.domain.User;
@@ -57,6 +59,7 @@ public class NotificationService {
     private final AppProperties properties;
     private final Clock clock;
     private final Cache<String, Instant> pushCooldown;
+    private final PushEndpointPolicy endpoints;
 
     public NotificationService(
             NotificationRepository notifications,
@@ -79,6 +82,7 @@ public class NotificationService {
         this.json = json;
         this.properties = properties;
         this.clock = clock;
+        this.endpoints = new PushEndpointPolicy(properties.push().allowedEndpointPatterns());
         this.pushCooldown = Caffeine.newBuilder()
                 .expireAfterWrite(properties.notifications().pushCooldownPerMarket())
                 .maximumSize(100_000)
@@ -215,6 +219,9 @@ public class NotificationService {
 
     @Transactional
     public UUID subscribePush(UUID userPublicId, String endpoint, String p256dh, String auth, String userAgent) {
+        if (!endpoints.allows(endpoint)) {
+            throw new BusinessException(ErrorCode.VALIDATION_ERROR);
+        }
         User user = users.require(userPublicId);
         String hash = Hashing.sha256Hex(endpoint);
         PushSubscription sub = subscriptions
