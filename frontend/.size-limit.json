@@ -1,0 +1,27 @@
+[
+  {
+    "name": "CSS total (gzip) — 9.14",
+    "path": [
+      "dist/assets/*.css"
+    ],
+    "limit": "30 KB",
+    "gzip": true
+  },
+  {
+    "name": "Mapa (Leaflet, sob demanda) — 9.14",
+    "path": [
+      "dist/assets/MapView-*.js"
+    ],
+    "limit": "80 KB",
+    "gzip": true
+  },
+  {
+    "name": "Fontes pré-carregadas (WOFF2, subconjunto latino) — 9.14",
+    "path": [
+      "dist/assets/archivo-display-latin-*.woff2",
+      "dist/assets/atkinson-hyperlegible-next-latin-wght-normal-*.woff2"
+    ],
+    "limit": "120 KB",
+    "gzip": false
+  }
+]
