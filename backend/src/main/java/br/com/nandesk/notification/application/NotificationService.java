@@ -261,7 +261,7 @@ public class NotificationService {
     }
 
     private NotificationView view(Notification n, Locale locale) {
-        Object[] args = args(n);
+        Object[] args = args(n, locale);
         String title = messages.getMessage(n.getMessageKey() + ".title", args, n.getMessageKey(), locale);
         String body = messages.getMessage(n.getMessageKey() + ".body", args, "", locale);
         return new NotificationView(
@@ -277,15 +277,29 @@ public class NotificationService {
     }
 
     /** Parâmetros posicionais na ordem esperada pelas mensagens de cada tipo. */
-    private static Object[] args(Notification n) {
+    private static Object[] args(Notification n, Locale locale) {
         Map<String, Object> p = n.getParams() == null ? Map.of() : n.getParams();
         Map<String, Object> ordered = new LinkedHashMap<>();
         switch (n.getType()) {
             case NEW_TASKS -> ordered.put("market", p.get("market"));
-            case SUBMISSION_APPROVED, PAYOUT_REGISTERED -> ordered.put("amount", p.get("amount"));
+            case SUBMISSION_APPROVED, PAYOUT_REGISTERED -> ordered.put("amount", money(p.get("amount"), locale));
             case SUBMISSION_REJECTED -> ordered.put("reason", p.get("reason"));
             case RESERVATION_EXPIRING, RESERVATION_EXPIRED -> ordered.put("market", p.get("market"));
         }
         return ordered.values().toArray();
+    }
+
+    /** "R$ 4,00", "R$4.00" ou "4,00 R$", conforme o idioma (RN-24); o valor fica gravado como texto decimal. */
+    private static String money(Object amount, Locale locale) {
+        if (amount == null) {
+            return "";
+        }
+        java.text.NumberFormat format = java.text.NumberFormat.getCurrencyInstance(locale);
+        format.setCurrency(java.util.Currency.getInstance("BRL"));
+        try {
+            return format.format(new java.math.BigDecimal(amount.toString()));
+        } catch (NumberFormatException e) {
+            return amount.toString();
+        }
     }
 }
