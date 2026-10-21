@@ -11,8 +11,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -47,7 +47,7 @@ public class Sector extends BaseEntity {
     private boolean active = true;
 
     @OneToMany(mappedBy = "sector", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SectorTranslation> translations = new ArrayList<>();
+    private Set<SectorTranslation> translations = new LinkedHashSet<>();
 
     public Sector(Market market, String slug, int sortOrder) {
         this.market = market;

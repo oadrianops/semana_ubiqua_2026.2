@@ -15,7 +15,9 @@ import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -65,7 +67,7 @@ public class Market extends AuditableEntity {
     private long dataVersion;
 
     @OneToMany(mappedBy = "market", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MarketTranslation> translations = new ArrayList<>();
+    private Set<MarketTranslation> translations = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "market", cascade = CascadeType.ALL)
     @OrderBy("sortOrder ASC")

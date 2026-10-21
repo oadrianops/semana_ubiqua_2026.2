@@ -15,9 +15,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -65,10 +66,10 @@ public class Product extends AuditableEntity {
     private User suggestedBy;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductTranslation> translations = new ArrayList<>();
+    private Set<ProductTranslation> translations = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ProductAlias> aliases = new ArrayList<>();
+    private Set<ProductAlias> aliases = new LinkedHashSet<>();
 
     public Product(String slug, Category category, PriceUnit defaultUnit, ProductStatus status) {
         this.slug = slug;
@@ -89,9 +90,15 @@ public class Product extends AuditableEntity {
                         () -> translations.add(new ProductTranslation(this, locale, name, description)));
     }
 
+    /**
+     * Sinônimo por idioma, sem repetir: a comparação ignora acentos e maiúsculas, como a collation
+     * utf8mb4_0900_ai_ci do índice único ("açaí" e "acai" são o mesmo sinônimo).
+     */
     public void addAlias(String locale, String alias) {
+        String key = SearchNormalizer.normalize(alias);
         boolean exists = aliases.stream()
-                .anyMatch(a -> a.getLocale().equals(locale) && a.getAlias().equalsIgnoreCase(alias));
+                .anyMatch(a -> a.getLocale().equals(locale)
+                        && SearchNormalizer.normalize(a.getAlias()).equals(key));
         if (!exists) {
             aliases.add(new ProductAlias(this, locale, alias));
         }

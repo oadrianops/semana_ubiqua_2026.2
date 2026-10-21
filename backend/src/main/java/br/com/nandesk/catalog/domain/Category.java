@@ -8,8 +8,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -44,7 +44,7 @@ public class Category extends BaseEntity {
     private boolean active = true;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CategoryTranslation> translations = new ArrayList<>();
+    private Set<CategoryTranslation> translations = new LinkedHashSet<>();
 
     public Category(String slug, String icon, int sortOrder) {
         this.slug = slug;
