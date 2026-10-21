@@ -95,6 +95,6 @@ sequenceDiagram
 | Regras de negócio | JUnit 6 + AssertJ (128 testes) | verde |
 | Integração | `*IT` com MySQL 8.4 (Testcontainers ou `IT_JDBC_URL`), 71 testes | verde, JaCoCo 91% |
 | Arquitetura | ArchUnit | verde |
-| Frontend | Vitest + Testing Library + MSW (84 testes, 78% de linhas) | verde |
+| Frontend | Vitest + Testing Library + MSW (87 testes, 78,7% de linhas) | verde |
 | E2E | Playwright J1–J8 com axe e perfis de rede | verde (Chromium) |
 | Contrato | `docs/api/openapi.json` gerado e conferido no CI | verde |

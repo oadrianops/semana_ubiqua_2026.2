@@ -39,7 +39,7 @@ IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.1.0).
   desenvolvimento e de produção para o Coolify (`nandesk.com.br`), scripts de chaves, backup e restauração,
   Prometheus/Grafana, k6, workflows de CI (backend, frontend, E2E, segurança, release) e Dependabot.
 - **Qualidade**: 128 testes unitários, 71 testes de integração com MySQL 8.4 (CA-1 com os 26 produtos, corrida da
-  RN-01, matriz de segurança, contrato OpenAPI), 84 testes do frontend, jornadas E2E J1 a J8 com axe e perfil de
+  RN-01, matriz de segurança, contrato OpenAPI), 87 testes do frontend, jornadas E2E J1 a J8 com axe e perfil de
   rede "Feira lotada", ArchUnit e orçamentos de performance no CI.
 - **Documentação**: 17 ADRs, arquitetura, riscos, medição, rastreabilidade gerada, runbooks de deploy, restauração e
   incidentes, rascunhos legais e material de validação.
@@ -51,6 +51,9 @@ IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.1.0).
 - O job de retenção falharia na chave estrangeira das fotos de envio a partir do 90º dia (RN-22).
 - Inscrição de push aceitava qualquer URL (risco de SSRF).
 - Nome acessível sem espaço antes do número do box e campo de foto sem rótulo.
+- Revisão de design (impeccable): cabeçalho transbordando a 390 px, filtros cobrindo resultados, linha de preço
+  quebrada no celular, marca "atualizado" ausente, títulos de aba iguais, textos do servidor sem tradução, item ativo
+  do painel invisível e desistência sem confirmação (`docs/design/revisao-2026-10-21.md`).
 
 [Não lançado]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/oadrianops/semana_ubiqua_2026.2/releases/tag/v1.0.0

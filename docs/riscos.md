@@ -16,6 +16,6 @@ Probabilidade (P) e impacto (I): A = alto, M = médio, B = baixo. Revisar a cada
 | R10 | Incompatibilidade de versões | M | M | ADR-0002, Dependabot, ITs com banco real | Ocorreu e foi tratado: Jackson 3, Boot 4, TypeScript 5.9 |
 | R11 | Traduções incorretas em EN/ES | M | B | Paridade de chaves no CI, completude no catálogo, fallback PT-BR | Aberto: falta revisão por falantes |
 | R12 | Aparência genérica de IA | M | M | Direção "Lousa de preços", skill impeccable, checklist de design | Mitigado (ADR-0016) |
-| R13 | Performance piora a cada funcionalidade | A | A | Orçamentos no CI, J8, Web Vitals de campo | Mitigado (142,7 KB de JS inicial) |
+| R13 | Performance piora a cada funcionalidade | A | A | Orçamentos no CI, J8, Web Vitals de campo | Mitigado (143,3 KB de JS inicial) |
 | R14 | Dados fictícios confundidos com reais | M | A | Faixa "Dados de demonstração", ADR-0017, README | Mitigado; desligar ao entrar com dados reais |
 | R15 | Contas de teste públicas usadas para vandalizar a demonstração | M | M | Senha separada para a administração; limites de taxa; auditoria | Mitigado; trocar senhas após o hackathon |

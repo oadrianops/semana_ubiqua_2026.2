@@ -15,8 +15,8 @@ implementação para o hackathon.
 
 | Pergunta | Métrica | Fonte | Valor |
 |---|---|---|---|
-| Quanto JavaScript chega antes da primeira tela? | JS inicial (gzip) | `npm run size` | 142,7 KB (limite 150) |
-| A primeira tela aparece rápido com rede ruim? | Tempo até a busca utilizável, perfil "Feira lotada" | E2E J8 | 1,3 s na 1ª visita (meta 3 s), 0,9 s na 2ª (meta 1 s) |
+| Quanto JavaScript chega antes da primeira tela? | JS inicial (gzip) | `npm run size` | 143,3 KB (limite 150) |
+| A primeira tela aparece rápido com rede ruim? | Tempo até a busca utilizável, perfil "Feira lotada" | E2E J8 | 1,4 s na 1ª visita (meta 3 s), 0,9 s na 2ª (meta 1 s) |
 | Envios se perdem ou duplicam com quedas? | Uploads e envios por tarefa com a rede caindo | E2E J6 | 1 upload e 1 envio |
 | Como é a experiência real? | p75 de LCP, INP, CLS e TTFB por rota | `/telemetry/web-vitals` → Grafana | Coletado em produção (amostra de 10%) |
 
@@ -36,7 +36,7 @@ implementação para o hackathon.
 | Testes unitários do backend | `./mvnw verify` | 128, todos verdes |
 | Testes de integração com MySQL 8.4 | `*IT` | 71, todos verdes |
 | Cobertura de linhas do backend (total / `domain`+`application`) | JaCoCo | 91% / todos os pacotes ≥ 80% |
-| Testes do frontend / cobertura de linhas | `npm run ci` | 84 / 78% |
+| Testes do frontend / cobertura de linhas | `npm run ci` | 87 / 78,7% |
 | Jornadas E2E | Playwright | J1 a J8 verdes no Chromium |
 | Violações de acessibilidade "serious"/"critical" | axe nos E2E | 0 |
 | Chaves de tradução faltando | Teste de paridade | 0 |
