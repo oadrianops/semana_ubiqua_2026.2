@@ -128,7 +128,9 @@ public record AppProperties(
             @DefaultValue("false") boolean refreshCookieSecure,
             @DefaultValue("5") int lockoutThreshold,
             @DefaultValue("24h") Duration emailVerificationTtl,
-            @DefaultValue("30m") Duration passwordResetTtl) {}
+            @DefaultValue("30m") Duration passwordResetTtl,
+            // Tabela 12.3: 5 tentativas de login por minuto por IP; só o stack de E2E aumenta.
+            @DefaultValue("5") @Min(1) int loginAttemptsPerMinute) {}
 
     /**
      * E-mail transacional. Sem SMTP configurado ({@code enabled=false}), as contas são verificadas

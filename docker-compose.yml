@@ -52,6 +52,8 @@ services:
       APP_JWT_KEY_ID: ${APP_JWT_KEY_ID:-dev}
       APP_CRYPTO_PIX_KEY: ${APP_CRYPTO_PIX_KEY:-}
       APP_REFRESH_COOKIE_SECURE: ${APP_REFRESH_COOKIE_SECURE:-false}
+      # O E2E faz muitos logins seguidos; produção fica nos 5 por minuto da tabela 12.3.
+      APP_LOGIN_ATTEMPTS_PER_MINUTE: ${APP_LOGIN_ATTEMPTS_PER_MINUTE:-5}
       APP_MAIL_ENABLED: ${APP_MAIL_ENABLED:-true}
       SPRING_MAIL_HOST: mailpit
       SPRING_MAIL_PORT: 1025

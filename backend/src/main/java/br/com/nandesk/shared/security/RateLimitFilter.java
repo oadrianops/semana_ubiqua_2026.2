@@ -1,5 +1,6 @@
 package br.com.nandesk.shared.security;
 
+import br.com.nandesk.shared.config.AppProperties;
 import br.com.nandesk.shared.web.ErrorCode;
 import br.com.nandesk.shared.web.ProblemFactory;
 import jakarta.servlet.FilterChain;
@@ -32,9 +33,15 @@ public class RateLimitFilter extends OncePerRequestFilter {
     private final ProblemFactory problems;
     private final JsonMapper jsonMapper;
     private final LocaleResolver localeResolver;
+    private final int loginPerMinute;
 
     public RateLimitFilter(
-            RateLimiter limiter, ProblemFactory problems, JsonMapper jsonMapper, LocaleResolver localeResolver) {
+            RateLimiter limiter,
+            ProblemFactory problems,
+            JsonMapper jsonMapper,
+            LocaleResolver localeResolver,
+            AppProperties properties) {
+        this.loginPerMinute = properties.auth().loginAttemptsPerMinute();
         this.limiter = limiter;
         this.problems = problems;
         this.jsonMapper = jsonMapper;
@@ -64,7 +71,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
         if ("POST".equals(method)) {
             switch (path) {
                 case API + "/auth/login":
-                    return Optional.of(new Rule("login:" + ip, 5, MINUTE));
+                    return Optional.of(new Rule("login:" + ip, loginPerMinute, MINUTE));
                 case API + "/auth/register":
                     return Optional.of(new Rule("register:" + ip, 3, HOUR));
                 case API + "/auth/password/forgot":

@@ -82,6 +82,10 @@ public class SecurityConfig {
                         .permitAll()
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html", "/error")
                         .permitAll()
+                        // Porta de gestão (8091), nunca publicada: o Nginx só repassa /actuator/health (16.4).
+                        .requestMatchers(
+                                "/actuator/health", "/actuator/health/**", "/actuator/info", "/actuator/prometheus")
+                        .permitAll()
                         // Administração restrita a ADMIN (11.2)
                         .requestMatchers(
                                 API + "/admin/commission-rules/**", API + "/admin/balances/**",

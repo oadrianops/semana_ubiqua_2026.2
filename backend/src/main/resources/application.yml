@@ -66,6 +66,10 @@ server:
 management:
   server:
     port: 8091
+  health:
+    # E-mail é opcional (ADR-0017): um SMTP fora do ar não tira a API do ar.
+    mail:
+      enabled: false
   endpoints:
     web:
       exposure:
@@ -121,6 +125,7 @@ app:
     pix-key: ${APP_CRYPTO_PIX_KEY:}
   auth:
     refresh-cookie-secure: ${APP_REFRESH_COOKIE_SECURE:false}
+    login-attempts-per-minute: ${APP_LOGIN_ATTEMPTS_PER_MINUTE:5}
   mail:
     enabled: ${APP_MAIL_ENABLED:false}
     from: ${APP_MAIL_FROM:nao-responda@nandesk.com.br}
