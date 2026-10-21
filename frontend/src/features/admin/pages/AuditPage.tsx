@@ -74,7 +74,12 @@ export default function AuditPage() {
                 <summary className="min-h-11 cursor-pointer content-center font-semibold text-brand">
                   {t('audit.details')}
                 </summary>
-                <pre className="overflow-x-auto rounded-[var(--radius-control)] bg-soft p-3 text-xs">
+                <pre
+                  className="overflow-x-auto rounded-[var(--radius-control)] bg-soft p-3 text-xs"
+                  role="region"
+                  aria-label={t('audit.details')}
+                  tabIndex={0}
+                >
                   {JSON.stringify({ before: a.before, after: a.after }, null, 2)}
                 </pre>
               </details>
