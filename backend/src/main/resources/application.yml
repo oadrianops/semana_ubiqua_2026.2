@@ -132,3 +132,4 @@ app:
   seed:
     enabled: ${APP_SEED_ENABLED:false}
     default-password: ${SEED_DEFAULT_PASSWORD:}
+    admin-password: ${SEED_ADMIN_PASSWORD:}

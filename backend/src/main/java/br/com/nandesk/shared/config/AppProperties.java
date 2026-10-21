@@ -154,5 +154,16 @@ public record AppProperties(
 
     public record Storage(@DefaultValue("./data/uploads") String localPath) {}
 
-    public record Seed(@DefaultValue("false") boolean enabled, String defaultPassword) {}
+    /**
+     * Seed de demonstração (10.4, ADR-0017). {@code adminPassword} separa a senha da administração das contas de
+     * teste divulgadas no README; vazio, vale a {@code defaultPassword}.
+     */
+    public record Seed(@DefaultValue("false") boolean enabled, String defaultPassword, String adminPassword) {
+
+        public String passwordFor(String role) {
+            return "ADMIN".equals(role) && adminPassword != null && !adminPassword.isBlank()
+                    ? adminPassword
+                    : defaultPassword;
+        }
+    }
 }

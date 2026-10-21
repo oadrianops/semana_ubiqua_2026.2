@@ -104,6 +104,10 @@ public class DemoSeedService {
             throw new IllegalStateException(
                     "Defina SEED_DEFAULT_PASSWORD (mínimo de 8 caracteres) para carregar o seed");
         }
+        String adminPassword = properties.seed().adminPassword();
+        if (adminPassword != null && !adminPassword.isBlank() && adminPassword.length() < 12) {
+            throw new IllegalStateException("SEED_ADMIN_PASSWORD precisa de pelo menos 12 caracteres");
+        }
         Map<String, Market> markets = new HashMap<>();
         for (SeedMarket m : data.markets()) {
             Market market = marketQuery.findActive(m.slug()).orElse(null);
@@ -134,7 +138,12 @@ public class DemoSeedService {
         for (SeedUser u : data.users()) {
             User user = users.findByEmail(u.email())
                     .orElseGet(() -> users.create(
-                            u.name(), u.email(), password, Role.valueOf(u.role()), UserStatus.ACTIVE, "pt-BR"));
+                            u.name(),
+                            u.email(),
+                            properties.seed().passwordFor(u.role()),
+                            Role.valueOf(u.role()),
+                            UserStatus.ACTIVE,
+                            "pt-BR"));
             if (!u.markets().isEmpty()) {
                 users.replaceSubscriptions(
                         user.getId(),
