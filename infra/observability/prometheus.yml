@@ -1,0 +1,11 @@
+# Coleta das métricas da API (seção 16.10). A porta de gestão (8091) nunca é exposta pelo Nginx.
+global:
+  scrape_interval: 15s
+  evaluation_interval: 30s
+
+scrape_configs:
+  - job_name: nandesk-api
+    metrics_path: /actuator/prometheus
+    static_configs:
+      # api:8091 no stack completo (perfil app); host.docker.internal:8091 com a API rodando pela IDE.
+      - targets: ["api:8091", "host.docker.internal:8091"]

@@ -1,0 +1,91 @@
+{
+  "uid": "nandesk-overview",
+  "title": "NANDESK — visão geral",
+  "description": "Busca, Core Web Vitals de campo, tarefas, moderação e erros (seção 16.10).",
+  "schemaVersion": 39,
+  "version": 1,
+  "time": { "from": "now-24h", "to": "now" },
+  "refresh": "1m",
+  "tags": ["nandesk"],
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Buscas por minuto (com e sem resultado)",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        { "refId": "A", "expr": "sum by (result) (rate(nandesk_search_requests_total[5m])) * 60", "legendFormat": "{{result}}" }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "Latência média da busca (ms)",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "1000 * sum(rate(nandesk_search_latency_seconds_sum[5m])) / clamp_min(sum(rate(nandesk_search_latency_seconds_count[5m])), 1e-9)",
+          "legendFormat": "média"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "Core Web Vitals de campo — p75 por métrica e rota",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        { "refId": "A", "expr": "max by (metric, route) (nandesk_web_vitals{quantile=\"0.75\"})", "legendFormat": "{{metric}} {{route}}" }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "Transições de tarefa por hora",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        { "refId": "A", "expr": "sum by (from, to) (increase(nandesk_tasks_transitions_total[1h]))", "legendFormat": "{{from}} → {{to}}" }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "stat",
+      "title": "Tempo médio de moderação (h)",
+      "gridPos": { "h": 6, "w": 8, "x": 0, "y": 16 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(increase(nandesk_moderation_duration_seconds_sum[24h])) / clamp_min(sum(increase(nandesk_moderation_duration_seconds_count[24h])), 1e-9) / 3600"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "Taxa de erros 5xx (5 min)",
+      "gridPos": { "h": 6, "w": 8, "x": 8, "y": 16 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "fieldConfig": { "defaults": { "unit": "percentunit", "thresholds": { "mode": "absolute", "steps": [{ "color": "green", "value": null }, { "color": "red", "value": 0.02 }] } } },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(rate(http_server_requests_seconds_count{status=~\"5..\"}[5m])) / clamp_min(sum(rate(http_server_requests_seconds_count[5m])), 1e-9)"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "type": "stat",
+      "title": "Pool de conexões em uso",
+      "gridPos": { "h": 6, "w": 8, "x": 16, "y": 16 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [{ "refId": "A", "expr": "sum(hikaricp_connections_active)" }]
+    }
+  ]
+}
