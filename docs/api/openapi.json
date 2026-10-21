@@ -1,0 +1,5683 @@
+{
+  "components" : {
+    "schemas" : {
+      "AcceptResult" : {
+        "properties" : {
+          "checkinDeadlineAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "commission" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "status" : {
+            "enum" : [ "ON_HOLD", "OPEN", "ACCEPTED", "CHECKED_IN", "SUBMITTED", "COMPLETED", "CANCELLED" ],
+            "type" : "string"
+          },
+          "taskId" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "AdjustmentRequest" : {
+        "properties" : {
+          "amount" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "collaboratorId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "justification" : {
+            "maxLength" : 255,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "reversesEntryId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "CREDIT", "PAYOUT", "REVERSAL", "ADJUSTMENT" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "collaboratorId", "justification", "type" ],
+        "type" : "object"
+      },
+      "AdminMarketView" : {
+        "properties" : {
+          "active" : {
+            "type" : "boolean"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "dataVersion" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "latitude" : {
+            "type" : "number"
+          },
+          "longitude" : {
+            "type" : "number"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "openingHours" : {
+            "items" : {
+              "$ref" : "#/components/schemas/OpeningHours"
+            },
+            "type" : "array"
+          },
+          "radiusMeters" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "sectors" : {
+            "items" : {
+              "$ref" : "#/components/schemas/AdminSectorView"
+            },
+            "type" : "array"
+          },
+          "slug" : {
+            "type" : "string"
+          },
+          "translations" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/Translation"
+            },
+            "type" : "object"
+          },
+          "version" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "AdminProductView" : {
+        "properties" : {
+          "aliases" : {
+            "additionalProperties" : {
+              "items" : {
+                "type" : "string"
+              },
+              "type" : "array"
+            },
+            "type" : "object"
+          },
+          "categorySlug" : {
+            "type" : "string"
+          },
+          "completeness" : {
+            "additionalProperties" : {
+              "type" : "boolean"
+            },
+            "type" : "object"
+          },
+          "defaultUnit" : {
+            "enum" : [ "KG", "UNIT", "LITER", "BUNCH", "PORTION", "PACKAGE", "BOTTLE", "DOZEN" ],
+            "type" : "string"
+          },
+          "imageUrl" : {
+            "type" : "string"
+          },
+          "seasonMonths" : {
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          },
+          "slug" : {
+            "type" : "string"
+          },
+          "status" : {
+            "enum" : [ "ACTIVE", "PENDING", "MERGED", "INACTIVE" ],
+            "type" : "string"
+          },
+          "suggestedBy" : {
+            "type" : "string"
+          },
+          "translations" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/ProductTranslationCommand"
+            },
+            "type" : "object"
+          },
+          "version" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "AdminSectorView" : {
+        "properties" : {
+          "active" : {
+            "type" : "boolean"
+          },
+          "names" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          },
+          "slug" : {
+            "type" : "string"
+          },
+          "sortOrder" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "AdminStallView" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "consentMethod" : {
+            "enum" : [ "VERBAL", "SIGNED_FORM" ],
+            "type" : "string"
+          },
+          "consentRecordedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "consentStatus" : {
+            "enum" : [ "GRANTED", "REVOKED" ],
+            "type" : "string"
+          },
+          "displayName" : {
+            "type" : "string"
+          },
+          "lastVerifiedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "marketSlug" : {
+            "type" : "string"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "sectorName" : {
+            "type" : "string"
+          },
+          "sectorSlug" : {
+            "type" : "string"
+          },
+          "showVendorName" : {
+            "type" : "boolean"
+          },
+          "status" : {
+            "enum" : [ "ACTIVE", "INACTIVE" ],
+            "type" : "string"
+          },
+          "vendorName" : {
+            "type" : "string"
+          },
+          "version" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "AdminUserView" : {
+        "properties" : {
+          "createdAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "emailMasked" : {
+            "type" : "string"
+          },
+          "id" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "lastLoginAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "reputation" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "role" : {
+            "enum" : [ "COLLABORATOR", "MODERATOR", "ADMIN" ],
+            "type" : "string"
+          },
+          "status" : {
+            "enum" : [ "PENDING_VERIFICATION", "ACTIVE", "SUSPENDED", "DELETION_PENDING", "ANONYMIZED" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "ApproveRequest" : {
+        "properties" : {
+          "acceptConflicts" : {
+            "type" : "boolean"
+          },
+          "finalChangeSet" : {
+            "$ref" : "#/components/schemas/ChangeSet"
+          }
+        },
+        "type" : "object"
+      },
+      "AuditView" : {
+        "properties" : {
+          "action" : {
+            "type" : "string"
+          },
+          "actorUserId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "after" : {
+            "additionalProperties" : { },
+            "type" : "object"
+          },
+          "before" : {
+            "additionalProperties" : { },
+            "type" : "object"
+          },
+          "createdAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "entityId" : {
+            "type" : "string"
+          },
+          "entityType" : {
+            "type" : "string"
+          },
+          "requestId" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "AvailableTasks" : {
+        "properties" : {
+          "blockedReason" : {
+            "type" : "string"
+          },
+          "canAccept" : {
+            "type" : "boolean"
+          },
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/TaskSummary"
+            },
+            "type" : "array"
+          },
+          "minimumReputation" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "reputation" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "BalanceView" : {
+        "properties" : {
+          "balance" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "collaborator" : {
+            "$ref" : "#/components/schemas/AdminUserView"
+          },
+          "hasPixKey" : {
+            "type" : "boolean"
+          }
+        },
+        "type" : "object"
+      },
+      "BudgetRequest" : {
+        "properties" : {
+          "amount" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "period" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "sponsorName" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        },
+        "required" : [ "amount", "period", "sponsorName" ],
+        "type" : "object"
+      },
+      "BudgetRow" : {
+        "properties" : {
+          "amount" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "id" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "period" : {
+            "type" : "string"
+          },
+          "sponsorName" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "CancelRequest" : {
+        "properties" : {
+          "reason" : {
+            "maxLength" : 255,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "CategoryCommand" : {
+        "properties" : {
+          "active" : {
+            "type" : "boolean"
+          },
+          "icon" : {
+            "type" : "string"
+          },
+          "names" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          },
+          "slug" : {
+            "type" : "string"
+          },
+          "sortOrder" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "CategoryProducts" : {
+        "properties" : {
+          "category" : {
+            "$ref" : "#/components/schemas/CategoryView"
+          },
+          "products" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ProductSummary"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      },
+      "CategoryRef" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "slug" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "CategoryView" : {
+        "properties" : {
+          "active" : {
+            "type" : "boolean"
+          },
+          "icon" : {
+            "type" : "string"
+          },
+          "names" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          },
+          "slug" : {
+            "type" : "string"
+          },
+          "sortOrder" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "ChangeSet" : {
+        "properties" : {
+          "notes" : {
+            "maxLength" : 1000,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "offerings" : {
+            "items" : {
+              "$ref" : "#/components/schemas/OfferingChange"
+            },
+            "maxItems" : 60,
+            "minItems" : 0,
+            "type" : "array"
+          },
+          "photos" : {
+            "items" : {
+              "$ref" : "#/components/schemas/PhotoRef"
+            },
+            "maxItems" : 5,
+            "minItems" : 0,
+            "type" : "array"
+          },
+          "stall" : {
+            "$ref" : "#/components/schemas/StallChange"
+          },
+          "taskType" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "verification" : {
+            "$ref" : "#/components/schemas/ReportVerification"
+          }
+        },
+        "required" : [ "photos", "taskType" ],
+        "type" : "object"
+      },
+      "CheckInRequest" : {
+        "properties" : {
+          "accuracyMeters" : {
+            "format" : "double",
+            "minimum" : 0,
+            "type" : "number"
+          },
+          "latitude" : {
+            "format" : "double",
+            "maximum" : 90,
+            "minimum" : -90,
+            "type" : "number"
+          },
+          "longitude" : {
+            "format" : "double",
+            "maximum" : 180,
+            "minimum" : -180,
+            "type" : "number"
+          }
+        },
+        "required" : [ "accuracyMeters", "latitude", "longitude" ],
+        "type" : "object"
+      },
+      "CheckInResult" : {
+        "properties" : {
+          "distanceMeters" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "flag" : {
+            "enum" : [ "LOW_ACCURACY" ],
+            "type" : "string"
+          },
+          "status" : {
+            "enum" : [ "ON_HOLD", "OPEN", "ACCEPTED", "CHECKED_IN", "SUBMITTED", "COMPLETED", "CANCELLED" ],
+            "type" : "string"
+          },
+          "submissionDeadlineAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "CheckInView" : {
+        "properties" : {
+          "accuracyMeters" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "checkedInAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "distanceMeters" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "flag" : {
+            "enum" : [ "LOW_ACCURACY" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "Consent" : {
+        "properties" : {
+          "method" : {
+            "type" : "string"
+          },
+          "publish" : {
+            "type" : "boolean"
+          },
+          "showVendorName" : {
+            "type" : "boolean"
+          }
+        },
+        "type" : "object"
+      },
+      "ConsentRequest" : {
+        "properties" : {
+          "method" : {
+            "enum" : [ "VERBAL", "SIGNED_FORM" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "method" ],
+        "type" : "object"
+      },
+      "CreateTaskRequest" : {
+        "properties" : {
+          "instructions" : {
+            "maxLength" : 500,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "marketSlug" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "priority" : {
+            "format" : "int32",
+            "maximum" : 3,
+            "minimum" : 1,
+            "type" : "integer"
+          },
+          "sectorSlug" : {
+            "type" : "string"
+          },
+          "stallPublicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "NEW_STALL", "UPDATE_STALL", "VERIFY_REPORT" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "marketSlug", "type" ],
+        "type" : "object"
+      },
+      "EmailRequest" : {
+        "properties" : {
+          "email" : {
+            "format" : "email",
+            "minLength" : 1,
+            "type" : "string"
+          }
+        },
+        "required" : [ "email" ],
+        "type" : "object"
+      },
+      "EntryView" : {
+        "properties" : {
+          "amount" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "balanceAfter" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "createdAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "taskId" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "type" : {
+            "enum" : [ "CREDIT", "PAYOUT", "REVERSAL", "ADJUSTMENT" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "FieldDiff" : {
+        "properties" : {
+          "after" : { },
+          "before" : { },
+          "field" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "HistoryItem" : {
+        "properties" : {
+          "acceptedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "commission" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "marketName" : {
+            "type" : "string"
+          },
+          "outcome" : {
+            "enum" : [ "RELEASED", "EXPIRED", "APPROVED", "REJECTED" ],
+            "type" : "string"
+          },
+          "outcomeAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "rejectionReason" : {
+            "enum" : [ "ILLEGIBLE_PHOTO", "INCONSISTENT_DATA", "OUT_OF_MARKET", "PRIVACY", "DUPLICATE", "OUTDATED", "OTHER" ],
+            "type" : "string"
+          },
+          "reviewComment" : {
+            "type" : "string"
+          },
+          "stallCode" : {
+            "type" : "string"
+          },
+          "stallName" : {
+            "type" : "string"
+          },
+          "submissionStatus" : {
+            "enum" : [ "PENDING", "APPROVED", "REJECTED" ],
+            "type" : "string"
+          },
+          "submittedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "taskId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "taskStatus" : {
+            "enum" : [ "ON_HOLD", "OPEN", "ACCEPTED", "CHECKED_IN", "SUBMITTED", "COMPLETED", "CANCELLED" ],
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "NEW_STALL", "UPDATE_STALL", "VERIFY_REPORT" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "LoginRequest" : {
+        "properties" : {
+          "email" : {
+            "format" : "email",
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "password" : {
+            "maxLength" : 128,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        },
+        "required" : [ "email", "password" ],
+        "type" : "object"
+      },
+      "MarketCommand" : {
+        "properties" : {
+          "active" : {
+            "type" : "boolean"
+          },
+          "address" : {
+            "type" : "string"
+          },
+          "expectedVersion" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "latitude" : {
+            "type" : "number"
+          },
+          "longitude" : {
+            "type" : "number"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "openingHours" : {
+            "items" : {
+              "$ref" : "#/components/schemas/OpeningHours"
+            },
+            "type" : "array"
+          },
+          "radiusMeters" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "slug" : {
+            "type" : "string"
+          },
+          "translations" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/Translation"
+            },
+            "type" : "object"
+          }
+        },
+        "type" : "object"
+      },
+      "MarketDetail" : {
+        "properties" : {
+          "address" : {
+            "type" : "string"
+          },
+          "coverUrl" : {
+            "type" : "string"
+          },
+          "dataVersion" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "geofenceRadiusMeters" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "howToGetThere" : {
+            "type" : "string"
+          },
+          "latitude" : {
+            "type" : "number"
+          },
+          "longitude" : {
+            "type" : "number"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "openingHours" : {
+            "items" : {
+              "$ref" : "#/components/schemas/OpeningHours"
+            },
+            "type" : "array"
+          },
+          "publishedStalls" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "sectors" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SectorView"
+            },
+            "type" : "array"
+          },
+          "slug" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "MarketHits" : {
+        "properties" : {
+          "market" : {
+            "$ref" : "#/components/schemas/MarketRef"
+          },
+          "stalls" : {
+            "items" : {
+              "$ref" : "#/components/schemas/StallHit"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      },
+      "MarketInfo" : {
+        "properties" : {
+          "latitude" : {
+            "type" : "number"
+          },
+          "longitude" : {
+            "type" : "number"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "radiusMeters" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "slug" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "MarketRef" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "slug" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "MarketSnapshot" : {
+        "properties" : {
+          "categories" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SnapshotCategory"
+            },
+            "type" : "array"
+          },
+          "dataVersion" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "generatedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "locale" : {
+            "type" : "string"
+          },
+          "market" : {
+            "$ref" : "#/components/schemas/MarketDetail"
+          },
+          "products" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SnapshotProduct"
+            },
+            "type" : "array"
+          },
+          "stalls" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SnapshotStall"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      },
+      "MarketSummary" : {
+        "properties" : {
+          "address" : {
+            "type" : "string"
+          },
+          "coverThumbUrl" : {
+            "type" : "string"
+          },
+          "coverUrl" : {
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "geofenceRadiusMeters" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "latitude" : {
+            "type" : "number"
+          },
+          "longitude" : {
+            "type" : "number"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "openingHours" : {
+            "items" : {
+              "$ref" : "#/components/schemas/OpeningHours"
+            },
+            "type" : "array"
+          },
+          "publishedStalls" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "slug" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "MergeRequest" : {
+        "properties" : {
+          "targetProductSlug" : {
+            "minLength" : 1,
+            "type" : "string"
+          }
+        },
+        "required" : [ "targetProductSlug" ],
+        "type" : "object"
+      },
+      "MoneyDto" : {
+        "properties" : {
+          "amount" : {
+            "type" : "string"
+          },
+          "currency" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "MyAssignment" : {
+        "properties" : {
+          "acceptedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "checkedInAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "checkinDeadlineAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "checkinDistanceMeters" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "checkinFlag" : {
+            "enum" : [ "LOW_ACCURACY" ],
+            "type" : "string"
+          },
+          "outcome" : {
+            "enum" : [ "RELEASED", "EXPIRED", "APPROVED", "REJECTED" ],
+            "type" : "string"
+          },
+          "submissionDeadlineAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "NotificationPage" : {
+        "properties" : {
+          "page" : {
+            "$ref" : "#/components/schemas/PageResponseNotificationView"
+          },
+          "unread" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "NotificationView" : {
+        "properties" : {
+          "body" : {
+            "type" : "string"
+          },
+          "createdAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "link" : {
+            "type" : "string"
+          },
+          "messageKey" : {
+            "type" : "string"
+          },
+          "params" : {
+            "additionalProperties" : { },
+            "type" : "object"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "readAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "NEW_TASKS", "SUBMISSION_APPROVED", "SUBMISSION_REJECTED", "PAYOUT_REGISTERED", "RESERVATION_EXPIRING", "RESERVATION_EXPIRED" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "OfferingChange" : {
+        "properties" : {
+          "action" : {
+            "enum" : [ "ADD", "UPDATE", "CONFIRM", "REMOVE", "ADD_SUGGESTED" ],
+            "type" : "string"
+          },
+          "availability" : {
+            "type" : "string"
+          },
+          "baseVersion" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "priceUnit" : {
+            "type" : "string"
+          },
+          "productSlug" : {
+            "type" : "string"
+          },
+          "referencePrice" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "suggestion" : {
+            "$ref" : "#/components/schemas/Suggestion"
+          }
+        },
+        "required" : [ "action" ],
+        "type" : "object"
+      },
+      "OfferingDiff" : {
+        "properties" : {
+          "action" : {
+            "type" : "string"
+          },
+          "after" : {
+            "additionalProperties" : { },
+            "type" : "object"
+          },
+          "before" : {
+            "additionalProperties" : { },
+            "type" : "object"
+          },
+          "conflict" : {
+            "type" : "boolean"
+          },
+          "productName" : {
+            "type" : "string"
+          },
+          "productSlug" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "OfferingView" : {
+        "properties" : {
+          "availability" : {
+            "enum" : [ "AVAILABLE", "OUT_OF_STOCK", "SEASONAL" ],
+            "type" : "string"
+          },
+          "categorySlug" : {
+            "type" : "string"
+          },
+          "lastVerifiedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "price" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "priceUnit" : {
+            "enum" : [ "KG", "UNIT", "LITER", "BUNCH", "PORTION", "PACKAGE", "BOTTLE", "DOZEN" ],
+            "type" : "string"
+          },
+          "productName" : {
+            "type" : "string"
+          },
+          "productSlug" : {
+            "type" : "string"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "version" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "OpeningHours" : {
+        "properties" : {
+          "closes" : {
+            "type" : "string"
+          },
+          "days" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "opens" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "Overview" : {
+        "properties" : {
+          "activeCollaboratorsThisMonth" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "approvalRatePct" : {
+            "format" : "double",
+            "type" : "number"
+          },
+          "avgModerationHours" : {
+            "format" : "double",
+            "type" : "number"
+          },
+          "budget" : {
+            "$ref" : "#/components/schemas/Overview"
+          },
+          "creditedThisMonth" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "generatedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "paidThisMonth" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "pendingSubmissions" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "publishedStalls" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "searchHitRatePct" : {
+            "format" : "double",
+            "type" : "number"
+          },
+          "searchesByLocale" : {
+            "additionalProperties" : {
+              "format" : "int64",
+              "type" : "integer"
+            },
+            "type" : "object"
+          },
+          "searchesLast7Days" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "tasksByStatus" : {
+            "additionalProperties" : {
+              "format" : "int64",
+              "type" : "integer"
+            },
+            "type" : "object"
+          },
+          "topZeroResultTerms" : {
+            "items" : {
+              "additionalProperties" : { },
+              "type" : "object"
+            },
+            "type" : "array"
+          },
+          "verifiedLast30DaysPct" : {
+            "format" : "double",
+            "type" : "number"
+          },
+          "withPhotoPct" : {
+            "format" : "double",
+            "type" : "number"
+          }
+        },
+        "type" : "object"
+      },
+      "PageResponseAdminProductView" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/AdminProductView"
+            },
+            "type" : "array"
+          },
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalItems" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "PageResponseAdminStallView" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/AdminStallView"
+            },
+            "type" : "array"
+          },
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalItems" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "PageResponseAdminUserView" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/AdminUserView"
+            },
+            "type" : "array"
+          },
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalItems" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "PageResponseAuditView" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/AuditView"
+            },
+            "type" : "array"
+          },
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalItems" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "PageResponseEntryView" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/EntryView"
+            },
+            "type" : "array"
+          },
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalItems" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "PageResponseMapStringObject" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "additionalProperties" : { },
+              "type" : "object"
+            },
+            "type" : "array"
+          },
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalItems" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "PageResponseNotificationView" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/NotificationView"
+            },
+            "type" : "array"
+          },
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalItems" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "PageResponseQueueItem" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/QueueItem"
+            },
+            "type" : "array"
+          },
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalItems" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "PageResponseReportView" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ReportView"
+            },
+            "type" : "array"
+          },
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalItems" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "PageResponseStallSummary" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/StallSummary"
+            },
+            "type" : "array"
+          },
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalItems" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "PageResponseTaskSummary" : {
+        "properties" : {
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/TaskSummary"
+            },
+            "type" : "array"
+          },
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalItems" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "PayoutRequest" : {
+        "properties" : {
+          "amount" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "collaboratorId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "externalReference" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "method" : {
+            "enum" : [ "PIX", "TRANSFER", "CASH", "OTHER" ],
+            "type" : "string"
+          },
+          "notes" : {
+            "maxLength" : 255,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "paidAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "required" : [ "amount", "collaboratorId", "method" ],
+        "type" : "object"
+      },
+      "PhotoRef" : {
+        "properties" : {
+          "fileId" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "productSlug" : {
+            "type" : "string"
+          },
+          "role" : {
+            "minLength" : 1,
+            "type" : "string"
+          }
+        },
+        "required" : [ "fileId", "role" ],
+        "type" : "object"
+      },
+      "PhotoView" : {
+        "properties" : {
+          "duplicateCount" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "fileId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "productSlug" : {
+            "type" : "string"
+          },
+          "role" : {
+            "enum" : [ "STALL", "OFFERING", "SUGGESTION", "EVIDENCE" ],
+            "type" : "string"
+          },
+          "thumbUrl" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "PixKeyRequest" : {
+        "properties" : {
+          "key" : {
+            "maxLength" : 140,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "RANDOM", "EMAIL", "PHONE", "CPF" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "key", "type" ],
+        "type" : "object"
+      },
+      "ProductCommand" : {
+        "properties" : {
+          "aliases" : {
+            "additionalProperties" : {
+              "items" : {
+                "type" : "string"
+              },
+              "type" : "array"
+            },
+            "type" : "object"
+          },
+          "categorySlug" : {
+            "type" : "string"
+          },
+          "defaultUnit" : {
+            "enum" : [ "KG", "UNIT", "LITER", "BUNCH", "PORTION", "PACKAGE", "BOTTLE", "DOZEN" ],
+            "type" : "string"
+          },
+          "expectedVersion" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "seasonMonths" : {
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          },
+          "slug" : {
+            "type" : "string"
+          },
+          "status" : {
+            "enum" : [ "ACTIVE", "PENDING", "MERGED", "INACTIVE" ],
+            "type" : "string"
+          },
+          "translations" : {
+            "additionalProperties" : {
+              "$ref" : "#/components/schemas/ProductTranslationCommand"
+            },
+            "type" : "object"
+          }
+        },
+        "type" : "object"
+      },
+      "ProductPage" : {
+        "properties" : {
+          "defaultUnit" : {
+            "enum" : [ "KG", "UNIT", "LITER", "BUNCH", "PORTION", "PACKAGE", "BOTTLE", "DOZEN" ],
+            "type" : "string"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "markets" : {
+            "items" : {
+              "$ref" : "#/components/schemas/MarketHits"
+            },
+            "type" : "array"
+          },
+          "product" : {
+            "$ref" : "#/components/schemas/ProductRef"
+          },
+          "seasonMonths" : {
+            "items" : {
+              "format" : "int32",
+              "type" : "integer"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      },
+      "ProductRef" : {
+        "properties" : {
+          "category" : {
+            "$ref" : "#/components/schemas/CategoryRef"
+          },
+          "imageUrl" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "slug" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "ProductSummary" : {
+        "properties" : {
+          "imageUrl" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "slug" : {
+            "type" : "string"
+          },
+          "stallCount" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "ProductTranslationCommand" : {
+        "properties" : {
+          "description" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "ProfileView" : {
+        "properties" : {
+          "createdAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "emailVerified" : {
+            "type" : "boolean"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "phone" : {
+            "type" : "string"
+          },
+          "pixKeyMasked" : {
+            "type" : "string"
+          },
+          "pixKeyType" : {
+            "type" : "string"
+          },
+          "preferredLocale" : {
+            "type" : "string"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "pushEnabled" : {
+            "type" : "boolean"
+          },
+          "reputationScore" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "role" : {
+            "enum" : [ "COLLABORATOR", "MODERATOR", "ADMIN" ],
+            "type" : "string"
+          },
+          "status" : {
+            "enum" : [ "PENDING_VERIFICATION", "ACTIVE", "SUSPENDED", "DELETION_PENDING", "ANONYMIZED" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "PublishRequest" : {
+        "properties" : {
+          "volunteer" : {
+            "type" : "boolean"
+          }
+        },
+        "type" : "object"
+      },
+      "PushKeys" : {
+        "properties" : {
+          "auth" : {
+            "maxLength" : 255,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "p256dh" : {
+            "maxLength" : 255,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        },
+        "required" : [ "auth", "p256dh" ],
+        "type" : "object"
+      },
+      "PushSubscriptionRequest" : {
+        "properties" : {
+          "endpoint" : {
+            "maxLength" : 2048,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "keys" : {
+            "$ref" : "#/components/schemas/PushKeys"
+          }
+        },
+        "required" : [ "endpoint" ],
+        "type" : "object"
+      },
+      "QueueItem" : {
+        "properties" : {
+          "checkinFlag" : {
+            "enum" : [ "LOW_ACCURACY" ],
+            "type" : "string"
+          },
+          "collaboratorName" : {
+            "type" : "string"
+          },
+          "createdAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "marketName" : {
+            "type" : "string"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "stallCode" : {
+            "type" : "string"
+          },
+          "stallName" : {
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "NEW_STALL", "UPDATE_STALL", "VERIFY_REPORT" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "ReadRequest" : {
+        "properties" : {
+          "all" : {
+            "type" : "boolean"
+          },
+          "ids" : {
+            "items" : {
+              "format" : "uuid",
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      },
+      "RegisterRequest" : {
+        "properties" : {
+          "acceptTerms" : {
+            "type" : "boolean"
+          },
+          "adultDeclaration" : {
+            "type" : "boolean"
+          },
+          "email" : {
+            "format" : "email",
+            "maxLength" : 254,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "locale" : {
+            "maxLength" : 10,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "name" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "password" : {
+            "maxLength" : 128,
+            "minLength" : 8,
+            "type" : "string"
+          }
+        },
+        "required" : [ "email", "name", "password" ],
+        "type" : "object"
+      },
+      "RegisterResponse" : {
+        "properties" : {
+          "user" : {
+            "$ref" : "#/components/schemas/ProfileView"
+          },
+          "verificationRequired" : {
+            "type" : "boolean"
+          }
+        },
+        "type" : "object"
+      },
+      "RejectRequest" : {
+        "properties" : {
+          "comment" : {
+            "maxLength" : 500,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "reason" : {
+            "enum" : [ "ILLEGIBLE_PHOTO", "INCONSISTENT_DATA", "OUT_OF_MARKET", "PRIVACY", "DUPLICATE", "OUTDATED", "OTHER" ],
+            "type" : "string"
+          },
+          "reopenTask" : {
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "reason" ],
+        "type" : "object"
+      },
+      "ReportRequest" : {
+        "properties" : {
+          "comment" : {
+            "maxLength" : 500,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "productSlug" : {
+            "type" : "string"
+          },
+          "reason" : {
+            "enum" : [ "PRODUCT_NOT_FOUND", "PRICE_MISMATCH", "STALL_CLOSED_OR_MOVED", "OTHER" ],
+            "type" : "string"
+          },
+          "stallId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "website" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "reason", "stallId" ],
+        "type" : "object"
+      },
+      "ReportVerification" : {
+        "properties" : {
+          "comment" : {
+            "maxLength" : 500,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "problemConfirmed" : {
+            "type" : "boolean"
+          }
+        },
+        "type" : "object"
+      },
+      "ReportView" : {
+        "properties" : {
+          "comment" : {
+            "type" : "string"
+          },
+          "createdAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "marketName" : {
+            "type" : "string"
+          },
+          "marketSlug" : {
+            "type" : "string"
+          },
+          "productName" : {
+            "type" : "string"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "reason" : {
+            "enum" : [ "PRODUCT_NOT_FOUND", "PRICE_MISMATCH", "STALL_CLOSED_OR_MOVED", "OTHER" ],
+            "type" : "string"
+          },
+          "stallCode" : {
+            "type" : "string"
+          },
+          "stallId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "status" : {
+            "enum" : [ "OPEN", "TASK_CREATED", "RESOLVED", "DISMISSED" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "ReputationView" : {
+        "properties" : {
+          "approved" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "expired" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "minimumToAccept" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "rejected" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "score" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "window" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "ResetRequest" : {
+        "properties" : {
+          "password" : {
+            "maxLength" : 128,
+            "minLength" : 8,
+            "type" : "string"
+          },
+          "token" : {
+            "maxLength" : 200,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        },
+        "required" : [ "password", "token" ],
+        "type" : "object"
+      },
+      "RuleRequest" : {
+        "properties" : {
+          "amount" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "taskType" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "validFrom" : {
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "required" : [ "amount", "taskType" ],
+        "type" : "object"
+      },
+      "RuleView" : {
+        "properties" : {
+          "amount" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "taskType" : {
+            "type" : "string"
+          },
+          "validFrom" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "validTo" : {
+            "format" : "date-time",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "SearchItem" : {
+        "properties" : {
+          "markets" : {
+            "items" : {
+              "$ref" : "#/components/schemas/MarketHits"
+            },
+            "type" : "array"
+          },
+          "product" : {
+            "$ref" : "#/components/schemas/ProductRef"
+          }
+        },
+        "type" : "object"
+      },
+      "SearchResult" : {
+        "properties" : {
+          "didYouMean" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "items" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SearchItem"
+            },
+            "type" : "array"
+          },
+          "locale" : {
+            "type" : "string"
+          },
+          "page" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "query" : {
+            "type" : "string"
+          },
+          "size" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "totalItems" : {
+            "format" : "int64",
+            "type" : "integer"
+          },
+          "totalPages" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "SectorCommand" : {
+        "properties" : {
+          "active" : {
+            "type" : "boolean"
+          },
+          "names" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          },
+          "slug" : {
+            "type" : "string"
+          },
+          "sortOrder" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "SectorRef" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "slug" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "SectorView" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "slug" : {
+            "type" : "string"
+          },
+          "stallCount" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "SessionResponse" : {
+        "properties" : {
+          "accessToken" : {
+            "type" : "string"
+          },
+          "expiresAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "user" : {
+            "$ref" : "#/components/schemas/ProfileView"
+          }
+        },
+        "type" : "object"
+      },
+      "SnapshotCategory" : {
+        "properties" : {
+          "name" : {
+            "type" : "string"
+          },
+          "slug" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "SnapshotOffering" : {
+        "properties" : {
+          "availability" : {
+            "enum" : [ "AVAILABLE", "OUT_OF_STOCK", "SEASONAL" ],
+            "type" : "string"
+          },
+          "lastVerifiedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "price" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "priceUnit" : {
+            "enum" : [ "KG", "UNIT", "LITER", "BUNCH", "PORTION", "PACKAGE", "BOTTLE", "DOZEN" ],
+            "type" : "string"
+          },
+          "productSlug" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "SnapshotProduct" : {
+        "properties" : {
+          "categorySlug" : {
+            "type" : "string"
+          },
+          "imageUrl" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "slug" : {
+            "type" : "string"
+          },
+          "terms" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      },
+      "SnapshotStall" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "lastVerifiedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "offerings" : {
+            "items" : {
+              "$ref" : "#/components/schemas/SnapshotOffering"
+            },
+            "type" : "array"
+          },
+          "outdated" : {
+            "type" : "boolean"
+          },
+          "photoThumbUrl" : {
+            "type" : "string"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "sectorName" : {
+            "type" : "string"
+          },
+          "sectorSlug" : {
+            "type" : "string"
+          },
+          "vendorName" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "SseEmitter" : {
+        "properties" : {
+          "timeout" : {
+            "format" : "int64",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "StallChange" : {
+        "properties" : {
+          "baseVersion" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "changes" : {
+            "additionalProperties" : {
+              "type" : "string"
+            },
+            "type" : "object"
+          },
+          "code" : {
+            "maxLength" : 20,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "consent" : {
+            "$ref" : "#/components/schemas/Consent"
+          },
+          "displayName" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "marketSlug" : {
+            "type" : "string"
+          },
+          "publicId" : {
+            "type" : "string"
+          },
+          "sectorSlug" : {
+            "type" : "string"
+          },
+          "vendorName" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "StallDetail" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "lastVerifiedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "market" : {
+            "$ref" : "#/components/schemas/MarketRef"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "offerings" : {
+            "items" : {
+              "$ref" : "#/components/schemas/OfferingView"
+            },
+            "type" : "array"
+          },
+          "outdated" : {
+            "type" : "boolean"
+          },
+          "photoThumbUrl" : {
+            "type" : "string"
+          },
+          "photoUrl" : {
+            "type" : "string"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "sector" : {
+            "$ref" : "#/components/schemas/SectorRef"
+          },
+          "vendorName" : {
+            "type" : "string"
+          },
+          "version" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "StallHit" : {
+        "properties" : {
+          "availability" : {
+            "enum" : [ "AVAILABLE", "OUT_OF_STOCK", "SEASONAL" ],
+            "type" : "string"
+          },
+          "code" : {
+            "type" : "string"
+          },
+          "lastVerifiedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "price" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "priceUnit" : {
+            "enum" : [ "KG", "UNIT", "LITER", "BUNCH", "PORTION", "PACKAGE", "BOTTLE", "DOZEN" ],
+            "type" : "string"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "sector" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "StallInfo" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "sectorName" : {
+            "type" : "string"
+          },
+          "version" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "StallSummary" : {
+        "properties" : {
+          "code" : {
+            "type" : "string"
+          },
+          "lastVerifiedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "name" : {
+            "type" : "string"
+          },
+          "offeringCount" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "outdated" : {
+            "type" : "boolean"
+          },
+          "photoThumbUrl" : {
+            "type" : "string"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "sector" : {
+            "$ref" : "#/components/schemas/SectorRef"
+          }
+        },
+        "type" : "object"
+      },
+      "StallUpdateRequest" : {
+        "properties" : {
+          "displayName" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "sectorSlug" : {
+            "type" : "string"
+          },
+          "showVendorName" : {
+            "type" : "boolean"
+          },
+          "status" : {
+            "enum" : [ "ACTIVE", "INACTIVE" ],
+            "type" : "string"
+          },
+          "vendorName" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "version" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "required" : [ "status" ],
+        "type" : "object"
+      },
+      "Statement" : {
+        "properties" : {
+          "balance" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "entries" : {
+            "$ref" : "#/components/schemas/PageResponseEntryView"
+          },
+          "minimumPayout" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "totalPaidOut" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          }
+        },
+        "type" : "object"
+      },
+      "SubmissionDetail" : {
+        "properties" : {
+          "changeSet" : {
+            "$ref" : "#/components/schemas/ChangeSet"
+          },
+          "checkIn" : {
+            "$ref" : "#/components/schemas/CheckInView"
+          },
+          "collaboratorName" : {
+            "type" : "string"
+          },
+          "collaboratorReputation" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "commission" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "conflicts" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "createdAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "marketName" : {
+            "type" : "string"
+          },
+          "marketSlug" : {
+            "type" : "string"
+          },
+          "notes" : {
+            "type" : "string"
+          },
+          "offerings" : {
+            "items" : {
+              "$ref" : "#/components/schemas/OfferingDiff"
+            },
+            "type" : "array"
+          },
+          "ownSubmission" : {
+            "type" : "boolean"
+          },
+          "photos" : {
+            "items" : {
+              "$ref" : "#/components/schemas/PhotoView"
+            },
+            "type" : "array"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "rejectionReason" : {
+            "enum" : [ "ILLEGIBLE_PHOTO", "INCONSISTENT_DATA", "OUT_OF_MARKET", "PRIVACY", "DUPLICATE", "OUTDATED", "OTHER" ],
+            "type" : "string"
+          },
+          "reviewComment" : {
+            "type" : "string"
+          },
+          "stallCode" : {
+            "type" : "string"
+          },
+          "stallDiff" : {
+            "items" : {
+              "$ref" : "#/components/schemas/FieldDiff"
+            },
+            "type" : "array"
+          },
+          "stallId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "status" : {
+            "enum" : [ "PENDING", "APPROVED", "REJECTED" ],
+            "type" : "string"
+          },
+          "taskId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "NEW_STALL", "UPDATE_STALL", "VERIFY_REPORT" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "SubmissionReceipt" : {
+        "properties" : {
+          "created" : {
+            "type" : "boolean"
+          },
+          "receivedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "status" : {
+            "enum" : [ "PENDING", "APPROVED", "REJECTED" ],
+            "type" : "string"
+          },
+          "submissionId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "taskId" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "SubscriptionsRequest" : {
+        "properties" : {
+          "markets" : {
+            "items" : {
+              "type" : "string"
+            },
+            "maxItems" : 20,
+            "minItems" : 0,
+            "type" : "array"
+          }
+        },
+        "required" : [ "markets" ],
+        "type" : "object"
+      },
+      "SubscriptionsResponse" : {
+        "properties" : {
+          "markets" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      },
+      "Suggestion" : {
+        "properties" : {
+          "categorySlug" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "namePt" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "photoFileId" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "categorySlug", "namePt" ],
+        "type" : "object"
+      },
+      "TaskDetail" : {
+        "properties" : {
+          "commission" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "instructions" : {
+            "type" : "string"
+          },
+          "market" : {
+            "$ref" : "#/components/schemas/MarketInfo"
+          },
+          "myAssignment" : {
+            "$ref" : "#/components/schemas/MyAssignment"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "publishedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "stall" : {
+            "$ref" : "#/components/schemas/StallInfo"
+          },
+          "status" : {
+            "enum" : [ "ON_HOLD", "OPEN", "ACCEPTED", "CHECKED_IN", "SUBMITTED", "COMPLETED", "CANCELLED" ],
+            "type" : "string"
+          },
+          "suggestedSector" : {
+            "type" : "string"
+          },
+          "suggestedSectorSlug" : {
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "NEW_STALL", "UPDATE_STALL", "VERIFY_REPORT" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "TaskSummary" : {
+        "properties" : {
+          "commission" : {
+            "$ref" : "#/components/schemas/MoneyDto"
+          },
+          "distanceMeters" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "market" : {
+            "$ref" : "#/components/schemas/MarketInfo"
+          },
+          "priority" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "publicId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "publishedAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "stall" : {
+            "$ref" : "#/components/schemas/StallInfo"
+          },
+          "status" : {
+            "enum" : [ "ON_HOLD", "OPEN", "ACCEPTED", "CHECKED_IN", "SUBMITTED", "COMPLETED", "CANCELLED" ],
+            "type" : "string"
+          },
+          "suggestedSector" : {
+            "type" : "string"
+          },
+          "type" : {
+            "enum" : [ "NEW_STALL", "UPDATE_STALL", "VERIFY_REPORT" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "TokenRequest" : {
+        "properties" : {
+          "token" : {
+            "maxLength" : 200,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        },
+        "required" : [ "token" ],
+        "type" : "object"
+      },
+      "Translation" : {
+        "properties" : {
+          "description" : {
+            "type" : "string"
+          },
+          "howToGetThere" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "UpdateProfileRequest" : {
+        "properties" : {
+          "locale" : {
+            "pattern" : "^(pt-BR|en|es)$",
+            "type" : "string"
+          },
+          "name" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "phone" : {
+            "maxLength" : 20,
+            "minLength" : 0,
+            "pattern" : "^[0-9 ()+\\-]*$",
+            "type" : "string"
+          },
+          "pushEnabled" : {
+            "type" : "boolean"
+          }
+        },
+        "type" : "object"
+      },
+      "Upload" : {
+        "properties" : {
+          "created" : {
+            "type" : "boolean"
+          },
+          "expiresAt" : {
+            "format" : "date-time",
+            "type" : "string"
+          },
+          "fileId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "height" : {
+            "format" : "int32",
+            "type" : "integer"
+          },
+          "status" : {
+            "enum" : [ "TEMP", "ATTACHED" ],
+            "type" : "string"
+          },
+          "width" : {
+            "format" : "int32",
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "UserUpdateRequest" : {
+        "properties" : {
+          "role" : {
+            "enum" : [ "COLLABORATOR", "MODERATOR", "ADMIN" ],
+            "type" : "string"
+          },
+          "status" : {
+            "enum" : [ "PENDING_VERIFICATION", "ACTIVE", "SUSPENDED", "DELETION_PENDING", "ANONYMIZED" ],
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "Vital" : {
+        "properties" : {
+          "connection" : {
+            "maxLength" : 20,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "name" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "route" : {
+            "maxLength" : 60,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "value" : {
+            "format" : "double",
+            "minimum" : 0,
+            "type" : "number"
+          }
+        },
+        "required" : [ "name", "value" ],
+        "type" : "object"
+      },
+      "VitalsBatch" : {
+        "properties" : {
+          "metrics" : {
+            "items" : {
+              "$ref" : "#/components/schemas/Vital"
+            },
+            "maxItems" : 10,
+            "minItems" : 0,
+            "type" : "array"
+          }
+        },
+        "required" : [ "metrics" ],
+        "type" : "object"
+      }
+    },
+    "securitySchemes" : {
+      "bearer" : {
+        "bearerFormat" : "JWT",
+        "scheme" : "bearer",
+        "type" : "http"
+      }
+    }
+  },
+  "info" : {
+    "contact" : {
+      "email" : "contato@nandesk.com.br",
+      "name" : "Equipe NANDESK"
+    },
+    "description" : "Plataforma colaborativa das feiras de Belém (Ver-o-Peso e Feira da 25).",
+    "license" : {
+      "name" : "MIT"
+    },
+    "title" : "NANDESK API",
+    "version" : "v1"
+  },
+  "openapi" : "3.1.0",
+  "paths" : {
+    "/api/v1/admin/audit-log" : {
+      "get" : {
+        "operationId" : "auditLog",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "entityType",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "action",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 50,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PageResponseAuditView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Trilha de auditoria (RF-33)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/balances" : {
+      "get" : {
+        "operationId" : "balances",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/BalanceView"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Colaboradores com saldo acima do mínimo (RF-27)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/budgets" : {
+      "get" : {
+        "operationId" : "budgets",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "period",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "additionalProperties" : { },
+                  "type" : "object"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Orçamentos (RF-28)",
+        "tags" : [ "Administração" ]
+      },
+      "put" : {
+        "operationId" : "saveBudget",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/BudgetRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/BudgetRow"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Criar ou atualizar orçamento do mês por patrocinador (RF-28)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/categories" : {
+      "get" : {
+        "operationId" : "categories_1",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/CategoryView"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Categorias (RF-30)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/categories/{slug}" : {
+      "put" : {
+        "operationId" : "saveCategory",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CategoryCommand"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CategoryView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Criar ou atualizar categoria (RF-30)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/collaborators/{publicId}/ledger" : {
+      "get" : {
+        "operationId" : "collaboratorLedger",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Statement"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Extrato de um colaborador (RF-26)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/collaborators/{publicId}/pix-key" : {
+      "get" : {
+        "operationId" : "pixKey_1",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
+                  "type" : "object"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Consultar a chave PIX do colaborador — acesso auditado (RF-27)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/commission-rules" : {
+      "get" : {
+        "operationId" : "rules",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/RuleView"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Regras de comissão (RF-25)",
+        "tags" : [ "Administração" ]
+      },
+      "post" : {
+        "operationId" : "createRule",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RuleRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RuleView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Nova regra de comissão com início de vigência (RF-25)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/ledger-adjustments" : {
+      "post" : {
+        "operationId" : "adjust",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/AdjustmentRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EntryView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Estorno ou ajuste com justificativa (RF-26, RN-08)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/markets" : {
+      "get" : {
+        "operationId" : "list_3",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/AdminMarketView"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Feiras (RF-29)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/markets/{slug}" : {
+      "get" : {
+        "operationId" : "get_1",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminMarketView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Feira (RF-29)",
+        "tags" : [ "Administração" ]
+      },
+      "put" : {
+        "operationId" : "save",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MarketCommand"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminMarketView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Criar ou atualizar feira: posição no mapa, raio, horários e traduções (RF-29)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/markets/{slug}/sectors/{sectorSlug}" : {
+      "put" : {
+        "operationId" : "saveSector",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "sectorSlug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SectorCommand"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminMarketView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Criar ou atualizar setor (RF-29)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/metrics/overview" : {
+      "get" : {
+        "operationId" : "overview",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Overview"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Painel de indicadores (RF-32)",
+        "tags" : [ "Indicadores" ]
+      }
+    },
+    "/api/v1/admin/payouts" : {
+      "get" : {
+        "operationId" : "payouts",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PageResponseMapStringObject"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Repasses registrados (RF-27)",
+        "tags" : [ "Administração" ]
+      },
+      "post" : {
+        "operationId" : "payout",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PayoutRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "additionalProperties" : {
+                    "format" : "uuid",
+                    "type" : "string"
+                  },
+                  "type" : "object"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Registrar repasse feito fora da plataforma (RF-27, RN-09, RN-11)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/products" : {
+      "get" : {
+        "operationId" : "products",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "status",
+          "required" : false,
+          "schema" : {
+            "default" : "ACTIVE",
+            "enum" : [ "ACTIVE", "PENDING", "MERGED", "INACTIVE" ],
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "q",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 50,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PageResponseAdminProductView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Produtos com traduções e completude (RF-30)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/products/{slug}" : {
+      "get" : {
+        "operationId" : "product",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminProductView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Produto (RF-30)",
+        "tags" : [ "Administração" ]
+      },
+      "put" : {
+        "operationId" : "saveProduct",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ProductCommand"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminProductView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Criar ou atualizar produto, traduções e sinônimos (RF-30)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/products/{slug}/merge" : {
+      "post" : {
+        "operationId" : "merge",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MergeRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminProductView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Mesclar produtos duplicados (RF-30)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/stalls" : {
+      "get" : {
+        "operationId" : "stalls_1",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "market",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "q",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 50,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PageResponseAdminStallView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Boxes (RF-29)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/stalls/{publicId}" : {
+      "patch" : {
+        "operationId" : "update_2",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/StallUpdateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminStallView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Editar box; desativar oculta e cancela as tarefas ativas (RF-29, RN-13)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/stalls/{publicId}/consent/grant" : {
+      "post" : {
+        "operationId" : "grant",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ConsentRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminStallView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Registrar consentimento do feirante (RN-13)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/stalls/{publicId}/consent/revoke" : {
+      "post" : {
+        "operationId" : "revoke",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminStallView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Revogar consentimento do feirante: oculta na hora (RN-13)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/tasks" : {
+      "get" : {
+        "operationId" : "list_2",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "status",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "ON_HOLD", "OPEN", "ACCEPTED", "CHECKED_IN", "SUBMITTED", "COMPLETED", "CANCELLED" ],
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "market",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PageResponseTaskSummary"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Tarefas para o painel (RF-13)",
+        "tags" : [ "Moderação" ]
+      }
+    },
+    "/api/v1/admin/users" : {
+      "get" : {
+        "operationId" : "search_1",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "q",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "role",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "COLLABORATOR", "MODERATOR", "ADMIN" ],
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PageResponseAdminUserView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Buscar usuários (RF-31)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/users/{publicId}" : {
+      "patch" : {
+        "operationId" : "update_1",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UserUpdateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminUserView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Alterar papel, suspender ou reativar (RF-31)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/auth/login" : {
+      "post" : {
+        "operationId" : "login",
+        "parameters" : [ {
+          "in" : "header",
+          "name" : "User-Agent",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SessionResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Login (RF-09)",
+        "tags" : [ "Autenticação" ]
+      }
+    },
+    "/api/v1/auth/logout" : {
+      "post" : {
+        "operationId" : "logout",
+        "parameters" : [ {
+          "in" : "cookie",
+          "name" : "nd_refresh",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Encerrar a sessão (RF-09)",
+        "tags" : [ "Autenticação" ]
+      }
+    },
+    "/api/v1/auth/password/forgot" : {
+      "post" : {
+        "operationId" : "forgot",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmailRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Esqueci a senha — resposta sempre 202 (RF-10)",
+        "tags" : [ "Autenticação" ]
+      }
+    },
+    "/api/v1/auth/password/reset" : {
+      "post" : {
+        "operationId" : "reset",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ResetRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Redefinir a senha (RF-10)",
+        "tags" : [ "Autenticação" ]
+      }
+    },
+    "/api/v1/auth/refresh" : {
+      "post" : {
+        "operationId" : "refresh",
+        "parameters" : [ {
+          "in" : "cookie",
+          "name" : "nd_refresh",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "User-Agent",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SessionResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Renovar a sessão com o cookie (RF-09)",
+        "tags" : [ "Autenticação" ]
+      }
+    },
+    "/api/v1/auth/register" : {
+      "post" : {
+        "operationId" : "register",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RegisterRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RegisterResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Cadastro de colaborador (RF-08)",
+        "tags" : [ "Autenticação" ]
+      }
+    },
+    "/api/v1/auth/verify-email" : {
+      "post" : {
+        "operationId" : "verify",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TokenRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Confirmar e-mail (RF-10)",
+        "tags" : [ "Autenticação" ]
+      }
+    },
+    "/api/v1/auth/verify-email/resend" : {
+      "post" : {
+        "operationId" : "resend",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmailRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Reenviar confirmação (RF-10)",
+        "tags" : [ "Autenticação" ]
+      }
+    },
+    "/api/v1/categories" : {
+      "get" : {
+        "operationId" : "categories",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/CategoryView"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Categorias (RF-05)",
+        "tags" : [ "Vitrine pública" ]
+      }
+    },
+    "/api/v1/categories/{slug}/products" : {
+      "get" : {
+        "operationId" : "categoryProducts",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CategoryProducts"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Produtos da categoria (RF-05)",
+        "tags" : [ "Vitrine pública" ]
+      }
+    },
+    "/api/v1/files/{publicId}" : {
+      "get" : {
+        "operationId" : "file",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "variant",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "format" : "binary",
+                  "type" : "string"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Imagem (variant=thumb para a miniatura de 400 px)",
+        "tags" : [ "Arquivos" ]
+      }
+    },
+    "/api/v1/markets" : {
+      "get" : {
+        "operationId" : "markets",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/MarketSummary"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Feiras ativas (RF-01)",
+        "tags" : [ "Vitrine pública" ]
+      }
+    },
+    "/api/v1/markets/{slug}" : {
+      "get" : {
+        "operationId" : "market",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MarketDetail"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Detalhe da feira com setores (RF-01)",
+        "tags" : [ "Vitrine pública" ]
+      }
+    },
+    "/api/v1/markets/{slug}/snapshot" : {
+      "get" : {
+        "operationId" : "snapshot",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/MarketSnapshot"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Snapshot da feira para uso sem conexão (RF-36)",
+        "tags" : [ "Vitrine pública" ]
+      }
+    },
+    "/api/v1/markets/{slug}/stalls" : {
+      "get" : {
+        "operationId" : "stalls",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "sector",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PageResponseStallSummary"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Boxes publicados da feira (RF-01)",
+        "tags" : [ "Vitrine pública" ]
+      }
+    },
+    "/api/v1/me" : {
+      "get" : {
+        "operationId" : "me",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProfileView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Meus dados (RF-11)",
+        "tags" : [ "Conta" ]
+      },
+      "patch" : {
+        "operationId" : "update",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/UpdateProfileRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProfileView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Atualizar nome, telefone, idioma e push (RF-11)",
+        "tags" : [ "Conta" ]
+      }
+    },
+    "/api/v1/me/deletion-request" : {
+      "post" : {
+        "operationId" : "delete",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "additionalProperties" : { },
+                  "type" : "object"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Pedir a exclusão da conta (RF-12, RN-20)",
+        "tags" : [ "Conta" ]
+      }
+    },
+    "/api/v1/me/export" : {
+      "get" : {
+        "operationId" : "export",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "additionalProperties" : { },
+                  "type" : "object"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Exportar meus dados em JSON (RF-12)",
+        "tags" : [ "Conta" ]
+      }
+    },
+    "/api/v1/me/ledger" : {
+      "get" : {
+        "operationId" : "statement",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 50,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Statement"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Meu extrato e saldo (RF-26)",
+        "tags" : [ "Comissões" ]
+      }
+    },
+    "/api/v1/me/market-subscriptions" : {
+      "get" : {
+        "operationId" : "get",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubscriptionsResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Minhas feiras de interesse",
+        "tags" : [ "Conta" ]
+      },
+      "put" : {
+        "operationId" : "put",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SubscriptionsRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubscriptionsResponse"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Trocar minhas feiras de interesse",
+        "tags" : [ "Conta" ]
+      }
+    },
+    "/api/v1/me/notifications" : {
+      "get" : {
+        "operationId" : "list_1",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/NotificationPage"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Minhas notificações (RF-14)",
+        "tags" : [ "Notificações" ]
+      }
+    },
+    "/api/v1/me/notifications/read" : {
+      "post" : {
+        "operationId" : "read",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReadRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "additionalProperties" : {
+                    "format" : "int64",
+                    "type" : "integer"
+                  },
+                  "type" : "object"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Marcar como lidas",
+        "tags" : [ "Notificações" ]
+      }
+    },
+    "/api/v1/me/notifications/stream" : {
+      "get" : {
+        "operationId" : "stream",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "ticket",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "text/event-stream" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SseEmitter"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Stream SSE das notificações",
+        "tags" : [ "Notificações" ]
+      }
+    },
+    "/api/v1/me/notifications/stream-ticket" : {
+      "post" : {
+        "operationId" : "ticket",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "additionalProperties" : {
+                    "type" : "string"
+                  },
+                  "type" : "object"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Ticket de uso único para o stream SSE (válido por 60 s)",
+        "tags" : [ "Notificações" ]
+      }
+    },
+    "/api/v1/me/pix-key" : {
+      "put" : {
+        "operationId" : "pixKey",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PixKeyRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProfileView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Definir ou trocar a chave PIX (RF-11)",
+        "tags" : [ "Conta" ]
+      }
+    },
+    "/api/v1/me/push-subscriptions" : {
+      "post" : {
+        "operationId" : "subscribe",
+        "parameters" : [ {
+          "in" : "header",
+          "name" : "User-Agent",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PushSubscriptionRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "additionalProperties" : {
+                    "format" : "uuid",
+                    "type" : "string"
+                  },
+                  "type" : "object"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Registrar inscrição de push (9.8)",
+        "tags" : [ "Notificações" ]
+      }
+    },
+    "/api/v1/me/push-subscriptions/public-key" : {
+      "get" : {
+        "operationId" : "publicKey",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "additionalProperties" : { },
+                  "type" : "object"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Chave pública VAPID para inscrever o push",
+        "tags" : [ "Notificações" ]
+      }
+    },
+    "/api/v1/me/push-subscriptions/{id}" : {
+      "delete" : {
+        "operationId" : "unsubscribe",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "id",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Remover inscrição de push",
+        "tags" : [ "Notificações" ]
+      }
+    },
+    "/api/v1/me/reputation" : {
+      "get" : {
+        "operationId" : "mine",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ReputationView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Minha reputação (RF-23, RN-17)",
+        "tags" : [ "Colaboração" ]
+      }
+    },
+    "/api/v1/me/tasks" : {
+      "get" : {
+        "operationId" : "history",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/HistoryItem"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Histórico de tarefas do colaborador (RF-20)",
+        "tags" : [ "Colaboração" ]
+      }
+    },
+    "/api/v1/moderation/product-suggestions" : {
+      "get" : {
+        "operationId" : "suggestions_1",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PageResponseAdminProductView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Sugestões de produto pendentes (RF-24)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/moderation/product-suggestions/{slug}/approve" : {
+      "post" : {
+        "operationId" : "approve_1",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminProductView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Aprovar sugestão (RF-24, RN-18)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/moderation/product-suggestions/{slug}/merge" : {
+      "post" : {
+        "operationId" : "mergeSuggestion",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/MergeRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminProductView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Mesclar sugestão com produto existente — o nome sugerido vira sinônimo (RF-24)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/moderation/reports" : {
+      "get" : {
+        "operationId" : "list",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "status",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "OPEN", "TASK_CREATED", "RESOLVED", "DISMISSED" ],
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PageResponseReportView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Denúncias para triagem (RF-07)",
+        "tags" : [ "Denúncias" ]
+      }
+    },
+    "/api/v1/moderation/reports/{publicId}/dismiss" : {
+      "post" : {
+        "operationId" : "dismiss",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Descartar denúncia (RF-07)",
+        "tags" : [ "Denúncias" ]
+      }
+    },
+    "/api/v1/moderation/submissions" : {
+      "get" : {
+        "operationId" : "queue",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "market",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "type",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "NEW_STALL", "UPDATE_STALL", "VERIFY_REPORT" ],
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PageResponseQueueItem"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Fila de moderação (RF-21)",
+        "tags" : [ "Colaboração" ]
+      }
+    },
+    "/api/v1/moderation/submissions/{publicId}" : {
+      "get" : {
+        "operationId" : "detail_1",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubmissionDetail"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Detalhe do envio com antes/depois, check-in e alertas (RF-21)",
+        "tags" : [ "Colaboração" ]
+      }
+    },
+    "/api/v1/moderation/submissions/{publicId}/approve" : {
+      "post" : {
+        "operationId" : "approve",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ApproveRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Aprovar envio, opcionalmente com ajustes (RF-22)",
+        "tags" : [ "Colaboração" ]
+      }
+    },
+    "/api/v1/moderation/submissions/{publicId}/reject" : {
+      "post" : {
+        "operationId" : "reject",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RejectRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Rejeitar envio com motivo (RF-22)",
+        "tags" : [ "Colaboração" ]
+      }
+    },
+    "/api/v1/moderation/tasks" : {
+      "post" : {
+        "operationId" : "create_1",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CreateTaskRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TaskDetail"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Criar tarefa manual (RF-13)",
+        "tags" : [ "Moderação" ]
+      }
+    },
+    "/api/v1/moderation/tasks/{publicId}/cancel" : {
+      "post" : {
+        "operationId" : "cancel",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CancelRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Cancelar tarefa (RF-13)",
+        "tags" : [ "Moderação" ]
+      }
+    },
+    "/api/v1/moderation/tasks/{publicId}/publish" : {
+      "post" : {
+        "operationId" : "publish",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PublishRequest"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Publicar tarefa em espera, com orçamento ou como voluntária (RN-10)",
+        "tags" : [ "Moderação" ]
+      }
+    },
+    "/api/v1/products/{slug}" : {
+      "get" : {
+        "operationId" : "product_1",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ProductPage"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Produto e onde encontrar (RF-04)",
+        "tags" : [ "Vitrine pública" ]
+      }
+    },
+    "/api/v1/reports" : {
+      "post" : {
+        "operationId" : "create",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ReportRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "additionalProperties" : { },
+                  "type" : "object"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Denunciar informação incorreta (RF-07)",
+        "tags" : [ "Denúncias" ]
+      }
+    },
+    "/api/v1/search" : {
+      "get" : {
+        "operationId" : "search",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "q",
+          "required" : true,
+          "schema" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "market",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "category",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "availableOnly",
+          "required" : false,
+          "schema" : {
+            "default" : false,
+            "type" : "boolean"
+          }
+        }, {
+          "in" : "query",
+          "name" : "page",
+          "required" : false,
+          "schema" : {
+            "default" : 0,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        }, {
+          "in" : "query",
+          "name" : "size",
+          "required" : false,
+          "schema" : {
+            "default" : 20,
+            "format" : "int32",
+            "type" : "integer"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SearchResult"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Buscar produto e ver em qual feira, setor e box encontrar (RF-02)",
+        "tags" : [ "Busca" ]
+      }
+    },
+    "/api/v1/search/suggestions" : {
+      "get" : {
+        "operationId" : "suggestions",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "q",
+          "required" : true,
+          "schema" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/Suggestion"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Sugestões enquanto digita (RF-02)",
+        "tags" : [ "Busca" ]
+      }
+    },
+    "/api/v1/stalls/{publicId}" : {
+      "get" : {
+        "operationId" : "stall",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/StallDetail"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Box com ofertas (RF-03)",
+        "tags" : [ "Vitrine pública" ]
+      }
+    },
+    "/api/v1/tasks/available" : {
+      "get" : {
+        "operationId" : "available",
+        "parameters" : [ {
+          "in" : "query",
+          "name" : "market",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "type",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "NEW_STALL", "UPDATE_STALL", "VERIFY_REPORT" ],
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "lat",
+          "required" : false,
+          "schema" : {
+            "format" : "double",
+            "type" : "number"
+          }
+        }, {
+          "in" : "query",
+          "name" : "lng",
+          "required" : false,
+          "schema" : {
+            "format" : "double",
+            "type" : "number"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AvailableTasks"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Tarefas abertas, por distância quando a posição é informada (não é gravada — RN-21)",
+        "tags" : [ "Colaboração" ]
+      }
+    },
+    "/api/v1/tasks/{publicId}" : {
+      "get" : {
+        "operationId" : "detail",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TaskDetail"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Detalhe da tarefa (RF-15)",
+        "tags" : [ "Colaboração" ]
+      }
+    },
+    "/api/v1/tasks/{publicId}/accept" : {
+      "post" : {
+        "operationId" : "accept",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AcceptResult"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Aceitar — passo 1 de 3 (RF-16, RN-01)",
+        "tags" : [ "Colaboração" ]
+      }
+    },
+    "/api/v1/tasks/{publicId}/check-in" : {
+      "post" : {
+        "operationId" : "checkIn",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/CheckInRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/CheckInResult"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Fazer check-in — passo 2 de 3 (RF-17, RN-05)",
+        "tags" : [ "Colaboração" ]
+      }
+    },
+    "/api/v1/tasks/{publicId}/release" : {
+      "post" : {
+        "operationId" : "release",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Desistir da tarefa (RF-19)",
+        "tags" : [ "Colaboração" ]
+      }
+    },
+    "/api/v1/tasks/{publicId}/submission" : {
+      "post" : {
+        "operationId" : "submit",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        }, {
+          "in" : "header",
+          "name" : "Idempotency-Key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ChangeSet"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SubmissionReceipt"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Enviar atualização — passo 3 de 3, idempotente (RF-18, RNF-03)",
+        "tags" : [ "Colaboração" ]
+      }
+    },
+    "/api/v1/telemetry/web-vitals" : {
+      "post" : {
+        "operationId" : "vitals",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/VitalsBatch"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        },
+        "summary" : "Métricas de campo (LCP, INP, CLS, TTFB) amostradas e anônimas (RNF-02)",
+        "tags" : [ "Indicadores" ]
+      }
+    },
+    "/api/v1/uploads" : {
+      "post" : {
+        "operationId" : "upload",
+        "parameters" : [ {
+          "in" : "header",
+          "name" : "Idempotency-Key",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "properties" : {
+                  "file" : {
+                    "format" : "binary",
+                    "type" : "string"
+                  }
+                },
+                "required" : [ "file" ],
+                "type" : "object"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Upload"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Enviar uma foto (RF-18, RN-06, RN-27)",
+        "tags" : [ "Colaboração" ]
+      }
+    }
+  },
+  "security" : [ {
+    "bearer" : [ ]
+  } ]
+}

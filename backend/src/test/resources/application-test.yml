@@ -1,0 +1,45 @@
+# Perfil de teste (16.5): usado pelos *IT. Banco vem do Testcontainers (ou IT_JDBC_URL).
+spring:
+  flyway:
+    clean-disabled: false
+  mail:
+    host: ""
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: false
+
+app:
+  public-base-url: http://localhost:5173
+  mail:
+    enabled: true
+  seed:
+    enabled: true
+    default-password: senha-de-teste-123
+  storage:
+    local-path: ./target/it-uploads
+  # Par VAPID só de teste (sem valor fora daqui) e o servidor de push falso do NotificationsIT.
+  push:
+    vapid-public-key: BIguUWbO8bGvS1q7R2j8fIqMfyOX8k3zF7ICWbt3wR82ioq8_jnUToQllLOUIJSUdJThM6nVftkzRapu1EB4lA0
+    vapid-private-key: VqjB8AiRkHVeDX9va_WhBdja6udstcg_Vh3orYMfysM # gitleaks:allow (chave só de teste)
+    allowed-endpoint-patterns:
+      - '^http://localhost:\d+/'
+      - '^https://fcm\.googleapis\.com/'
+  notifications:
+    quiet-hours-start: "23:59"
+    quiet-hours-end: "00:00"
+  rate-limits:
+    login-per-minute: 1000
+    register-per-hour: 1000
+    forgot-per-hour: 1000
+    reports-per-hour: 1000
+    uploads-per-minute: 1000
+    search-per-minute: 5000
+    user-per-minute: 5000
+
+logging:
+  level:
+    root: WARN
+    br.com.nandesk: INFO
