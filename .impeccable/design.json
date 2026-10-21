@@ -1,0 +1,352 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-21T16:13:15.771Z",
+  "title": "Design System: NANDESK",
+  "extensions": {
+    "colorMeta": {
+      "acai-900": {
+        "role": "primary",
+        "displayName": "Açaí 900 — tinta e faixa",
+        "canonical": "#2b1330",
+        "tonalRamp": [
+          "#2b1330",
+          "#4a2152",
+          "#f3edf4"
+        ]
+      },
+      "acai-700": {
+        "role": "primary",
+        "displayName": "Açaí 700 — açaí de toque",
+        "canonical": "#4a2152",
+        "tonalRamp": [
+          "#2b1330",
+          "#4a2152",
+          "#f3edf4"
+        ]
+      },
+      "acai-100": {
+        "role": "primary",
+        "displayName": "Açaí 100 — superfície de marca",
+        "canonical": "#f3edf4",
+        "tonalRamp": [
+          "#2b1330",
+          "#4a2152",
+          "#f3edf4"
+        ]
+      },
+      "tucupi-400": {
+        "role": "secondary",
+        "displayName": "Tucupi 400 — toldo (só sobre Açaí 900)",
+        "canonical": "#f2b23a",
+        "tonalRamp": [
+          "#7a4f00",
+          "#f2b23a"
+        ]
+      },
+      "tucupi-700": {
+        "role": "secondary",
+        "displayName": "Tucupi 700 — alerta",
+        "canonical": "#7a4f00",
+        "tonalRamp": [
+          "#7a4f00",
+          "#f2b23a"
+        ]
+      },
+      "jambu-600": {
+        "role": "tertiary",
+        "displayName": "Jambu 600 — sucesso",
+        "canonical": "#2f6b2f"
+      },
+      "urucum-600": {
+        "role": "tertiary",
+        "displayName": "Urucum 600 — erro",
+        "canonical": "#b3381c"
+      },
+      "rio-600": {
+        "role": "tertiary",
+        "displayName": "Rio 600 — informação",
+        "canonical": "#1e5a73"
+      },
+      "cinza-50": {
+        "role": "neutral",
+        "displayName": "Cinza 50 — superfície suave",
+        "canonical": "#f6f4f7",
+        "tonalRamp": [
+          "#3b353e",
+          "#6b6370",
+          "#e4e0e6",
+          "#f6f4f7"
+        ]
+      },
+      "cinza-200": {
+        "role": "neutral",
+        "displayName": "Cinza 200 — régua fina",
+        "canonical": "#e4e0e6",
+        "tonalRamp": [
+          "#3b353e",
+          "#6b6370",
+          "#e4e0e6",
+          "#f6f4f7"
+        ]
+      },
+      "cinza-500": {
+        "role": "neutral",
+        "displayName": "Cinza 500 — borda de campo e pontilhado",
+        "canonical": "#6b6370",
+        "tonalRamp": [
+          "#3b353e",
+          "#6b6370",
+          "#e4e0e6",
+          "#f6f4f7"
+        ]
+      },
+      "cinza-800": {
+        "role": "neutral",
+        "displayName": "Cinza 800 — texto de apoio",
+        "canonical": "#3b353e",
+        "tonalRamp": [
+          "#3b353e",
+          "#6b6370",
+          "#e4e0e6",
+          "#f6f4f7"
+        ]
+      },
+      "branco": {
+        "role": "neutral",
+        "displayName": "Branco — chão",
+        "canonical": "#ffffff"
+      },
+      "on-band-muted": {
+        "role": "neutral",
+        "displayName": "Lilás da faixa",
+        "canonical": "#d9cddc"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Título de página (H1)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Título da faixa de busca e números grandes do painel."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de seção sobre a régua de 2 px e título de folha."
+      },
+      "price": {
+        "displayName": "Preço",
+        "purpose": "Valor da linha de preço e código do box, Archivo tabular."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido, até 65ch."
+      },
+      "body-large": {
+        "displayName": "Body large",
+        "purpose": "Abertura na faixa e busca grande."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Rótulos, botões e navegação."
+      },
+      "support": {
+        "displayName": "Support",
+        "purpose": "Dicas, linha de apoio, data da verificação, erros de campo."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-sheet",
+        "value": "0 -8px 24px rgb(43 19 48 / 0.16)",
+        "purpose": "Folha que sobe de baixo no celular; toasts."
+      },
+      {
+        "name": "shadow-dialog",
+        "value": "0 12px 32px rgb(43 19 48 / 0.22)",
+        "purpose": "Folha centrada a partir de sm; lista de sugestões da busca."
+      }
+    ],
+    "motion": [
+      {
+        "name": "duration-fast",
+        "value": "140ms",
+        "purpose": "Transições de fundo, cor e borda dos botões. 0 ms com reduced-motion."
+      },
+      {
+        "name": "duration-base",
+        "value": "220ms",
+        "purpose": "Entrada de toast e varredura do fresh-mark. 0 ms com reduced-motion."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Curva de toda entrada em resposta a ação."
+      },
+      {
+        "name": "skeleton",
+        "value": "1.4s ease-in-out infinite",
+        "purpose": "Pulso do esqueleto de carregamento; desligado com reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "40rem"
+      },
+      {
+        "name": "md",
+        "value": "48rem"
+      },
+      {
+        "name": "lg",
+        "value": "64rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botão primário",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Ação principal da tela, em Açaí 700.",
+      "html": "<button class=\"ds-btn\">Aceitar por R$ 4,00</button>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 16px;border:0;border-radius:var(--radius-control);background:var(--acai-700);color:var(--branco);font-family:var(--font-text);font-weight:600;font-size:1rem;cursor:pointer;transition:background-color var(--duration-fast),transform var(--duration-fast)}.ds-btn:hover{background:var(--acai-900)}.ds-btn:active{transform:translateY(1px)}.ds-btn:focus-visible{outline:3px solid var(--acai-700);outline-offset:2px}"
+    },
+    {
+      "name": "Botão secundário",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Ação de apoio, como \"Tentar de novo\".",
+      "html": "<button class=\"ds-btn2\">Tentar de novo</button>",
+      "css": ".ds-btn2{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:1px solid var(--cinza-500);border-radius:var(--radius-control);background:var(--branco);color:var(--acai-700);font-family:var(--font-text);font-weight:600;font-size:1rem;cursor:pointer;transition:background-color var(--duration-fast)}.ds-btn2:hover{background:var(--acai-100)}.ds-btn2:active{transform:translateY(1px)}.ds-btn2:focus-visible{outline:3px solid var(--acai-700);outline-offset:2px}"
+    },
+    {
+      "name": "Botão sobre a faixa",
+      "kind": "button",
+      "refersTo": "button-on-band",
+      "description": "Ação primária sobre Açaí 900, em Tucupi 400.",
+      "html": "<div class=\"ds-band\"><button class=\"ds-btn-band\">Buscar</button></div>",
+      "css": ".ds-band{background:var(--acai-900);padding:16px}.ds-btn-band{min-height:44px;padding:0 16px;border:0;border-radius:var(--radius-control);background:var(--tucupi-400);color:var(--acai-900);font-family:var(--font-text);font-weight:600;font-size:1rem;cursor:pointer}.ds-btn-band:hover{filter:brightness(.95)}.ds-btn-band:focus-visible{outline:3px solid var(--tucupi-400);outline-offset:2px}"
+    },
+    {
+      "name": "Campo com dica e erro",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Rótulo, dica, controle de 48 px e erro que diz o que fazer.",
+      "html": "<div class=\"ds-field\"><label for=\"ds-preco\">Preço</label><p class=\"ds-hint\">Use vírgula: 12,50</p><input id=\"ds-preco\" aria-invalid=\"true\" value=\"12.5x\"><p class=\"ds-err\">Digite só números e vírgula.</p></div>",
+      "css": ".ds-field{display:grid;gap:6px;font-family:var(--font-text);color:var(--acai-900)}.ds-field label{font-weight:600}.ds-hint{margin:0;font-size:.875rem;color:var(--cinza-800)}.ds-field input{min-height:48px;padding:0 12px;border:1px solid var(--cinza-500);border-radius:var(--radius-control);background:var(--branco);font:inherit;font-size:16px;color:inherit}.ds-field input[aria-invalid=true]{border-color:var(--urucum-600)}.ds-field input:focus-visible{outline:3px solid var(--acai-700);outline-offset:2px}.ds-err{margin:0;font-size:.875rem;font-weight:600;color:var(--urucum-600)}"
+    },
+    {
+      "name": "Linha de preço",
+      "kind": "custom",
+      "refersTo": "price-row",
+      "description": "Assinatura: rótulo, pontilhado, preço tabular e data da verificação.",
+      "html": "<a class=\"ds-row\" href=\"#\"><div class=\"ds-pr\"><span class=\"ds-code\">Box 12</span><span class=\"ds-lead\" aria-hidden=\"true\"></span><span class=\"ds-val\">R$ 45,00<small> o quilo</small></span></div><div class=\"ds-sub\">Castanhas · verificado há 3 dias</div></a>",
+      "css": ".ds-row{display:block;padding:12px 0;border-bottom:1px solid var(--cinza-200);color:var(--acai-900);text-decoration:none;font-family:var(--font-text)}.ds-row:hover,.ds-row:focus-visible{background:var(--cinza-50)}.ds-pr{display:grid;grid-template-columns:minmax(0,auto) minmax(1.5rem,1fr) auto;align-items:baseline;column-gap:8px}.ds-code,.ds-val{font-family:var(--font-display);font-stretch:112%;font-weight:700;font-variant-numeric:tabular-nums lining-nums}.ds-code{color:var(--acai-700)}.ds-val{font-size:1.125rem;white-space:nowrap}.ds-val small{font-family:var(--font-text);font-stretch:100%;font-size:1rem;font-weight:600;color:var(--cinza-800)}.ds-lead{align-self:end;height:.35em;margin-bottom:.35em;background-image:radial-gradient(circle,var(--cinza-500) 1px,transparent 1.2px);background-size:6px 6px;background-repeat:repeat-x;opacity:.7}.ds-sub{margin-top:2px;font-size:.875rem;color:var(--cinza-800)}"
+    },
+    {
+      "name": "Chip de filtro",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Filtro de setor em pílula com contagem; ativo em Açaí 700.",
+      "html": "<button class=\"ds-chip\" aria-pressed=\"true\">Frutas <span>8</span></button> <button class=\"ds-chip\" aria-pressed=\"false\">Ervas <span>5</span></button>",
+      "css": ".ds-chip{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--cinza-500);background:var(--branco);color:var(--acai-900);font-family:var(--font-text);font-weight:600;font-size:1rem;white-space:nowrap;cursor:pointer}.ds-chip span{font-size:.875rem;font-variant-numeric:tabular-nums;color:var(--cinza-800)}.ds-chip:hover{background:var(--cinza-50)}.ds-chip[aria-pressed=true]{background:var(--acai-700);border-color:var(--acai-700);color:var(--branco)}.ds-chip[aria-pressed=true] span{color:var(--branco)}.ds-chip:focus-visible{outline:3px solid var(--acai-700);outline-offset:2px}"
+    },
+    {
+      "name": "Barra de prazo",
+      "kind": "custom",
+      "refersTo": "deadline-bar",
+      "description": "Comprimento proporcional ao tempo restante; Urucum nos últimos 15 min.",
+      "html": "<div class=\"ds-dl\"><div class=\"ds-dl-top\"><b>Prazo do check-in</b><span>faltam 1 h 20 min · até 15:40</span></div><div class=\"ds-dl-track\" role=\"progressbar\" aria-valuenow=\"66\" aria-valuemin=\"0\" aria-valuemax=\"100\"><div style=\"width:66%\"></div></div></div>",
+      "css": ".ds-dl{display:grid;gap:6px;font-family:var(--font-text);font-size:.875rem}.ds-dl-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;color:var(--acai-900)}.ds-dl-top span{color:var(--cinza-800);font-variant-numeric:tabular-nums}.ds-dl-track{height:8px;border-radius:999px;background:var(--cinza-200);overflow:hidden}.ds-dl-track>div{height:100%;border-radius:999px;background:var(--acai-700)}"
+    },
+    {
+      "name": "Navegação inferior",
+      "kind": "nav",
+      "refersTo": "bottom-nav",
+      "description": "Colaborador no celular: colunas de 56 px, ativo em Açaí 700.",
+      "html": "<nav class=\"ds-bnav\"><a aria-current=\"page\" href=\"#\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><rect x=\"8\" y=\"2\" width=\"8\" height=\"4\" rx=\"1\"/><path d=\"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\"/></svg>Tarefas</a><a href=\"#\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" aria-hidden=\"true\"><path d=\"M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8\"/><path d=\"M3 3v5h5\"/><path d=\"M12 7v5l4 2\"/></svg>Histórico</a></nav>",
+      "css": ".ds-bnav{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--cinza-200);background:var(--branco);font-family:var(--font-text)}.ds-bnav a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px;font-size:.875rem;font-weight:600;text-decoration:none;color:var(--cinza-800)}.ds-bnav a[aria-current=page]{color:var(--acai-700)}.ds-bnav a:focus-visible{outline:3px solid var(--acai-700);outline-offset:-3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Lousa de preços",
+    "overview": "A interface é a pedra de preços da feira: cada lista do que um box vende é montada como a placa escrita à mão — produto, pontilhado, preço e unidade em colunas fixas, com números tabulares — e cada linha diz quando foi conferida (\"verificado há N dias\"). A hierarquia vem de tipografia, réguas e espaço, não de caixas, fotos ou cards. Não há fotografia de produto: o build é tipográfico até que colaboradores enviem fotos reais.\n\nO mundo tem dois chãos. O chão de trabalho é branco (melhor ao sol). No topo de toda tela há uma faixa Açaí 900 com a logo invertida; na início e na busca, essa faixa carrega o campo de busca. O amarelo Tucupi aparece só sobre essa faixa (e sobre painéis Açaí 900 do mesmo material), como o toldo da logo. Títulos, nomes de feira, códigos de box e preços em Archivo semi-expandida (largura 112); todo o resto em Atkinson Hyperlegible Next. A densidade é de quadro de avisos: linhas de 48 a 64 px separadas por régua fina, sem moldura.\n\nO movimento é escasso e sempre resposta: pressionar um botão afunda 1 px, um aviso desce 6 px ao entrar, o esqueleto pulsa enquanto carrega. Nenhuma seção anima ao aparecer.",
+    "keyCharacteristics": [
+      "Linha de preço com pontilhado e números tabulares como assinatura.",
+      "Faixa Açaí 900 no topo; Tucupi só sobre fundo escuro.",
+      "Réguas (2 px Açaí 900 sob títulos de seção, 1 px Cinza 200 entre linhas) no lugar de caixas.",
+      "Raio por papel: 10 px em controles, 14 px em folhas e painéis, pílula só em chips, selos e barras.",
+      "Sombra só no que flutua.",
+      "Alvos de 44 px, campos de 16 px, foco visível de 3 px.",
+      "Tema de alto contraste em `[data-contrast='high']`."
+    ],
+    "rules": [
+      {
+        "name": "The Tucupi-no-Escuro Rule",
+        "body": "Tucupi 400 só existe sobre Açaí 900 (ou preto no alto contraste). Se o fundo é claro, use Tucupi 700 para alerta ou Açaí 700 para destaque.",
+        "section": "colors"
+      },
+      {
+        "name": "The Açaí-de-Toque Rule",
+        "body": "Açaí 700 marca o que se pode pressionar. O contrato de direção pede exclusividade; o build a estende ao código do box, aos ícones de categoria, às barras de progresso e ao ponto de não lida. Telas novas não devem ampliar essa lista.",
+        "section": "colors"
+      },
+      {
+        "name": "The Nunca-Só-Cor Rule",
+        "body": "Todo estado tem texto: selos dizem \"Aprovado\"/\"Pendente\", prazo urgente muda cor e peso e diz o tempo, \"Em falta\" substitui o preço por palavra.",
+        "section": "colors"
+      },
+      {
+        "name": "The Número-de-Lousa Rule",
+        "body": "Todo número que se compara (preço, prazo, contagem, código de box, página) é tabular. Preços e códigos de box são Archivo; números de apoio ficam em Atkinson tabular.",
+        "section": "typography"
+      },
+      {
+        "name": "The Duas-Vozes Rule",
+        "body": "Só duas famílias. Archivo nunca em texto corrido; Atkinson nunca em títulos.",
+        "section": "typography"
+      },
+      {
+        "name": "The Régua-Não-Caixa Rule",
+        "body": "Seções se separam por régua de 2 px Açaí 900 sob o título e linhas por régua de 1 px Cinza 200. Agrupar não exige moldura.",
+        "section": "layout"
+      },
+      {
+        "name": "The Só-Flutua Rule",
+        "body": "Sombra só em folha, diálogo, toast e lista suspensa. Linhas, painéis, chips e botões em repouso não têm sombra.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** montar toda lista de preço ou de dados com a linha de preço: rótulo, pontilhado, valor tabular e a data da verificação.",
+      "**Do** separar seções com a régua de 2 px Açaí 900 e linhas com 1 px Cinza 200.",
+      "**Do** usar só os tokens de `tokens.css` para cor, fonte, espaço e raio: 10 px em controles, 14 px em painéis, pílula só em chips, selos e barras.",
+      "**Do** manter Tucupi 400 sobre Açaí 900 e usar Tucupi 700 para alerta no claro.",
+      "**Do** desenhar os estados carregando, vazio, erro e sem conexão em toda tela, com orientação útil.",
+      "**Do** manter alvos de 44 px, campos de 16 px e o anel de foco de 3 px.",
+      "**Do** mostrar o prazo como barra proporcional ao tempo que resta, com texto do tempo.",
+      "**Do** mover só em resposta a uma ação, em 140–220 ms, com `--ease-out` e respeitando `prefers-reduced-motion`.",
+      "**Do** alinhar à esquerda e fazer hierarquia por tamanho, peso e espaço.",
+      "**Do** usar uma cor de destaque por tela (Açaí 700)."
+    ],
+    "donts": [
+      "**Don't** usar degradês decorativos (sobretudo roxo→azul), glassmorphism, desfoques ou \"blobs\" 3D. O único degradê permitido é o funcional do esqueleto e o padrão de pontos do pontilhado.",
+      "**Don't** usar ilustrações ou fotos geradas por IA nem imagens de banco genéricas.",
+      "**Don't** usar emoji como ícone ou marcador, nem ícone de \"brilho/IA\".",
+      "**Don't** pôr tudo em cards idênticos com o mesmo raio e a mesma sombra, nem barra colorida na borda esquerda de cards.",
+      "**Don't** centralizar tudo, pôr rótulo em caixa alta acima de cada título, numerar 01/02/03 sem sequência real ou pôr \"→\" em todo botão.",
+      "**Don't** inventar estatísticas e depoimentos (\"+10 mil usuários\") nem usar lorem ipsum.",
+      "**Don't** escrever frases de marketing vazias (\"revolucione\", \"a melhor experiência\", \"solução inovadora\").",
+      "**Don't** animar a entrada de cada seção nem mover sem motivo.",
+      "**Don't** usar Inter, Poppins, Montserrat ou Space Grotesk no lugar de Archivo e Atkinson Hyperlegible Next.",
+      "**Don't** pôr Tucupi 400 em texto, ícone ou borda sobre fundo claro (1,87:1).",
+      "**Don't** usar Cinza 200 como borda de campo; campos usam Cinza 500.",
+      "**Don't** dar sombra a linhas, painéis, chips ou botões em repouso.",
+      "**Don't** redigitar o logotipo com fonte, nem aplicar degradê, sombra, brilho ou contorno a ele.",
+      "**Don't** tornar o mapa o único caminho para uma informação."
+    ]
+  }
+}

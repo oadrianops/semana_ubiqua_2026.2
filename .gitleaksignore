@@ -1,6 +1,6 @@
 # Falsos positivos revisados:
 # - URL interna usada no teste que comprova a recusa de SSRF (PushEndpointPolicyTest).
 # - Semente aleatória da escolha de direção de design (impeccable), não é credencial.
-6bb8b01aa82c53e0b882dcc412ad832dc156267b:backend/src/test/java/br/com/nandesk/notification/domain/PushEndpointPolicyTest.java:generic-api-key:32
+6ec791f18fc53483e235e9bf4ea1e50b2a03618f:backend/src/test/java/br/com/nandesk/notification/domain/PushEndpointPolicyTest.java:generic-api-key:32
 backend/src/test/java/br/com/nandesk/notification/domain/PushEndpointPolicyTest.java:generic-api-key:32
 .impeccable/questions/seeds/df901e5de88c0f73.json:generic-api-key:1
