@@ -1,0 +1,35 @@
+name: Mudança de requisito
+description: Proposta de alteração da especificação (gerência de requisitos, seção 17.3)
+labels: ["change-request"]
+body:
+  - type: input
+    id: requisito
+    attributes:
+      label: Requisito afetado
+      placeholder: "RF-xx"
+    validations: { required: true }
+  - type: textarea
+    id: mudanca
+    attributes:
+      label: Mudança proposta
+    validations: { required: true }
+  - type: textarea
+    id: motivo
+    attributes:
+      label: Motivo e origem
+      placeholder: "Ex.: entrevista com feirante em AAAA-MM-DD"
+    validations: { required: true }
+  - type: textarea
+    id: impacto
+    attributes:
+      label: Análise de impacto
+      description: RFs, RNs, telas, API, dados, testes e prazo
+  - type: dropdown
+    id: decisao
+    attributes:
+      label: Decisão do PO
+      options: ["Aceita agora", "Backlog futuro", "Rejeitada"]
+  - type: input
+    id: versao
+    attributes:
+      label: Versão da especificação gerada

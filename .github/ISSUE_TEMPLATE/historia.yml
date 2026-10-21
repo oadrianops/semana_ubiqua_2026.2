@@ -1,0 +1,36 @@
+name: História de usuário
+description: Uma funcionalidade nova, do ponto de vista de quem usa
+labels: ["tipo:historia"]
+body:
+  - type: textarea
+    id: historia
+    attributes:
+      label: História
+      value: "Como <persona>, quero <funcionalidade>, para <benefício>."
+    validations: { required: true }
+  - type: input
+    id: requisitos
+    attributes:
+      label: Requisitos relacionados
+      placeholder: "RF-xx · RN-xx · RNF-xx · CA-x"
+    validations: { required: true }
+  - type: textarea
+    id: criterios
+    attributes:
+      label: Critérios de aceite
+      render: gherkin
+      value: |
+        Cenário: ...
+          Dado ...
+          Quando ...
+          Então ...
+    validations: { required: true }
+  - type: textarea
+    id: notas
+    attributes:
+      label: Notas técnicas e esboço de tela
+  - type: dropdown
+    id: pontos
+    attributes:
+      label: Estimativa (pontos)
+      options: ["1", "2", "3", "5", "8", "13"]

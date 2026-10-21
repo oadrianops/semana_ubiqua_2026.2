@@ -7,6 +7,8 @@ import { defineConfig, devices } from '@playwright/test';
  */
 const baseURL = process.env.E2E_BASE_URL ?? 'http://localhost:4173';
 const allBrowsers = process.env.E2E_ALL_BROWSERS === '1';
+// WebKit (iPhone) fica opcional: o service worker e a câmera do WebKit no Linux do CI ainda oscilam.
+const webkit = process.env.E2E_WEBKIT === '1';
 
 export default defineConfig({
   testDir: './e2e',
@@ -26,12 +28,8 @@ export default defineConfig({
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    ...(allBrowsers
-      ? [
-          { name: 'pixel', use: { ...devices['Pixel 7'] }, grepInvert: /@chromium-only/ },
-          { name: 'iphone', use: { ...devices['iPhone 14'] }, grepInvert: /@chromium-only/ },
-        ]
-      : []),
+    ...(allBrowsers ? [{ name: 'pixel', use: { ...devices['Pixel 7'] }, grepInvert: /@chromium-only/ }] : []),
+    ...(webkit ? [{ name: 'iphone', use: { ...devices['iPhone 14'] }, grepInvert: /@chromium-only/ }] : []),
   ],
   webServer: process.env.E2E_BASE_URL
     ? undefined

@@ -1,0 +1,55 @@
+# E2E (seção 15.4): stack completo do Docker Compose com o seed + Playwright (axe, geolocalização e perfis de rede).
+name: e2e
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  journeys:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      APP_RATE_LOGIN_PER_MINUTE: "100"
+      SEED_DEFAULT_PASSWORD: troque-me-dev
+      APP_MAIL_ENABLED: "false"
+    steps:
+      - uses: actions/checkout@v5
+      - name: Stack completo (db, mailpit, api, web)
+        run: docker compose --profile app up -d --build --wait --wait-timeout 300
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - working-directory: frontend
+        run: |
+          npm ci --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: Jornadas J1 a J8 (Chromium desktop e Pixel; iPhone com E2E_WEBKIT=1)
+        working-directory: frontend
+        run: npx playwright test
+        env:
+          E2E_BASE_URL: http://localhost:8081
+          E2E_ALL_BROWSERS: "1"
+          E2E_SEED_PASSWORD: troque-me-dev
+      - name: Logs do stack
+        if: failure()
+        run: docker compose --profile app logs --no-color > compose.log
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: e2e-report
+          path: |
+            frontend/playwright-report
+            frontend/test-results
+            compose.log
+          retention-days: 14
