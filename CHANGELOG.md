@@ -54,6 +54,9 @@ IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.1.0).
 - Revisão de design (impeccable): cabeçalho transbordando a 390 px, filtros cobrindo resultados, linha de preço
   quebrada no celular, marca "atualizado" ausente, títulos de aba iguais, textos do servidor sem tradução, item ativo
   do painel invisível e desistência sem confirmação (`docs/design/revisao-2026-10-21.md`).
+- Primeiro CI no GitHub (PR #10): a imagem web não compilava no Docker (teste importando `contracts/`), o stack
+  local não liberava a origem `http://localhost:8081` no login, as tabelas que rolam para o lado no celular não
+  recebiam foco pelo teclado e o Trivy apontava para uma versão retirada.
 
 [Não lançado]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.0.0...HEAD
 [1.0.0]: https://github.com/oadrianops/semana_ubiqua_2026.2/releases/tag/v1.0.0
