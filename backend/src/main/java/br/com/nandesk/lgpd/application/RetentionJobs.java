@@ -5,6 +5,8 @@ import br.com.nandesk.file.application.FileService;
 import br.com.nandesk.notification.application.NotificationService;
 import br.com.nandesk.search.application.SearchMetrics;
 import br.com.nandesk.shared.config.AppProperties;
+import br.com.nandesk.stall.application.StallAdminService;
+import br.com.nandesk.submission.application.SubmissionService;
 import br.com.nandesk.task.application.TaskAdminQueries;
 import java.time.Clock;
 import org.slf4j.Logger;
@@ -27,6 +29,8 @@ public class RetentionJobs {
     private final AuthService auth;
     private final NotificationService notifications;
     private final PrivacyService privacy;
+    private final SubmissionService submissions;
+    private final StallAdminService stalls;
     private final AppProperties properties;
     private final Clock clock;
 
@@ -37,6 +41,8 @@ public class RetentionJobs {
             AuthService auth,
             NotificationService notifications,
             PrivacyService privacy,
+            SubmissionService submissions,
+            StallAdminService stalls,
             AppProperties properties,
             Clock clock) {
         this.tasks = tasks;
@@ -45,6 +51,8 @@ public class RetentionJobs {
         this.auth = auth;
         this.notifications = notifications;
         this.privacy = privacy;
+        this.submissions = submissions;
+        this.stalls = stalls;
         this.properties = properties;
         this.clock = clock;
     }
@@ -54,6 +62,9 @@ public class RetentionJobs {
     public void retention() {
         AppProperties.Retention r = properties.retention();
         int coords = tasks.clearCheckinCoordinatesBefore(clock.instant().minus(r.checkinCoordinates()));
+        java.util.List<Long> due = files.attachedDueForRetention();
+        submissions.detachPhotos(due);
+        stalls.clearPhotos(due);
         int photos = files.purgeAfterRetention();
         int searches = search.purgeOlderThan(r.searchLogs());
         int tokens = auth.purgeExpiredTokens();

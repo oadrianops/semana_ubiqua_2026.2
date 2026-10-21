@@ -15,6 +15,11 @@ import org.springframework.data.repository.query.Param;
 
 public interface SubmissionRepository extends JpaRepository<Submission, Long> {
 
+    /** RN-22: a foto de evidência sai do envio quando a retenção vence; o envio segue no histórico. */
+    @org.springframework.data.jpa.repository.Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query("delete from SubmissionPhoto p where p.file.id in :fileIds")
+    int deletePhotosByFileIds(@Param("fileIds") java.util.Collection<Long> fileIds);
+
     @EntityGraph(
             attributePaths = {"task", "task.market", "task.stall", "assignment", "collaborator", "photos", "photos.file"
             })

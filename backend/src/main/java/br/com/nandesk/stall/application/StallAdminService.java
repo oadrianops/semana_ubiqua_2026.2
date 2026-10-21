@@ -205,6 +205,13 @@ public class StallAdminService {
         return view(stall, AppLocale.PT_BR);
     }
 
+    /** Retenção vencida da foto de um box revogado (RN-13): a foto sai do box antes de ser apagada. */
+    @Transactional
+    @CacheEvict(cacheNames = CacheConfig.SNAPSHOT, allEntries = true)
+    public int clearPhotos(java.util.Collection<Long> fileIds) {
+        return fileIds.isEmpty() ? 0 : stalls.clearPhotos(fileIds);
+    }
+
     /** Novo consentimento registrado presencialmente (RN-13). */
     @Transactional
     @CacheEvict(cacheNames = CacheConfig.SNAPSHOT, allEntries = true)
@@ -215,6 +222,10 @@ public class StallAdminService {
         stall.setConsentRecordedAt(clock.instant());
         stall.setConsentRecordedBy(recordedBy);
         stall.setConsentRevokedAt(null);
+        if (stall.getPhoto() != null) {
+            // Consentimento de volta: a foto deixa de estar agendada para remoção (RN-13).
+            stall.getPhoto().setDeleteAfter(null);
+        }
         events.publishEvent(new StallChanged(stall.getId(), stall.getMarket().getId()));
         return view(stall, AppLocale.PT_BR);
     }

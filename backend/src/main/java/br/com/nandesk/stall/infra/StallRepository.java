@@ -14,6 +14,11 @@ import org.springframework.data.repository.query.Param;
 
 public interface StallRepository extends JpaRepository<Stall, Long> {
 
+    /** RN-13: a foto do box com consentimento revogado sai do box quando a retenção vence. */
+    @org.springframework.data.jpa.repository.Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query("update Stall s set s.photo = null where s.photo.id in :fileIds")
+    int clearPhotos(@Param("fileIds") java.util.Collection<Long> fileIds);
+
     String PUBLIC = " s.status = br.com.nandesk.stall.domain.StallStatus.ACTIVE"
             + " and s.consentStatus = br.com.nandesk.stall.domain.ConsentStatus.GRANTED ";
 

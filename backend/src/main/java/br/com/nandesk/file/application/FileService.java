@@ -105,9 +105,19 @@ public class FileService {
     /** Apaga do disco e do banco (retenção e órfãos — RN-22, RN-27). */
     @Transactional
     public void purge(StoredFile file) {
+        files.delete(file);
+        files.flush();
         storage.delete(file.getStorageKey());
         storage.delete(file.getThumbnailKey());
-        files.delete(file);
+    }
+
+    /** Fotos anexadas cujo prazo de retenção venceu (RN-13, RN-22): os donos desfazem o vínculo antes da remoção. */
+    @Transactional(readOnly = true)
+    public List<Long> attachedDueForRetention() {
+        return files.findAllByDeleteAfterBefore(clock.instant()).stream()
+                .filter(f -> f.getStatus() == FileStatus.ATTACHED)
+                .map(StoredFile::getId)
+                .toList();
     }
 
     @Transactional
@@ -122,17 +132,10 @@ public class FileService {
         List<StoredFile> expired = files.findAllByDeleteAfterBefore(clock.instant()).stream()
                 .filter(f -> f.getStatus() == FileStatus.ATTACHED)
                 .toList();
-        int purged = 0;
         for (StoredFile f : expired) {
-            try {
-                purge(f);
-                purged++;
-            } catch (RuntimeException e) {
-                // Ainda referenciada (ex.: foto promovida a pública depois de agendada): mantém e limpa o agendamento.
-                f.setDeleteAfter(null);
-            }
+            purge(f);
         }
-        return purged;
+        return expired.size();
     }
 
     private StoredFile storeProcessed(String area, byte[] bytes, FileVisibility visibility, FileStatus status) {

@@ -128,6 +128,11 @@ public class SubmissionService {
         return receipt(saved, true);
     }
 
+    @Transactional
+    public int detachPhotos(java.util.Collection<Long> fileIds) {
+        return fileIds.isEmpty() ? 0 : submissions.deletePhotosByFileIds(fileIds);
+    }
+
     @Transactional(readOnly = true)
     public List<HistoryItem> history(UUID userId) {
         User user = users.require(userId);
