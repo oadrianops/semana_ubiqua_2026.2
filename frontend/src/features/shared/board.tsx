@@ -71,7 +71,7 @@ function StallLabel({ stall }: { stall: StallHit }) {
   return (
     <span className="grid">
       <span>
-        <span className="display tabular mr-1.5 text-brand">{t('stall.code', { code: stall.code })}</span>
+        <span className="display tabular mr-1 text-brand">{t('stall.code', { code: stall.code })}</span>{' '}
         {stall.name}
       </span>
     </span>

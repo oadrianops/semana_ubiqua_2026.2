@@ -750,6 +750,9 @@ function PhotoPicker({
         capture="environment"
         multiple
         className="sr-only"
+        // O botão "Tirar foto" abaixo abre este campo; ele fica fora da ordem de tabulação.
+        tabIndex={-1}
+        aria-label={t('photo.title')}
         id="photo-input"
         onChange={(e) => void onFiles(e.target.files)}
       />

@@ -107,11 +107,13 @@ export default function TasksAdminPage() {
               <p className="font-semibold">
                 {t(`collab:type.${task.type}`)}
                 {task.stall && (
-                  <span className="display tabular ml-2 text-brand">
+                  <span className="display tabular ml-1 text-brand">
+                    {' '}
                     {t('common:stall.code', { code: task.stall.code })}
                   </span>
                 )}
-                <span className="ml-2">
+                <span className="ml-1">
+                  {' '}
                   <Pill>{t(`collab:status.${task.status}`)}</Pill>
                 </span>
               </p>

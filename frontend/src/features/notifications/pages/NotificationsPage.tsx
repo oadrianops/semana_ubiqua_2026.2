@@ -55,7 +55,7 @@ export default function NotificationsPage() {
               <span className="flex items-baseline justify-between gap-3">
                 <span className={cn('text-ink', unread ? 'font-bold' : 'font-semibold')}>
                   {n.title}
-                  {unread && <span className="fresh-mark ml-2">{t('notifications.new')}</span>}
+                  {unread && <span className="fresh-mark ml-1"> {t('notifications.new')}</span>}
                 </span>
                 <span className="shrink-0 text-sm text-support">
                   {relativeFromNow(n.createdAt, i18n.language)}

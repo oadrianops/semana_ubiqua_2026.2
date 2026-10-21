@@ -153,8 +153,14 @@ export default function ReviewPage() {
                   {o.conflict && <Pill tone="warn">{t('review.conflict')}</Pill>}
                 </>
               ),
-              before: o.before ? Object.values(o.before).map(show).join(' · ') : '—',
-              after: o.after ? Object.values(o.after).map(show).join(' · ') : '—',
+              before: offeringText(o.before, t, lng),
+              // Confirmar mantém o que estava; remover tira a oferta do box.
+              after:
+                o.action === 'CONFIRM'
+                  ? offeringText(o.before, t, lng)
+                  : o.action === 'REMOVE'
+                    ? '—'
+                    : offeringText(o.after, t, lng),
             }))}
           />
         </section>
@@ -237,6 +243,25 @@ export default function ReviewPage() {
       />
     </div>
   );
+}
+
+/** "R$ 8,00 a garrafa · disponível" a partir do mapa de uma oferta. */
+function offeringText(
+  offer: Record<string, unknown> | null,
+  t: (key: string) => string,
+  lng: string,
+): string {
+  if (!offer) return '—';
+  const price = offer.price as { amount: string; currency: string } | null | undefined;
+  const unit = offer.priceUnit as string | null | undefined;
+  const availability = offer.availability as string | null | undefined;
+  const parts = [
+    [price ? formatMoney(price, lng) : t('common:price.ask'), unit ? t(`common:unitShort.${unit}`) : null]
+      .filter(Boolean)
+      .join(' '),
+    availability ? t(`common:availability.${availability}`) : null,
+  ].filter(Boolean);
+  return parts.join(' · ') || '—';
 }
 
 function DiffTable({

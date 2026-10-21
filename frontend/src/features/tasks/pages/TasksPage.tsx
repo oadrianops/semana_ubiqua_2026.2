@@ -168,7 +168,8 @@ export default function TasksPage() {
                 <span className="font-semibold">
                   {t(`type.${task.type}`)}
                   {task.stall && (
-                    <span className="display tabular ml-2 text-brand">
+                    <span className="display tabular ml-1 text-brand">
+                      {' '}
                       {t('common:stall.code', { code: task.stall.code })}
                     </span>
                   )}

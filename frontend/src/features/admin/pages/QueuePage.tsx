@@ -81,7 +81,8 @@ export default function QueuePage() {
                   <span className="font-semibold">
                     {t(`collab:type.${item.type}`)}
                     {item.stallCode && (
-                      <span className="display tabular ml-2 text-brand">
+                      <span className="display tabular ml-1 text-brand">
+                        {' '}
                         {t('common:stall.code', { code: item.stallCode })}
                       </span>
                     )}
