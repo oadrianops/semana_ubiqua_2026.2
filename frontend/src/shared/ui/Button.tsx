@@ -16,7 +16,7 @@ const variants: Record<Variant, string> = {
   ghost: 'text-brand hover:bg-brand-soft',
   danger: 'border border-danger bg-surface text-danger hover:bg-soft',
   onBand: 'bg-highlight text-on-highlight hover:brightness-95',
-  onBandQuiet: 'border border-on-band-muted/60 text-on-band hover:bg-white/10',
+  onBandQuiet: 'border border-on-band-muted/60 text-on-band hover:bg-band-hover',
 };
 
 const sizes: Record<Size, string> = {

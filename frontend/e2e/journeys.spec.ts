@@ -153,6 +153,8 @@ test('J5 RN-05 check-in a 2 km da feira é recusado', async ({ page, context, re
   await page.getByRole('button', { name: 'Fazer check-in aqui' }).click();
   await expect(page.getByRole('alert')).toContainText(/Você está a 2([,.]\d)? km da feira/);
   await page.getByRole('button', { name: 'Desistir da tarefa' }).click();
+  await expect(page.getByRole('dialog', { name: 'Desistir desta tarefa?' })).toBeVisible();
+  await page.getByRole('button', { name: 'Sim, desistir' }).click();
   await expect(page).toHaveURL(/\/collaborate$/);
 });
 

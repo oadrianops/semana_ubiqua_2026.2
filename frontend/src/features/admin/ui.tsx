@@ -1,3 +1,4 @@
+import { useDocumentTitle } from '../../shared/lib/useDocumentTitle';
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ApiError } from '../../shared/api/http';
@@ -14,6 +15,7 @@ export function AdminHeader({
   lead?: ReactNode;
   actions?: ReactNode;
 }) {
+  useDocumentTitle(title);
   return (
     <header className="flex flex-wrap items-end justify-between gap-3">
       <div className="grid gap-1">

@@ -1,5 +1,7 @@
 {
-  "a11y": { "skipToContent": "Pular para o conteúdo" },
+  "a11y": {
+    "skipToContent": "Pular para o conteúdo"
+  },
   "nav": {
     "home": "NANDESK, página inicial",
     "main": "Navegação principal",
@@ -64,7 +66,10 @@
     "install": "Instalar",
     "notNow": "Agora não"
   },
-  "map": { "open": "Abrir", "reportProblem": "Reportar problema no mapa" },
+  "map": {
+    "open": "Abrir",
+    "reportProblem": "Reportar problema no mapa"
+  },
   "freshness": {
     "never": "ainda não verificado",
     "today": "verificado hoje",
@@ -72,8 +77,14 @@
     "daysAgo_other": "verificado há {{count}} dias",
     "outdated": "As informações podem estar desatualizadas: este box não é verificado há mais de 60 dias."
   },
-  "availability": { "AVAILABLE": "disponível", "OUT_OF_STOCK": "em falta", "SEASONAL": "da safra" },
-  "price": { "ask": "preço no box" },
+  "availability": {
+    "AVAILABLE": "disponível",
+    "OUT_OF_STOCK": "em falta",
+    "SEASONAL": "da safra"
+  },
+  "price": {
+    "ask": "preço no box"
+  },
   "unitShort": {
     "KG": "o quilo",
     "UNIT": "a unidade",
@@ -94,15 +105,20 @@
     "BOTTLE": "garrafa",
     "DOZEN": "dúzia"
   },
-  "stall": { "code": "Box {{code}}" },
-  "board": { "stallsCount_one": "{{count}} box", "stallsCount_other": "{{count}} boxes" },
+  "stall": {
+    "code": "Box {{code}}"
+  },
+  "board": {
+    "stallsCount_one": "{{count}} box",
+    "stallsCount_other": "{{count}} boxes"
+  },
   "offline": {
     "savedAt": "Dados salvos em {{date}} às {{time}}.",
     "mayBeOutdated": "Podem estar desatualizados; atualizam sozinhos quando houver sinal."
   },
   "search": {
     "label": "Buscar produto",
-    "placeholder": "O que você procura? Ex.: jambu",
+    "placeholder": "Ex.: jambu, castanha",
     "submit": "Buscar",
     "suggestions": "Sugestões"
   }

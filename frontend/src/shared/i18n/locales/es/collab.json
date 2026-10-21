@@ -61,9 +61,17 @@
     "pushOn": "Notificaciones activadas.",
     "pushDenied": "Las notificaciones están bloqueadas en la configuración del navegador.",
     "pushDisabled": "Notificaciones no disponibles en este servidor.",
-    "pushError": "No pudimos activar las notificaciones ahora."
+    "pushError": "No pudimos activar las notificaciones ahora.",
+    "showMap": "Ver en el mapa",
+    "hideMap": "Ocultar mapa",
+    "mapLabel": "Mapa de las ferias con tareas abiertas"
   },
-  "step": { "label": "Pasos de la tarea", "accept": "Aceptar", "checkIn": "Check-in", "send": "Enviar" },
+  "step": {
+    "label": "Pasos de la tarea",
+    "accept": "Aceptar",
+    "checkIn": "Check-in",
+    "send": "Enviar"
+  },
   "deadline": {
     "checkIn": "Plazo para el check-in",
     "submit": "Plazo para enviar",
@@ -99,7 +107,12 @@
     "action": "Dejar la tarea",
     "afterCheckIn": "Dejar (la tarea vuelve a la lista)",
     "done": "Dejaste la tarea. Volvió a la lista.",
-    "failed": "No pudimos hacerlo ahora."
+    "failed": "No pudimos hacerlo ahora.",
+    "confirmTitle": "¿Dejar esta tarea?",
+    "confirmBody": "Vuelve a la lista y otra persona puede aceptarla.",
+    "confirmBodyAfter": "Después del check-in, dejarla cuenta como plazo vencido en la reputación.",
+    "confirm": "Sí, dejarla",
+    "keep": "Seguir con la tarea"
   },
   "form": {
     "stallTitle": "Datos del puesto",
@@ -134,7 +147,12 @@
     "current": "Productos del puesto",
     "currentHint": "Para cada producto: confirma que sigue igual, cambia el precio o quítalo si ya no está.",
     "confirmAll": "Confirmar todos sin cambios",
-    "action": { "CONFIRM": "Sigue igual", "UPDATE": "Cambió", "REMOVE": "Ya no está", "KEEP": "No revisé" },
+    "action": {
+      "CONFIRM": "Sigue igual",
+      "UPDATE": "Cambió",
+      "REMOVE": "Ya no está",
+      "KEEP": "No revisé"
+    },
     "new": "Productos nuevos",
     "add": "Agregar producto",
     "product": "Producto",
@@ -189,7 +207,8 @@
     "action": "Enviar actualización",
     "hint": "¿Sin señal? El envío queda en la cola del dispositivo y sale solo cuando vuelva la conexión.",
     "sending": "Enviando. Puedes cerrar la app: el envío sigue.",
-    "queued": "Sin señal ahora. El envío quedó en cola y saldrá cuando vuelva la conexión."
+    "queued": "Sin señal ahora. El envío quedó en cola y saldrá cuando vuelva la conexión.",
+    "queuedHint": "Puedes cerrar la app: el envío sale solo cuando vuelva la señal."
   },
   "submitted": {
     "received": "Recibido. Ahora lo revisa la moderación.",
@@ -230,7 +249,7 @@
     "lead": "Comisiones acreditadas por envío aprobado. El equipo paga por PIX, fuera de la app.",
     "balance": "Saldo por cobrar",
     "paidOut": "Ya pagado",
-    "minimum": "Pago a partir de",
+    "minimum": "Saldo mínimo para el pago",
     "pixSet": "Clave PIX: {{key}}.",
     "pixMissing": "Registra una clave PIX para cobrar.",
     "pixLink": "Ir al perfil",
@@ -239,7 +258,12 @@
     "emptyTitle": "Aún no hay movimientos",
     "emptyBody": "Cada envío aprobado genera un crédito aquí."
   },
-  "ledger": { "CREDIT": "Comisión", "PAYOUT": "Pago", "REVERSAL": "Reversión", "ADJUSTMENT": "Ajuste" },
+  "ledger": {
+    "CREDIT": "Comisión",
+    "PAYOUT": "Pago",
+    "REVERSAL": "Reversión",
+    "ADJUSTMENT": "Ajuste"
+  },
   "reputation": {
     "title": "Reputación",
     "body": "Calculada sobre tus últimas {{window}} tareas. Por debajo de {{minimum}}, las tareas nuevas se bloquean hasta la revisión.",

@@ -23,18 +23,22 @@ export function HomePage() {
     <>
       <section className="on-band bg-band pb-8 text-on-band">
         <div className="safe-x mx-auto grid max-w-[var(--content-max)] gap-4 pt-6 md:pt-10">
-          <h1 className="max-w-[18ch] text-3xl text-on-band md:text-[2.75rem]">{t('home.title')}</h1>
+          <h1 className="max-w-[18ch] text-3xl text-on-band md:text-5xl">{t('home.title')}</h1>
           <p className="max-w-[var(--measure)] text-lg text-on-band-muted">{t('home.lead')}</p>
           <div className="max-w-2xl">
             <SearchBox />
           </div>
-          <div className="flex flex-wrap items-center gap-2" aria-label={t('home.quickLabel')} role="group">
+          <div
+            className="-mx-4 flex items-center gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0"
+            aria-label={t('home.quickLabel')}
+            role="group"
+          >
             <span className="text-sm text-on-band-muted">{t('home.quickLabel')}</span>
             {QUICK.map((key) => (
               <Link
                 key={key}
                 to={`/search?q=${encodeURIComponent(t(`home.quick.${key}`))}`}
-                className="hover:bg-white/10 inline-flex min-h-11 items-center rounded-full border border-on-band-muted/50 px-4 text-on-band no-underline"
+                className="inline-flex min-h-11 items-center rounded-full border border-on-band-muted/50 px-4 text-on-band no-underline hover:bg-band-hover"
               >
                 {t(`home.quick.${key}`)}
               </Link>

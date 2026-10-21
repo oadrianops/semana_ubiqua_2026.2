@@ -1,3 +1,5 @@
+import { useFreshRows } from '../../../shared/offline/seen';
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { Flag } from 'lucide-react';
 import { lazy, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -63,6 +65,12 @@ export function StallPage() {
   })();
 
   const data = stall.data ?? offline?.detail;
+  // Hooks antes do retorno antecipado (regras do React).
+  const fresh = useFreshRows(
+    data ? `stall:${data.publicId}` : null,
+    data?.offerings.map((o) => ({ id: o.publicId, version: 'version' in o ? (o.version as number) : 0 })),
+  );
+  useDocumentTitle(data ? t('stall.code', { code: data.code }) : null);
 
   if (!data) {
     return (
@@ -85,7 +93,9 @@ export function StallPage() {
       <article className="grid content-start gap-5">
         <header className="grid gap-2">
           <p className="text-sm">
-            <Link to={`/markets/${data.market.slug}`}>{data.market.name}</Link>
+            <Link to={`/markets/${data.market.slug}`} className="inline-flex min-h-11 items-center">
+              {data.market.name}
+            </Link>
             {data.sector && <span className="text-support"> · {data.sector.name}</span>}
           </p>
           <h1 className="flex flex-wrap items-baseline gap-x-3 text-3xl">
@@ -123,6 +133,7 @@ export function StallPage() {
           >
             {t('stall.boardTitle')}
             <span className="text-sm font-normal text-support">
+              <span className="sr-only">, </span>
               {t('stall.productsCount', { count: data.offerings.length })}
             </span>
           </h2>
@@ -130,6 +141,7 @@ export function StallPage() {
             {sorted.map((o) => (
               <li key={o.publicId}>
                 <PriceRow
+                  fresh={fresh.has(o.publicId)}
                   label={
                     <Link to={`/products/${o.productSlug}`} className="text-ink no-underline hover:underline">
                       {o.productName}

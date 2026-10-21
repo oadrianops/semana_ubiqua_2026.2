@@ -1,3 +1,4 @@
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +18,7 @@ import { useNotificationsQuery } from '../useNotifications';
 export default function NotificationsPage() {
   useNamespaces(['collab']);
   const { t, i18n } = useTranslation('collab');
+  useDocumentTitle(t('notifications.title'));
   const query = useNotificationsQuery(0);
   const client = useQueryClient();
   const markAll = useMutation({
@@ -55,7 +57,12 @@ export default function NotificationsPage() {
               <span className="flex items-baseline justify-between gap-3">
                 <span className={cn('text-ink', unread ? 'font-bold' : 'font-semibold')}>
                   {n.title}
-                  {unread && <span className="fresh-mark ml-1"> {t('notifications.new')}</span>}
+                  {unread && (
+                    <span className="ml-2 inline-flex items-center gap-1 align-middle text-xs font-bold text-brand">
+                      <span aria-hidden="true" className="inline-block size-2 rounded-full bg-brand" />
+                      {t('notifications.new')}
+                    </span>
+                  )}
                 </span>
                 <span className="shrink-0 text-sm text-support">
                   {relativeFromNow(n.createdAt, i18n.language)}

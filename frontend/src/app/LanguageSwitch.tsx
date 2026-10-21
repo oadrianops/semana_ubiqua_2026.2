@@ -1,3 +1,4 @@
+import { ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../shared/auth/AuthProvider';
 import { api } from '../shared/api/http';
@@ -16,17 +17,20 @@ export function LanguageSwitch() {
     if (user) void api.patch('/me', { locale: lng }).catch(() => undefined);
   }
 
+  // No cabeçalho aparece só a sigla (cabe em 360 px); o select nativo, invisível por cima, mantém os nomes
+  // completos, o teclado e o leitor de tela.
   return (
-    <label className="relative inline-flex min-h-11 items-center">
-      <span className="sr-only">{t('nav.language')}</span>
+    <label className="relative inline-flex min-h-11 min-w-11 shrink-0 items-center justify-center gap-1 rounded-[var(--radius-control)] border border-on-band-muted/50 px-2.5 font-semibold text-on-band focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[var(--color-focus-on-band)] hover:bg-band-hover">
+      <span aria-hidden="true">{SHORT[current]}</span>
+      <ChevronDown size={16} aria-hidden="true" />
       <select
         value={current}
         onChange={(e) => void select(e.target.value as Language)}
-        className="min-h-11 cursor-pointer appearance-none rounded-[var(--radius-control)] border border-on-band-muted/50 bg-transparent px-3 text-base font-semibold text-on-band"
+        className="absolute inset-0 cursor-pointer appearance-none opacity-0"
         aria-label={t('nav.language')}
       >
         {LANGUAGES.map((lng) => (
-          <option key={lng} value={lng} lang={lng} className="text-ink">
+          <option key={lng} value={lng} lang={lng}>
             {SHORT[lng]} · {LANGUAGE_NAMES[lng]}
           </option>
         ))}

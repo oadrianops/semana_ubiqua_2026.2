@@ -88,6 +88,10 @@
   /* Sombra só em folhas e diálogos que flutuam */
   --shadow-sheet: 0 -8px 24px rgb(43 19 48 / 0.16);
   --shadow-dialog: 0 12px 32px rgb(43 19 48 / 0.22);
+
+  /* Estados sobre a faixa e fundo das folhas */
+  --color-band-hover: rgb(255 255 255 / 0.1);
+  --color-overlay: rgb(43 19 48 / 0.45);
 }
 
 /* Tema de alto contraste (14.6): texto mais escuro, bordas mais fortes, faixa preta. */

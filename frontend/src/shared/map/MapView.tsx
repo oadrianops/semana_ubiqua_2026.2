@@ -21,13 +21,24 @@ export interface MapPoint {
   radius?: number;
 }
 
-const pin = L.divIcon({
-  className: 'nd-pin',
-  html: '<svg width="32" height="40" viewBox="0 0 32 40" aria-hidden="true"><path d="M16 39s13-12.4 13-23A13 13 0 0 0 3 16c0 10.6 13 23 13 23z" fill="#4A2152" stroke="#ffffff" stroke-width="2"/><circle cx="16" cy="16" r="5" fill="#F2B23A"/></svg>',
-  iconSize: [32, 40],
-  iconAnchor: [16, 39],
-  popupAnchor: [0, -34],
-});
+function token(name: string, fallback: string) {
+  if (typeof document === 'undefined') return fallback;
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+}
+
+/** Marcador em SVG com as cores dos tokens (Açaí 700 e Tucupi 400), sem os ícones padrão do Leaflet. */
+function makePin() {
+  const brand = token('--color-brand', 'currentColor');
+  const highlight = token('--color-highlight', 'currentColor');
+  const surface = token('--color-surface', 'white');
+  return L.divIcon({
+    className: 'nd-pin',
+    html: `<svg width="32" height="40" viewBox="0 0 32 40" aria-hidden="true"><path d="M16 39s13-12.4 13-23A13 13 0 0 0 3 16c0 10.6 13 23 13 23z" fill="${brand}" stroke="${surface}" stroke-width="2"/><circle cx="16" cy="16" r="5" fill="${highlight}"/></svg>`,
+    iconSize: [32, 40],
+    iconAnchor: [16, 39],
+    popupAnchor: [0, -34],
+  });
+}
 
 function ClickCapture({ onPick }: { onPick?: (lat: number, lng: number) => void }) {
   useMapEvents({ click: (e) => onPick?.(e.latlng.lat, e.latlng.lng) });
@@ -51,6 +62,7 @@ export default function MapView({
 }) {
   const { t } = useTranslation();
   const config = appConfig();
+  const pin = useMemo(() => makePin(), []);
   const start = useMemo<[number, number]>(
     () => center ?? (points[0] ? [points[0].lat, points[0].lng] : [-1.455, -48.49]),
     [center, points],
@@ -87,7 +99,7 @@ export default function MapView({
                 key={`${p.id}-r`}
                 center={[p.lat, p.lng]}
                 radius={p.radius!}
-                pathOptions={{ color: '#4A2152', weight: 2, fillOpacity: 0.08 }}
+                pathOptions={{ color: token('--color-brand', 'currentColor'), weight: 2, fillOpacity: 0.08 }}
               />
             ))}
           <ClickCapture onPick={onPick} />

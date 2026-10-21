@@ -52,8 +52,11 @@ export default function AdminRoutes() {
 
   return (
     <div className="safe-x mx-auto grid max-w-[var(--content-max)] gap-6 py-6 lg:grid-cols-[13rem_1fr] lg:gap-10">
-      <nav aria-label={t('nav.label')} className="-mx-4 overflow-x-auto px-4 lg:mx-0 lg:px-0">
-        <ul className="flex gap-1 border-b border-line lg:sticky lg:top-24 lg:grid lg:border-b-0 lg:border-l-2 lg:border-ink">
+      <nav
+        aria-label={t('nav.label')}
+        className="-mx-4 overflow-x-auto px-4 lg:sticky lg:top-4 lg:mx-0 lg:self-start lg:px-0"
+      >
+        <ul className="flex gap-1 border-b border-line lg:grid lg:border-b-0 lg:border-l-2 lg:border-ink">
           {links
             .filter((l) => admin || !l.adminOnly)
             .map((l) => (
@@ -65,7 +68,7 @@ export default function AdminRoutes() {
                     cn(
                       'flex min-h-11 items-center px-3 font-semibold whitespace-nowrap no-underline lg:-ml-0.5 lg:border-l-2',
                       isActive
-                        ? 'border-b-2 border-brand text-brand lg:border-b-0 lg:border-brand'
+                        ? 'border-b-2 border-brand bg-brand-soft font-bold text-ink lg:border-b-0 lg:border-l-[3px] lg:border-brand'
                         : 'border-transparent text-support hover:text-ink',
                     )
                   }

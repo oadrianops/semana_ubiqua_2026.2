@@ -104,8 +104,8 @@ export function SearchBox({
         <button
           type="submit"
           className={cn(
-            'absolute top-1/2 right-1.5 -translate-y-1/2 rounded-[8px] bg-brand px-4 font-semibold text-on-brand hover:bg-brand-strong',
-            size === 'lg' ? 'min-h-12' : 'min-h-9',
+            'absolute top-1/2 right-0.5 -translate-y-1/2 rounded-[8px] bg-brand px-4 font-semibold text-on-brand hover:bg-brand-strong',
+            size === 'lg' ? 'min-h-12' : 'min-h-11',
           )}
         >
           {t('search.submit')}

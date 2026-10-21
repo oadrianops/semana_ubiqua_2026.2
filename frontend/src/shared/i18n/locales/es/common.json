@@ -1,5 +1,7 @@
 {
-  "a11y": { "skipToContent": "Ir al contenido" },
+  "a11y": {
+    "skipToContent": "Ir al contenido"
+  },
   "nav": {
     "home": "NANDESK, página de inicio",
     "main": "Navegación principal",
@@ -64,7 +66,10 @@
     "install": "Instalar",
     "notNow": "Ahora no"
   },
-  "map": { "open": "Abrir", "reportProblem": "Reportar un problema en el mapa" },
+  "map": {
+    "open": "Abrir",
+    "reportProblem": "Reportar un problema en el mapa"
+  },
   "freshness": {
     "never": "aún sin verificar",
     "today": "verificado hoy",
@@ -72,8 +77,14 @@
     "daysAgo_other": "verificado hace {{count}} días",
     "outdated": "La información puede estar desactualizada: este puesto no se verifica hace más de 60 días."
   },
-  "availability": { "AVAILABLE": "disponible", "OUT_OF_STOCK": "agotado", "SEASONAL": "de temporada" },
-  "price": { "ask": "precio en el puesto" },
+  "availability": {
+    "AVAILABLE": "disponible",
+    "OUT_OF_STOCK": "agotado",
+    "SEASONAL": "de temporada"
+  },
+  "price": {
+    "ask": "precio en el puesto"
+  },
   "unitShort": {
     "KG": "el kilo",
     "UNIT": "la unidad",
@@ -94,15 +105,20 @@
     "BOTTLE": "botella",
     "DOZEN": "docena"
   },
-  "stall": { "code": "Puesto {{code}}" },
-  "board": { "stallsCount_one": "{{count}} puesto", "stallsCount_other": "{{count}} puestos" },
+  "stall": {
+    "code": "Puesto {{code}}"
+  },
+  "board": {
+    "stallsCount_one": "{{count}} puesto",
+    "stallsCount_other": "{{count}} puestos"
+  },
   "offline": {
     "savedAt": "Datos guardados el {{date}} a las {{time}}.",
     "mayBeOutdated": "Pueden estar desactualizados; se actualizan solos cuando haya señal."
   },
   "search": {
     "label": "Buscar producto",
-    "placeholder": "¿Qué buscas? Ej.: nuez de Brasil",
+    "placeholder": "Ej.: nuez de Brasil, jambu",
     "submit": "Buscar",
     "suggestions": "Sugerencias"
   }

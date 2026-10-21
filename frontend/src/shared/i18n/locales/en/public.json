@@ -38,7 +38,9 @@
     "noResultsTitle": "No stall with \"{{q}}\" yet",
     "didYouMean": "Did you mean:",
     "noResultsBody": "Check the spelling or browse the categories:",
-    "priceNote": "Reference prices, checked on the date shown. They may vary at the stall."
+    "priceNote": "Reference prices, checked on the date shown. They may vary at the stall.",
+    "filtersToggle": "Filter by market and category",
+    "filtersActive": "Filters on"
   },
   "markets": {
     "title": "Markets",

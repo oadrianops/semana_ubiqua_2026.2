@@ -1,3 +1,4 @@
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { Check, Download, Map as MapIcon, Navigation } from 'lucide-react';
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -63,6 +64,7 @@ export function MarketPage() {
   }, [stalls.data]);
 
   const detail = market.data ?? stored?.data.market;
+  useDocumentTitle(detail?.name);
   const fromSnapshot = !market.data && Boolean(stored);
 
   // Sem rede: boxes do snapshot, filtrados pelo setor.
@@ -126,9 +128,11 @@ export function MarketPage() {
       <div className="grid content-start gap-6">
         <header className="grid gap-2">
           <p className="text-sm">
-            <Link to="/markets">{t('markets.title')}</Link>
+            <Link to="/markets" className="inline-flex min-h-11 items-center">
+              {t('markets.title')}
+            </Link>
           </p>
-          <h1 className="text-[2.5rem] leading-none">{detail.name}</h1>
+          <h1 className="text-4xl leading-none">{detail.name}</h1>
           {detail.description && (
             <p className="max-w-[var(--measure)] text-lg text-support">{detail.description}</p>
           )}

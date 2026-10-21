@@ -1,3 +1,4 @@
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { List, Map as MapIcon, Navigation } from 'lucide-react';
 import { lazy, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +13,7 @@ const MapView = lazy(() => import('../../../shared/map/MapView'));
 /** Feiras (RF-01): lista primeiro; o mapa só carrega no toque em "Ver no mapa" (9.6). */
 export function MarketsPage() {
   const { t } = useTranslation('public');
+  useDocumentTitle(t('markets.title'));
   const markets = useMarkets();
   const [showMap, setShowMap] = useState(false);
 

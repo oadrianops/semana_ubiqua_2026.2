@@ -38,7 +38,9 @@
     "noResultsTitle": "Nenhum box com \"{{q}}\" por enquanto",
     "didYouMean": "Você quis dizer:",
     "noResultsBody": "Confira a grafia ou navegue pelas categorias:",
-    "priceNote": "Preços de referência, conferidos na data indicada. Podem variar no box."
+    "priceNote": "Preços de referência, conferidos na data indicada. Podem variar no box.",
+    "filtersToggle": "Filtrar por feira e categoria",
+    "filtersActive": "Filtros ativos"
   },
   "markets": {
     "title": "Feiras",

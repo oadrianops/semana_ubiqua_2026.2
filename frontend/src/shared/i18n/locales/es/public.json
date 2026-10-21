@@ -38,7 +38,9 @@
     "noResultsTitle": "Todavía ningún puesto con \"{{q}}\"",
     "didYouMean": "Quizás quisiste decir:",
     "noResultsBody": "Revisa cómo lo escribiste o navega por las categorías:",
-    "priceNote": "Precios de referencia, verificados en la fecha indicada. Pueden variar en el puesto."
+    "priceNote": "Precios de referencia, verificados en la fecha indicada. Pueden variar en el puesto.",
+    "filtersToggle": "Filtrar por feria y categoría",
+    "filtersActive": "Filtros activos"
   },
   "markets": {
     "title": "Ferias",

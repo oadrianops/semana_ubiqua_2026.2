@@ -1,3 +1,4 @@
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router';
 import { formatNumber } from '../../../shared/lib/format';
@@ -11,6 +12,7 @@ export default function ProductPage() {
   const { t, i18n } = useTranslation('public');
   const product = useProduct(slug);
 
+  useDocumentTitle(product.data?.product.name);
   if (!product.data) {
     return (
       <div className="safe-x mx-auto max-w-[var(--content-max)] py-8">
@@ -33,9 +35,11 @@ export default function ProductPage() {
     <div className="safe-x mx-auto grid max-w-[var(--content-max)] gap-8 py-6 md:grid-cols-[1fr_1.2fr] md:gap-12">
       <header className="grid content-start gap-3">
         <p className="text-sm">
-          <Link to={`/categories/${p.product.category.slug}`}>{p.product.category.name}</Link>
+          <Link to={`/categories/${p.product.category.slug}`} className="inline-flex min-h-11 items-center">
+            {p.product.category.name}
+          </Link>
         </p>
-        <h1 className="text-[2.5rem] leading-none">{p.product.name}</h1>
+        <h1 className="text-4xl leading-none">{p.product.name}</h1>
         {p.description && <p className="max-w-[var(--measure)] text-lg text-ink">{p.description}</p>}
         <dl className="grid gap-1 text-sm">
           <div className="flex gap-2">

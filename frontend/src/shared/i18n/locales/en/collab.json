@@ -61,9 +61,17 @@
     "pushOn": "Notifications on.",
     "pushDenied": "Notifications are blocked in the browser settings.",
     "pushDisabled": "Notifications are not available on this server.",
-    "pushError": "We couldn't turn on notifications right now."
+    "pushError": "We couldn't turn on notifications right now.",
+    "showMap": "Show on map",
+    "hideMap": "Hide map",
+    "mapLabel": "Map of markets with open tasks"
   },
-  "step": { "label": "Task steps", "accept": "Accept", "checkIn": "Check in", "send": "Send" },
+  "step": {
+    "label": "Task steps",
+    "accept": "Accept",
+    "checkIn": "Check in",
+    "send": "Send"
+  },
   "deadline": {
     "checkIn": "Check-in deadline",
     "submit": "Submission deadline",
@@ -99,7 +107,12 @@
     "action": "Give up the task",
     "afterCheckIn": "Give up (the task returns to the list)",
     "done": "You gave it up. The task is back on the list.",
-    "failed": "We couldn't do that right now."
+    "failed": "We couldn't do that right now.",
+    "confirmTitle": "Give up this task?",
+    "confirmBody": "It goes back to the list and someone else can take it.",
+    "confirmBodyAfter": "After check-in, giving up counts as an expired task in your reputation.",
+    "confirm": "Yes, give up",
+    "keep": "Keep the task"
   },
   "form": {
     "stallTitle": "Stall details",
@@ -134,7 +147,12 @@
     "current": "Stall products",
     "currentHint": "For each product: confirm it is unchanged, change the price or remove it if it's gone.",
     "confirmAll": "Confirm all as unchanged",
-    "action": { "CONFIRM": "Unchanged", "UPDATE": "Changed", "REMOVE": "Gone", "KEEP": "Not checked" },
+    "action": {
+      "CONFIRM": "Unchanged",
+      "UPDATE": "Changed",
+      "REMOVE": "Gone",
+      "KEEP": "Not checked"
+    },
     "new": "New products",
     "add": "Add product",
     "product": "Product",
@@ -189,7 +207,8 @@
     "action": "Send update",
     "hint": "No signal? The submission waits in the device queue and goes out on its own when the connection returns.",
     "sending": "Sending. You can close the app: it keeps going.",
-    "queued": "No signal right now. The submission is queued and will go out when the connection returns."
+    "queued": "No signal right now. The submission is queued and will go out when the connection returns.",
+    "queuedHint": "You can close the app: it will send by itself when the signal returns."
   },
   "submitted": {
     "received": "Received. Moderation will review it now.",
@@ -230,7 +249,7 @@
     "lead": "Commissions credited per approved submission. The team pays out by PIX, outside the app.",
     "balance": "Balance to receive",
     "paidOut": "Already paid",
-    "minimum": "Payout from",
+    "minimum": "Minimum balance for payout",
     "pixSet": "PIX key: {{key}}.",
     "pixMissing": "Register a PIX key to get paid.",
     "pixLink": "Go to profile",

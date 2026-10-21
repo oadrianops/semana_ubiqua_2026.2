@@ -58,7 +58,8 @@ export function PriceValue({
 
 export function AvailabilityNote({ availability }: { availability: Availability }) {
   const { t } = useTranslation();
-  if (availability === 'AVAILABLE') return null;
+  // "Em falta" já aparece no lugar do preço; aqui só a safra.
+  if (availability !== 'SEASONAL') return null;
   return (
     <span className={cn('font-semibold', availability === 'SEASONAL' ? 'text-info' : 'text-muted')}>
       {t(`availability.${availability}`)}
@@ -66,14 +67,13 @@ export function AvailabilityNote({ availability }: { availability: Availability 
   );
 }
 
+/** No celular só o número do box fica na linha do pontilhado; o nome desce para a linha de apoio. */
 function StallLabel({ stall }: { stall: StallHit }) {
   const { t } = useTranslation();
   return (
-    <span className="grid">
-      <span>
-        <span className="display tabular mr-1 text-brand">{t('stall.code', { code: stall.code })}</span>{' '}
-        {stall.name}
-      </span>
+    <span>
+      <span className="display tabular text-brand">{t('stall.code', { code: stall.code })}</span>
+      {stall.name && <span className="hidden sm:inline"> {stall.name}</span>}
     </span>
   );
 }
@@ -85,10 +85,14 @@ export function MarketBoard({ hits, headingLevel = 3 }: { hits: MarketHits; head
   return (
     <section aria-label={hits.market.name} className="grid">
       <Heading className="flex items-baseline justify-between gap-3 border-b-2 border-ink pb-1 text-lg">
-        <Link to={`/markets/${hits.market.slug}`} className="text-ink no-underline hover:underline">
+        <Link
+          to={`/markets/${hits.market.slug}`}
+          className="inline-flex min-h-11 items-center text-ink no-underline hover:underline"
+        >
           {hits.market.name}
         </Link>
         <span className="text-sm font-normal text-support">
+          <span className="sr-only">, </span>
           {t('board.stallsCount', { count: hits.stalls.length })}
         </span>
       </Heading>
@@ -107,6 +111,7 @@ export function MarketBoard({ hits, headingLevel = 3 }: { hits: MarketHits; head
                 muted={stall.availability === 'OUT_OF_STOCK'}
                 sub={
                   <span className="flex flex-wrap gap-x-3 gap-y-0.5">
+                    {stall.name && <span className="font-semibold text-ink sm:hidden">{stall.name}</span>}
                     {stall.sector && <span>{stall.sector}</span>}
                     <AvailabilityNote availability={stall.availability} />
                     <Verified at={stall.lastVerifiedAt} />

@@ -1,3 +1,4 @@
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router';
 import { ErrorState, LoadingRows } from '../../../shared/ui/States';
@@ -9,6 +10,7 @@ export default function CategoryPage() {
   const { slug = '' } = useParams();
   const { t } = useTranslation('public');
   const category = useCategory(slug);
+  useDocumentTitle(category.data?.category.name);
 
   if (!category.data) {
     return (

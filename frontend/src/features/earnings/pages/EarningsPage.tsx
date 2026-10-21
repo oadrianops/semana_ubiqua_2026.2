@@ -1,3 +1,4 @@
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
@@ -28,6 +29,7 @@ export default function EarningsPage() {
     networkMode: 'online',
   });
   const lng = i18n.language;
+  useDocumentTitle(t('earnings.title'));
 
   return (
     <div className="safe-x mx-auto grid max-w-3xl gap-8 py-6">
@@ -112,7 +114,7 @@ export default function EarningsPage() {
                     {formatMoney(entry.amount, lng)}
                   </span>
                   <span className="text-sm text-support">
-                    {entry.description} · {formatDateTime(entry.createdAt, lng)}
+                    {describeEntry(entry.description, t)} · {formatDateTime(entry.createdAt, lng)}
                   </span>
                   <span className="tabular text-sm text-support">
                     {t('earnings.after', { value: formatMoney(entry.balanceAfter, lng) })}
@@ -125,4 +127,17 @@ export default function EarningsPage() {
       )}
     </div>
   );
+}
+
+/**
+ * A descrição do crédito vem gravada no extrato imutável como "Tarefa UPDATE_STALL — box 18 (Ver-o-Peso)";
+ * aqui ela vira "Atualizar box · Box 18 · Ver-o-Peso" no idioma da pessoa. Outras descrições passam como estão.
+ */
+export function describeEntry(
+  description: string,
+  t: (key: string, options?: Record<string, unknown>) => string,
+): string {
+  const m = /^Tarefa (UPDATE_STALL|NEW_STALL|VERIFY_REPORT) — box (\S+) \((.+)\)$/.exec(description);
+  if (!m) return description;
+  return `${t(`type.${m[1]}`)} · ${t('common:stall.code', { code: m[2] })} · ${m[3]}`;
 }

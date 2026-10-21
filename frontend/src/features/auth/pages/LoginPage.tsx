@@ -1,3 +1,4 @@
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -15,6 +16,7 @@ import { AuthLayout } from '../AuthLayout';
 export default function LoginPage() {
   useNamespaces(['account']);
   const { t } = useTranslation('account');
+  useDocumentTitle(t('login.title'));
   const { login } = useAuth();
   const navigate = useNavigate();
   const [params] = useSearchParams();

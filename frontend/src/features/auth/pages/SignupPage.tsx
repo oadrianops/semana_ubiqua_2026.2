@@ -1,3 +1,4 @@
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { MailCheck } from 'lucide-react';
 import { useState } from 'react';
@@ -21,6 +22,7 @@ import { AuthLayout } from '../AuthLayout';
 export default function SignupPage() {
   useNamespaces(['account']);
   const { t, i18n } = useTranslation('account');
+  useDocumentTitle(t('signup.title'));
   const { login } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null);

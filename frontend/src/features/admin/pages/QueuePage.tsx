@@ -40,7 +40,7 @@ export default function QueuePage() {
             value={market}
             onChange={(e) => (setMarket(e.target.value), setPage(0))}
           >
-            <option value="">{t('filters.all')}</option>
+            <option value="">{t('filters.allMarkets')}</option>
             {markets.data?.map((m) => (
               <option key={m.slug} value={m.slug}>
                 {m.name}

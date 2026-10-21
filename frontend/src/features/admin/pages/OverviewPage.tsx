@@ -1,3 +1,4 @@
+import { LANGUAGE_NAMES, toLanguage } from '../../../shared/i18n/config';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
@@ -66,7 +67,11 @@ export default function OverviewPage() {
         [t('overview.searches7'), formatNumber(m.searchesLast7Days, lng)],
         [t('overview.hitRate'), pct(m.searchHitRatePct)],
         ...Object.entries(m.searchesByLocale).map(
-          ([locale, n]) => [t('overview.byLocale', { locale }), formatNumber(n, lng)] as [string, string],
+          ([locale, n]) =>
+            [
+              t('overview.byLocale', { locale: LANGUAGE_NAMES[toLanguage(locale)] }),
+              formatNumber(n, lng),
+            ] as [string, string],
         ),
       ],
     },

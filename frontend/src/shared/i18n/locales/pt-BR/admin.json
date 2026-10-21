@@ -13,7 +13,13 @@
     "users": "Usuários",
     "audit": "Auditoria"
   },
-  "filters": { "all": "Todos", "market": "Feira", "type": "Tipo", "status": "Situação" },
+  "filters": {
+    "all": "Todos",
+    "market": "Feira",
+    "type": "Tipo",
+    "status": "Situação",
+    "allMarkets": "Todas"
+  },
   "pager": {
     "label": "Paginação",
     "prev": "Anterior",
@@ -114,7 +120,9 @@
     "commentHint": "Diga o que faltou para o próximo envio ser aprovado.",
     "reopen": "Reabrir a tarefa para outra pessoa",
     "confirmReject": "Recusar envio",
-    "error": "Não foi possível concluir a revisão. Atualize a página e tente de novo."
+    "error": "Não foi possível concluir a revisão. Atualize a página e tente de novo.",
+    "photoAlt": "Foto {{n}} do envio: {{role}}",
+    "unchanged": "sem mudança"
   },
   "reports": {
     "title": "Denúncias",
@@ -202,8 +210,14 @@
     "noSector": "Sem setor",
     "verified": "verificado em {{date}}",
     "neverVerified": "nunca verificado",
-    "status": { "ACTIVE": "Ativo", "INACTIVE": "Inativo" },
-    "consent": { "GRANTED": "Com consentimento", "REVOKED": "Consentimento revogado" },
+    "status": {
+      "ACTIVE": "Ativo",
+      "INACTIVE": "Inativo"
+    },
+    "consent": {
+      "GRANTED": "Com consentimento",
+      "REVOKED": "Consentimento revogado"
+    },
     "editBody": "As mudanças entram no ar na hora e ficam registradas na auditoria.",
     "displayName": "Nome do box",
     "vendorName": "Nome do feirante",
@@ -228,7 +242,12 @@
     "title": "Catálogo",
     "lead": "Nome, descrição e sinônimos de cada produto nos 3 idiomas. Os sinônimos ajudam a busca a achar o produto.",
     "search": "Buscar produto",
-    "status": { "ACTIVE": "Ativos", "PENDING": "Pendentes", "INACTIVE": "Inativos", "MERGED": "Mesclados" },
+    "status": {
+      "ACTIVE": "Ativos",
+      "PENDING": "Pendentes",
+      "INACTIVE": "Inativos",
+      "MERGED": "Mesclados"
+    },
     "product": "Produto",
     "category": "Categoria",
     "completeness": "Traduções",
@@ -272,7 +291,12 @@
     "revealPix": "Ver chave PIX",
     "revealAudit": "Ver a chave fica registrado na auditoria.",
     "method": "Forma de pagamento",
-    "methods": { "PIX": "PIX", "TRANSFER": "Transferência", "CASH": "Dinheiro", "OTHER": "Outra" },
+    "methods": {
+      "PIX": "PIX",
+      "TRANSFER": "Transferência",
+      "CASH": "Dinheiro",
+      "OTHER": "Outra"
+    },
     "reference": "Comprovante ou referência",
     "referenceHint": "Opcional. Ex.: ID da transação PIX.",
     "confirmPayout": "Registrar repasse",
@@ -293,7 +317,11 @@
     "lead": "Papel e situação de cada conta. Toda troca fica na auditoria.",
     "search": "Buscar por nome ou e-mail",
     "role": "Papel",
-    "roles": { "COLLABORATOR": "Colaborador", "MODERATOR": "Moderação", "ADMIN": "Administração" },
+    "roles": {
+      "COLLABORATOR": "Colaborador",
+      "MODERATOR": "Moderação",
+      "ADMIN": "Administração"
+    },
     "statuses": {
       "PENDING_VERIFICATION": "E-mail não confirmado",
       "ACTIVE": "Ativa",

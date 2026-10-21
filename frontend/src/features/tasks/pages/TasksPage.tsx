@@ -1,7 +1,8 @@
-import { BellRing, LocateFixed } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
+import { BellRing, LocateFixed, Map as MapIcon } from 'lucide-react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 import { toast } from '../../../shared/ui/toast';
 import type { TaskType } from '../../../shared/api/types';
 import { useNamespaces } from '../../../shared/i18n/useNamespaces';
@@ -15,16 +16,31 @@ import { useAvailableTasks } from '../api';
 import { MyActiveTasks } from '../MyActiveTasks';
 
 const TYPES: TaskType[] = ['UPDATE_STALL', 'NEW_STALL', 'VERIFY_REPORT'];
+const MapView = lazy(() => import('../../../shared/map/MapView'));
 
 /**
- * Tarefas disponíveis (RF-15) como um quadro ordenado por distância quando a pessoa permite (a posição só ordena e
- * não é gravada — RN-21). Inclui ativar notificações (RF-14) e as tarefas em andamento.
+ * Tarefas disponíveis (RF-15) em lista e no mapa, ordenadas por distância quando a pessoa permite (a posição só
+ * ordena e não é gravada — RN-21). A feira escolhida fica no endereço (?market=), para o mapa levar à lista dela.
+ * Inclui ativar notificações (RF-14) e as tarefas em andamento.
  */
 export default function TasksPage() {
   useNamespaces(['collab']);
   const { t, i18n } = useTranslation('collab');
-  const [market, setMarket] = useState<string | null>(null);
-  const [type, setType] = useState<TaskType | null>(null);
+  useDocumentTitle(t('tasks.title'));
+  const [params, setParams] = useSearchParams();
+  const market = params.get('market');
+  const type = (params.get('type') as TaskType | null) ?? null;
+  const setFilter = (key: 'market' | 'type', value: string | null) =>
+    setParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        if (value) next.set(key, value);
+        else next.delete(key);
+        return next;
+      },
+      { replace: true },
+    );
+  const [showMap, setShowMap] = useState(false);
   const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null);
   const [locating, setLocating] = useState(false);
   const network = useNetworkState();
@@ -96,7 +112,7 @@ export default function TasksPage() {
           <span className="text-sm font-semibold text-support">{t('tasks.market')}</span>
           <select
             value={market ?? ''}
-            onChange={(e) => setMarket(e.target.value || null)}
+            onChange={(e) => setFilter('market', e.target.value || null)}
             className="min-h-11 rounded-[var(--radius-control)] border border-line-strong bg-surface px-3"
           >
             <option value="">{t('tasks.allMarkets')}</option>
@@ -111,7 +127,7 @@ export default function TasksPage() {
           <span className="text-sm font-semibold text-support">{t('tasks.type')}</span>
           <select
             value={type ?? ''}
-            onChange={(e) => setType((e.target.value || null) as TaskType | null)}
+            onChange={(e) => setFilter('type', e.target.value || null)}
             className="min-h-11 rounded-[var(--radius-control)] border border-line-strong bg-surface px-3"
           >
             <option value="">{t('tasks.allTypes')}</option>
@@ -130,7 +146,39 @@ export default function TasksPage() {
         >
           {position ? t('tasks.sortedByDistance') : t('tasks.sortByDistance')}
         </Button>
+        <Button
+          variant="ghost"
+          icon={<MapIcon size={18} aria-hidden="true" />}
+          aria-expanded={showMap}
+          onClick={() => setShowMap((v) => !v)}
+        >
+          {showMap ? t('tasks.hideMap') : t('tasks.showMap')}
+        </Button>
       </div>
+
+      {showMap && tasks.data && (
+        <Suspense fallback={<div className="skeleton h-64 rounded-[var(--radius-panel)]" />}>
+          <MapView
+            label={t('tasks.mapLabel')}
+            height={280}
+            zoom={13}
+            points={(markets.data ?? [])
+              .map((m) => ({
+                m,
+                count: tasks.data.items.filter((task) => task.market.slug === m.slug).length,
+              }))
+              .filter(({ count }) => count > 0)
+              .map(({ m, count }) => ({
+                id: m.slug,
+                lat: m.latitude,
+                lng: m.longitude,
+                title: m.name,
+                subtitle: t('tasks.count', { count }),
+                href: `/collaborate?market=${m.slug}`,
+              }))}
+          />
+        </Suspense>
+      )}
 
       {tasks.data && !tasks.data.canAccept && (
         <p className="rounded-[var(--radius-control)] bg-soft p-3 font-semibold text-warning">

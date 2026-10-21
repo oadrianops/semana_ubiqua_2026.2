@@ -1,3 +1,5 @@
+import { Sheet } from '../../../shared/ui/Sheet';
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { CheckCircle2, Inbox, LocateFixed, MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -28,6 +30,8 @@ export default function TaskPage() {
   const [outbox, setOutbox] = useState<OutboxItem | undefined>();
   const [geoError, setGeoError] = useState<string | null>(null);
   const [locating, setLocating] = useState(false);
+  const [confirmRelease, setConfirmRelease] = useState(false);
+  useDocumentTitle(task.data ? t(`type.${task.data.type}`) : t('tasks.title'));
 
   useEffect(() => {
     const load = () => void getItem(publicId).then(setOutbox);
@@ -113,7 +117,9 @@ export default function TaskPage() {
   return (
     <div className="safe-x mx-auto grid max-w-3xl gap-6 py-6">
       <p className="text-sm">
-        <Link to="/collaborate">{t('tasks.title')}</Link>
+        <Link to="/collaborate" className="inline-flex min-h-11 items-center">
+          {t('tasks.title')}
+        </Link>
       </p>
       <Stepper current={step} />
       <TaskSummary data={data} />
@@ -182,15 +188,25 @@ export default function TaskPage() {
       )}
 
       {mine && (data.status === 'ACCEPTED' || data.status === 'CHECKED_IN') && !outbox && (
-        <Button
-          variant="ghost"
-          className="justify-self-start"
-          busy={release.isPending}
-          onClick={() => void onRelease()}
-        >
+        <Button variant="ghost" className="justify-self-start" onClick={() => setConfirmRelease(true)}>
           {data.status === 'CHECKED_IN' ? t('release.afterCheckIn') : t('release.action')}
         </Button>
       )}
+      <Sheet
+        open={confirmRelease}
+        onOpenChange={setConfirmRelease}
+        title={t('release.confirmTitle')}
+        description={data.status === 'CHECKED_IN' ? t('release.confirmBodyAfter') : t('release.confirmBody')}
+      >
+        <div className="grid gap-3">
+          <Button variant="danger" block busy={release.isPending} onClick={() => void onRelease()}>
+            {t('release.confirm')}
+          </Button>
+          <Button variant="secondary" block onClick={() => setConfirmRelease(false)}>
+            {t('release.keep')}
+          </Button>
+        </div>
+      </Sheet>
     </div>
   );
 }
@@ -256,6 +272,7 @@ function SubmittedState({ item }: { item?: OutboxItem }) {
         )}
         {sent ? t('submitted.received') : t('submitted.queued')}
       </p>
+      {!sent && <p className="text-support">{t('submit.queuedHint')}</p>}
       {item && item.state !== 'SENT' && (
         <ul className="grid gap-1 text-sm text-support">
           {item.photos.map((p, i) => (

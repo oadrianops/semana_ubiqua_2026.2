@@ -58,15 +58,16 @@ export function AppLayout() {
       </a>
       <header className="on-band bg-band pt-[var(--safe-top)] text-on-band">
         <div className="safe-x mx-auto flex min-h-16 max-w-[var(--content-max)] items-center gap-3">
-          <Link to="/" className="inline-flex min-h-11 items-center" aria-label={t('nav.home')}>
+          <Link to="/" className="inline-flex min-h-11 shrink-0 items-center" aria-label={t('nav.home')}>
             <Logo reversed width={124} />
           </Link>
-          <nav aria-label={t('nav.main')} className="ml-auto flex items-center gap-1">
-            <HeaderLink to="/markets" label={t('nav.markets')} />
+          <nav aria-label={t('nav.main')} className="ml-auto flex min-w-0 items-center gap-0.5 sm:gap-1">
+            {/* Com sessão, no celular, a barra inferior já leva às seções: o topo fica com busca, sino e idioma. */}
+            <HeaderLink to="/markets" label={t('nav.markets')} desktopOnly={Boolean(user)} />
             {!isHome && (
               <Link
                 to="/search"
-                className="hover:bg-white/10 inline-flex size-11 items-center justify-center rounded-[var(--radius-control)] text-on-band"
+                className="inline-flex size-11 shrink-0 items-center justify-center rounded-[var(--radius-control)] text-on-band hover:bg-band-hover"
                 aria-label={t('nav.search')}
               >
                 <Search size={20} aria-hidden="true" />
@@ -74,12 +75,8 @@ export function AppLayout() {
             )}
             {user ? (
               <>
-                <HeaderLink
-                  to="/collaborate"
-                  label={t('nav.collaborate')}
-                  className="hidden md:inline-flex"
-                />
-                {hasRole('MODERATOR') && <HeaderLink to="/admin" label={t('nav.admin')} />}
+                <HeaderLink to="/collaborate" label={t('nav.collaborate')} desktopOnly />
+                {hasRole('MODERATOR') && <HeaderLink to="/admin" label={t('nav.admin')} desktopOnly />}
                 <BellLink />
               </>
             ) : (
@@ -143,15 +140,24 @@ export function AppLayout() {
   );
 }
 
-function HeaderLink({ to, label, className }: { to: string; label: string; className?: string }) {
+/** Link do cabeçalho; `desktopOnly` some no celular, onde a barra inferior já leva ao mesmo lugar. */
+function HeaderLink({
+  to,
+  label,
+  desktopOnly = false,
+}: {
+  to: string;
+  label: string;
+  desktopOnly?: boolean;
+}) {
   return (
     <NavLink
       to={to}
       className={({ isActive }) =>
         cn(
-          'hover:bg-white/10 inline-flex min-h-11 items-center rounded-[var(--radius-control)] px-3 font-semibold text-on-band no-underline',
+          'min-h-11 items-center rounded-[var(--radius-control)] px-2.5 font-semibold whitespace-nowrap text-on-band no-underline hover:bg-band-hover sm:px-3',
+          desktopOnly ? 'hidden md:inline-flex' : 'inline-flex',
           isActive && 'underline decoration-[var(--tucupi-400)] decoration-2 underline-offset-8',
-          className,
         )
       }
     >
@@ -166,7 +172,7 @@ function BellLink() {
   return (
     <Link
       to="/notifications"
-      className="hover:bg-white/10 relative inline-flex size-11 items-center justify-center rounded-[var(--radius-control)] text-on-band"
+      className="relative inline-flex size-11 shrink-0 items-center justify-center rounded-[var(--radius-control)] text-on-band hover:bg-band-hover"
       aria-label={unread ? t('nav.notificationsUnread', { count: unread }) : t('nav.notifications')}
     >
       <Bell size={20} aria-hidden="true" />

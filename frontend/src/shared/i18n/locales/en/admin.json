@@ -13,7 +13,13 @@
     "users": "Users",
     "audit": "Audit"
   },
-  "filters": { "all": "All", "market": "Market", "type": "Type", "status": "Status" },
+  "filters": {
+    "all": "All",
+    "market": "Market",
+    "type": "Type",
+    "status": "Status",
+    "allMarkets": "All"
+  },
   "pager": {
     "label": "Pagination",
     "prev": "Previous",
@@ -114,7 +120,9 @@
     "commentHint": "Say what was missing so the next submission gets approved.",
     "reopen": "Reopen the task for someone else",
     "confirmReject": "Reject submission",
-    "error": "We couldn't finish the review. Refresh the page and try again."
+    "error": "We couldn't finish the review. Refresh the page and try again.",
+    "photoAlt": "Submission photo {{n}}: {{role}}",
+    "unchanged": "unchanged"
   },
   "reports": {
     "title": "Reports",
@@ -202,8 +210,14 @@
     "noSector": "No section",
     "verified": "checked on {{date}}",
     "neverVerified": "never checked",
-    "status": { "ACTIVE": "Active", "INACTIVE": "Inactive" },
-    "consent": { "GRANTED": "Consent given", "REVOKED": "Consent revoked" },
+    "status": {
+      "ACTIVE": "Active",
+      "INACTIVE": "Inactive"
+    },
+    "consent": {
+      "GRANTED": "Consent given",
+      "REVOKED": "Consent revoked"
+    },
     "editBody": "Changes go live right away and are recorded in the audit log.",
     "displayName": "Stall name",
     "vendorName": "Vendor's name",
@@ -228,7 +242,12 @@
     "title": "Catalog",
     "lead": "Name, description and synonyms of each product in the 3 languages. Synonyms help search find the product.",
     "search": "Search product",
-    "status": { "ACTIVE": "Active", "PENDING": "Pending", "INACTIVE": "Inactive", "MERGED": "Merged" },
+    "status": {
+      "ACTIVE": "Active",
+      "PENDING": "Pending",
+      "INACTIVE": "Inactive",
+      "MERGED": "Merged"
+    },
     "product": "Product",
     "category": "Category",
     "completeness": "Translations",
@@ -272,7 +291,12 @@
     "revealPix": "Show PIX key",
     "revealAudit": "Viewing the key is recorded in the audit log.",
     "method": "Payment method",
-    "methods": { "PIX": "PIX", "TRANSFER": "Bank transfer", "CASH": "Cash", "OTHER": "Other" },
+    "methods": {
+      "PIX": "PIX",
+      "TRANSFER": "Bank transfer",
+      "CASH": "Cash",
+      "OTHER": "Other"
+    },
     "reference": "Receipt or reference",
     "referenceHint": "Optional. E.g. PIX transaction ID.",
     "confirmPayout": "Record payout",
@@ -293,7 +317,11 @@
     "lead": "Role and status of each account. Every change goes to the audit log.",
     "search": "Search by name or email",
     "role": "Role",
-    "roles": { "COLLABORATOR": "Collaborator", "MODERATOR": "Moderation", "ADMIN": "Administration" },
+    "roles": {
+      "COLLABORATOR": "Collaborator",
+      "MODERATOR": "Moderation",
+      "ADMIN": "Administration"
+    },
     "statuses": {
       "PENDING_VERIFICATION": "Email not confirmed",
       "ACTIVE": "Active",

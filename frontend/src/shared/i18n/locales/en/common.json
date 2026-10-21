@@ -1,5 +1,7 @@
 {
-  "a11y": { "skipToContent": "Skip to content" },
+  "a11y": {
+    "skipToContent": "Skip to content"
+  },
   "nav": {
     "home": "NANDESK, home page",
     "main": "Main navigation",
@@ -48,7 +50,13 @@
     "forbiddenTitle": "This area is not for your profile",
     "forbiddenBody": "Sign in with a moderation or admin account to continue."
   },
-  "action": { "retry": "Try again", "close": "Close", "cancel": "Cancel", "save": "Save", "back": "Back" },
+  "action": {
+    "retry": "Try again",
+    "close": "Close",
+    "cancel": "Cancel",
+    "save": "Save",
+    "back": "Back"
+  },
   "pwa": {
     "updateAvailable": "A new version is available.",
     "update": "Update",
@@ -58,7 +66,10 @@
     "install": "Install",
     "notNow": "Not now"
   },
-  "map": { "open": "Open", "reportProblem": "Report a map problem" },
+  "map": {
+    "open": "Open",
+    "reportProblem": "Report a map problem"
+  },
   "freshness": {
     "never": "not verified yet",
     "today": "verified today",
@@ -66,8 +77,14 @@
     "daysAgo_other": "verified {{count}} days ago",
     "outdated": "This information may be out of date: the stall has not been verified for more than 60 days."
   },
-  "availability": { "AVAILABLE": "available", "OUT_OF_STOCK": "out of stock", "SEASONAL": "in season" },
-  "price": { "ask": "price at the stall" },
+  "availability": {
+    "AVAILABLE": "available",
+    "OUT_OF_STOCK": "out of stock",
+    "SEASONAL": "in season"
+  },
+  "price": {
+    "ask": "price at the stall"
+  },
   "unitShort": {
     "KG": "per kilo",
     "UNIT": "each",
@@ -88,15 +105,20 @@
     "BOTTLE": "bottle",
     "DOZEN": "dozen"
   },
-  "stall": { "code": "Stall {{code}}" },
-  "board": { "stallsCount_one": "{{count}} stall", "stallsCount_other": "{{count}} stalls" },
+  "stall": {
+    "code": "Stall {{code}}"
+  },
+  "board": {
+    "stallsCount_one": "{{count}} stall",
+    "stallsCount_other": "{{count}} stalls"
+  },
   "offline": {
     "savedAt": "Data saved on {{date}} at {{time}}.",
     "mayBeOutdated": "It may be out of date; it updates by itself when there is signal."
   },
   "search": {
     "label": "Search for a product",
-    "placeholder": "What are you looking for? E.g. Brazil nut",
+    "placeholder": "E.g. Brazil nut, jambu",
     "submit": "Search",
     "suggestions": "Suggestions"
   }

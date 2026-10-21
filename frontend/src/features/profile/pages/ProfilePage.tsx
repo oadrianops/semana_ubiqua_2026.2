@@ -1,3 +1,4 @@
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Download, LogOut } from 'lucide-react';
 import { useEffect, useState, type FormEvent } from 'react';
@@ -27,6 +28,7 @@ function errorText(e: unknown, fallback: string): string {
 export default function ProfilePage() {
   useNamespaces(['account']);
   const { t } = useTranslation('account');
+  useDocumentTitle(t('profile.title'));
   const { user, setUser, logout } = useAuth();
   const navigate = useNavigate();
   if (!user) return null;
@@ -212,7 +214,6 @@ function MarketsSection() {
       </div>
       <Button
         className="justify-self-start"
-        variant="secondary"
         busy={save.isPending}
         disabled={!subs.data}
         onClick={() => save.mutate(selected)}

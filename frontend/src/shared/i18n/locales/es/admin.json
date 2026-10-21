@@ -13,7 +13,13 @@
     "users": "Usuarios",
     "audit": "Auditoría"
   },
-  "filters": { "all": "Todos", "market": "Feria", "type": "Tipo", "status": "Estado" },
+  "filters": {
+    "all": "Todos",
+    "market": "Feria",
+    "type": "Tipo",
+    "status": "Estado",
+    "allMarkets": "Todas"
+  },
   "pager": {
     "label": "Paginación",
     "prev": "Anterior",
@@ -114,7 +120,9 @@
     "commentHint": "Di qué faltó para que el próximo envío se apruebe.",
     "reopen": "Reabrir la tarea para otra persona",
     "confirmReject": "Rechazar envío",
-    "error": "No pudimos terminar la revisión. Actualiza la página y vuelve a intentarlo."
+    "error": "No pudimos terminar la revisión. Actualiza la página y vuelve a intentarlo.",
+    "photoAlt": "Foto {{n}} del envío: {{role}}",
+    "unchanged": "sin cambios"
   },
   "reports": {
     "title": "Denuncias",
@@ -202,8 +210,14 @@
     "noSector": "Sin sector",
     "verified": "verificado el {{date}}",
     "neverVerified": "nunca verificado",
-    "status": { "ACTIVE": "Activo", "INACTIVE": "Inactivo" },
-    "consent": { "GRANTED": "Con consentimiento", "REVOKED": "Consentimiento revocado" },
+    "status": {
+      "ACTIVE": "Activo",
+      "INACTIVE": "Inactivo"
+    },
+    "consent": {
+      "GRANTED": "Con consentimiento",
+      "REVOKED": "Consentimiento revocado"
+    },
     "editBody": "Los cambios se publican al instante y quedan en la auditoría.",
     "displayName": "Nombre del puesto",
     "vendorName": "Nombre del feriante",
@@ -277,7 +291,12 @@
     "revealPix": "Ver clave PIX",
     "revealAudit": "Ver la clave queda registrado en la auditoría.",
     "method": "Forma de pago",
-    "methods": { "PIX": "PIX", "TRANSFER": "Transferencia", "CASH": "Efectivo", "OTHER": "Otra" },
+    "methods": {
+      "PIX": "PIX",
+      "TRANSFER": "Transferencia",
+      "CASH": "Efectivo",
+      "OTHER": "Otra"
+    },
     "reference": "Comprobante o referencia",
     "referenceHint": "Opcional. Ej.: ID de la transacción PIX.",
     "confirmPayout": "Registrar pago",
@@ -298,7 +317,11 @@
     "lead": "Rol y estado de cada cuenta. Cada cambio queda en la auditoría.",
     "search": "Buscar por nombre o correo",
     "role": "Rol",
-    "roles": { "COLLABORATOR": "Colaborador", "MODERATOR": "Moderación", "ADMIN": "Administración" },
+    "roles": {
+      "COLLABORATOR": "Colaborador",
+      "MODERATOR": "Moderación",
+      "ADMIN": "Administración"
+    },
     "statuses": {
       "PENDING_VERIFICATION": "Correo sin confirmar",
       "ACTIVE": "Activa",

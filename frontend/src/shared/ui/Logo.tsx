@@ -11,6 +11,7 @@ export function Logo({ reversed = false, width = 132 }: { reversed?: boolean; wi
       height={Math.round(Math.max(96, width) / 6.28)}
       alt="NANDESK"
       decoding="async"
+      className="block h-auto w-[104px] max-w-none shrink-0 sm:w-[124px]"
     />
   );
 }

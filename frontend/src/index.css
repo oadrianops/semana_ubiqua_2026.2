@@ -40,6 +40,8 @@
   --color-warning: var(--color-warning);
   --color-danger: var(--color-danger);
   --color-info: var(--color-info);
+  --color-band-hover: var(--color-band-hover);
+  --color-overlay: var(--color-overlay);
   --color-transparent: transparent;
   --color-current: currentColor;
 

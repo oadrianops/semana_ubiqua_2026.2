@@ -56,7 +56,9 @@ export default function ReviewPage() {
   return (
     <div className="grid gap-8">
       <p className="text-sm">
-        <Link to="/admin/moderation">{t('queue.title')}</Link>
+        <Link to="/admin/moderation" className="inline-flex min-h-11 items-center">
+          {t('queue.title')}
+        </Link>
       </p>
       <AdminHeader
         title={t(`collab:type.${s.type}`)}
@@ -292,8 +294,20 @@ function DiffTable({
               <th scope="row" className="py-2 pr-3 font-semibold">
                 {r.label}
               </th>
-              <td className="tabular py-2 pr-3 text-support line-through decoration-1">{r.before}</td>
-              <td className={cn('tabular py-2 font-semibold', r.before !== r.after && 'text-brand')}>
+              <td
+                className={cn(
+                  'tabular py-2 pr-3 text-support',
+                  r.before !== r.after && 'line-through decoration-1',
+                )}
+              >
+                {r.before}
+              </td>
+              <td
+                className={cn(
+                  'tabular py-2 font-semibold',
+                  r.before !== r.after ? 'text-brand' : 'text-muted',
+                )}
+              >
                 {r.after}
               </td>
             </tr>
@@ -344,7 +358,11 @@ function RestrictedPhoto({ photo, index }: { photo: PhotoView; index: number }) 
         aria-label={t('review.openPhoto', { n: index + 1 })}
       >
         {url ? (
-          <img src={url} alt="" className="aspect-[4/3] w-full object-cover" />
+          <img
+            src={url}
+            alt={t('review.photoAlt', { n: index + 1, role: t(`collab:photo.roles.${photo.role}`) })}
+            className="aspect-[4/3] w-full object-cover"
+          />
         ) : (
           <span className="flex aspect-[4/3] items-center justify-center text-sm text-support">
             {failed ? t('review.photoError') : t('common:state.loading')}

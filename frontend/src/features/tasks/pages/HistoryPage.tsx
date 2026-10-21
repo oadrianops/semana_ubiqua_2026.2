@@ -1,3 +1,4 @@
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import type { HistoryItem } from '../../../shared/api/types';
@@ -11,6 +12,7 @@ import { useHistory } from '../api';
 export default function HistoryPage() {
   useNamespaces(['collab']);
   const { t } = useTranslation('collab');
+  useDocumentTitle(t('history.title'));
   const history = useHistory();
 
   return (

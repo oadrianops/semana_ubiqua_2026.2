@@ -61,9 +61,17 @@
     "pushOn": "Notificações ativadas.",
     "pushDenied": "As notificações estão bloqueadas nas configurações do navegador.",
     "pushDisabled": "Notificações indisponíveis neste servidor.",
-    "pushError": "Não foi possível ativar as notificações agora."
+    "pushError": "Não foi possível ativar as notificações agora.",
+    "showMap": "Ver no mapa",
+    "hideMap": "Esconder mapa",
+    "mapLabel": "Mapa das feiras com tarefas abertas"
   },
-  "step": { "label": "Etapas da tarefa", "accept": "Aceitar", "checkIn": "Check-in", "send": "Enviar" },
+  "step": {
+    "label": "Etapas da tarefa",
+    "accept": "Aceitar",
+    "checkIn": "Check-in",
+    "send": "Enviar"
+  },
   "deadline": {
     "checkIn": "Prazo para o check-in",
     "submit": "Prazo para enviar",
@@ -99,7 +107,12 @@
     "action": "Desistir da tarefa",
     "afterCheckIn": "Desistir (a tarefa volta para a lista)",
     "done": "Você desistiu. A tarefa voltou para a lista.",
-    "failed": "Não foi possível desistir agora."
+    "failed": "Não foi possível desistir agora.",
+    "confirmTitle": "Desistir desta tarefa?",
+    "confirmBody": "Ela volta para a lista e outra pessoa pode aceitar.",
+    "confirmBodyAfter": "Depois do check-in, desistir conta como prazo vencido na reputação.",
+    "confirm": "Sim, desistir",
+    "keep": "Continuar com a tarefa"
   },
   "form": {
     "stallTitle": "Dados do box",
@@ -194,7 +207,8 @@
     "action": "Enviar atualização",
     "hint": "Sem sinal? O envio fica na fila do aparelho e segue sozinho quando a conexão voltar.",
     "sending": "Enviando. Pode fechar o app: o envio continua.",
-    "queued": "Sem sinal agora. O envio ficou na fila e segue quando a conexão voltar."
+    "queued": "Sem sinal agora. O envio ficou na fila e segue quando a conexão voltar.",
+    "queuedHint": "Pode fechar o app: o envio segue sozinho quando o sinal voltar."
   },
   "submitted": {
     "received": "Recebido. Agora a moderação revisa.",
@@ -235,7 +249,7 @@
     "lead": "Comissões creditadas por envio aprovado. O repasse é feito pela equipe, por PIX, fora do app.",
     "balance": "Saldo a receber",
     "paidOut": "Já repassado",
-    "minimum": "Repasse a partir de",
+    "minimum": "Saldo mínimo para repasse",
     "pixSet": "Chave PIX: {{key}}.",
     "pixMissing": "Cadastre uma chave PIX para receber.",
     "pixLink": "Ir para o perfil",
@@ -244,7 +258,12 @@
     "emptyTitle": "Nenhum lançamento ainda",
     "emptyBody": "Cada envio aprovado gera um crédito aqui."
   },
-  "ledger": { "CREDIT": "Comissão", "PAYOUT": "Repasse", "REVERSAL": "Estorno", "ADJUSTMENT": "Ajuste" },
+  "ledger": {
+    "CREDIT": "Comissão",
+    "PAYOUT": "Repasse",
+    "REVERSAL": "Estorno",
+    "ADJUSTMENT": "Ajuste"
+  },
   "reputation": {
     "title": "Reputação",
     "body": "Calculada sobre suas últimas {{window}} tarefas. Abaixo de {{minimum}}, novas tarefas ficam bloqueadas até a revisão.",

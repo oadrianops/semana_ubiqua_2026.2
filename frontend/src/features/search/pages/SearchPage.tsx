@@ -1,3 +1,6 @@
+import { ChevronDown } from 'lucide-react';
+import { cn } from '../../../shared/lib/cn';
+import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
 import { startTransition, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useSearchParams } from 'react-router';
@@ -23,6 +26,9 @@ export function SearchPage() {
   const availableOnly = params.get('available') === '1';
   const network = useNetworkState();
   const remote = useSearch({ q, market, category, availableOnly });
+  const filtersActive = Boolean(market || category || availableOnly);
+  const [filtersOpen, setFiltersOpen] = useState(filtersActive);
+  useDocumentTitle(q ? t('search.resultsFor', { q }) : t('search.title'));
   const remoteError = remote.error;
   const retryRemote = () => void remote.refetch();
   const snapshots = useAllSnapshots();
@@ -69,47 +75,66 @@ export function SearchPage() {
         </div>
       </section>
 
-      <div className="safe-x mx-auto grid max-w-[var(--content-max)] gap-6 py-6 lg:grid-cols-[16rem_1fr]">
-        <aside aria-label={t('search.filters')} className="grid content-start gap-3 lg:sticky lg:top-4">
-          <label className="grid gap-1">
-            <span className="text-sm font-semibold text-support">{t('search.market')}</span>
-            <select
-              value={market ?? ''}
-              onChange={(e) => setFilter('market', e.target.value || null)}
-              className="min-h-11 rounded-[var(--radius-control)] border border-line-strong bg-surface px-3"
-            >
-              <option value="">{t('search.allMarkets')}</option>
-              {markets.data?.map((m) => (
-                <option key={m.slug} value={m.slug}>
-                  {m.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="grid gap-1">
-            <span className="text-sm font-semibold text-support">{t('search.category')}</span>
-            <select
-              value={category ?? ''}
-              onChange={(e) => setFilter('category', e.target.value || null)}
-              className="min-h-11 rounded-[var(--radius-control)] border border-line-strong bg-surface px-3"
-            >
-              <option value="">{t('search.allCategories')}</option>
-              {categories.data?.map((c) => (
-                <option key={c.slug} value={c.slug}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="flex min-h-11 items-center gap-3">
-            <input
-              type="checkbox"
-              checked={availableOnly}
-              onChange={(e) => setFilter('available', e.target.checked ? '1' : null)}
-              className="size-5 accent-[var(--acai-700)]"
-            />
-            <span>{t('search.availableOnly')}</span>
-          </label>
+      <div className="safe-x mx-auto grid max-w-[var(--content-max)] gap-6 py-6 lg:grid-cols-[minmax(0,16rem)_minmax(0,1fr)]">
+        <aside
+          aria-label={t('search.filters')}
+          className="grid min-w-0 content-start gap-3 lg:sticky lg:top-4"
+        >
+          {/* No celular, os filtros ficam recolhidos para o resultado aparecer logo (revisão de design). */}
+          <button
+            type="button"
+            className="flex min-h-11 items-center justify-between rounded-[var(--radius-control)] border border-line-strong px-3 font-semibold text-ink lg:hidden"
+            aria-expanded={filtersOpen}
+            aria-controls="search-filters"
+            onClick={() => setFiltersOpen((v) => !v)}
+          >
+            {filtersActive ? t('search.filtersActive') : t('search.filtersToggle')}
+            <ChevronDown size={18} aria-hidden="true" className={filtersOpen ? 'rotate-180' : undefined} />
+          </button>
+          <div
+            id="search-filters"
+            className={cn('content-start gap-3 lg:grid', filtersOpen ? 'grid' : 'hidden')}
+          >
+            <label className="grid gap-1">
+              <span className="text-sm font-semibold text-support">{t('search.market')}</span>
+              <select
+                value={market ?? ''}
+                onChange={(e) => setFilter('market', e.target.value || null)}
+                className="min-h-11 w-full min-w-0 rounded-[var(--radius-control)] border border-line-strong bg-surface px-3"
+              >
+                <option value="">{t('search.allMarkets')}</option>
+                {markets.data?.map((m) => (
+                  <option key={m.slug} value={m.slug}>
+                    {m.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="grid gap-1">
+              <span className="text-sm font-semibold text-support">{t('search.category')}</span>
+              <select
+                value={category ?? ''}
+                onChange={(e) => setFilter('category', e.target.value || null)}
+                className="min-h-11 w-full min-w-0 rounded-[var(--radius-control)] border border-line-strong bg-surface px-3"
+              >
+                <option value="">{t('search.allCategories')}</option>
+                {categories.data?.map((c) => (
+                  <option key={c.slug} value={c.slug}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="flex min-h-11 items-center gap-3">
+              <input
+                type="checkbox"
+                checked={availableOnly}
+                onChange={(e) => setFilter('available', e.target.checked ? '1' : null)}
+                className="size-5 accent-[var(--acai-700)]"
+              />
+              <span>{t('search.availableOnly')}</span>
+            </label>
+          </div>
         </aside>
 
         <div className="grid content-start gap-8" aria-live="polite" aria-busy={remote.isFetching}>
@@ -164,12 +189,15 @@ export function SearchPage() {
                 <h2 className="text-2xl">
                   <Link
                     to={`/products/${item.product.slug}`}
-                    className="text-ink no-underline hover:underline"
+                    className="inline-flex min-h-11 items-center text-ink no-underline hover:underline"
                   >
                     {item.product.name}
                   </Link>
                 </h2>
-                <Link to={`/categories/${item.product.category.slug}`} className="text-sm">
+                <Link
+                  to={`/categories/${item.product.category.slug}`}
+                  className="inline-flex min-h-11 items-center text-sm"
+                >
                   {item.product.category.name}
                 </Link>
               </header>
