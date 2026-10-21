@@ -12,6 +12,7 @@ import br.com.nandesk.catalog.application.CatalogAdminService.ProductTranslation
 import br.com.nandesk.catalog.domain.PriceUnit;
 import br.com.nandesk.catalog.domain.Product;
 import br.com.nandesk.catalog.domain.ProductStatus;
+import br.com.nandesk.commission.application.BudgetService;
 import br.com.nandesk.commission.application.CommissionRuleService;
 import br.com.nandesk.market.application.MarketAdminService;
 import br.com.nandesk.market.application.MarketAdminService.MarketCommand;
@@ -26,6 +27,9 @@ import br.com.nandesk.stall.application.StallAdminService.OfferingCommand;
 import br.com.nandesk.stall.domain.Availability;
 import br.com.nandesk.stall.domain.ConsentMethod;
 import br.com.nandesk.stall.domain.Stall;
+import br.com.nandesk.task.application.TaskService;
+import br.com.nandesk.task.domain.TaskOrigin;
+import br.com.nandesk.task.domain.TaskType;
 import br.com.nandesk.user.application.UserAccountService;
 import br.com.nandesk.user.domain.Role;
 import br.com.nandesk.user.domain.User;
@@ -36,6 +40,7 @@ import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -55,6 +60,8 @@ import tools.jackson.databind.json.JsonMapper;
 public class DemoSeedService {
 
     private static final Logger log = LoggerFactory.getLogger(DemoSeedService.class);
+    private static final int DEMO_TASK_AFTER_DAYS = 12;
+    private static final String DEMO_SPONSOR = "Demonstração NANDESK";
     public static final String SEED_FILE = "seed/dev-seed.json";
 
     private final JsonMapper json;
@@ -64,6 +71,8 @@ public class DemoSeedService {
     private final CatalogAdminService catalog;
     private final StallAdminService stallAdmin;
     private final CommissionRuleService commissionRules;
+    private final BudgetService budgets;
+    private final TaskService tasks;
     private final AppProperties properties;
     private final Clock clock;
 
@@ -75,6 +84,8 @@ public class DemoSeedService {
             CatalogAdminService catalog,
             StallAdminService stallAdmin,
             CommissionRuleService commissionRules,
+            BudgetService budgets,
+            TaskService tasks,
             AppProperties properties,
             Clock clock) {
         this.json = json;
@@ -84,6 +95,8 @@ public class DemoSeedService {
         this.catalog = catalog;
         this.stallAdmin = stallAdmin;
         this.commissionRules = commissionRules;
+        this.budgets = budgets;
+        this.tasks = tasks;
         this.properties = properties;
         this.clock = clock;
     }
@@ -167,6 +180,7 @@ public class DemoSeedService {
         }
 
         Instant now = clock.instant();
+        List<Stall> createdStale = new ArrayList<>();
         for (SeedStall s : data.stalls()) {
             Market market = markets.get(s.market());
             if (stallAdmin.findByMarketAndCode(market, s.code()).isPresent()) {
@@ -194,6 +208,9 @@ public class DemoSeedService {
                         verifiedAt);
             }
             stallAdmin.markVerified(stall, verifiedAt);
+            if (s.verifiedDaysAgo() >= DEMO_TASK_AFTER_DAYS) {
+                createdStale.add(stall);
+            }
         }
 
         if (data.commissionRules() != null && admin != null) {
@@ -201,11 +218,41 @@ public class DemoSeedService {
                 commissionRules.ensureRule(r.taskType(), new BigDecimal(r.amount()), admin);
             }
         }
+        if (admin != null) {
+            demoTasks(admin, createdStale, markets);
+        }
         log.info(
                 "Seed de demonstração carregado: {} feiras, {} produtos, {} boxes",
                 markets.size(),
                 products.size(),
                 data.stalls().size());
+    }
+
+    /**
+     * Verba do mês e tarefas abertas para quem testar a demonstração já ter o que aceitar (ADR-0017): uma por box
+     * verificado há mais tempo e um cadastro de box novo na Feira da 25. Só na primeira carga dos boxes.
+     */
+    private void demoTasks(User admin, List<Stall> staleStalls, Map<String, Market> markets) {
+        budgets.upsert(budgets.currentPeriod(), DEMO_SPONSOR, new BigDecimal("300.00"), admin.getId());
+        for (Stall stall : staleStalls) {
+            tasks.createAutomatic(
+                    TaskType.UPDATE_STALL,
+                    TaskOrigin.MANUAL,
+                    stall,
+                    "Confira os preços e se os produtos ainda estão à venda. Fotografe a placa do box.");
+        }
+        Market feira25 = markets.get("feira-da-25");
+        if (!staleStalls.isEmpty() && feira25 != null) {
+            tasks.create(
+                    TaskType.NEW_STALL,
+                    TaskOrigin.MANUAL,
+                    feira25,
+                    null,
+                    marketQuery.sector(feira25, "hortifruti").orElse(null),
+                    "Cadastre um box que ainda não está no app. Peça o consentimento do feirante antes.",
+                    1,
+                    admin.getId());
+        }
     }
 
     private static ProductCommand productCommand(SeedProduct p) {

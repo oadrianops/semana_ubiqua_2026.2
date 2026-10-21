@@ -15,8 +15,8 @@ import java.util.Map;
 public record ChangeSet(
         @NotBlank String taskType,
         @Valid StallChange stall,
-        @Valid @Size(max = 60) List<OfferingChange> offerings,
-        @Valid @NotNull @Size(max = 5) List<PhotoRef> photos,
+        @Size(max = 60) List<@Valid OfferingChange> offerings,
+        @NotNull @Size(max = 5) List<@Valid PhotoRef> photos,
         @Size(max = 1000) String notes,
         ReportVerification verification) {
 
