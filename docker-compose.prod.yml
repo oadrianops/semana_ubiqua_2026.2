@@ -1,0 +1,99 @@
+# Produção no Coolify (seção 16.9, docs/runbooks/deploy.md): domínio nandesk.com.br apontado para o serviço
+# "web" (porta 8080); o TLS e o HTTP/2/3 ficam com o proxy do Coolify. Nenhuma porta é publicada no host.
+# Variáveis marcadas com ":?" são obrigatórias e aparecem no painel do Coolify para preencher.
+name: nandesk
+
+services:
+  db:
+    image: mysql:8.4.9
+    restart: unless-stopped
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_ai_ci
+      - --default-time-zone=+00:00
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-nandesk}
+      MYSQL_USER: ${MYSQL_USER:-nandesk_app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?defina MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?defina MYSQL_ROOT_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  api:
+    build:
+      context: ./backend
+    image: ${API_IMAGE:-nandesk-api:latest}
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE:-nandesk}
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-nandesk_app}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:?defina MYSQL_PASSWORD}
+      APP_PUBLIC_BASE_URL: ${APP_PUBLIC_BASE_URL:-https://nandesk.com.br}
+      APP_CORS_ALLOWED_ORIGINS: ""
+      APP_STORAGE_LOCAL_PATH: /data/uploads
+      APP_JWT_ISSUER: ${APP_JWT_ISSUER:-nandesk}
+      APP_JWT_AUDIENCE: ${APP_JWT_AUDIENCE:-nandesk-web}
+      APP_JWT_KEY_ID: ${APP_JWT_KEY_ID:-2026-10}
+      # PEM completos (variável multilinha no Coolify), gerados com infra/scripts/gen-jwt-keys.sh.
+      APP_JWT_PRIVATE_KEY: ${APP_JWT_PRIVATE_KEY:?defina APP_JWT_PRIVATE_KEY}
+      APP_JWT_PUBLIC_KEY: ${APP_JWT_PUBLIC_KEY:?defina APP_JWT_PUBLIC_KEY}
+      APP_CRYPTO_PIX_KEY: ${APP_CRYPTO_PIX_KEY:?defina APP_CRYPTO_PIX_KEY (openssl rand -base64 32)}
+      APP_REFRESH_COOKIE_SECURE: "true"
+      # Sem SMTP (APP_MAIL_ENABLED=false) as contas novas já entram verificadas (ADR-0017).
+      APP_MAIL_ENABLED: ${APP_MAIL_ENABLED:-false}
+      SPRING_MAIL_HOST: ${SPRING_MAIL_HOST:-}
+      SPRING_MAIL_PORT: ${SPRING_MAIL_PORT:-587}
+      SPRING_MAIL_USERNAME: ${SPRING_MAIL_USERNAME:-}
+      SPRING_MAIL_PASSWORD: ${SPRING_MAIL_PASSWORD:-}
+      SPRING_MAIL_SMTP_AUTH: ${SPRING_MAIL_SMTP_AUTH:-true}
+      SPRING_MAIL_STARTTLS: ${SPRING_MAIL_STARTTLS:-true}
+      APP_MAIL_FROM: ${APP_MAIL_FROM:-nao-responda@nandesk.com.br}
+      APP_CONTACT_EMAIL: ${APP_CONTACT_EMAIL:-contato@nandesk.com.br}
+      APP_PUSH_VAPID_PUBLIC_KEY: ${APP_PUSH_VAPID_PUBLIC_KEY:-}
+      APP_PUSH_VAPID_PRIVATE_KEY: ${APP_PUSH_VAPID_PRIVATE_KEY:-}
+      APP_PUSH_VAPID_SUBJECT: ${APP_PUSH_VAPID_SUBJECT:-mailto:contato@nandesk.com.br}
+      # Demonstração do hackathon (ADR-0017): boxes e preços fictícios, com aviso na interface.
+      APP_SEED_ENABLED: ${APP_SEED_ENABLED:-false}
+      SEED_DEFAULT_PASSWORD: ${SEED_DEFAULT_PASSWORD:-}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-}
+    volumes:
+      - uploads:/data/uploads
+    expose:
+      - "8080"
+      - "8091"
+
+  web:
+    build:
+      context: ./frontend
+    image: ${WEB_IMAGE:-nandesk-web:latest}
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    # Vazio = padrão do 30-config-js.sh (OpenStreetMap e rota pelo Google Maps).
+    environment:
+      WEB_APP_NAME: NANDESK
+      WEB_API_BASE_URL: /api
+      WEB_MAP_TILE_URL: ${WEB_MAP_TILE_URL:-}
+      WEB_MAP_ATTRIBUTION: ${WEB_MAP_ATTRIBUTION:-© OpenStreetMap contributors}
+      WEB_DIRECTIONS_URL_TEMPLATE: ${WEB_DIRECTIONS_URL_TEMPLATE:-}
+      WEB_CONTACT_EMAIL: ${WEB_CONTACT_EMAIL:-contato@nandesk.com.br}
+      WEB_VAPID_PUBLIC_KEY: ${APP_PUSH_VAPID_PUBLIC_KEY:-}
+      WEB_VITALS_SAMPLE_RATE: ${WEB_VITALS_SAMPLE_RATE:-0.1}
+      WEB_DEMO_NOTICE: ${WEB_DEMO_NOTICE:-true}
+    expose:
+      - "8080"
+
+volumes:
+  db-data:
+  uploads:

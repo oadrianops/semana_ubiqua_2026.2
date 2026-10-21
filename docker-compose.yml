@@ -1,0 +1,113 @@
+# Desenvolvimento (seção 16.2).
+#   docker compose up -d                              → MySQL + Mailpit (API pela IDE ou ./mvnw, web por npm run dev)
+#   docker compose --profile app up -d --build        → stack completo, como em produção (E2E e demonstração)
+#   docker compose --profile observability up -d      → Prometheus + Grafana
+# Variáveis lidas do .env (copie de .env.example).
+name: nandesk
+
+services:
+  db:
+    image: mysql:8.4.9
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_ai_ci
+      - --default-time-zone=+00:00
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-nandesk}
+      MYSQL_USER: ${MYSQL_USER:-nandesk_app}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-troque-me}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-troque-me-root}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 20s
+
+  mailpit:
+    image: axllent/mailpit:v1.31.6
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
+  api:
+    profiles: [app]
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE:-dev}
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${MYSQL_DATABASE:-nandesk}
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_USER:-nandesk_app}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_PASSWORD:-troque-me}
+      APP_PUBLIC_BASE_URL: ${APP_PUBLIC_BASE_URL:-http://localhost:8081}
+      APP_CORS_ALLOWED_ORIGINS: ${APP_CORS_ALLOWED_ORIGINS:-http://localhost:5173}
+      APP_JWT_PRIVATE_KEY: ${APP_JWT_PRIVATE_KEY:-}
+      APP_JWT_PUBLIC_KEY: ${APP_JWT_PUBLIC_KEY:-}
+      APP_JWT_KEY_ID: ${APP_JWT_KEY_ID:-dev}
+      APP_CRYPTO_PIX_KEY: ${APP_CRYPTO_PIX_KEY:-}
+      APP_REFRESH_COOKIE_SECURE: ${APP_REFRESH_COOKIE_SECURE:-false}
+      APP_MAIL_ENABLED: ${APP_MAIL_ENABLED:-true}
+      SPRING_MAIL_HOST: mailpit
+      SPRING_MAIL_PORT: 1025
+      APP_MAIL_FROM: ${APP_MAIL_FROM:-nao-responda@nandesk.com.br}
+      APP_PUSH_VAPID_PUBLIC_KEY: ${APP_PUSH_VAPID_PUBLIC_KEY:-}
+      APP_PUSH_VAPID_PRIVATE_KEY: ${APP_PUSH_VAPID_PRIVATE_KEY:-}
+      APP_PUSH_VAPID_SUBJECT: ${APP_PUSH_VAPID_SUBJECT:-mailto:contato@nandesk.com.br}
+      APP_SEED_ENABLED: ${APP_SEED_ENABLED:-true}
+      SEED_DEFAULT_PASSWORD: ${SEED_DEFAULT_PASSWORD:-troque-me-dev}
+      SEED_ADMIN_PASSWORD: ${SEED_ADMIN_PASSWORD:-}
+    volumes:
+      - uploads:/data/uploads
+    ports:
+      - "8080:8080"
+
+  web:
+    profiles: [app]
+    build: ./frontend
+    depends_on:
+      api:
+        condition: service_healthy
+    # Vazio = padrão do 30-config-js.sh (OpenStreetMap e rota pelo Google Maps).
+    environment:
+      WEB_APP_NAME: ${WEB_APP_NAME:-NANDESK}
+      WEB_API_BASE_URL: ${WEB_API_BASE_URL:-/api}
+      WEB_MAP_TILE_URL: ${WEB_MAP_TILE_URL:-}
+      WEB_MAP_ATTRIBUTION: ${WEB_MAP_ATTRIBUTION:-© OpenStreetMap contributors}
+      WEB_CONTACT_EMAIL: ${WEB_CONTACT_EMAIL:-contato@nandesk.com.br}
+      WEB_VAPID_PUBLIC_KEY: ${APP_PUSH_VAPID_PUBLIC_KEY:-}
+      WEB_VITALS_SAMPLE_RATE: ${WEB_VITALS_SAMPLE_RATE:-0.1}
+      WEB_DEMO_NOTICE: ${WEB_DEMO_NOTICE:-true}
+    ports:
+      - "8081:8080"
+
+  prometheus:
+    profiles: [observability]
+    image: prom/prometheus:v3.9.0
+    volumes:
+      - ./infra/observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+
+  grafana:
+    profiles: [observability]
+    image: grafana/grafana:12.3.0
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-troque-me}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./infra/observability/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./infra/observability/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      - "3000:3000"
+
+volumes:
+  db-data:
+  uploads:
+  grafana-data:
