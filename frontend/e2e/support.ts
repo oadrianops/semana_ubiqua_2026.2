@@ -48,8 +48,9 @@ interface TaskRow {
  * crie uma num box sem tarefa ativa (RN-01). Devolve o número do box.
  */
 /**
- * Deixa a pessoa sem tarefas em andamento (RN-03 limita a 2): desiste das aceitas e a moderação recusa, reabrindo,
- * os envios pendentes que sobraram de execuções anteriores. No CI o banco começa vazio e isto não faz nada.
+ * Deixa a pessoa sem tarefas em andamento (RN-03 limita a 2): desiste das aceitas e a moderação aprova os envios
+ * pendentes que sobraram de execuções anteriores. Aprovar (e não recusar) preserva a reputação (RN-17), para a
+ * jornada poder rodar várias vezes no mesmo banco. No CI o banco começa vazio e isto não faz nada.
  */
 export async function resetCollaborator(request: APIRequestContext, collaborator: string, name: string) {
   const auth = (t: string) => ({ Authorization: `Bearer ${t}` });
@@ -71,9 +72,9 @@ export async function resetCollaborator(request: APIRequestContext, collaborator
     items: { publicId: string; collaboratorName: string }[];
   };
   for (const item of queue.items.filter((i) => i.collaboratorName === name)) {
-    await request.post(`${API}/moderation/submissions/${item.publicId}/reject`, {
+    await request.post(`${API}/moderation/submissions/${item.publicId}/approve`, {
       headers: auth(mod),
-      data: { reason: 'OTHER', comment: 'Limpeza do E2E', reopenTask: true },
+      data: { acceptConflicts: true },
     });
   }
 }

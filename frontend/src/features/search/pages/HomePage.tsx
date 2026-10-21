@@ -38,7 +38,7 @@ export function HomePage() {
               <Link
                 key={key}
                 to={`/search?q=${encodeURIComponent(t(`home.quick.${key}`))}`}
-                className="inline-flex min-h-11 items-center rounded-full border border-on-band-muted/50 px-4 text-on-band no-underline hover:bg-band-hover"
+                className="inline-flex min-h-11 shrink-0 items-center rounded-full border border-on-band-muted/50 px-4 whitespace-nowrap text-on-band no-underline hover:bg-band-hover"
               >
                 {t(`home.quick.${key}`)}
               </Link>

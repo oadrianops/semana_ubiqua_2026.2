@@ -168,7 +168,7 @@
 
   /* Mudança vinda da rede: risco Tucupi que fica até a linha ser vista (raise do painel de embarque). */
   .fresh-mark {
-    box-shadow: inset 0 -3px 0 var(--tucupi-400);
+    box-shadow: inset 0 -3px 0 var(--color-brand);
     animation: fresh-wipe var(--duration-base) var(--ease-out);
   }
 

@@ -177,7 +177,7 @@ function BellLink() {
     >
       <Bell size={20} aria-hidden="true" />
       {unread > 0 && (
-        <span className="tabular absolute top-1.5 right-1 min-w-5 rounded-full bg-highlight px-1 text-center text-xs leading-5 font-bold text-on-highlight">
+        <span className="tabular absolute top-0.5 right-0 min-w-5 rounded-full bg-highlight px-1 text-center text-xs leading-5 font-bold text-on-highlight">
           {unread > 9 ? '9+' : unread}
         </span>
       )}
