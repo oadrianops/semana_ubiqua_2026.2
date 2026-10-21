@@ -73,7 +73,7 @@ export default function CatalogAdminPage() {
         <EmptyState title={t('catalog.emptyTitle')} body={t('catalog.emptyBody')} />
       )}
       {list.data && list.data.items.length > 0 && (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto" role="region" aria-label={t('catalog.title')} tabIndex={0}>
           <table className="w-full min-w-[36rem] border-collapse text-left">
             <thead>
               <tr className="border-b-2 border-ink text-sm text-support">

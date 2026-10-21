@@ -128,6 +128,7 @@ export default function ReviewPage() {
         <section className="grid gap-2">
           <SectionTitle>{t('review.stallChanges')}</SectionTitle>
           <DiffTable
+            label={t('review.stallChanges')}
             rows={s.stallDiff.map((d) => ({
               key: d.field,
               label: t(`review.field.${d.field}`, { defaultValue: d.field }),
@@ -142,6 +143,7 @@ export default function ReviewPage() {
         <section className="grid gap-2">
           <SectionTitle>{t('review.offerings')}</SectionTitle>
           <DiffTable
+            label={t('review.offerings')}
             rows={s.offerings.map((o, i) => ({
               key: `${o.productSlug ?? 'new'}-${i}`,
               label: (
@@ -267,13 +269,16 @@ function offeringText(
 }
 
 function DiffTable({
+  label,
   rows,
 }: {
+  label: string;
   rows: { key: string; label: React.ReactNode; before: string; after: string }[];
 }) {
   const { t } = useTranslation('admin');
+  // No celular a tabela rola para o lado: a região recebe foco para rolar pelo teclado (WCAG 2.1.1).
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto" role="region" aria-label={label} tabIndex={0}>
       <table className="w-full min-w-[32rem] border-collapse text-left">
         <thead>
           <tr className="border-b border-line text-sm text-support">
