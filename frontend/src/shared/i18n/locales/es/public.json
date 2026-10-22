@@ -66,7 +66,8 @@
     "savedHint": "Se actualiza sola cada vez que haya señal. Toca de nuevo para dejar de guardarla.",
     "showMap": "Ver en el mapa",
     "hideMap": "Ocultar mapa",
-    "mapLabel": "Mapa de {{name}}"
+    "mapLabel": "Mapa de {{name}}",
+    "coverAlt": "Foto de la feria: {{name}}"
   },
   "weekday": {
     "MON": "lun",
@@ -90,7 +91,13 @@
     "wrongBody": "Avísanos si un producto se acabó, el precio cambió mucho o el puesto se mudó. Alguien de la comunidad lo revisará.",
     "wrongAction": "Avisar de un error",
     "reportOffline": "Sin conexión: el aviso necesita señal para enviarse.",
-    "offlineNotSaved": "Este puesto aún no está guardado en el dispositivo. Abre la feria con señal y guárdala para usar sin internet."
+    "offlineNotSaved": "Este puesto aún no está guardado en el dispositivo. Abre la feria con señal y guárdala para usar sin internet.",
+    "demoNote": "Puesto de ejemplo: nombre y precios ficticios, solo para probar la app.",
+    "instagram": "@{{handle}} en Instagram",
+    "newTab": "(se abre en otra pestaña)",
+    "photosTitle": "Fotos del puesto",
+    "photoShow": "Ver foto {{n}} de {{total}}",
+    "galleryAlt": "Foto {{n}} de {{total}} del puesto {{code}} — {{market}}"
   },
   "report": {
     "title": "Avisar sobre el puesto {{code}}",

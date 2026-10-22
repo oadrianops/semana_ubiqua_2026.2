@@ -276,6 +276,9 @@ describe('RF-18 RNF-03 envio pela fila', () => {
     lastVerifiedAt: '2026-10-01T10:00:00Z',
     outdated: false,
     version: 3,
+    demo: false,
+    instagram: null,
+    gallery: [],
     offerings: [
       {
         publicId: 'o1',

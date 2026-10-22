@@ -1,6 +1,6 @@
 import { useFreshRows } from '../../../shared/offline/seen';
 import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
-import { Flag } from 'lucide-react';
+import { AtSign, ExternalLink, Flag } from 'lucide-react';
 import { lazy, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router';
@@ -10,7 +10,15 @@ import { Button } from '../../../shared/ui/Button';
 import { PriceRow } from '../../../shared/ui/PriceRow';
 import { ErrorState, LoadingRows, OfflineState } from '../../../shared/ui/States';
 import { useAllSnapshots, useStall } from '../../public-api';
-import { AvailabilityNote, OutdatedWarning, PriceValue, SavedDataNotice, Verified } from '../../shared/board';
+import {
+  AvailabilityNote,
+  DemoTag,
+  OutdatedWarning,
+  PriceValue,
+  SavedDataNotice,
+  Verified,
+} from '../../shared/board';
+import { StallPhotos } from '../StallPhotos';
 
 // A folha de aviso (Radix Dialog) só carrega quando a pessoa abre (orçamento da primeira tela — 9.14).
 const ReportSheet = lazy(() => import('../ReportSheet').then((m) => ({ default: m.ReportSheet })));
@@ -57,6 +65,9 @@ export function StallPage() {
             lastVerifiedAt: o.lastVerifiedAt,
             version: 0,
           })),
+          demo: found.demo ?? false,
+          instagram: null,
+          gallery: [],
         };
         return { detail, savedAt: s.savedAt };
       }
@@ -103,6 +114,27 @@ export function StallPage() {
             <span>{data.name ?? t('stall.fallbackName', { code: data.code })}</span>
           </h1>
           {data.vendorName && <p className="text-support">{t('stall.vendor', { name: data.vendorName })}</p>}
+          {data.instagram && (
+            <p>
+              <a
+                href={`https://www.instagram.com/${data.instagram}/`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center gap-1.5 font-semibold"
+              >
+                <AtSign size={18} aria-hidden="true" />
+                {t('stall.instagram', { handle: data.instagram })}
+                <ExternalLink size={14} aria-hidden="true" />
+                <span className="sr-only">{t('stall.newTab')}</span>
+              </a>
+            </p>
+          )}
+          {data.demo && (
+            <p className="flex flex-wrap items-center gap-2 text-sm text-support">
+              <DemoTag />
+              <span>{t('stall.demoNote')}</span>
+            </p>
+          )}
           <p className="text-sm text-support">
             {t('stall.verifiedLabel')}{' '}
             <Verified at={data.lastVerifiedAt} className="font-semibold text-ink" />
@@ -112,19 +144,14 @@ export function StallPage() {
 
         {data.outdated && <OutdatedWarning />}
 
-        {data.photoThumbUrl && (
-          <img
-            src={data.photoUrl ?? data.photoThumbUrl}
-            srcSet={data.photoUrl ? `${data.photoThumbUrl} 400w, ${data.photoUrl} 1600w` : undefined}
-            sizes="(min-width: 768px) 640px, 100vw"
-            width={1600}
-            height={1200}
-            loading="lazy"
-            decoding="async"
-            alt={t('stall.photoAlt', { code: data.code, market: data.market.name })}
-            className="aspect-[4/3] w-full rounded-[var(--radius-panel)] object-cover"
-          />
-        )}
+        <StallPhotos
+          photos={[
+            ...(data.photoThumbUrl ? [{ url: data.photoUrl, thumbUrl: data.photoThumbUrl }] : []),
+            ...data.gallery.map((p) => ({ url: p.url, thumbUrl: p.thumbUrl })),
+          ]}
+          code={data.code}
+          market={data.market.name}
+        />
 
         <section aria-labelledby="board-title" className="grid">
           <h2
