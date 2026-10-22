@@ -21,16 +21,21 @@ json_number() {
   esac
 }
 
-target=/usr/share/nginx/html/config.js
+target="${CONFIG_JS_TARGET:-/usr/share/nginx/html/config.js}"
+
+# Padrões em variáveis próprias: dentro de ${VAR:-padrão} o primeiro "}" de {z} ou {lat} encerraria a expansão e
+# cortaria a URL (mapa sem tiles e "Como chegar" com destino "{lat,{lng}}").
+default_tiles='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+default_directions='https://www.google.com/maps/dir/?api=1&destination={lat},{lng}'
 
 cat >"$target" <<EOF
 // Gerado na inicialização do contêiner (nginx/30-config-js.sh). Não editar.
 window.__APP_CONFIG__ = {
   appName: $(json_string "${WEB_APP_NAME:-NANDESK}"),
   apiBaseUrl: $(json_string "${WEB_API_BASE_URL:-/api}"),
-  mapTileUrl: $(json_string "${WEB_MAP_TILE_URL:-https://tile.openstreetmap.org/{z}/{x}/{y}.png}"),
+  mapTileUrl: $(json_string "${WEB_MAP_TILE_URL:-$default_tiles}"),
   mapAttribution: $(json_string "${WEB_MAP_ATTRIBUTION:-© OpenStreetMap contributors}"),
-  directionsUrlTemplate: $(json_string "${WEB_DIRECTIONS_URL_TEMPLATE:-https://www.google.com/maps/dir/?api=1&destination={lat},{lng}}"),
+  directionsUrlTemplate: $(json_string "${WEB_DIRECTIONS_URL_TEMPLATE:-$default_directions}"),
   contactEmail: $(json_string "${WEB_CONTACT_EMAIL:-contato@nandesk.com.br}"),
   vapidPublicKey: $(json_string "${WEB_VAPID_PUBLIC_KEY:-}"),
   webVitalsSampleRate: $(json_number "${WEB_VITALS_SAMPLE_RATE:-0.1}" 0.1),

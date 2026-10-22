@@ -29,9 +29,22 @@ const defaults: AppConfig = {
   demoNotice: true,
 };
 
+/** Marcadores sem os quais a URL não serve: sem eles o mapa fica sem tiles e o "Como chegar" abre um destino inválido. */
+const required: Partial<Record<keyof AppConfig, string[]>> = {
+  mapTileUrl: ['{z}', '{x}', '{y}'],
+  directionsUrlTemplate: ['{lat}', '{lng}'],
+};
+
 export function appConfig(): AppConfig {
   const runtime = typeof window === 'undefined' ? {} : (window.__APP_CONFIG__ ?? {});
-  return { ...defaults, ...runtime };
+  const merged: AppConfig = { ...defaults, ...runtime };
+  for (const [key, markers] of Object.entries(required) as [keyof AppConfig, string[]][]) {
+    const value = merged[key];
+    if (typeof value !== 'string' || !markers.every((m) => value.includes(m))) {
+      Object.assign(merged, { [key]: defaults[key] });
+    }
+  }
+  return merged;
 }
 
 export function directionsUrl(lat: number | string, lng: number | string): string {
