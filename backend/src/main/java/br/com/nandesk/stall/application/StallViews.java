@@ -55,5 +55,7 @@ public final class StallViews {
             List<OfferingView> offerings,
             boolean demo,
             String instagram,
-            List<PhotoView> gallery) {}
+            List<PhotoView> gallery,
+            java.math.BigDecimal latitude,
+            java.math.BigDecimal longitude) {}
 }

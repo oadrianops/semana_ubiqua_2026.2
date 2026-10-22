@@ -59,6 +59,13 @@ public class Market extends AuditableEntity {
     @JoinColumn(name = "cover_file_id")
     private StoredFile cover;
 
+    /** Autor, licença e origem da foto de capa (fotos com licença livre exigem o crédito — ADR-0019). */
+    @Column(name = "cover_credit", length = 255)
+    private String coverCredit;
+
+    @Column(name = "cover_credit_url", length = 500)
+    private String coverCreditUrl;
+
     @Column(name = "active", nullable = false)
     private boolean active = true;
 

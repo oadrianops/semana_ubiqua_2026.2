@@ -217,7 +217,10 @@ class AdministrationIT extends IntegrationTest {
         body.put("showVendorName", true);
         body.put("consentMethod", "SIGNED_FORM");
         body.put("instagram", "https://www.instagram.com/Box.De_Teste/?igsh=abc");
+        body.put("latitude", -1.444795);
+        body.put("longitude", -48.468019);
         JsonNode created = mod.post("/api/v1/admin/stalls", body).expect(201).json();
+        assertThat(created.path("stall").path("latitude").decimalValue()).isEqualByComparingTo("-1.444795");
         String id = created.path("stall").path("publicId").asString();
         assertThat(created.path("stall").path("instagram").asString()).isEqualTo("box.de_teste");
         assertThat(created.path("stall").path("demo").asBoolean()).isFalse();
@@ -257,6 +260,26 @@ class AdministrationIT extends IntegrationTest {
         assertThat(pub.path("vendorName").asString()).isEqualTo("Feirante de teste");
         assertThat(pub.path("instagram").asString()).isEqualTo("box.de_teste");
         assertThat(pub.path("demo").asBoolean()).isFalse();
+        assertThat(pub.path("longitude").decimalValue()).isEqualByComparingTo("-48.468019");
+        JsonNode stallAdmin =
+                mod.get("/api/v1/admin/stalls/" + id).expect(200).json().path("stall");
+        Map<String, Object> move = new java.util.HashMap<>();
+        move.put("displayName", null);
+        move.put("vendorName", "Feirante de teste");
+        move.put("showVendorName", true);
+        move.put("sectorSlug", "roupas-e-armarinho");
+        move.put("status", "ACTIVE");
+        move.put("latitude", 95);
+        move.put("longitude", -48.4);
+        move.put("version", stallAdmin.path("version").asInt());
+        assertThat(mod.patch("/api/v1/admin/stalls/" + id, move).code()).isEqualTo("VALIDATION_ERROR");
+        move.put("latitude", -1.4448);
+        assertThat(mod.patch("/api/v1/admin/stalls/" + id, move)
+                        .expect(200)
+                        .json()
+                        .path("latitude")
+                        .decimalValue())
+                .isEqualByComparingTo("-1.444800");
         assertThat(pub.path("photoUrl").asString()).startsWith("/api/v1/files/");
         assertThat(pub.path("gallery").size()).isEqualTo(1);
         assertThat(pub.path("offerings").get(0).path("price").path("amount").asString())
@@ -280,10 +303,19 @@ class AdministrationIT extends IntegrationTest {
         api.get("/api/v1/stalls/" + id).expect(404);
 
         JsonNode market = mod.upload(
-                        "/api/v1/admin/markets/feira-da-25/cover", Fixtures.png(Color.CYAN), "image/png", "w")
+                        "/api/v1/admin/markets/feira-da-25/cover?credit=Foto%3A%20equipe%20NANDESK",
+                        Fixtures.png(Color.CYAN), "image/png", "w")
                 .expect(200)
                 .json();
         assertThat(market.path("coverThumbUrl").asString()).startsWith("/api/v1/files/");
+        assertThat(market.path("coverCredit").asString()).isEqualTo("Foto: equipe NANDESK");
+        assertThat(mod.upload(
+                                "/api/v1/admin/markets/feira-da-25/cover?creditUrl=javascript:alert(1)",
+                                Fixtures.png(Color.CYAN),
+                                "image/png",
+                                "v")
+                        .code())
+                .isEqualTo("VALIDATION_ERROR");
         JsonNode markets = api.get("/api/v1/markets").expect(200).json();
         assertThat(markets.toString()).contains("coverUrl");
     }

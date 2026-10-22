@@ -14,6 +14,7 @@ import br.com.nandesk.catalog.domain.Product;
 import br.com.nandesk.catalog.domain.ProductStatus;
 import br.com.nandesk.commission.application.BudgetService;
 import br.com.nandesk.commission.application.CommissionRuleService;
+import br.com.nandesk.file.application.FileService;
 import br.com.nandesk.market.application.MarketAdminService;
 import br.com.nandesk.market.application.MarketAdminService.MarketCommand;
 import br.com.nandesk.market.application.MarketAdminService.SectorCommand;
@@ -73,6 +74,7 @@ public class DemoSeedService {
     private final CommissionRuleService commissionRules;
     private final BudgetService budgets;
     private final TaskService tasks;
+    private final FileService files;
     private final AppProperties properties;
     private final Clock clock;
 
@@ -86,6 +88,7 @@ public class DemoSeedService {
             CommissionRuleService commissionRules,
             BudgetService budgets,
             TaskService tasks,
+            FileService files,
             AppProperties properties,
             Clock clock) {
         this.json = json;
@@ -97,6 +100,7 @@ public class DemoSeedService {
         this.commissionRules = commissionRules;
         this.budgets = budgets;
         this.tasks = tasks;
+        this.files = files;
         this.properties = properties;
         this.clock = clock;
     }
@@ -146,6 +150,14 @@ public class DemoSeedService {
                 if (marketQuery.sector(market, s.slug()).isEmpty()) {
                     marketAdmin.upsertSector(m.slug(), new SectorCommand(s.slug(), s.sort(), true, s.names()));
                 }
+            }
+            if (m.cover() != null) {
+                // Capa do seed (foto com licença livre, crédito exibido): só onde a feira ainda não tem uma.
+                marketAdmin.coverIfMissing(
+                        m.slug(),
+                        () -> files.storePublic("markets", classpathBytes(m.cover())),
+                        m.coverCredit(),
+                        m.coverCreditUrl());
             }
             markets.put(m.slug(), market);
         }
@@ -259,6 +271,14 @@ public class DemoSeedService {
                     "Cadastre um box que ainda não está no app. Peça o consentimento do feirante antes.",
                     1,
                     admin.getId());
+        }
+    }
+
+    private static byte[] classpathBytes(String path) {
+        try (InputStream in = new ClassPathResource(path).getInputStream()) {
+            return in.readAllBytes();
+        } catch (IOException e) {
+            throw new IllegalStateException("Não foi possível ler " + path, e);
         }
     }
 

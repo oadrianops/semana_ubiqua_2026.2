@@ -60,7 +60,9 @@ public class MarketAdminService {
             int version,
             Map<String, Translation> translations,
             List<AdminSectorView> sectors,
-            String coverThumbUrl) {}
+            String coverThumbUrl,
+            String coverCredit,
+            String coverCreditUrl) {}
 
     public record AdminSectorView(String slug, int sortOrder, boolean active, Map<String, String> names) {}
 
@@ -117,13 +119,15 @@ public class MarketAdminService {
      */
     @Transactional
     @CacheEvict(cacheNames = CacheConfig.SNAPSHOT, allEntries = true)
-    public AdminMarketView setCover(String slug, StoredFile cover, Instant now) {
+    public AdminMarketView setCover(String slug, StoredFile cover, String credit, String creditUrl, Instant now) {
         Market market = require(slug);
         StoredFile previous = market.getCover();
         if (previous != null) {
             previous.setDeleteAfter(now);
         }
         market.setCover(cover);
+        market.setCoverCredit(credit);
+        market.setCoverCreditUrl(creditUrl);
         market.bumpDataVersion();
         return view(market);
     }
@@ -131,10 +135,13 @@ public class MarketAdminService {
     /** Seed: capa só quando a feira ainda não tem uma (não sobrescreve a escolhida no painel). */
     @Transactional
     @CacheEvict(cacheNames = CacheConfig.SNAPSHOT, allEntries = true)
-    public void coverIfMissing(String slug, java.util.function.Supplier<StoredFile> cover) {
+    public void coverIfMissing(
+            String slug, java.util.function.Supplier<StoredFile> cover, String credit, String creditUrl) {
         Market market = require(slug);
         if (market.getCover() == null) {
             market.setCover(cover.get());
+            market.setCoverCredit(credit);
+            market.setCoverCreditUrl(creditUrl);
             market.bumpDataVersion();
         }
     }
@@ -179,7 +186,9 @@ public class MarketAdminService {
                 m.getVersion(),
                 translations,
                 sectorViews,
-                m.getCover() == null ? null : m.getCover().url(true));
+                m.getCover() == null ? null : m.getCover().url(true),
+                m.getCoverCredit(),
+                m.getCoverCreditUrl());
     }
 
     private static BigDecimal scale(BigDecimal value) {
