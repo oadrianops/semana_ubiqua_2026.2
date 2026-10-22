@@ -54,7 +54,14 @@ public record SeedData(
             Boolean showVendorName,
             String consentMethod,
             int verifiedDaysAgo,
-            List<SeedOffering> offerings) {}
+            List<SeedOffering> offerings,
+            Boolean demo) {
+
+        /** Box do seed é fictício salvo indicação contrária: aparece marcado como exemplo (ADR-0018). */
+        public boolean isDemo() {
+            return !Boolean.FALSE.equals(demo);
+        }
+    }
 
     public record SeedCommissionRule(String taskType, String amount) {}
 }
