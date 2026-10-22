@@ -1,6 +1,9 @@
 # Material de referência local da equipe (não versionar: contém material de terceiros e dados pessoais)
 /file/
 
+# Produção do vídeo de pitch (roteiro, áudios, renders e fotos de terceiros): fica só na máquina da equipe
+/pitch/
+
 # Segredos e ambiente
 .env
 .env.*
