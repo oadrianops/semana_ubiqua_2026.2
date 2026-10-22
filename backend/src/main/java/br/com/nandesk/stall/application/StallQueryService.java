@@ -110,7 +110,9 @@ public class StallQueryService {
                 sector == null ? null : sector.getId(),
                 // Boxes conferidos em campo antes dos de exemplo da demonstração (ADR-0018).
                 PageRequest.of(
-                        Math.max(0, page), PageResponse.clampSize(size), Sort.by("demo").and(Sort.by("code"))));
+                        Math.max(0, page),
+                        PageResponse.clampSize(size),
+                        Sort.by("demo").and(Sort.by("code"))));
         Map<Long, Integer> counts = offeringCounts(result.getContent());
         return PageResponse.of(result, s -> summary(s, locale, counts.getOrDefault(s.getId(), 0)));
     }
