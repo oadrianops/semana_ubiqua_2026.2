@@ -1,5 +1,5 @@
 {
-  "notice": "Dados de demonstração (especificação 10.4, ADR-0017 e ADR-0018). Os boxes deste arquivo são fictícios e aparecem marcados como exemplo; boxes reais, conferidos em campo com o termo assinado, são cadastrados pelo painel e nunca entram no repositório. Descrições e traduções marcadas TODO-revisar devem ser revisadas com feirantes e falantes nativos. Posição da Feira da 25: ponto médio entre os cruzamentos da Av. Rômulo Maiorana com a Tv. Antônio Baena e a Av. José Bonifácio (OpenStreetMap); conferir em campo.",
+  "notice": "Dados de demonstração (especificação 10.4, ADR-0017 e ADR-0018). Os boxes deste arquivo são fictícios e aparecem marcados como exemplo; boxes reais, conferidos em campo com o termo assinado, são cadastrados pelo painel e nunca entram no repositório. Descrições e traduções marcadas TODO-revisar devem ser revisadas com feirantes e falantes nativos. As feiras além do Ver-o-Peso e da Feira da 25 entraram com endereço, posição (OpenStreetMap) e horário de fontes públicas que nem sempre concordam: conferir em campo. Capas do Ver-o-Peso e do Mercado de São Brás: Wikimedia Commons, CC BY-SA 3.0, com o crédito exibido no app. Posição da Feira da 25: ponto médio entre os cruzamentos da Av. Rômulo Maiorana com a Tv. Antônio Baena e a Av. José Bonifácio (OpenStreetMap); conferir em campo.",
   "users": [
     { "email": "admin@nandesk.local", "name": "Administração NANDESK", "role": "ADMIN", "markets": [] },
     { "email": "moderador@nandesk.local", "name": "Moderação NANDESK", "role": "MODERATOR", "markets": [] },
@@ -10,6 +10,9 @@
     {
       "slug": "ver-o-peso",
       "name": "Ver-o-Peso",
+      "cover": "seed/capas/ver-o-peso.jpg",
+      "coverCredit": "Foto: Cayambe, CC BY-SA 3.0, via Wikimedia Commons",
+      "coverCreditUrl": "https://commons.wikimedia.org/wiki/File:Bel%C3%A9m_Ver-o-Peso_01.jpg",
       "address": "Av. Boulevard Castilhos França, Campina, Belém - PA",
       "latitude": -1.452500,
       "longitude": -48.503500,
@@ -73,6 +76,224 @@
         { "slug": "refeicoes", "sort": 4, "names": { "pt-BR": "Refeições", "en": "Meals", "es": "Comidas" } },
         { "slug": "roupas-e-armarinho", "sort": 5, "names": { "pt-BR": "Roupas e armarinho", "en": "Clothing and haberdashery", "es": "Ropa y mercería" } }
       ]
+    },
+    {
+      "slug": "feira-da-cremacao",
+      "name": "Feira da Cremação",
+      "address": "Mercado Municipal da Cremação, Passagem São Silvestre, Cremação, Belém - PA",
+      "latitude": -1.464296,
+      "longitude": -48.477141,
+      "radius": 250,
+      "openingHours": [
+        { "days": ["MON", "TUE", "WED", "THU", "FRI", "SAT"], "opens": "06:00", "closes": "17:00" },
+        { "days": ["SUN"], "opens": "06:00", "closes": "12:00" }
+      ],
+      "translations": {
+        "pt-BR": {
+          "description": "Feira de bairro tradicional e movimentada, conhecida pelo hortifrúti, pelas carnes e pela comida popular.",
+          "howToGetThere": "No Mercado Municipal da Cremação, na Passagem São Silvestre, bairro da Cremação."
+        },
+        "en": {
+          "description": "A busy, traditional neighborhood market known for fruits and vegetables, meat and popular food.",
+          "howToGetThere": "At the Cremação Municipal Market, on Passagem São Silvestre, in the Cremação neighborhood."
+        },
+        "es": {
+          "description": "Feria de barrio tradicional y concurrida, conocida por las frutas y verduras, las carnes y la comida popular.",
+          "howToGetThere": "En el Mercado Municipal de Cremação, en la Passagem São Silvestre, barrio de Cremação."
+        }
+      },
+      "sectors": [
+        { "slug": "hortifruti", "sort": 1, "names": { "pt-BR": "Hortifrúti", "en": "Fruits and vegetables", "es": "Frutas y verduras" } },
+        { "slug": "carnes", "sort": 2, "names": { "pt-BR": "Carnes e frangos", "en": "Meat and poultry", "es": "Carnes y pollos" } },
+        { "slug": "refeicoes", "sort": 3, "names": { "pt-BR": "Refeições e lanches", "en": "Meals and snacks", "es": "Comidas y bocadillos" } }
+      ]
+    },
+    {
+      "slug": "feira-da-pedreira",
+      "name": "Feira da Pedreira",
+      "address": "Av. Pedro Miranda com a Tv. Mauriti, Pedreira, Belém - PA",
+      "latitude": -1.427591,
+      "longitude": -48.472371,
+      "radius": 250,
+      "openingHours": [
+        { "days": ["MON", "TUE", "WED", "THU", "FRI", "SAT"], "opens": "05:00", "closes": "19:00" },
+        { "days": ["SUN"], "opens": "05:00", "closes": "14:00" }
+      ],
+      "translations": {
+        "pt-BR": {
+          "description": "Feira de um dos bairros mais tradicionais de Belém, com alimentos frescos, peixes e refeições típicas. O complexo foi reformado entre 2024 e 2025.",
+          "howToGetThere": "Na Av. Pedro Miranda, esquina com a Tv. Mauriti, na Pedreira."
+        },
+        "en": {
+          "description": "Market in one of Belém's most traditional neighborhoods, with fresh food, fish and typical meals. The complex was renovated in 2024–2025.",
+          "howToGetThere": "On Av. Pedro Miranda at the corner of Tv. Mauriti, in Pedreira."
+        },
+        "es": {
+          "description": "Feria de uno de los barrios más tradicionales de Belém, con alimentos frescos, pescados y comidas típicas. El complejo se renovó entre 2024 y 2025.",
+          "howToGetThere": "En la Av. Pedro Miranda, esquina con la Tv. Mauriti, en Pedreira."
+        }
+      },
+      "sectors": [
+        { "slug": "peixes", "sort": 1, "names": { "pt-BR": "Peixes e mariscos", "en": "Fish and seafood", "es": "Pescados y mariscos" } },
+        { "slug": "hortifruti", "sort": 2, "names": { "pt-BR": "Hortifrúti", "en": "Fruits and vegetables", "es": "Frutas y verduras" } },
+        { "slug": "refeicoes", "sort": 3, "names": { "pt-BR": "Refeições e lanches", "en": "Meals and snacks", "es": "Comidas y bocadillos" } }
+      ]
+    },
+    {
+      "slug": "feira-da-bandeira-branca",
+      "name": "Feira da Bandeira Branca",
+      "address": "Av. Almirante Barroso, esquina com a Av. Doutor Freitas, Marco, Belém - PA",
+      "latitude": -1.428100,
+      "longitude": -48.453100,
+      "radius": 250,
+      "openingHours": [
+        { "days": ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"], "opens": "04:00", "closes": "13:00" }
+      ],
+      "translations": {
+        "pt-BR": {
+          "description": "Feira livre de bairro que abre de madrugada e atende os moradores com verduras, frutas e carnes do dia a dia.",
+          "howToGetThere": "Na Av. Almirante Barroso, esquina com a Av. Doutor Freitas, no Marco."
+        },
+        "en": {
+          "description": "Open-air neighborhood market that opens before dawn, with everyday vegetables, fruit and meat.",
+          "howToGetThere": "On Av. Almirante Barroso at the corner of Av. Doutor Freitas, in Marco."
+        },
+        "es": {
+          "description": "Feria libre de barrio que abre de madrugada, con verduras, frutas y carnes del día a día.",
+          "howToGetThere": "En la Av. Almirante Barroso, esquina con la Av. Doutor Freitas, en Marco."
+        }
+      },
+      "sectors": [
+        { "slug": "hortifruti", "sort": 1, "names": { "pt-BR": "Hortifrúti", "en": "Fruits and vegetables", "es": "Frutas y verduras" } },
+        { "slug": "carnes", "sort": 2, "names": { "pt-BR": "Carnes e frangos", "en": "Meat and poultry", "es": "Carnes y pollos" } }
+      ]
+    },
+    {
+      "slug": "feira-de-icoaraci",
+      "name": "Feira de Icoaraci (8 de Maio)",
+      "address": "Rua 8 de Maio com a Tv. Moura Carvalho, Campina de Icoaraci, Belém - PA",
+      "latitude": -1.295550,
+      "longitude": -48.470460,
+      "radius": 300,
+      "openingHours": [
+        { "days": ["MON", "TUE", "WED", "THU", "FRI", "SAT"], "opens": "07:00", "closes": "16:00" },
+        { "days": ["SUN"], "opens": "07:00", "closes": "13:00" }
+      ],
+      "translations": {
+        "pt-BR": {
+          "description": "A feira mais movimentada do distrito de Icoaraci: frutas, peixes e verduras, perto do bairro do Paracuri, onde os artesãos fazem a cerâmica marajoara.",
+          "howToGetThere": "No distrito de Icoaraci, na Rua 8 de Maio, perto da Tv. Moura Carvalho. A orla fica a poucas quadras."
+        },
+        "en": {
+          "description": "The busiest market in the Icoaraci district: fruit, fish and vegetables, near the Paracuri neighborhood where artisans make Marajoara pottery.",
+          "howToGetThere": "In the Icoaraci district, on Rua 8 de Maio near Tv. Moura Carvalho. The waterfront is a few blocks away."
+        },
+        "es": {
+          "description": "La feria más concurrida del distrito de Icoaraci: frutas, pescados y verduras, cerca del barrio de Paracuri, donde los artesanos hacen la cerámica marajoara.",
+          "howToGetThere": "En el distrito de Icoaraci, en la Rua 8 de Maio, cerca de la Tv. Moura Carvalho. El malecón queda a pocas cuadras."
+        }
+      },
+      "sectors": [
+        { "slug": "peixes", "sort": 1, "names": { "pt-BR": "Peixes e mariscos", "en": "Fish and seafood", "es": "Pescados y mariscos" } },
+        { "slug": "hortifruti", "sort": 2, "names": { "pt-BR": "Hortifrúti", "en": "Fruits and vegetables", "es": "Frutas y verduras" } },
+        { "slug": "artesanato", "sort": 3, "names": { "pt-BR": "Artesanato", "en": "Handicrafts", "es": "Artesanía" } }
+      ]
+    },
+    {
+      "slug": "feira-do-bengui",
+      "name": "Feira do Benguí",
+      "address": "Mercado Municipal do Benguí, Rua Betânia, Benguí, Belém - PA",
+      "latitude": -1.372692,
+      "longitude": -48.449303,
+      "radius": 250,
+      "openingHours": [
+        { "days": ["MON", "TUE", "WED", "THU", "FRI", "SUN"], "opens": "06:00", "closes": "18:00" },
+        { "days": ["SAT"], "opens": "06:00", "closes": "14:00" }
+      ],
+      "translations": {
+        "pt-BR": {
+          "description": "Polo de abastecimento da periferia norte de Belém, com hortifrúti, mercearia e comida regional.",
+          "howToGetThere": "No Mercado Municipal do Benguí, na Rua Betânia."
+        },
+        "en": {
+          "description": "Supply hub of Belém's northern outskirts, with fruits and vegetables, groceries and regional food.",
+          "howToGetThere": "At the Benguí Municipal Market, on Rua Betânia."
+        },
+        "es": {
+          "description": "Polo de abastecimiento de la periferia norte de Belém, con frutas y verduras, abarrotes y comida regional.",
+          "howToGetThere": "En el Mercado Municipal de Benguí, en la Rua Betânia."
+        }
+      },
+      "sectors": [
+        { "slug": "hortifruti", "sort": 1, "names": { "pt-BR": "Hortifrúti", "en": "Fruits and vegetables", "es": "Frutas y verduras" } },
+        { "slug": "mercearia-e-farinhas", "sort": 2, "names": { "pt-BR": "Mercearia e farinhas", "en": "Groceries and flours", "es": "Abarrotes y harinas" } },
+        { "slug": "refeicoes", "sort": 3, "names": { "pt-BR": "Refeições e lanches", "en": "Meals and snacks", "es": "Comidas y bocadillos" } }
+      ]
+    },
+    {
+      "slug": "mercado-de-sao-bras",
+      "name": "Mercado de São Brás",
+      "address": "Praça Lauro Sodré, São Brás, Belém - PA",
+      "latitude": -1.451422,
+      "longitude": -48.468358,
+      "radius": 250,
+      "cover": "seed/capas/mercado-de-sao-bras.jpg",
+      "coverCredit": "Foto: Roberto de vasconcel… (Panoramio), CC BY-SA 3.0, via Wikimedia Commons",
+      "coverCreditUrl": "https://commons.wikimedia.org/wiki/File:Mercado_de_s%C3%A3o_bras_-_panoramio_(1).jpg",
+      "openingHours": [
+        { "days": ["MON", "TUE", "WED", "THU", "FRI", "SAT"], "opens": "07:00", "closes": "18:00" },
+        { "days": ["SUN"], "opens": "07:00", "closes": "16:00" }
+      ],
+      "translations": {
+        "pt-BR": {
+          "description": "Mercado histórico revitalizado para a COP 30, com feira de hortifrúti, carnes, peixes e produtos regionais, praça de alimentação e trabalhos de artesãos. O horário ao lado é o da feira.",
+          "howToGetThere": "Na Praça Lauro Sodré, em São Brás, perto do terminal rodoviário."
+        },
+        "en": {
+          "description": "Historic market renovated for COP 30, with a fresh-produce, meat and fish market, regional products, a food court and artisans' work. The hours shown are for the market stalls.",
+          "howToGetThere": "At Praça Lauro Sodré, in São Brás, near the bus terminal."
+        },
+        "es": {
+          "description": "Mercado histórico revitalizado para la COP 30, con feria de frutas y verduras, carnes, pescados y productos regionales, patio de comidas y trabajos de artesanos. El horario es el de la feria.",
+          "howToGetThere": "En la Praça Lauro Sodré, en São Brás, cerca de la terminal de autobuses."
+        }
+      },
+      "sectors": [
+        { "slug": "ervas-e-cheiros", "sort": 1, "names": { "pt-BR": "Ervas e cheiros", "en": "Herbs and scents", "es": "Hierbas y aromas" } },
+        { "slug": "peixes", "sort": 2, "names": { "pt-BR": "Peixes e mariscos", "en": "Fish and seafood", "es": "Pescados y mariscos" } },
+        { "slug": "artesanato", "sort": 3, "names": { "pt-BR": "Artesanato", "en": "Handicrafts", "es": "Artesanía" } },
+        { "slug": "refeicoes", "sort": 4, "names": { "pt-BR": "Refeições e lanches", "en": "Meals and snacks", "es": "Comidas y bocadillos" } }
+      ]
+    },
+    {
+      "slug": "feira-da-praca-da-republica",
+      "name": "Feira de Artesanato da Praça da República",
+      "address": "Praça da República, Av. Presidente Vargas, Campina, Belém - PA",
+      "latitude": -1.451911,
+      "longitude": -48.494590,
+      "radius": 300,
+      "openingHours": [
+        { "days": ["SUN"], "opens": "07:00", "closes": "14:00" }
+      ],
+      "translations": {
+        "pt-BR": {
+          "description": "Feira de domingo com mais de 40 barracas de artesanato paraense, como brinquedos de miriti e cerâmica marajoara, comidas típicas, plantas e apresentações culturais.",
+          "howToGetThere": "Na Praça da República, ao lado do Theatro da Paz, entre a Av. Presidente Vargas e a Av. Nazaré."
+        },
+        "en": {
+          "description": "Sunday market with more than 40 stalls of handicrafts from Pará, such as miriti toys and Marajoara pottery, typical food, plants and cultural performances.",
+          "howToGetThere": "At Praça da República, next to Theatro da Paz, between Av. Presidente Vargas and Av. Nazaré."
+        },
+        "es": {
+          "description": "Feria de domingo con más de 40 puestos de artesanía paraense, como juguetes de miriti y cerámica marajoara, comidas típicas, plantas y presentaciones culturales.",
+          "howToGetThere": "En la Praça da República, junto al Theatro da Paz, entre la Av. Presidente Vargas y la Av. Nazaré."
+        }
+      },
+      "sectors": [
+        { "slug": "artesanato", "sort": 1, "names": { "pt-BR": "Artesanato", "en": "Handicrafts", "es": "Artesanía" } },
+        { "slug": "refeicoes", "sort": 2, "names": { "pt-BR": "Refeições e lanches", "en": "Meals and snacks", "es": "Comidas y bocadillos" } },
+        { "slug": "plantas", "sort": 3, "names": { "pt-BR": "Plantas e flores", "en": "Plants and flowers", "es": "Plantas y flores" } }
+      ]
     }
   ],
   "categories": [
@@ -87,7 +308,9 @@
     { "slug": "artesanato", "icon": "shapes", "sort": 9, "names": { "pt-BR": "Artesanato", "en": "Handicrafts", "es": "Artesanía" } },
     { "slug": "legumes-e-verduras", "icon": "carrot", "sort": 10, "names": { "pt-BR": "Legumes e verduras", "en": "Vegetables", "es": "Verduras y hortalizas" } },
     { "slug": "roupas-e-acessorios", "icon": "shirt", "sort": 11, "names": { "pt-BR": "Roupas e acessórios", "en": "Clothing and accessories", "es": "Ropa y accesorios" } },
-    { "slug": "armarinho", "icon": "scissors", "sort": 12, "names": { "pt-BR": "Armarinho e aviamentos", "en": "Haberdashery and sewing supplies", "es": "Mercería" } }
+    { "slug": "armarinho", "icon": "scissors", "sort": 12, "names": { "pt-BR": "Armarinho e aviamentos", "en": "Haberdashery and sewing supplies", "es": "Mercería" } },
+    { "slug": "carnes", "icon": "beef", "sort": 13, "names": { "pt-BR": "Carnes e frangos", "en": "Meat and poultry", "es": "Carnes y pollos" } },
+    { "slug": "plantas-e-flores", "icon": "flower", "sort": 14, "names": { "pt-BR": "Plantas e flores", "en": "Plants and flowers", "es": "Plantas y flores" } }
   ],
   "products": [
     {
@@ -524,6 +747,36 @@
         "es": "Hilos de crochet y de costura, elásticos, botones y adornos."
       },
       "aliases": { "pt-BR": ["linha de crochê", "elástico", "botões"], "en": ["crochet yarn", "buttons"], "es": ["hilo de crochet", "botones"] }
+    },
+    {
+      "slug": "carne-bovina", "category": "carnes", "unit": "KG",
+      "names": { "pt-BR": "Carne bovina", "en": "Beef", "es": "Carne de res" },
+      "descriptions": {
+        "pt-BR": "Cortes de carne de boi vendidos a quilo.",
+        "en": "Beef cuts sold by the kilo.",
+        "es": "Cortes de carne de res por kilo."
+      },
+      "aliases": { "pt-BR": ["carne de boi"], "es": ["carne de vaca"] }
+    },
+    {
+      "slug": "frango", "category": "carnes", "unit": "KG",
+      "names": { "pt-BR": "Frango", "en": "Chicken", "es": "Pollo" },
+      "descriptions": {
+        "pt-BR": "Frango inteiro ou em pedaços, vendido a quilo.",
+        "en": "Whole or cut chicken, sold by the kilo.",
+        "es": "Pollo entero o en presas, por kilo."
+      },
+      "aliases": { "pt-BR": ["galinha"] }
+    },
+    {
+      "slug": "plantas-ornamentais", "category": "plantas-e-flores", "unit": "UNIT",
+      "names": { "pt-BR": "Plantas ornamentais", "en": "Ornamental plants", "es": "Plantas ornamentales" },
+      "descriptions": {
+        "pt-BR": "Mudas e vasos de plantas e flores.",
+        "en": "Seedlings and potted plants and flowers.",
+        "es": "Plantines y macetas de plantas y flores."
+      },
+      "aliases": { "pt-BR": ["mudas", "plantas", "flores"], "en": ["plants", "flowers"], "es": ["plantas", "flores"] }
     }
   ],
   "stalls": [
@@ -642,6 +895,178 @@
       "offerings": [
         { "product": "tacaca", "price": "18.00", "unit": "PORTION", "availability": "AVAILABLE" },
         { "product": "manicoba", "price": "22.00", "unit": "PORTION", "availability": "SEASONAL" }
+      ]
+    },
+    {
+      "market": "feira-da-cremacao", "sector": "hortifruti", "code": "5", "name": "Hortifrúti da Cremação",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 2,
+      "offerings": [
+        { "product": "tomate", "price": "9.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "cebola", "price": "8.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "batata", "price": "7.50", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "banana", "price": "6.00", "unit": "BUNCH", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-cremacao", "sector": "carnes", "code": "12", "name": "Açougue São Silvestre",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 4,
+      "offerings": [
+        { "product": "carne-bovina", "price": "38.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "frango", "price": "16.00", "unit": "KG", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-cremacao", "sector": "refeicoes", "code": "21", "name": "Cantinho do Tacacá",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 6,
+      "offerings": [
+        { "product": "tacaca", "price": "18.00", "unit": "PORTION", "availability": "AVAILABLE" },
+        { "product": "manicoba", "price": "22.00", "unit": "PORTION", "availability": "SEASONAL" }
+      ]
+    },
+    {
+      "market": "feira-da-pedreira", "sector": "peixes", "code": "8", "name": "Peixaria da Pedro Miranda",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 3,
+      "offerings": [
+        { "product": "filhote", "price": "45.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "camarao-regional", "price": "35.00", "unit": "KG", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-pedreira", "sector": "hortifruti", "code": "15", "name": "Verduras da Pedreira",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 1,
+      "offerings": [
+        { "product": "repolho", "price": "5.00", "unit": "UNIT", "availability": "AVAILABLE" },
+        { "product": "limao", "price": "6.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "jerimum", "price": "5.00", "unit": "KG", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-pedreira", "sector": "refeicoes", "code": "30", "name": "Açaí da Mauriti",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 5,
+      "offerings": [
+        { "product": "acai-polpa", "price": "20.00", "unit": "LITER", "availability": "AVAILABLE" },
+        { "product": "farinha-dagua", "price": "12.00", "unit": "KG", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-bandeira-branca", "sector": "hortifruti", "code": "3", "name": "Banca do Marco",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 2,
+      "offerings": [
+        { "product": "tomate", "price": "8.50", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "laranja", "price": "5.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "abacaxi", "price": "7.00", "unit": "UNIT", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-bandeira-branca", "sector": "carnes", "code": "9", "name": "Carnes da Bandeira",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 3,
+      "offerings": [
+        { "product": "carne-bovina", "price": "36.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "frango", "price": "15.00", "unit": "KG", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-de-icoaraci", "sector": "peixes", "code": "14", "name": "Peixaria da 8 de Maio",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 4,
+      "offerings": [
+        { "product": "pirarucu-seco", "price": "60.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "camarao-regional", "price": "32.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "filhote", "price": "42.00", "unit": "KG", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-de-icoaraci", "sector": "artesanato", "code": "27", "name": "Cerâmica do Paracuri",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 7,
+      "offerings": [
+        { "product": "ceramica-marajoara", "price": "45.00", "unit": "UNIT", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-de-icoaraci", "sector": "hortifruti", "code": "33", "name": "Frutas da 8 de Maio",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 2,
+      "offerings": [
+        { "product": "cupuacu-polpa", "price": "18.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "tapereba", "price": null, "unit": "KG", "availability": "SEASONAL" },
+        { "product": "pupunha", "price": "12.00", "unit": "BUNCH", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-do-bengui", "sector": "hortifruti", "code": "6", "name": "Hortifrúti do Benguí",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 1,
+      "offerings": [
+        { "product": "batata-doce", "price": "6.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "cebola", "price": "7.50", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "alho", "price": "30.00", "unit": "KG", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-do-bengui", "sector": "mercearia-e-farinhas", "code": "18", "name": "Mercearia Betânia",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 5,
+      "offerings": [
+        { "product": "farinha-de-tapioca", "price": "14.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "goma-de-tapioca", "price": "10.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "tucupi", "price": "10.00", "unit": "LITER", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "mercado-de-sao-bras", "sector": "ervas-e-cheiros", "code": "101", "name": "Cheiros de São Brás",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 3,
+      "offerings": [
+        { "product": "priprioca", "price": "8.00", "unit": "BUNCH", "availability": "AVAILABLE" },
+        { "product": "patchouli", "price": "8.00", "unit": "BUNCH", "availability": "AVAILABLE" },
+        { "product": "oleo-de-andiroba", "price": "25.00", "unit": "BOTTLE", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "mercado-de-sao-bras", "sector": "peixes", "code": "112", "name": "Peixaria do Mercado",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 2,
+      "offerings": [
+        { "product": "filhote", "price": "48.00", "unit": "KG", "availability": "AVAILABLE" },
+        { "product": "pirarucu-seco", "price": "65.00", "unit": "KG", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "mercado-de-sao-bras", "sector": "artesanato", "code": "120", "name": "Arte da Amazônia",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 6,
+      "offerings": [
+        { "product": "brinquedo-de-miriti", "price": "30.00", "unit": "UNIT", "availability": "AVAILABLE" },
+        { "product": "ceramica-marajoara", "price": "55.00", "unit": "UNIT", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "mercado-de-sao-bras", "sector": "refeicoes", "code": "203", "name": "Tacacá do Mercado",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 1,
+      "offerings": [
+        { "product": "tacaca", "price": "20.00", "unit": "PORTION", "availability": "AVAILABLE" },
+        { "product": "pato-no-tucupi", "price": "45.00", "unit": "PORTION", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-praca-da-republica", "sector": "artesanato", "code": "4", "name": "Miriti de Abaetetuba",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 8,
+      "offerings": [
+        { "product": "brinquedo-de-miriti", "price": "25.00", "unit": "UNIT", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-praca-da-republica", "sector": "artesanato", "code": "11", "name": "Cerâmica Marajoara da Praça",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 8,
+      "offerings": [
+        { "product": "ceramica-marajoara", "price": "50.00", "unit": "UNIT", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-praca-da-republica", "sector": "plantas", "code": "17", "name": "Plantas da Praça",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 8,
+      "offerings": [
+        { "product": "plantas-ornamentais", "price": "15.00", "unit": "UNIT", "availability": "AVAILABLE" }
+      ]
+    },
+    {
+      "market": "feira-da-praca-da-republica", "sector": "refeicoes", "code": "22", "name": "Tacacá da República",
+      "consentMethod": "VERBAL", "verifiedDaysAgo": 8,
+      "offerings": [
+        { "product": "tacaca", "price": "19.00", "unit": "PORTION", "availability": "AVAILABLE" }
       ]
     }
   ],
