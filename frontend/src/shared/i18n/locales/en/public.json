@@ -97,7 +97,8 @@
     "newTab": "(opens in a new tab)",
     "photosTitle": "Stall photos",
     "photoShow": "Show photo {{n}} of {{total}}",
-    "galleryAlt": "Photo {{n}} of {{total}}, stall {{code}} — {{market}}"
+    "galleryAlt": "Photo {{n}} of {{total}}, stall {{code}} — {{market}}",
+    "directions": "Directions to the stall"
   },
   "report": {
     "title": "Report about stall {{code}}",

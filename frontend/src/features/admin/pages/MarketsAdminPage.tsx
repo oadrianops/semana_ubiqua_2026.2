@@ -217,6 +217,8 @@ function CoverSection({ market }: { market: AdminMarket }) {
   const client = useQueryClient();
   const input = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
+  const [credit, setCredit] = useState(market.coverCredit ?? '');
+  const [creditUrl, setCreditUrl] = useState(market.coverCreditUrl ?? '');
 
   async function upload(file: File | undefined) {
     if (!file) return;
@@ -224,7 +226,14 @@ function CoverSection({ market }: { market: AdminMarket }) {
     try {
       const form = new FormData();
       form.append('file', await compressImage(file), 'capa.jpg');
-      await request<AdminMarket>(`/admin/markets/${market.slug}/cover`, { method: 'POST', form, retries: 0 });
+      const params = new URLSearchParams();
+      if (credit.trim()) params.set('credit', credit.trim());
+      if (creditUrl.trim()) params.set('creditUrl', creditUrl.trim());
+      await request<AdminMarket>(`/admin/markets/${market.slug}/cover?${params.toString()}`, {
+        method: 'POST',
+        form,
+        retries: 0,
+      });
       toast.success(t('markets.coverSaved'));
       void client.invalidateQueries({ queryKey: ['admin', 'markets'] });
       void client.invalidateQueries({ queryKey: ['public'] });
@@ -253,6 +262,22 @@ function CoverSection({ market }: { market: AdminMarket }) {
       ) : (
         <p className="text-support">{t('markets.coverNone')}</p>
       )}
+      {market.coverCredit && <p className="text-sm text-support">{market.coverCredit}</p>}
+      <TextField
+        label={t('markets.coverCredit')}
+        hint={t('markets.coverCreditHint')}
+        value={credit}
+        maxLength={255}
+        onChange={(e) => setCredit(e.target.value)}
+      />
+      <TextField
+        label={t('markets.coverCreditUrl')}
+        type="url"
+        inputMode="url"
+        value={creditUrl}
+        maxLength={490}
+        onChange={(e) => setCreditUrl(e.target.value)}
+      />
       <input
         ref={input}
         type="file"

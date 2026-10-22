@@ -207,7 +207,10 @@
     "coverNone": "Ainda sem foto de capa.",
     "coverUpload": "Enviar foto de capa",
     "coverSaved": "Capa atualizada.",
-    "coverAlt": "Capa atual: {{name}}"
+    "coverAlt": "Capa atual: {{name}}",
+    "coverCredit": "Crédito da foto (opcional)",
+    "coverCreditHint": "Obrigatório quando a foto é de outra pessoa: autor e licença, como \"Foto: Fulana, CC BY-SA 4.0\".",
+    "coverCreditUrl": "Link da origem da foto (opcional)"
   },
   "stalls": {
     "title": "Boxes",
@@ -281,7 +284,10 @@
     "uploading": "Enviando foto…",
     "dataTitle": "Dados do box",
     "codeRequired": "Informe o número do box.",
-    "productRequired": "Escolha um produto da lista."
+    "productRequired": "Escolha um produto da lista.",
+    "location": "Posição do box (latitude, longitude)",
+    "locationHint": "Opcional. Cole do mapa, por exemplo: -1.444643, -48.467934. Mostra o botão \"Como chegar ao box\".",
+    "locationError": "Use latitude e longitude separadas por vírgula, como -1.444643, -48.467934."
   },
   "catalog": {
     "title": "Catálogo",

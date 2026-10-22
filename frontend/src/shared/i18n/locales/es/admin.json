@@ -207,7 +207,10 @@
     "coverNone": "Todavía sin foto de portada.",
     "coverUpload": "Subir foto de portada",
     "coverSaved": "Portada actualizada.",
-    "coverAlt": "Portada actual: {{name}}"
+    "coverAlt": "Portada actual: {{name}}",
+    "coverCredit": "Crédito de la foto (opcional)",
+    "coverCreditHint": "Obligatorio cuando la foto es de otra persona: autor y licencia, como \"Foto: Fulana, CC BY-SA 4.0\".",
+    "coverCreditUrl": "Enlace de origen de la foto (opcional)"
   },
   "stalls": {
     "title": "Puestos",
@@ -281,7 +284,10 @@
     "uploading": "Enviando foto…",
     "dataTitle": "Datos del puesto",
     "codeRequired": "Indique el número del puesto.",
-    "productRequired": "Elija un producto de la lista."
+    "productRequired": "Elija un producto de la lista.",
+    "location": "Posición del puesto (latitud, longitud)",
+    "locationHint": "Opcional. Pegue desde un mapa, por ejemplo: -1.444643, -48.467934. Muestra el botón \"Cómo llegar al puesto\".",
+    "locationError": "Use latitud y longitud separadas por coma, como -1.444643, -48.467934."
   },
   "catalog": {
     "title": "Catálogo",

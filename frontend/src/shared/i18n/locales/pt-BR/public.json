@@ -97,7 +97,8 @@
     "newTab": "(abre em outra aba)",
     "photosTitle": "Fotos do box",
     "photoShow": "Ver foto {{n}} de {{total}}",
-    "galleryAlt": "Foto {{n}} de {{total}} do box {{code}} — {{market}}"
+    "galleryAlt": "Foto {{n}} de {{total}} do box {{code}} — {{market}}",
+    "directions": "Como chegar ao box"
   },
   "report": {
     "title": "Avisar sobre o box {{code}}",

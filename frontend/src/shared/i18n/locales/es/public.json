@@ -97,7 +97,8 @@
     "newTab": "(se abre en otra pestaña)",
     "photosTitle": "Fotos del puesto",
     "photoShow": "Ver foto {{n}} de {{total}}",
-    "galleryAlt": "Foto {{n}} de {{total}} del puesto {{code}} — {{market}}"
+    "galleryAlt": "Foto {{n}} de {{total}} del puesto {{code}} — {{market}}",
+    "directions": "Cómo llegar al puesto"
   },
   "report": {
     "title": "Avisar sobre el puesto {{code}}",

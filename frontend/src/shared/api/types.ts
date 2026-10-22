@@ -35,6 +35,9 @@ export interface MarketSummary {
   publishedStalls: number;
   coverUrl: string | null;
   coverThumbUrl: string | null;
+  /** Autor, licença e origem da capa (fotos com licença livre — ADR-0019). */
+  coverCredit: string | null;
+  coverCreditUrl: string | null;
 }
 
 export interface SectorView {
@@ -57,6 +60,8 @@ export interface MarketDetail {
   coverUrl: string | null;
   dataVersion: number;
   sectors: SectorView[];
+  coverCredit: string | null;
+  coverCreditUrl: string | null;
 }
 
 export interface Ref {
@@ -106,6 +111,9 @@ export interface StallDetail {
   /** Perfil do Instagram (só o nome, sem @). */
   instagram: string | null;
   gallery: PhotoView[];
+  /** Posição do box, quando conferida em campo ("como chegar ao box"). */
+  latitude: number | null;
+  longitude: number | null;
 }
 
 export interface PhotoView {

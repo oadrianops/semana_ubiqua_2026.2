@@ -150,6 +150,8 @@ export interface AdminMarket {
   translations: Record<string, { description: string | null; howToGetThere: string | null }>;
   sectors: AdminSector[];
   coverThumbUrl: string | null;
+  coverCredit: string | null;
+  coverCreditUrl: string | null;
 }
 
 export interface AdminStall {
@@ -171,6 +173,8 @@ export interface AdminStall {
   demo: boolean;
   instagram: string | null;
   photoThumbUrl: string | null;
+  latitude: number | null;
+  longitude: number | null;
 }
 
 /** Foto do box no painel: a principal ou da galeria (RF-03). */
