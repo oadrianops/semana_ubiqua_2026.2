@@ -64,7 +64,8 @@
     "pushError": "No pudimos activar las notificaciones ahora.",
     "showMap": "Ver en el mapa",
     "hideMap": "Ocultar mapa",
-    "mapLabel": "Mapa de las ferias con tareas abiertas"
+    "mapLabel": "Mapa de las ferias con tareas abiertas",
+    "seeHistory": "Ver todos los envíos y el resultado en el historial"
   },
   "step": {
     "label": "Pasos de la tarea",
@@ -213,7 +214,8 @@
   "submitted": {
     "received": "Recibido. Ahora lo revisa la moderación.",
     "queued": "En cola, esperando señal",
-    "back": "Volver a las tareas"
+    "back": "Volver a las tareas",
+    "track": "Seguir en el historial"
   },
   "outbox": {
     "DRAFT": "Borrador",
@@ -239,7 +241,7 @@
   },
   "history": {
     "title": "Historial",
-    "lead": "Tus tareas, desde la aceptación hasta el resultado de la moderación.",
+    "lead": "Sus envíos y tareas con el resultado de la moderación: en revisión, aprobado o rechazado con el motivo.",
     "emptyTitle": "Aún no hay tareas",
     "emptyBody": "Cuando aceptes una tarea, aparecerá aquí con el resultado.",
     "seeTasks": "Ver tareas abiertas"

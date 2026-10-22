@@ -10,6 +10,7 @@ import { startOutbox } from '../shared/offline/outbox';
 import { refreshSavedMarkets } from '../shared/offline/snapshots';
 import { PwaPrompts } from '../shared/pwa/PwaPrompts';
 import { Logo } from '../shared/ui/Logo';
+import { AccountMenu } from './AccountMenu';
 import { LanguageSwitch } from './LanguageSwitch';
 import { NetworkBanner } from './NetworkBanner';
 import { appConfig } from '../shared/config';
@@ -79,6 +80,7 @@ export function AppLayout() {
                 <HeaderLink to="/collaborate" label={t('nav.collaborate')} desktopOnly />
                 {hasRole('MODERATOR') && <HeaderLink to="/admin" label={t('nav.admin')} desktopOnly />}
                 <BellLink />
+                <AccountMenu />
               </>
             ) : (
               <HeaderLink to="/login" label={t('nav.login')} />

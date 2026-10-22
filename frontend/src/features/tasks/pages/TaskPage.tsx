@@ -283,9 +283,14 @@ function SubmittedState({ item }: { item?: OutboxItem }) {
           <li>{t(`outbox.${item.state}`)}</li>
         </ul>
       )}
-      <Link to="/collaborate" className="font-semibold">
-        {t('submitted.back')}
-      </Link>
+      <p className="flex flex-wrap gap-x-5 gap-y-1">
+        <Link to="/collaborate/history" className="inline-flex min-h-11 items-center font-semibold">
+          {t('submitted.track')}
+        </Link>
+        <Link to="/collaborate" className="inline-flex min-h-11 items-center font-semibold">
+          {t('submitted.back')}
+        </Link>
+      </p>
     </section>
   );
 }

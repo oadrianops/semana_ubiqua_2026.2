@@ -18,7 +18,9 @@
     "history": "History",
     "earnings": "Earnings",
     "profile": "Profile",
-    "collaborator": "Collaborator navigation"
+    "collaborator": "Collaborator navigation",
+    "accountOf": "{{name}}'s account",
+    "logout": "Sign out"
   },
   "demoNotice": "Demo data: stalls marked as example have made-up names and prices.",
   "footer": {

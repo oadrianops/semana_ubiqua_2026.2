@@ -18,7 +18,9 @@
     "history": "Historial",
     "earnings": "Ganancias",
     "profile": "Perfil",
-    "collaborator": "Navegación del colaborador"
+    "collaborator": "Navegación del colaborador",
+    "accountOf": "Cuenta de {{name}}",
+    "logout": "Salir"
   },
   "demoNotice": "Datos de demostración: los puestos marcados como ejemplo tienen nombres y precios ficticios.",
   "footer": {
