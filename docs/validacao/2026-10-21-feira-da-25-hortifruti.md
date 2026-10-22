@@ -1,10 +1,10 @@
 # Validação com stakeholder — 2026-10-21
 
 - Tipo: entrevista e cadastro em campo
-- Participante: responsável pelo box 16, setor de hortifrúti (identificação mínima; o termo assinado autoriza
+- Participante: responsável pelos boxes 2 e 3 (unidos, uma só fruteira), setor de hortifrúti (identificação mínima; o termo assinado autoriza
   mostrar o box e fotos sem rosto, mas **não** o nome da pessoa)
 - Local: Feira da 25 (Marco, Belém)
-- Equipe presente: Adriano Pinheiro da Silva
+- Equipe presente: Adriano Pinheiro da Silva e Leonardo Farias de Souza
 
 ## Roteiro aplicado
 Apresentação do projeto, conversa sobre o box e a ideia (há vídeo da conversa, guardado fora do repositório),
@@ -24,10 +24,10 @@ leitura e assinatura do termo de consentimento e fotos da fachada e dos produtos
 |---|--------|-----------------|------|-------|
 | 1 | Clientes entram nos boxes para perguntar onde comprar outros produtos | RF-02 · OBJ-2 | Confirma o problema central; a busca por produto continua como prioridade | — |
 | 2 | Feirante quer divulgar o Instagram do box | RF-03 (origem ENT) | Instagram opcional no box, mostrado só quando o feirante pede | ADR-0018 |
-| 3 | Preço por lote ("3 por R$ 10,00") não cabe em preço por unidade | RN-15 | Abacaxi cadastrado sem preço; preço por lote vai para o backlog | backlog |
+| 3 | Preço por lote ("3 por R$ 10,00") não cabe em preço por unidade | RN-15 | Abacaxi cadastrado a R$ 6,99 a unidade, valor confirmado pela equipe; preço por lote vai para o backlog | backlog |
 | 4 | Pessoa não quis o nome no app | RN-14 | Só o nome do box aparece; o nome da pessoa não foi guardado | — |
 
 ## Decisões e próximos passos
-Box cadastrado pelo painel com termo assinado, 13 ofertas, Instagram e cinco fotos (pessoa ao fundo desfocada).
-Conferir na próxima visita a anotação "Loja – Box 2 e 3" feita no termo: as fotos de fachada com os números 2 e 3
-ficaram fora do app até a equipe confirmar de qual box são.
+Box cadastrado como "2 e 3" (os dois boxes unidos formam a fruteira, como anotado no termo, que trazia "16" no campo
+do número), com termo assinado, 13 ofertas, Instagram e cinco fotos (pessoa ao fundo desfocada). As duas fotos de
+fachada com os números 2 e 3 mostram vitrines de roupas e armarinho, não a fruteira, e por isso ficaram fora do app.

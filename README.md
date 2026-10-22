@@ -23,7 +23,7 @@ nas feiras salvas.
 Projeto da equipe **Adriano Pinheiro da Silva, Leonardo Farias de Souza e Victor Santiago dos Santos Abreu** para o
 Hackathon Semana Ubíqua 2026.2 (UNAMA).
 
-> **Dados reais e de demonstração.** Os boxes 16 e 67 da Feira da 25 foram conferidos na feira em 21/10/2026, com
+> **Dados reais e de demonstração.** Os boxes 2 e 3 (uma fruteira) e 67 da Feira da 25 foram conferidos na feira em 21/10/2026, com
 > termo assinado pelos feirantes. Os demais boxes são fictícios, criados para a banca testar, e aparecem marcados
 > como **Exemplo**; o app avisa isso no topo de todas as páginas.
 
@@ -164,7 +164,7 @@ Deploy em produção no Coolify: [docs/runbooks/deploy.md](docs/runbooks/deploy.
   conferida por GPS na feira.
 - **Fotos** só dos dois boxes reais e da entrada da Feira da 25, sem pessoas de rosto. Não usamos banco de imagens
   nem imagens geradas por IA.
-- **Preço por lote** ("3 por R$ 10,00") ainda não é aceito: o produto fica sem preço (backlog).
+- **Preço por lote** ("3 por R$ 10,00") ainda não é aceito: vale o preço da unidade (backlog).
 - **Comissões ilustrativas.** Não há parceiro financiador; o repasse é apenas registrado (sem pagamento online, por decisão de produto).
 - **Mapa interno da feira** (RF-34, Could) não foi feito; o mapa mostra as feiras.
 - **E-mail:** sem SMTP configurado, as contas novas entram já verificadas.

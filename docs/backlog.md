@@ -20,7 +20,6 @@ Situação em 2026-10-21 (v1.1.0). Detalhe por requisito em `docs/rastreabilidad
 | RF-34: mapa interno da feira (Could) | Exige levantamento da posição dos boxes | Planta de cada feira no painel |
 | Validação no Ver-o-Peso e mais boxes reais | Só a Feira da 25 foi visitada (2 boxes) | Nova ida com o roteiro e o termo |
 | Preço por lote ("3 por R$ 10,00") | Achado da validação; hoje só preço por unidade de venda (RN-15) | Campo de quantidade na oferta, com mudança de requisito |
-| Confirmar a anotação "Loja – Box 2 e 3" do termo do box 16 | Fotos de fachada com os números 2 e 3 ficaram fora | Perguntar na próxima visita |
 | Posição da Feira da 25 por GPS | Hoje tirada do OpenStreetMap | Conferir na feira e ajustar no painel → Feiras |
 | Revisão jurídica dos textos legais | Rascunhos | Revisão antes de lançamento público |
 | Revisão das traduções por falantes | Traduções feitas pela equipe | Pedir revisão EN/ES |

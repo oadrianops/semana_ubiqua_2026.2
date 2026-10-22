@@ -4,7 +4,7 @@
 - Participante: feirante do box 67, setor de roupas e armarinho (identificação mínima; termo assinado autoriza
   mostrar o box, o primeiro nome e fotos sem rosto)
 - Local: Feira da 25 (Marco, Belém)
-- Equipe presente: Adriano Pinheiro da Silva
+- Equipe presente: Adriano Pinheiro da Silva e Leonardo Farias de Souza
 
 ## Roteiro aplicado
 Apresentação do projeto, conversa sobre o box e a ideia (há vídeo da conversa, guardado fora do

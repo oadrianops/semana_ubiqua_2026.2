@@ -16,4 +16,4 @@ O CA-5 pede ao menos uma rodada de validação registrada. Para fazê-la:
 | Data | Tipo | Participante | Ata |
 |---|---|---|---|
 | 21/10/2026 | Entrevista e cadastro em campo | Feirante do box 67 (roupas e armarinho), Feira da 25 | [ata](2026-10-21-feira-da-25-roupas-e-armarinho.md) |
-| 21/10/2026 | Entrevista e cadastro em campo | Responsável pelo box 16 (hortifrúti), Feira da 25 | [ata](2026-10-21-feira-da-25-hortifruti.md) |
+| 21/10/2026 | Entrevista e cadastro em campo | Responsável pelos boxes 2 e 3 (hortifrúti), Feira da 25 | [ata](2026-10-21-feira-da-25-hortifruti.md) |

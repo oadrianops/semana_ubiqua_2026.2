@@ -5,7 +5,7 @@
 - Decisores: Adriano Pinheiro da Silva, Leonardo Farias de Souza, Victor Santiago dos Santos Abreu
 
 ## Contexto
-Em 21/10/2026 a equipe foi à Feira da 25 e voltou com dois termos assinados (box 67, roupas e armarinho; box 16,
+Em 21/10/2026 a equipe foi à Feira da 25 e voltou com dois termos assinados (box 67, roupas e armarinho; boxes 2 e 3,
 hortifrúti), fotos dos boxes e depoimentos. O termo promete que, se o feirante mudar de ideia, "o box sai do
 aplicativo na hora e as fotos são apagadas em até 30 dias". Até aqui todos os boxes eram fictícios (ADR-0017) e o
 único jeito de um box entrar era uma tarefa `NEW_STALL`, que exige check-in na feira.

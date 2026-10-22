@@ -49,8 +49,8 @@
       "longitude": -48.468200,
       "radius": 250,
       "openingHours": [
-        { "days": ["MON", "TUE", "WED", "THU", "FRI", "SAT"], "opens": "06:00", "closes": "18:00" },
-        { "days": ["SUN"], "opens": "06:00", "closes": "12:00" }
+        { "days": ["MON", "TUE", "WED", "THU", "FRI"], "opens": "06:00", "closes": "18:00" },
+        { "days": ["SAT", "SUN"], "opens": "06:00", "closes": "15:00" }
       ],
       "translations": {
         "pt-BR": {
