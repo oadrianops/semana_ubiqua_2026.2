@@ -14,7 +14,8 @@ export function App() {
       persistOptions={{
         persister,
         maxAge: 7 * 24 * 60 * 60_000,
-        buster: 'v1',
+        // Cada versão publicada descarta as respostas guardadas pela anterior: o formato da API pode ter mudado.
+        buster: __BUILD_ID__,
         dehydrateOptions: { shouldDehydrateQuery: shouldPersist },
       }}
     >

@@ -11,6 +11,14 @@ IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.3.0).
 - Conferir por GPS a posição da Feira da 25.
 - Matriz de aparelhos reais, Lighthouse CI e k6 contra a produção.
 
+## [1.2.1] - 2026-10-22
+
+### Corrigido
+- Tela branca ao abrir um box para quem já tinha usado o app: a versão nova lia a galeria de um box guardado no
+  aparelho pela versão anterior, que não tinha esse campo. A página do box aceita os dados antigos, o cache de
+  consultas guardado no aparelho é descartado a cada versão publicada e cada tela ganhou uma proteção de erro que
+  mostra "Tentar de novo" em vez de derrubar o app.
+
 ## [1.2.0] - 2026-10-22 — nove feiras e posição dos boxes
 
 ### Adicionado
@@ -86,7 +94,8 @@ IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.3.0).
   local não liberava a origem `http://localhost:8081` no login, as tabelas que rolam para o lado no celular não
   recebiam foco pelo teclado e o Trivy apontava para uma versão retirada.
 
-[Não lançado]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.2.0...HEAD
+[Não lançado]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/oadrianops/semana_ubiqua_2026.2/releases/tag/v1.0.0
