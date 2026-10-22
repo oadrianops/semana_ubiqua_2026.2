@@ -74,6 +74,14 @@ class CollaborationFlowIT extends IntegrationTest {
 
         mod.post("/api/v1/moderation/submissions/" + submission + "/approve", Map.of("acceptConflicts", false))
                 .expect(204);
+        // Depois de aprovado, o próprio envio subiu as versões do box: a revisão não pode acusar conflito com ele
+        // mesmo.
+        JsonNode reviewed = mod.get("/api/v1/moderation/submissions/" + submission)
+                .expect(200)
+                .json();
+        assertThat(reviewed.path("status").asString()).isEqualTo("APPROVED");
+        assertThat(reviewed.path("conflicts").size()).isZero();
+        assertThat(reviewed.path("offerings").toString()).doesNotContain("\"conflict\":true");
 
         JsonNode ledger = ana.api().get("/api/v1/me/ledger").expect(200).json();
         assertThat(new BigDecimal(ledger.path("balance").path("amount").asString()))

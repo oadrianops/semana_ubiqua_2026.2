@@ -193,7 +193,8 @@ public class ModerationService {
         UpdateTask task = s.getTask();
         Stall stall = task.getStall();
         Map<String, StallOffering> current = currentOfferings(stall);
-        List<String> conflicts = conflicts(s, stall, current);
+        // Conflito só faz sentido antes da decisão (RN-26): depois de aprovado, o próprio envio subiu as versões.
+        List<String> conflicts = s.getStatus() == SubmissionStatus.PENDING ? conflicts(s, stall, current) : List.of();
 
         List<FieldDiff> stallDiff = new ArrayList<>();
         ChangeSet cs = s.getChangeset();

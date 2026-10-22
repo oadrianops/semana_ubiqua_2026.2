@@ -102,7 +102,7 @@ Versões exatas e justificativas no [ADR-0002](docs/adr/0002-versoes-da-stack.md
 ## Demonstração
 
 - **App:** https://nandesk.com.br
-- **Vídeo de pitch:** _link do YouTube a incluir_
+- **Vídeo de pitch:** https://youtu.be/1FcXBxfBEEg (3 min 21 s)
 - **Credenciais de teste** (contas do seed de demonstração, sem acesso à administração):
 
 | Papel | E-mail | Senha |

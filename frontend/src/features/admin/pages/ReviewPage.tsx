@@ -51,7 +51,13 @@ export default function ReviewPage() {
   if (query.isError) return <ErrorState error={query.error} onRetry={() => void query.refetch()} />;
   const s = query.data;
   const pending = s.status === 'PENDING';
-  const hasConflicts = s.conflicts.length > 0;
+  // Conflito só vale antes da decisão; o servidor manda as chaves ("stall", "offering:<slug>"), aqui viram nomes.
+  const hasConflicts = pending && s.conflicts.length > 0;
+  const conflictLabel = (key: string) => {
+    if (key === 'stall') return t('review.stallChanges');
+    const slug = key.startsWith('offering:') ? key.slice('offering:'.length) : key;
+    return s.offerings.find((o) => o.productSlug === slug)?.productName ?? slug;
+  };
 
   return (
     <div className="grid gap-8">
@@ -118,7 +124,7 @@ export default function ReviewPage() {
           <p className="text-support">{t('review.conflictsBody')}</p>
           <ul className="list-disc pl-5">
             {s.conflicts.map((c) => (
-              <li key={c}>{c}</li>
+              <li key={c}>{conflictLabel(c)}</li>
             ))}
           </ul>
         </section>

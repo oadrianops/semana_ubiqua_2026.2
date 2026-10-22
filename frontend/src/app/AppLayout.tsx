@@ -1,5 +1,5 @@
-import { Bell, ClipboardList, HandCoins, History, Search, Store, UserRound } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { Bell, ClipboardList, HandCoins, History, LogIn, Search, Store, UserRound } from 'lucide-react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink, Outlet, useLocation } from 'react-router';
 import { RouteErrorBoundary } from '../shared/ui/RouteErrorBoundary';
@@ -65,7 +65,13 @@ export function AppLayout() {
           </Link>
           <nav aria-label={t('nav.main')} className="ml-auto flex min-w-0 items-center gap-0.5 sm:gap-1">
             {/* Com sessão, no celular, a barra inferior já leva às seções: o topo fica com busca, sino e idioma. */}
-            <HeaderLink to="/markets" label={t('nav.markets')} desktopOnly={Boolean(user)} />
+            <HeaderLink
+              to="/markets"
+              label={t('nav.markets')}
+              desktopOnly={Boolean(user)}
+              icon={<Store size={20} aria-hidden="true" />}
+              compact="xs"
+            />
             {!isHome && (
               <Link
                 to="/search"
@@ -83,7 +89,12 @@ export function AppLayout() {
                 <AccountMenu />
               </>
             ) : (
-              <HeaderLink to="/login" label={t('nav.login')} />
+              <HeaderLink
+                to="/login"
+                label={t('nav.login')}
+                icon={<LogIn size={20} aria-hidden="true" />}
+                compact="sm"
+              />
             )}
             <LanguageSwitch />
           </nav>
@@ -145,28 +156,57 @@ export function AppLayout() {
   );
 }
 
+/**
+ * Ícone no lugar do texto quando a faixa não comporta os rótulos (o texto segue para o leitor de tela):
+ * `sm` abaixo de 420 px, onde "Sign in" e "Markets" já estouram em inglês; `xs` abaixo de 375 px (celulares de 360 px).
+ */
+const COMPACT = {
+  xs: { icon: 'min-[375px]:hidden', text: 'max-[374px]:sr-only' },
+  sm: { icon: 'min-[420px]:hidden', text: 'max-[419px]:sr-only' },
+} as const;
+
 /** Link do cabeçalho; `desktopOnly` some no celular, onde a barra inferior já leva ao mesmo lugar. */
 function HeaderLink({
   to,
   label,
   desktopOnly = false,
+  icon,
+  compact,
 }: {
   to: string;
   label: string;
   desktopOnly?: boolean;
+  icon?: ReactNode;
+  compact?: keyof typeof COMPACT;
 }) {
+  const c = icon && compact ? COMPACT[compact] : null;
   return (
     <NavLink
       to={to}
       className={({ isActive }) =>
         cn(
-          'min-h-11 items-center rounded-[var(--radius-control)] px-2.5 font-semibold whitespace-nowrap text-on-band no-underline hover:bg-band-hover sm:px-3',
+          'min-h-11 min-w-11 items-center justify-center rounded-[var(--radius-control)] px-2.5 font-semibold whitespace-nowrap text-on-band no-underline hover:bg-band-hover sm:px-3',
           desktopOnly ? 'hidden md:inline-flex' : 'inline-flex',
           isActive && 'underline decoration-[var(--tucupi-400)] decoration-2 underline-offset-8',
         )
       }
     >
-      {label}
+      {({ isActive }) => (
+        <>
+          {c && (
+            <span
+              className={cn(
+                'inline-flex border-b-2 pb-0.5',
+                isActive ? 'border-[var(--tucupi-400)]' : 'border-transparent',
+                c.icon,
+              )}
+            >
+              {icon}
+            </span>
+          )}
+          <span className={cn(c?.text)}>{label}</span>
+        </>
+      )}
     </NavLink>
   );
 }
