@@ -66,7 +66,8 @@
     "savedHint": "Atualiza sozinha sempre que houver sinal. Toque de novo para deixar de salvar.",
     "showMap": "Ver no mapa",
     "hideMap": "Esconder mapa",
-    "mapLabel": "Mapa do {{name}}"
+    "mapLabel": "Mapa do {{name}}",
+    "coverAlt": "Foto da feira: {{name}}"
   },
   "weekday": {
     "MON": "seg",
@@ -90,7 +91,13 @@
     "wrongBody": "Avise se um produto acabou, o preço mudou muito ou o box mudou de lugar. Uma pessoa da comunidade vai conferir.",
     "wrongAction": "Avisar sobre um erro",
     "reportOffline": "Sem conexão: o aviso precisa de sinal para ser enviado.",
-    "offlineNotSaved": "Este box ainda não está salvo no aparelho. Abra a feira com sinal e salve para usar sem internet."
+    "offlineNotSaved": "Este box ainda não está salvo no aparelho. Abra a feira com sinal e salve para usar sem internet.",
+    "demoNote": "Box de exemplo: nome e preços fictícios, só para testar o app.",
+    "instagram": "@{{handle}} no Instagram",
+    "newTab": "(abre em outra aba)",
+    "photosTitle": "Fotos do box",
+    "photoShow": "Ver foto {{n}} de {{total}}",
+    "galleryAlt": "Foto {{n}} de {{total}} do box {{code}} — {{market}}"
   },
   "report": {
     "title": "Avisar sobre o box {{code}}",

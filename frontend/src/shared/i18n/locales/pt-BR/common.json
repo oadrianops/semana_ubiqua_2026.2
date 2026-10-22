@@ -20,7 +20,7 @@
     "profile": "Perfil",
     "collaborator": "Navegação do colaborador"
   },
-  "demoNotice": "Dados de demonstração: boxes e preços fictícios, só para testar o app.",
+  "demoNotice": "Dados de demonstração: boxes marcados como exemplo têm nomes e preços fictícios.",
   "footer": {
     "tagline": "Em qual feira e em qual box encontrar o que você procura no Ver-o-Peso e na Feira da 25. Dados mantidos pela comunidade e revisados antes de publicar.",
     "contact": "Contato:",
@@ -121,5 +121,6 @@
     "placeholder": "Ex.: jambu, castanha",
     "submit": "Buscar",
     "suggestions": "Sugestões"
-  }
+  },
+  "demoTag": "Exemplo"
 }

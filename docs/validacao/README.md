@@ -1,8 +1,9 @@
 # Validação com stakeholders (CA-5)
 
-**Situação: pendente.** Até a entrega do hackathon, a NANDESK ainda não foi validada com feirantes do Ver-o-Peso ou
-da Feira da 25. Os dados do app são **fictícios** e a interface mostra isso (ADR-0017). Não apresentamos a validação
-como feita.
+**Situação: primeira rodada feita em 21/10/2026 na Feira da 25** (CA-5): dois feirantes, dois termos assinados e dois
+boxes cadastrados pelo painel. Os boxes do Ver-o-Peso e os demais da Feira da 25 continuam fictícios e aparecem
+marcados como "Exemplo" (ADR-0017, ADR-0018). Termos, vídeos e fotos originais ficam com a equipe, fora do
+repositório.
 
 O CA-5 pede ao menos uma rodada de validação registrada. Para fazê-la:
 
@@ -14,4 +15,5 @@ O CA-5 pede ao menos uma rodada de validação registrada. Para fazê-la:
 
 | Data | Tipo | Participante | Ata |
 |---|---|---|---|
-| — | — | — | Nenhuma validação realizada ainda |
+| 21/10/2026 | Entrevista e cadastro em campo | Feirante do box 67 (roupas e armarinho), Feira da 25 | [ata](2026-10-21-feira-da-25-roupas-e-armarinho.md) |
+| 21/10/2026 | Entrevista e cadastro em campo | Responsável pelos boxes 2 e 3 (hortifrúti), Feira da 25 | [ata](2026-10-21-feira-da-25-hortifruti.md) |

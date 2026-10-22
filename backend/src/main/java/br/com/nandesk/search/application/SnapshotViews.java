@@ -47,5 +47,6 @@ public final class SnapshotViews {
             String photoThumbUrl,
             Instant lastVerifiedAt,
             boolean outdated,
-            List<SnapshotOffering> offerings) {}
+            List<SnapshotOffering> offerings,
+            boolean demo) {}
 }

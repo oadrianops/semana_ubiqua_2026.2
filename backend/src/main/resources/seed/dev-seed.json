@@ -1,5 +1,5 @@
 {
-  "notice": "Dados de demonstração (especificação 10.4). Boxes, nomes e preços são fictícios; descrições e traduções marcadas TODO-revisar devem ser revisadas com feirantes e falantes nativos antes de publicar. Coordenadas da Feira da 25 são aproximadas (TODO: confirmar no painel).",
+  "notice": "Dados de demonstração (especificação 10.4, ADR-0017 e ADR-0018). Os boxes deste arquivo são fictícios e aparecem marcados como exemplo; boxes reais, conferidos em campo com o termo assinado, são cadastrados pelo painel e nunca entram no repositório. Descrições e traduções marcadas TODO-revisar devem ser revisadas com feirantes e falantes nativos. Posição da Feira da 25: ponto médio entre os cruzamentos da Av. Rômulo Maiorana com a Tv. Antônio Baena e a Av. José Bonifácio (OpenStreetMap); conferir em campo.",
   "users": [
     { "email": "admin@nandesk.local", "name": "Administração NANDESK", "role": "ADMIN", "markets": [] },
     { "email": "moderador@nandesk.local", "name": "Moderação NANDESK", "role": "MODERATOR", "markets": [] },
@@ -44,33 +44,34 @@
     {
       "slug": "feira-da-25",
       "name": "Feira da 25",
-      "address": "Av. 25 de Setembro, Marco, Belém - PA",
-      "latitude": -1.440500,
-      "longitude": -48.470500,
+      "address": "Av. Rômulo Maiorana (antiga 25 de Setembro), entre a Tv. Antônio Baena e a Av. José Bonifácio, Marco, Belém - PA",
+      "latitude": -1.445000,
+      "longitude": -48.468200,
       "radius": 250,
       "openingHours": [
-        { "days": ["TUE", "WED", "THU", "FRI", "SAT"], "opens": "06:00", "closes": "17:00" },
-        { "days": ["SUN"], "opens": "06:00", "closes": "12:00" }
+        { "days": ["MON", "TUE", "WED", "THU", "FRI"], "opens": "06:00", "closes": "18:00" },
+        { "days": ["SAT", "SUN"], "opens": "06:00", "closes": "15:00" }
       ],
       "translations": {
         "pt-BR": {
-          "description": "Feira de bairro no Marco, com hortifrúti, peixes, carnes, farinhas e lanches regionais. Posição no mapa aproximada.",
-          "howToGetThere": "Na Av. 25 de Setembro, bairro do Marco. Ônibus da Av. Almirante Barroso param perto."
+          "description": "Feira de bairro no Marco, com hortifrúti, peixes e mariscos, carnes, lanches regionais e lojas de roupas e armarinho em volta.",
+          "howToGetThere": "Na Av. Rômulo Maiorana (antiga 25 de Setembro), entre a Tv. Antônio Baena e a Av. José Bonifácio, no Marco."
         },
         "en": {
-          "description": "Neighborhood market in Marco with produce, fish, meat, cassava flours and regional snacks. Map position is approximate.",
-          "howToGetThere": "On Av. 25 de Setembro, Marco neighborhood. Buses along Av. Almirante Barroso stop nearby."
+          "description": "Neighborhood market in Marco with fruits and vegetables, fish and seafood, meat, regional snacks, and clothing and haberdashery shops around it.",
+          "howToGetThere": "On Av. Rômulo Maiorana (formerly 25 de Setembro), between Tv. Antônio Baena and Av. José Bonifácio, in Marco."
         },
         "es": {
-          "description": "Feria de barrio en Marco, con frutas y verduras, pescados, carnes, harinas y bocadillos regionales. Posición en el mapa aproximada.",
-          "howToGetThere": "En la Av. 25 de Setembro, barrio de Marco. Los autobuses de la Av. Almirante Barroso paran cerca."
+          "description": "Feria de barrio en Marco, con frutas y verduras, pescados y mariscos, carnes, bocadillos regionales y tiendas de ropa y mercería alrededor.",
+          "howToGetThere": "En la Av. Rômulo Maiorana (antigua 25 de Setembro), entre la Tv. Antônio Baena y la Av. José Bonifácio, en Marco."
         }
       },
       "sectors": [
         { "slug": "hortifruti", "sort": 1, "names": { "pt-BR": "Hortifrúti", "en": "Fruits and vegetables", "es": "Frutas y verduras" } },
         { "slug": "peixes-e-carnes", "sort": 2, "names": { "pt-BR": "Peixes e carnes", "en": "Fish and meat", "es": "Pescados y carnes" } },
         { "slug": "mercearia-e-farinhas", "sort": 3, "names": { "pt-BR": "Mercearia e farinhas", "en": "Groceries and flours", "es": "Abarrotes y harinas" } },
-        { "slug": "refeicoes", "sort": 4, "names": { "pt-BR": "Refeições", "en": "Meals", "es": "Comidas" } }
+        { "slug": "refeicoes", "sort": 4, "names": { "pt-BR": "Refeições", "en": "Meals", "es": "Comidas" } },
+        { "slug": "roupas-e-armarinho", "sort": 5, "names": { "pt-BR": "Roupas e armarinho", "en": "Clothing and haberdashery", "es": "Ropa y mercería" } }
       ]
     }
   ],
@@ -83,7 +84,10 @@
     { "slug": "oleos-e-essencias", "icon": "droplet", "sort": 6, "names": { "pt-BR": "Óleos e essências", "en": "Oils and essences", "es": "Aceites y esencias" } },
     { "slug": "comidas-tipicas", "icon": "utensils", "sort": 7, "names": { "pt-BR": "Comidas típicas", "en": "Traditional food", "es": "Comidas típicas" } },
     { "slug": "peixes-e-mariscos", "icon": "fish", "sort": 8, "names": { "pt-BR": "Peixes e mariscos", "en": "Fish and seafood", "es": "Pescados y mariscos" } },
-    { "slug": "artesanato", "icon": "shapes", "sort": 9, "names": { "pt-BR": "Artesanato", "en": "Handicrafts", "es": "Artesanía" } }
+    { "slug": "artesanato", "icon": "shapes", "sort": 9, "names": { "pt-BR": "Artesanato", "en": "Handicrafts", "es": "Artesanía" } },
+    { "slug": "legumes-e-verduras", "icon": "carrot", "sort": 10, "names": { "pt-BR": "Legumes e verduras", "en": "Vegetables", "es": "Verduras y hortalizas" } },
+    { "slug": "roupas-e-acessorios", "icon": "shirt", "sort": 11, "names": { "pt-BR": "Roupas e acessórios", "en": "Clothing and accessories", "es": "Ropa y accesorios" } },
+    { "slug": "armarinho", "icon": "scissors", "sort": 12, "names": { "pt-BR": "Armarinho e aviamentos", "en": "Haberdashery and sewing supplies", "es": "Mercería" } }
   ],
   "products": [
     {
@@ -345,6 +349,181 @@
         "es": "Piezas de cerámica con grafismos inspirados en el arte de los pueblos antiguos de la Isla de Marajó."
       },
       "aliases": { "pt-BR": ["marajoara"] }
+    },
+    {
+      "slug": "abacaxi", "category": "frutas-e-polpas", "unit": "UNIT",
+      "names": { "pt-BR": "Abacaxi", "en": "Pineapple", "es": "Piña" },
+      "descriptions": {
+        "pt-BR": "Fruta doce e ácida, vendida inteira ou em pedaços.",
+        "en": "Sweet and tangy fruit, sold whole or in pieces.",
+        "es": "Fruta dulce y ácida, se vende entera o en trozos."
+      },
+      "aliases": { "pt-BR": ["ananás"], "es": ["ananá"] }
+    },
+    {
+      "slug": "banana", "category": "frutas-e-polpas", "unit": "BUNCH",
+      "names": { "pt-BR": "Banana", "en": "Banana", "es": "Plátano" },
+      "descriptions": {
+        "pt-BR": "Vendida em palma ou por unidade, de vários tipos.",
+        "en": "Sold by the hand or individually, in several varieties.",
+        "es": "Se vende por mano o por unidad, de varios tipos."
+      },
+      "aliases": { "es": ["banano", "banana"] }
+    },
+    {
+      "slug": "pitaya", "category": "frutas-e-polpas", "unit": "KG",
+      "names": { "pt-BR": "Pitaya", "en": "Dragon fruit", "es": "Pitahaya" },
+      "descriptions": {
+        "pt-BR": "Fruta de casca rosa e polpa branca ou roxa com sementes pretas.",
+        "en": "Pink-skinned fruit with white or purple flesh and small black seeds.",
+        "es": "Fruta de cáscara rosada y pulpa blanca o morada con semillas negras."
+      },
+      "aliases": { "pt-BR": ["pitaia", "fruta-do-dragão"], "en": ["pitaya"], "es": ["fruta del dragón"] }
+    },
+    {
+      "slug": "laranja", "category": "frutas-e-polpas", "unit": "KG",
+      "names": { "pt-BR": "Laranja", "en": "Orange", "es": "Naranja" },
+      "descriptions": {
+        "pt-BR": "Boa para suco e para comer.",
+        "en": "Good for juice and for eating.",
+        "es": "Buena para jugo y para comer."
+      }
+    },
+    {
+      "slug": "limao", "category": "frutas-e-polpas", "unit": "KG",
+      "names": { "pt-BR": "Limão", "en": "Lime", "es": "Limón" },
+      "descriptions": {
+        "pt-BR": "Limão verde, usado em sucos, temperos e no peixe.",
+        "en": "Green lime, used in juices, seasonings and with fish.",
+        "es": "Limón verde, usado en jugos, condimentos y con pescado."
+      },
+      "aliases": { "pt-BR": ["limão taiti"], "en": ["lemon"] }
+    },
+    {
+      "slug": "abacate", "category": "frutas-e-polpas", "unit": "KG",
+      "names": { "pt-BR": "Abacate", "en": "Avocado", "es": "Aguacate" },
+      "descriptions": {
+        "pt-BR": "No Pará é comum batido com açúcar ou em vitamina.",
+        "en": "In Pará it is often blended with sugar or into a smoothie.",
+        "es": "En Pará se suele tomar batido con azúcar o en licuado."
+      },
+      "aliases": { "es": ["palta"] }
+    },
+    {
+      "slug": "tomate", "category": "legumes-e-verduras", "unit": "KG",
+      "names": { "pt-BR": "Tomate", "en": "Tomato", "es": "Tomate" },
+      "descriptions": {
+        "pt-BR": "Tomate para salada e molho, vendido a quilo.",
+        "en": "Tomatoes for salads and sauces, sold by the kilo.",
+        "es": "Tomate para ensalada y salsa, se vende por kilo."
+      }
+    },
+    {
+      "slug": "batata", "category": "legumes-e-verduras", "unit": "KG",
+      "names": { "pt-BR": "Batata", "en": "Potato", "es": "Papa" },
+      "descriptions": {
+        "pt-BR": "Batata inglesa, vendida a quilo.",
+        "en": "Potatoes, sold by the kilo.",
+        "es": "Papas, se venden por kilo."
+      },
+      "aliases": { "pt-BR": ["batata inglesa"], "es": ["patata"] }
+    },
+    {
+      "slug": "batata-doce", "category": "legumes-e-verduras", "unit": "KG",
+      "names": { "pt-BR": "Batata-doce", "en": "Sweet potato", "es": "Camote" },
+      "descriptions": {
+        "pt-BR": "Batata-doce de casca roxa, para cozinhar ou assar.",
+        "en": "Purple-skinned sweet potato, for boiling or roasting.",
+        "es": "Camote de cáscara morada, para hervir u hornear."
+      },
+      "aliases": { "es": ["boniato", "batata"] }
+    },
+    {
+      "slug": "cebola", "category": "legumes-e-verduras", "unit": "KG",
+      "names": { "pt-BR": "Cebola", "en": "Onion", "es": "Cebolla" },
+      "descriptions": {
+        "pt-BR": "Cebola branca e roxa, vendida a quilo.",
+        "en": "White and red onions, sold by the kilo.",
+        "es": "Cebolla blanca y morada, se vende por kilo."
+      }
+    },
+    {
+      "slug": "repolho", "category": "legumes-e-verduras", "unit": "UNIT",
+      "names": { "pt-BR": "Repolho", "en": "Cabbage", "es": "Repollo" },
+      "descriptions": {
+        "pt-BR": "Repolho verde, vendido por unidade.",
+        "en": "Green cabbage, sold per head.",
+        "es": "Repollo verde, se vende por unidad."
+      }
+    },
+    {
+      "slug": "jerimum", "category": "legumes-e-verduras", "unit": "KG",
+      "names": { "pt-BR": "Jerimum (abóbora)", "en": "Pumpkin (jerimum)", "es": "Calabaza (jerimum)" },
+      "descriptions": {
+        "pt-BR": "Nome regional da abóbora; vai em sopas e no cozido.",
+        "en": "Regional name for pumpkin; used in soups and stews.",
+        "es": "Nombre regional de la calabaza; va en sopas y guisos."
+      },
+      "aliases": { "pt-BR": ["abóbora"], "en": ["squash"], "es": ["zapallo"] }
+    },
+    {
+      "slug": "alho", "category": "legumes-e-verduras", "unit": "KG",
+      "names": { "pt-BR": "Alho", "en": "Garlic", "es": "Ajo" },
+      "descriptions": {
+        "pt-BR": "Alho em cabeça.",
+        "en": "Garlic bulbs.",
+        "es": "Ajo en cabeza."
+      }
+    },
+    {
+      "slug": "blusa-feminina", "category": "roupas-e-acessorios", "unit": "UNIT",
+      "names": { "pt-BR": "Blusa feminina", "en": "Women's blouse", "es": "Blusa de mujer" },
+      "descriptions": {
+        "pt-BR": "Blusas estampadas e lisas, em vários tamanhos.",
+        "en": "Printed and plain blouses in several sizes.",
+        "es": "Blusas estampadas y lisas, en varias tallas."
+      },
+      "aliases": { "pt-BR": ["blusinha"], "en": ["top", "blouse"], "es": ["blusa"] }
+    },
+    {
+      "slug": "vestido", "category": "roupas-e-acessorios", "unit": "UNIT",
+      "names": { "pt-BR": "Vestido", "en": "Dress", "es": "Vestido" },
+      "descriptions": {
+        "pt-BR": "Vestidos estampados, curtos e longos.",
+        "en": "Printed dresses, short and long.",
+        "es": "Vestidos estampados, cortos y largos."
+      },
+      "aliases": { "en": ["dresses"], "es": ["vestidos"] }
+    },
+    {
+      "slug": "conjunto-estampado", "category": "roupas-e-acessorios", "unit": "UNIT",
+      "names": { "pt-BR": "Conjunto estampado (blusa e saia)", "en": "Printed set (top and skirt)", "es": "Conjunto estampado (blusa y falda)" },
+      "descriptions": {
+        "pt-BR": "Blusa e saia com estampas de flores e grafismos.",
+        "en": "Top and skirt with floral and graphic prints.",
+        "es": "Blusa y falda con estampados de flores y grafismos."
+      },
+      "aliases": { "pt-BR": ["saia estampada"], "en": ["printed skirt"], "es": ["falda estampada"] }
+    },
+    {
+      "slug": "acessorios-de-cabelo", "category": "roupas-e-acessorios", "unit": "UNIT",
+      "names": { "pt-BR": "Acessórios de cabelo", "en": "Hair accessories", "es": "Accesorios para el cabello" },
+      "descriptions": {
+        "pt-BR": "Presilhas, tiaras, laços e elásticos de cabelo.",
+        "en": "Hair clips, headbands, bows and hair ties.",
+        "es": "Pinzas, diademas, moños y ligas para el cabello."
+      },
+      "aliases": { "pt-BR": ["presilha", "tiara", "laço de cabelo"], "en": ["hair clips", "headband"], "es": ["pinzas para el cabello", "diadema"] }
+    },
+    {
+      "slug": "linhas-e-aviamentos", "category": "armarinho", "unit": "UNIT",
+      "names": { "pt-BR": "Linhas e aviamentos", "en": "Yarn and sewing supplies", "es": "Hilos y artículos de costura" },
+      "descriptions": {
+        "pt-BR": "Linhas de crochê e costura, elásticos, botões e enfeites.",
+        "en": "Crochet and sewing yarn, elastic, buttons and trims.",
+        "es": "Hilos de crochet y de costura, elásticos, botones y adornos."
+      },
+      "aliases": { "pt-BR": ["linha de crochê", "elástico", "botões"], "en": ["crochet yarn", "buttons"], "es": ["hilo de crochet", "botones"] }
     }
   ],
   "stalls": [

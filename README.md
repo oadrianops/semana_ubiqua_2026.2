@@ -23,14 +23,26 @@ nas feiras salvas.
 Projeto da equipe **Adriano Pinheiro da Silva, Leonardo Farias de Souza e Victor Santiago dos Santos Abreu** para o
 Hackathon Semana Ubíqua 2026.2 (UNAMA).
 
-> **Dados de demonstração.** Os boxes, nomes e preços do app são fictícios, criados para a banca testar. O app
-> mostra esse aviso no topo de todas as páginas. A validação com feirantes ainda não aconteceu (veja Limitações).
+> **Dados reais e de demonstração.** Os boxes 2 e 3 (uma fruteira) e 67 da Feira da 25 foram conferidos na feira em 21/10/2026, com
+> termo assinado pelos feirantes. Os demais boxes são fictícios, criados para a banca testar, e aparecem marcados
+> como **Exemplo**; o app avisa isso no topo de todas as páginas.
 
 ## Objetivo
 
 Turistas e moradores perdem tempo (e os feirantes perdem vendas) porque não há como saber, antes de andar a feira
 inteira, onde está um produto. A NANDESK responde isso em segundos, em português, inglês ou espanhol, e dá
 visibilidade digital ao feirante sem tirar tempo dele.
+
+## Validação na feira
+
+Em 21/10/2026 a equipe levou o app à Feira da 25 e cadastrou os dois primeiros boxes reais (CA-5, atas em
+[docs/validacao/](docs/validacao/)):
+
+- A responsável por uma fruteira contou que **muita gente entra no box só para perguntar onde comprar, em outros
+  boxes, o que procura** — o problema que a busca resolve — e pediu para mostrar o Instagram do box, o que virou
+  requisito.
+- A feirante de um box de roupas e armarinho disse que não entende de redes sociais e que o projeto seria a única
+  forma de apresentar a loja na internet, o que confirma o princípio de que o feirante não precisa operar nada.
 
 ## Imagens
 
@@ -47,6 +59,8 @@ visibilidade digital ao feirante sem tirar tempo dele.
 **Para quem visita a feira (sem conta)**
 - Busca com sugestões, sem acento e com sinônimos em PT, EN e ES ("brazil nut", "castaña de Brasil"), e "você quis dizer".
 - Para cada produto: feiras, setores e boxes, com preço de referência e "verificado há N dias".
+- Página do box com fotos (principal e galeria), Instagram quando o feirante quis mostrar e marca "Exemplo" nos
+  boxes fictícios.
 - Feiras com mapa (OpenStreetMap) e alternativa em lista, horários e "como chegar".
 - **Sem internet:** "Salvar para usar sem internet" guarda a feira no celular; a busca funciona offline e mostra
   a data dos dados.
@@ -64,7 +78,10 @@ visibilidade digital ao feirante sem tirar tempo dele.
 
 **Para moderação e administração**
 - Fila de moderação com antes e depois, conflitos de versão, fotos restritas e alerta de GPS impreciso.
-- Denúncias, sugestões de produto, tarefas, feiras (mapa e raio do check-in), boxes e consentimento, catálogo nos 3 idiomas.
+- Denúncias, sugestões de produto, tarefas, feiras (mapa, raio do check-in e foto de capa), catálogo nos 3 idiomas.
+- **Box conferido em campo:** cadastro a partir do termo assinado, ofertas com preço de referência e fotos enviadas
+  uma a uma; revogar o consentimento tira o box do ar e agenda a remoção das fotos. Um script lança um levantamento
+  inteiro pela API (`infra/scripts/importar-campo.mjs`), com nomes e fotos fora do repositório (ADR-0018).
 - Regras de comissão, orçamento do mês, saldos e **registro** de repasses (o pagamento é feito por PIX fora do app;
   não há pagamento online), usuários, auditoria e indicadores.
 
@@ -141,9 +158,13 @@ Deploy em produção no Coolify: [docs/runbooks/deploy.md](docs/runbooks/deploy.
 
 ## Limitações (honestas)
 
-- **Dados fictícios.** Os 12 boxes, nomes e preços são ilustrativos. A posição da Feira da 25 é aproximada.
-- **Validação com feirantes (CA-5) ainda não feita.** Roteiro e ata modelo em [docs/validacao/](docs/validacao/).
-- **Sem fotos reais.** Não usamos banco de imagens nem imagens geradas por IA; as fotos chegam pelos colaboradores.
+- **Poucos dados reais.** Só dois boxes da Feira da 25 foram conferidos em campo; os outros 12 são fictícios e
+  marcados como exemplo. O Ver-o-Peso ainda não teve visita de validação.
+- **Posição da Feira da 25** tirada do OpenStreetMap (entre a Tv. Antônio Baena e a Av. José Bonifácio), ainda não
+  conferida por GPS na feira.
+- **Fotos** só dos dois boxes reais e da entrada da Feira da 25, sem pessoas de rosto. Não usamos banco de imagens
+  nem imagens geradas por IA.
+- **Preço por lote** ("3 por R$ 10,00") ainda não é aceito: vale o preço da unidade (backlog).
 - **Comissões ilustrativas.** Não há parceiro financiador; o repasse é apenas registrado (sem pagamento online, por decisão de produto).
 - **Mapa interno da feira** (RF-34, Could) não foi feito; o mapa mostra as feiras.
 - **E-mail:** sem SMTP configurado, as contas novas entram já verificadas.

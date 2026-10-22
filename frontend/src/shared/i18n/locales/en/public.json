@@ -66,7 +66,8 @@
     "savedHint": "Updates by itself whenever there is signal. Tap again to stop saving.",
     "showMap": "See on the map",
     "hideMap": "Hide map",
-    "mapLabel": "Map of {{name}}"
+    "mapLabel": "Map of {{name}}",
+    "coverAlt": "Market photo: {{name}}"
   },
   "weekday": {
     "MON": "Mon",
@@ -90,7 +91,13 @@
     "wrongBody": "Let us know if a product ran out, the price changed a lot or the stall moved. Someone from the community will check.",
     "wrongAction": "Report a mistake",
     "reportOffline": "No connection: the report needs signal to be sent.",
-    "offlineNotSaved": "This stall is not saved on this device yet. Open the market with signal and save it for offline use."
+    "offlineNotSaved": "This stall is not saved on this device yet. Open the market with signal and save it for offline use.",
+    "demoNote": "Example stall: made-up name and prices, just for trying the app.",
+    "instagram": "@{{handle}} on Instagram",
+    "newTab": "(opens in a new tab)",
+    "photosTitle": "Stall photos",
+    "photoShow": "Show photo {{n}} of {{total}}",
+    "galleryAlt": "Photo {{n}} of {{total}}, stall {{code}} — {{market}}"
   },
   "report": {
     "title": "Report about stall {{code}}",

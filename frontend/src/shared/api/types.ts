@@ -73,6 +73,8 @@ export interface StallSummary {
   lastVerifiedAt: string | null;
   outdated: boolean;
   offeringCount: number;
+  /** Box fictício da demonstração (ADR-0018). */
+  demo: boolean;
 }
 
 export interface OfferingView {
@@ -100,6 +102,17 @@ export interface StallDetail {
   outdated: boolean;
   version: number;
   offerings: OfferingView[];
+  demo: boolean;
+  /** Perfil do Instagram (só o nome, sem @). */
+  instagram: string | null;
+  gallery: PhotoView[];
+}
+
+export interface PhotoView {
+  url: string;
+  thumbUrl: string;
+  width: number;
+  height: number;
 }
 
 export interface ProductRef {
@@ -118,6 +131,7 @@ export interface StallHit {
   priceUnit: PriceUnit | null;
   availability: Availability;
   lastVerifiedAt: string;
+  demo: boolean;
 }
 
 export interface MarketHits {
@@ -188,6 +202,8 @@ export interface SnapshotStall {
   lastVerifiedAt: string | null;
   outdated: boolean;
   offerings: SnapshotOffering[];
+  /** Ausente em snapshots salvos antes da marca de exemplo. */
+  demo?: boolean;
 }
 
 export interface SnapshotProduct {

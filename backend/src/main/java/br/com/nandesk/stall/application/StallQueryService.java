@@ -1,5 +1,6 @@
 package br.com.nandesk.stall.application;
 
+import br.com.nandesk.file.domain.StoredFile;
 import br.com.nandesk.market.application.MarketViews.MarketRef;
 import br.com.nandesk.market.domain.Market;
 import br.com.nandesk.market.domain.Sector;
@@ -9,6 +10,7 @@ import br.com.nandesk.shared.web.BusinessException;
 import br.com.nandesk.shared.web.MoneyDto;
 import br.com.nandesk.shared.web.PageResponse;
 import br.com.nandesk.stall.application.StallViews.OfferingView;
+import br.com.nandesk.stall.application.StallViews.PhotoView;
 import br.com.nandesk.stall.application.StallViews.SectorRef;
 import br.com.nandesk.stall.application.StallViews.StallDetail;
 import br.com.nandesk.stall.application.StallViews.StallSummary;
@@ -16,6 +18,7 @@ import br.com.nandesk.stall.domain.FreshnessPolicy;
 import br.com.nandesk.stall.domain.Stall;
 import br.com.nandesk.stall.domain.StallOffering;
 import br.com.nandesk.stall.infra.StallOfferingRepository;
+import br.com.nandesk.stall.infra.StallPhotoRepository;
 import br.com.nandesk.stall.infra.StallRepository;
 import java.time.Clock;
 import java.util.Collection;
@@ -38,13 +41,19 @@ public class StallQueryService {
 
     private final StallRepository stalls;
     private final StallOfferingRepository offerings;
+    private final StallPhotoRepository photos;
     private final FreshnessPolicy freshness;
     private final Clock clock;
 
     public StallQueryService(
-            StallRepository stalls, StallOfferingRepository offerings, AppProperties properties, Clock clock) {
+            StallRepository stalls,
+            StallOfferingRepository offerings,
+            StallPhotoRepository photos,
+            AppProperties properties,
+            Clock clock) {
         this.stalls = stalls;
         this.offerings = offerings;
+        this.photos = photos;
         this.freshness = new FreshnessPolicy(
                 properties.tasks().staleAfter(), properties.stalls().outdatedWarningAfter());
         this.clock = clock;
@@ -77,7 +86,21 @@ public class StallQueryService {
                 stall.getLastVerifiedAt(),
                 freshness.isOutdated(stall.getLastVerifiedAt(), clock.instant()),
                 stall.getVersion(),
-                views);
+                views,
+                stall.isDemo(),
+                stall.getInstagramHandle(),
+                gallery(stall));
+    }
+
+    /** Galeria pública do box, na ordem definida no painel (RF-03). */
+    public List<PhotoView> gallery(Stall stall) {
+        return photos.findByStallIdOrderBySortOrderAscIdAsc(stall.getId()).stream()
+                .map(p -> photoView(p.getFile()))
+                .toList();
+    }
+
+    public static PhotoView photoView(StoredFile file) {
+        return new PhotoView(file.url(false), file.url(true), file.getWidth(), file.getHeight());
     }
 
     public PageResponse<StallSummary> publicStallsOf(
@@ -85,7 +108,11 @@ public class StallQueryService {
         Page<Stall> result = stalls.findPublicByMarket(
                 market.getId(),
                 sector == null ? null : sector.getId(),
-                PageRequest.of(Math.max(0, page), PageResponse.clampSize(size), Sort.by("code")));
+                // Boxes conferidos em campo antes dos de exemplo da demonstração (ADR-0018).
+                PageRequest.of(
+                        Math.max(0, page),
+                        PageResponse.clampSize(size),
+                        Sort.by("demo").and(Sort.by("code"))));
         Map<Long, Integer> counts = offeringCounts(result.getContent());
         return PageResponse.of(result, s -> summary(s, locale, counts.getOrDefault(s.getId(), 0)));
     }
@@ -131,7 +158,8 @@ public class StallQueryService {
                 s.getPhoto() == null ? null : s.getPhoto().url(true),
                 s.getLastVerifiedAt(),
                 freshness.isOutdated(s.getLastVerifiedAt(), clock.instant()),
-                offeringCount);
+                offeringCount,
+                s.isDemo());
     }
 
     public static OfferingView offering(StallOffering o, AppLocale locale) {

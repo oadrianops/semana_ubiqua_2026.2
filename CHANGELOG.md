@@ -1,16 +1,34 @@
 # Changelog
 
 Formato [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e versões [SemVer](https://semver.org/lang/pt-BR/).
-IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.1.0).
+IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.2.0).
 
 ## [Não lançado]
 
 ### Pendente
-- Validação com feirantes (CA-5): roteiro e ata modelo prontos em `docs/validacao/`.
+- Validação no Ver-o-Peso e mais boxes reais; preço por lote ("3 por R$ 10,00").
 - Mapa interno da feira com a posição dos boxes (RF-34, Could).
-- Fotos reais das feiras, enviadas pelo fluxo dos colaboradores com consentimento.
-- Conferir a posição da Feira da 25 no painel (hoje aproximada).
+- Conferir por GPS a posição da Feira da 25.
 - Matriz de aparelhos reais, Lighthouse CI e k6 contra a produção.
+
+## [1.1.0] - 2026-10-21 — primeiros boxes reais da Feira da 25
+
+### Adicionado
+- **Validação em campo (CA-5):** dois feirantes da Feira da 25 entrevistados, com termo assinado; atas em
+  `docs/validacao/`.
+- **Box conferido em campo pelo painel** (RF-29, RN-13): cadastro a partir do termo, ofertas com preço de referência,
+  fotos principal e de galeria, Instagram do box e foto de capa da feira. Revogar o consentimento agenda a remoção de
+  todas as fotos do box.
+- **Página do box** com galeria de fotos, Instagram (pedido de um feirante na validação) e marca "Exemplo" nos boxes
+  fictícios, também na busca, no produto, na feira e sem internet (ADR-0018).
+- `infra/scripts/importar-campo.mjs`: lança um levantamento inteiro pela API; nomes e fotos ficam fora do repositório.
+- Catálogo: 18 produtos e 3 categorias vistos na Feira da 25 (hortifrúti, roupas e armarinho).
+
+### Corrigido
+- Mapa sem tiles e "Como chegar" abrindo um destino inválido em produção: o `config.js` do contêiner cortava as URLs
+  com `{z}` e `{lat}`. Teste roda o script de verdade.
+- Feira da 25 na Av. Rômulo Maiorana (antiga 25 de Setembro), entre a Tv. Antônio Baena e a Av. José Bonifácio; antes
+  a posição ficava a cerca de 550 m da avenida.
 
 ## [1.0.0] - 2026-10-21 — entrega do Hackathon Semana Ubíqua 2026.2
 
@@ -58,5 +76,6 @@ IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.1.0).
   local não liberava a origem `http://localhost:8081` no login, as tabelas que rolam para o lado no celular não
   recebiam foco pelo teclado e o Trivy apontava para uma versão retirada.
 
-[Não lançado]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.0.0...HEAD
+[Não lançado]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/oadrianops/semana_ubiqua_2026.2/releases/tag/v1.0.0

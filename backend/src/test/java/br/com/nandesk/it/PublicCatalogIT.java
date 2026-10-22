@@ -51,7 +51,10 @@ class PublicCatalogIT extends IntegrationTest {
                     terms.add(alias.asString());
                 }
             }
-            out.add(Arguments.of(slug, terms, stalls));
+            // Produtos sem oferta no seed (catálogo para os boxes cadastrados em campo) não entram na conta.
+            if (!stalls.isEmpty()) {
+                out.add(Arguments.of(slug, terms, stalls));
+            }
         }
         assertThat(out).hasSize(26);
         return out.stream();
@@ -130,7 +133,7 @@ class PublicCatalogIT extends IntegrationTest {
         assertThat(stall.path("lastVerifiedAt").isNull()).isFalse();
 
         JsonNode categories = api.get("/api/v1/categories").expect(200).json();
-        assertThat(categories.size()).isEqualTo(9);
+        assertThat(categories.size()).isEqualTo(12);
         String category = categories.get(0).path("slug").asString();
         api.get("/api/v1/categories/" + category + "/products").expect(200);
 

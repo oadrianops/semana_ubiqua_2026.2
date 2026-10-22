@@ -12,7 +12,7 @@
 | Prioridades transversais | App instalável (PWA) excelente no celular · alta performance com rede instável · visual profissional, sem cara de IA |
 | Identidade visual | Seção 14.6 · arquivos da marca no pacote `nandesk-brand` (copiar para `frontend/public/brand/`) |
 | Idiomas | Documentação e commits: PT-BR · Código: inglês · Interface: PT-BR, EN e ES |
-| Versão do documento | 1.1.0 — 19/10/2026 |
+| Versão do documento | 1.2.0 — 21/10/2026 |
 | Origem | Documento de escopo da equipe (ideação, requisitos e escopo) + decisões registradas aqui |
 
 ## Histórico de versões
@@ -21,6 +21,7 @@
 |---|---|---|---|
 | 1.0.0 | 19/10/2026 | Primeira versão completa (baseline para implementação) | Equipe |
 | 1.1.0 | 19/10/2026 | Nome NANDESK e identidade visual; PWA passa a Must com critérios detalhados (RF-35) e uso sem conexão (RF-36); alta performance e resiliência a oscilações de rede (seção 9.14, RNF-01/02/03, RNF-15); upload de fotos uma a uma e fila de envios (RN-27); direção de design sem "cara de IA" com uso da skill `impeccable` (seção 14.7, RNF-16); novos critérios CA-6 e CA-7 | Equipe |
+| 1.2.0 | 21/10/2026 | Validação na Feira da 25 (CA-5, origem ENT): Instagram opcional do box (RF-03); galeria de fotos do box e capa da feira; cadastro pelo painel de box conferido em campo, com termo assinado (RF-29); marca de box de exemplo e dados de campo fora do repositório (ADR-0018) | Equipe |
 
 > Toda mudança de requisito passa pelo controle de mudanças (seção 17.3) e gera uma nova linha aqui.
 
@@ -381,6 +382,7 @@ Funcionalidade: Busca de produtos
 - Mostra feira, setor, código, nome do box, foto, nome do feirante (somente com consentimento específico — RN-14) e as ofertas: produto (traduzido), preço de referência e unidade (RN-15), disponibilidade e data da última verificação.
 - Aviso "as informações podem estar desatualizadas" quando a última verificação passar de 60 dias (RN-12).
 - Botão "Informação errada?" (RF-07).
+- Galeria de fotos do box e, quando o feirante pedir, o perfil do Instagram do box (origem ENT, validação de 21/10/2026). Boxes fictícios da demonstração aparecem marcados como exemplo (ADR-0018).
 - Box inativo ou sem consentimento responde "não encontrado" (RN-13).
 
 ```gherkin

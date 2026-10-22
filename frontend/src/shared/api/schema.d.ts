@@ -194,6 +194,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/v1/admin/markets/{slug}/cover": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Trocar a foto de capa da feira (RF-01, RF-29) */
+        post: operations["cover"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/admin/markets/{slug}/sectors/{sectorSlug}": {
         parameters: {
             query?: never;
@@ -306,9 +323,10 @@ export interface paths {
             cookie?: never;
         };
         /** Boxes (RF-29) */
-        get: operations["stalls_1"];
+        get: operations["stalls"];
         put?: never;
-        post?: never;
+        /** Cadastrar box conferido em campo, com o consentimento do feirante (RF-29, RN-13) */
+        post: operations["create_2"];
         delete?: never;
         options?: never;
         head?: never;
@@ -322,7 +340,8 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get?: never;
+        /** Box com ofertas e fotos para edição no painel (RF-29) */
+        get: operations["detail"];
         put?: never;
         post?: never;
         delete?: never;
@@ -361,6 +380,58 @@ export interface paths {
         /** Revogar consentimento do feirante: oculta na hora (RN-13) */
         post: operations["revoke"];
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/stalls/{publicId}/offerings/{productSlug}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Criar ou atualizar oferta conferida em campo; renova a verificação do box (RF-29, RN-12) */
+        put: operations["saveOffering"];
+        post?: never;
+        /** Remover oferta do box (RF-29) */
+        delete: operations["deleteOffering"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/stalls/{publicId}/photos": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Enviar foto do box: principal ou da galeria; sem pessoas de rosto (RF-03, RN-06, RN-22) */
+        post: operations["addPhoto"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/stalls/{publicId}/photos/{fileId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Tirar foto do box; o arquivo é apagado pela retenção (RN-13) */
+        delete: operations["removePhoto"];
         options?: never;
         head?: never;
         patch?: never;
@@ -663,7 +734,7 @@ export interface paths {
             cookie?: never;
         };
         /** Boxes publicados da feira (RF-01) */
-        get: operations["stalls"];
+        get: operations["stalls_1"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1039,7 +1110,7 @@ export interface paths {
             cookie?: never;
         };
         /** Detalhe do envio com antes/depois, check-in e alertas (RF-21) */
-        get: operations["detail_1"];
+        get: operations["detail_2"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1243,7 +1314,7 @@ export interface paths {
             cookie?: never;
         };
         /** Detalhe da tarefa (RF-15) */
-        get: operations["detail"];
+        get: operations["detail_1"];
         put?: never;
         post?: never;
         delete?: never;
@@ -1380,6 +1451,7 @@ export interface components {
         AdminMarketView: {
             active?: boolean;
             address?: string;
+            coverThumbUrl?: string;
             /** Format: int64 */
             dataVersion?: number;
             latitude?: number;
@@ -1395,6 +1467,13 @@ export interface components {
             };
             /** Format: int32 */
             version?: number;
+        };
+        AdminPhoto: {
+            /** Format: uuid */
+            fileId?: string;
+            main?: boolean;
+            thumbUrl?: string;
+            url?: string;
         };
         AdminProductView: {
             aliases?: {
@@ -1427,6 +1506,11 @@ export interface components {
             /** Format: int32 */
             sortOrder?: number;
         };
+        AdminStallDetail: {
+            offerings?: components["schemas"]["OfferingView"][];
+            photos?: components["schemas"]["AdminPhoto"][];
+            stall?: components["schemas"]["AdminStallView"];
+        };
         AdminStallView: {
             code?: string;
             /** @enum {string} */
@@ -1435,10 +1519,13 @@ export interface components {
             consentRecordedAt?: string;
             /** @enum {string} */
             consentStatus?: "GRANTED" | "REVOKED";
+            demo?: boolean;
             displayName?: string;
+            instagram?: string;
             /** Format: date-time */
             lastVerifiedAt?: string;
             marketSlug?: string;
+            photoThumbUrl?: string;
             /** Format: uuid */
             publicId?: string;
             sectorName?: string;
@@ -1797,6 +1884,13 @@ export interface components {
             productName?: string;
             productSlug?: string;
         };
+        OfferingRequest: {
+            /** @enum {string} */
+            availability: "AVAILABLE" | "OUT_OF_STOCK" | "SEASONAL";
+            price?: string;
+            /** @enum {string} */
+            priceUnit: "KG" | "UNIT" | "LITER" | "BUNCH" | "PORTION" | "PACKAGE" | "BOTTLE" | "DOZEN";
+        };
         OfferingView: {
             /** @enum {string} */
             availability?: "AVAILABLE" | "OUT_OF_STOCK" | "SEASONAL";
@@ -1993,14 +2087,11 @@ export interface components {
         };
         PhotoView: {
             /** Format: int32 */
-            duplicateCount?: number;
-            /** Format: uuid */
-            fileId?: string;
-            productSlug?: string;
-            /** @enum {string} */
-            role?: "STALL" | "OFFERING" | "SUGGESTION" | "EVIDENCE";
+            height?: number;
             thumbUrl?: string;
             url?: string;
+            /** Format: int32 */
+            width?: number;
         };
         PixKeyRequest: {
             key: string;
@@ -2245,6 +2336,7 @@ export interface components {
         };
         SnapshotStall: {
             code?: string;
+            demo?: boolean;
             /** Format: date-time */
             lastVerifiedAt?: string;
             name?: string;
@@ -2275,8 +2367,22 @@ export interface components {
             sectorSlug?: string;
             vendorName?: string;
         };
+        StallCreateRequest: {
+            code: string;
+            /** @enum {string} */
+            consentMethod: "VERBAL" | "SIGNED_FORM";
+            displayName?: string;
+            instagram?: string;
+            marketSlug: string;
+            sectorSlug?: string;
+            showVendorName?: boolean;
+            vendorName?: string;
+        };
         StallDetail: {
             code?: string;
+            demo?: boolean;
+            gallery?: components["schemas"]["PhotoView"][];
+            instagram?: string;
             /** Format: date-time */
             lastVerifiedAt?: string;
             market?: components["schemas"]["MarketRef"];
@@ -2296,6 +2402,7 @@ export interface components {
             /** @enum {string} */
             availability?: "AVAILABLE" | "OUT_OF_STOCK" | "SEASONAL";
             code?: string;
+            demo?: boolean;
             /** Format: date-time */
             lastVerifiedAt?: string;
             name?: string;
@@ -2317,6 +2424,7 @@ export interface components {
         };
         StallSummary: {
             code?: string;
+            demo?: boolean;
             /** Format: date-time */
             lastVerifiedAt?: string;
             name?: string;
@@ -2329,7 +2437,9 @@ export interface components {
             sector?: components["schemas"]["SectorRef"];
         };
         StallUpdateRequest: {
+            demo?: boolean;
             displayName?: string;
+            instagram?: string;
             sectorSlug?: string;
             showVendorName?: boolean;
             /** @enum {string} */
@@ -2805,6 +2915,35 @@ export interface operations {
             };
         };
     };
+    cover: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                slug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "multipart/form-data": {
+                    /** Format: binary */
+                    file: string;
+                };
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminMarketView"];
+                };
+            };
+        };
+    };
     saveSector: {
         parameters: {
             query?: never;
@@ -3000,7 +3139,7 @@ export interface operations {
             };
         };
     };
-    stalls_1: {
+    stalls: {
         parameters: {
             query?: {
                 market?: string;
@@ -3021,6 +3160,52 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["PageResponseAdminStallView"];
+                };
+            };
+        };
+    };
+    create_2: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["StallCreateRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminStallDetail"];
+                };
+            };
+        };
+    };
+    detail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                publicId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminStallDetail"];
                 };
             };
         };
@@ -3095,6 +3280,110 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["AdminStallView"];
+                };
+            };
+        };
+    };
+    saveOffering: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                publicId: string;
+                productSlug: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["OfferingRequest"];
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminStallDetail"];
+                };
+            };
+        };
+    };
+    deleteOffering: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                publicId: string;
+                productSlug: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminStallDetail"];
+                };
+            };
+        };
+    };
+    addPhoto: {
+        parameters: {
+            query?: {
+                main?: boolean;
+            };
+            header?: never;
+            path: {
+                publicId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "multipart/form-data": {
+                    /** Format: binary */
+                    file: string;
+                };
+            };
+        };
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminStallDetail"];
+                };
+            };
+        };
+    };
+    removePhoto: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                publicId: string;
+                fileId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminStallDetail"];
                 };
             };
         };
@@ -3487,7 +3776,7 @@ export interface operations {
             };
         };
     };
-    stalls: {
+    stalls_1: {
         parameters: {
             query?: {
                 sector?: string;
@@ -4035,7 +4324,7 @@ export interface operations {
             };
         };
     };
-    detail_1: {
+    detail_2: {
         parameters: {
             query?: never;
             header?: never;
@@ -4321,7 +4610,7 @@ export interface operations {
             };
         };
     };
-    detail: {
+    detail_1: {
         parameters: {
             query?: never;
             header?: never;

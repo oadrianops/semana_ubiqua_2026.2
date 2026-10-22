@@ -71,6 +71,7 @@ export function searchSnapshots(
           priceUnit: o.priceUnit,
           availability: o.availability,
           lastVerifiedAt: o.lastVerifiedAt,
+          demo: stall.demo ?? false,
         });
         if (o.availability === 'AVAILABLE') entry.available++;
       }

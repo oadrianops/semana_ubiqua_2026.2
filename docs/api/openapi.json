@@ -55,6 +55,9 @@
           "address" : {
             "type" : "string"
           },
+          "coverThumbUrl" : {
+            "type" : "string"
+          },
           "dataVersion" : {
             "format" : "int64",
             "type" : "integer"
@@ -96,6 +99,24 @@
           "version" : {
             "format" : "int32",
             "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "AdminPhoto" : {
+        "properties" : {
+          "fileId" : {
+            "format" : "uuid",
+            "type" : "string"
+          },
+          "main" : {
+            "type" : "boolean"
+          },
+          "thumbUrl" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
           }
         },
         "type" : "object"
@@ -178,6 +199,26 @@
         },
         "type" : "object"
       },
+      "AdminStallDetail" : {
+        "properties" : {
+          "offerings" : {
+            "items" : {
+              "$ref" : "#/components/schemas/OfferingView"
+            },
+            "type" : "array"
+          },
+          "photos" : {
+            "items" : {
+              "$ref" : "#/components/schemas/AdminPhoto"
+            },
+            "type" : "array"
+          },
+          "stall" : {
+            "$ref" : "#/components/schemas/AdminStallView"
+          }
+        },
+        "type" : "object"
+      },
       "AdminStallView" : {
         "properties" : {
           "code" : {
@@ -195,7 +236,13 @@
             "enum" : [ "GRANTED", "REVOKED" ],
             "type" : "string"
           },
+          "demo" : {
+            "type" : "boolean"
+          },
           "displayName" : {
+            "type" : "string"
+          },
+          "instagram" : {
             "type" : "string"
           },
           "lastVerifiedAt" : {
@@ -203,6 +250,9 @@
             "type" : "string"
           },
           "marketSlug" : {
+            "type" : "string"
+          },
+          "photoThumbUrl" : {
             "type" : "string"
           },
           "publicId" : {
@@ -1133,6 +1183,24 @@
         },
         "type" : "object"
       },
+      "OfferingRequest" : {
+        "properties" : {
+          "availability" : {
+            "enum" : [ "AVAILABLE", "OUT_OF_STOCK", "SEASONAL" ],
+            "type" : "string"
+          },
+          "price" : {
+            "pattern" : "^\\d{1,8}(\\.\\d{1,2})?$",
+            "type" : "string"
+          },
+          "priceUnit" : {
+            "enum" : [ "KG", "UNIT", "LITER", "BUNCH", "PORTION", "PACKAGE", "BOTTLE", "DOZEN" ],
+            "type" : "string"
+          }
+        },
+        "required" : [ "availability", "priceUnit" ],
+        "type" : "object"
+      },
       "OfferingView" : {
         "properties" : {
           "availability" : {
@@ -1610,26 +1678,19 @@
       },
       "PhotoView" : {
         "properties" : {
-          "duplicateCount" : {
+          "height" : {
             "format" : "int32",
             "type" : "integer"
-          },
-          "fileId" : {
-            "format" : "uuid",
-            "type" : "string"
-          },
-          "productSlug" : {
-            "type" : "string"
-          },
-          "role" : {
-            "enum" : [ "STALL", "OFFERING", "SUGGESTION", "EVIDENCE" ],
-            "type" : "string"
           },
           "thumbUrl" : {
             "type" : "string"
           },
           "url" : {
             "type" : "string"
+          },
+          "width" : {
+            "format" : "int32",
+            "type" : "integer"
           }
         },
         "type" : "object"
@@ -2301,6 +2362,9 @@
           "code" : {
             "type" : "string"
           },
+          "demo" : {
+            "type" : "boolean"
+          },
           "lastVerifiedAt" : {
             "format" : "date-time",
             "type" : "string"
@@ -2387,9 +2451,61 @@
         },
         "type" : "object"
       },
+      "StallCreateRequest" : {
+        "properties" : {
+          "code" : {
+            "maxLength" : 20,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "consentMethod" : {
+            "enum" : [ "VERBAL", "SIGNED_FORM" ],
+            "type" : "string"
+          },
+          "displayName" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "instagram" : {
+            "maxLength" : 80,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "marketSlug" : {
+            "minLength" : 1,
+            "type" : "string"
+          },
+          "sectorSlug" : {
+            "type" : "string"
+          },
+          "showVendorName" : {
+            "type" : "boolean"
+          },
+          "vendorName" : {
+            "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          }
+        },
+        "required" : [ "code", "consentMethod", "marketSlug" ],
+        "type" : "object"
+      },
       "StallDetail" : {
         "properties" : {
           "code" : {
+            "type" : "string"
+          },
+          "demo" : {
+            "type" : "boolean"
+          },
+          "gallery" : {
+            "items" : {
+              "$ref" : "#/components/schemas/PhotoView"
+            },
+            "type" : "array"
+          },
+          "instagram" : {
             "type" : "string"
           },
           "lastVerifiedAt" : {
@@ -2443,6 +2559,9 @@
           "code" : {
             "type" : "string"
           },
+          "demo" : {
+            "type" : "boolean"
+          },
           "lastVerifiedAt" : {
             "format" : "date-time",
             "type" : "string"
@@ -2494,6 +2613,9 @@
           "code" : {
             "type" : "string"
           },
+          "demo" : {
+            "type" : "boolean"
+          },
           "lastVerifiedAt" : {
             "format" : "date-time",
             "type" : "string"
@@ -2523,8 +2645,16 @@
       },
       "StallUpdateRequest" : {
         "properties" : {
+          "demo" : {
+            "type" : "boolean"
+          },
           "displayName" : {
             "maxLength" : 120,
+            "minLength" : 0,
+            "type" : "string"
+          },
+          "instagram" : {
+            "maxLength" : 80,
             "minLength" : 0,
             "type" : "string"
           },
@@ -3366,6 +3496,49 @@
         "tags" : [ "Administração" ]
       }
     },
+    "/api/v1/admin/markets/{slug}/cover" : {
+      "post" : {
+        "operationId" : "cover",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "slug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "properties" : {
+                  "file" : {
+                    "format" : "binary",
+                    "type" : "string"
+                  }
+                },
+                "required" : [ "file" ],
+                "type" : "object"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminMarketView"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Trocar a foto de capa da feira (RF-01, RF-29)",
+        "tags" : [ "Administração" ]
+      }
+    },
     "/api/v1/admin/markets/{slug}/sectors/{sectorSlug}" : {
       "put" : {
         "operationId" : "saveSector",
@@ -3653,7 +3826,7 @@
     },
     "/api/v1/admin/stalls" : {
       "get" : {
-        "operationId" : "stalls_1",
+        "operationId" : "stalls",
         "parameters" : [ {
           "in" : "query",
           "name" : "market",
@@ -3701,9 +3874,62 @@
         },
         "summary" : "Boxes (RF-29)",
         "tags" : [ "Administração" ]
+      },
+      "post" : {
+        "operationId" : "create_2",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/StallCreateRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminStallDetail"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Cadastrar box conferido em campo, com o consentimento do feirante (RF-29, RN-13)",
+        "tags" : [ "Administração" ]
       }
     },
     "/api/v1/admin/stalls/{publicId}" : {
+      "get" : {
+        "operationId" : "detail",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminStallDetail"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Box com ofertas e fotos para edição no painel (RF-29)",
+        "tags" : [ "Administração" ]
+      },
       "patch" : {
         "operationId" : "update_2",
         "parameters" : [ {
@@ -3804,6 +4030,172 @@
           }
         },
         "summary" : "Revogar consentimento do feirante: oculta na hora (RN-13)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/stalls/{publicId}/offerings/{productSlug}" : {
+      "delete" : {
+        "operationId" : "deleteOffering",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "productSlug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminStallDetail"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Remover oferta do box (RF-29)",
+        "tags" : [ "Administração" ]
+      },
+      "put" : {
+        "operationId" : "saveOffering",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "productSlug",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/OfferingRequest"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminStallDetail"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Criar ou atualizar oferta conferida em campo; renova a verificação do box (RF-29, RN-12)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/stalls/{publicId}/photos" : {
+      "post" : {
+        "operationId" : "addPhoto",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "main",
+          "required" : false,
+          "schema" : {
+            "default" : false,
+            "type" : "boolean"
+          }
+        } ],
+        "requestBody" : {
+          "content" : {
+            "multipart/form-data" : {
+              "schema" : {
+                "properties" : {
+                  "file" : {
+                    "format" : "binary",
+                    "type" : "string"
+                  }
+                },
+                "required" : [ "file" ],
+                "type" : "object"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminStallDetail"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Enviar foto do box: principal ou da galeria; sem pessoas de rosto (RF-03, RN-06, RN-22)",
+        "tags" : [ "Administração" ]
+      }
+    },
+    "/api/v1/admin/stalls/{publicId}/photos/{fileId}" : {
+      "delete" : {
+        "operationId" : "removePhoto",
+        "parameters" : [ {
+          "in" : "path",
+          "name" : "publicId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        }, {
+          "in" : "path",
+          "name" : "fileId",
+          "required" : true,
+          "schema" : {
+            "format" : "uuid",
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/AdminStallDetail"
+                }
+              }
+            },
+            "description" : "OK"
+          }
+        },
+        "summary" : "Tirar foto do box; o arquivo é apagado pela retenção (RN-13)",
         "tags" : [ "Administração" ]
       }
     },
@@ -4322,7 +4714,7 @@
     },
     "/api/v1/markets/{slug}/stalls" : {
       "get" : {
-        "operationId" : "stalls",
+        "operationId" : "stalls_1",
         "parameters" : [ {
           "in" : "path",
           "name" : "slug",
@@ -5038,7 +5430,7 @@
     },
     "/api/v1/moderation/submissions/{publicId}" : {
       "get" : {
-        "operationId" : "detail_1",
+        "operationId" : "detail_2",
         "parameters" : [ {
           "in" : "path",
           "name" : "publicId",
@@ -5453,7 +5845,7 @@
     },
     "/api/v1/tasks/{publicId}" : {
       "get" : {
-        "operationId" : "detail",
+        "operationId" : "detail_1",
         "parameters" : [ {
           "in" : "path",
           "name" : "publicId",

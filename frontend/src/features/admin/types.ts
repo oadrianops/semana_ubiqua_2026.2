@@ -2,6 +2,7 @@
 import type {
   ChangeSet,
   Money,
+  OfferingView,
   OpeningHours,
   Page,
   PriceUnit,
@@ -148,6 +149,7 @@ export interface AdminMarket {
   version: number;
   translations: Record<string, { description: string | null; howToGetThere: string | null }>;
   sectors: AdminSector[];
+  coverThumbUrl: string | null;
 }
 
 export interface AdminStall {
@@ -165,6 +167,24 @@ export interface AdminStall {
   consentRecordedAt: string | null;
   lastVerifiedAt: string | null;
   version: number;
+  /** Box fictício da demonstração (ADR-0018). */
+  demo: boolean;
+  instagram: string | null;
+  photoThumbUrl: string | null;
+}
+
+/** Foto do box no painel: a principal ou da galeria (RF-03). */
+export interface AdminPhoto {
+  fileId: string;
+  url: string;
+  thumbUrl: string;
+  main: boolean;
+}
+
+export interface AdminStallDetail {
+  stall: AdminStall;
+  offerings: OfferingView[];
+  photos: AdminPhoto[];
 }
 
 export interface AdminUser {

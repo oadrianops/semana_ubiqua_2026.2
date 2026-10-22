@@ -16,7 +16,8 @@ import {
 import { Button } from '../../../shared/ui/Button';
 import { ErrorState, LoadingRows, OfflineState } from '../../../shared/ui/States';
 import { useLang, useMarket, useMarketStalls, useStoredSnapshot } from '../../public-api';
-import { SavedDataNotice, Verified } from '../../shared/board';
+import { DemoTag, SavedDataNotice, Verified } from '../../shared/board';
+import { prefersLightImages } from '../../../shared/offline/network';
 import { OpeningHoursList } from '../OpeningHoursList';
 
 const MapView = lazy(() => import('../../../shared/map/MapView'));
@@ -81,6 +82,7 @@ export function MarketPage() {
         lastVerifiedAt: s.lastVerifiedAt,
         outdated: s.outdated,
         offeringCount: s.offerings.length,
+        demo: s.demo ?? false,
       }));
   }, [stalls.data, stored, sector]);
 
@@ -139,6 +141,8 @@ export function MarketPage() {
           {fromSnapshot && stored && <SavedDataNotice savedAt={stored.savedAt} />}
         </header>
 
+        {detail.coverUrl && <MarketCover url={detail.coverUrl} name={detail.name} />}
+
         <section aria-labelledby="sectors" className="grid gap-2">
           <h2 id="sectors" className="sr-only">
             {t('market.sectors')}
@@ -188,7 +192,8 @@ export function MarketPage() {
                     <span className="font-semibold">
                       {s.name ?? t('stall.fallbackName', { code: s.code })}
                     </span>
-                    <span className="flex flex-wrap gap-x-3 text-sm text-support">
+                    <span className="flex flex-wrap items-center gap-x-3 text-sm text-support">
+                      {s.demo && <DemoTag />}
                       {s.sector && <span>{s.sector.name}</span>}
                       <span>{t('market.productsCount', { count: s.offeringCount })}</span>
                       <Verified
@@ -297,5 +302,25 @@ function SectorChip({
       {label}
       <span className={cn('tabular text-sm', active ? 'text-on-brand' : 'text-support')}>{count}</span>
     </button>
+  );
+}
+
+/** Foto real da feira (14.6): miniatura com rede ruim ou economia de dados; nunca atrasa a lista de boxes. */
+function MarketCover({ url, name }: { url: string; name: string }) {
+  const { t } = useTranslation('public');
+  const thumb = `${url}?variant=thumb`;
+  const light = prefersLightImages();
+  return (
+    <img
+      src={light ? thumb : url}
+      srcSet={light ? undefined : `${thumb} 400w, ${url} 1600w`}
+      sizes="(min-width: 1024px) 720px, 100vw"
+      width={1600}
+      height={900}
+      loading="lazy"
+      decoding="async"
+      alt={t('market.coverAlt', { name })}
+      className="aspect-[16/9] w-full rounded-[var(--radius-panel)] bg-soft object-cover"
+    />
   );
 }

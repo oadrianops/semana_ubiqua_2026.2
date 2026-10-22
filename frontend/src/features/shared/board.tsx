@@ -7,6 +7,16 @@ import { daysSince, formatDayMonth, formatMoney, formatTime } from '../../shared
 import { isSnapshotStale } from '../../shared/offline/snapshots';
 import { PriceRow } from '../../shared/ui/PriceRow';
 
+/** Marca discreta de box fictício da demonstração (ADR-0018): quem usa o app sabe que aquele preço não vale. */
+export function DemoTag() {
+  const { t } = useTranslation();
+  return (
+    <span className="inline-flex items-center rounded-full bg-soft px-2 text-sm text-support">
+      {t('demoTag')}
+    </span>
+  );
+}
+
 /** "verificado há N dias" (RN-12, P3). */
 export function Verified({ at, className }: { at: string | null | undefined; className?: string }) {
   const { t } = useTranslation();
@@ -110,8 +120,9 @@ export function MarketBoard({ hits, headingLevel = 3 }: { hits: MarketHits; head
                 }
                 muted={stall.availability === 'OUT_OF_STOCK'}
                 sub={
-                  <span className="flex flex-wrap gap-x-3 gap-y-0.5">
+                  <span className="flex flex-wrap items-center gap-x-3 gap-y-0.5">
                     {stall.name && <span className="font-semibold text-ink sm:hidden">{stall.name}</span>}
+                    {stall.demo && <DemoTag />}
                     {stall.sector && <span>{stall.sector}</span>}
                     <AvailabilityNote availability={stall.availability} />
                     <Verified at={stall.lastVerifiedAt} />

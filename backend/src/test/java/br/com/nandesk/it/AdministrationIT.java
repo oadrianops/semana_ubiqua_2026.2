@@ -204,6 +204,115 @@ class AdministrationIT extends IntegrationTest {
 
     @Test
     @Tag("RF-29")
+    @DisplayName("RF-29 RF-03 RN-13: box conferido em campo é cadastrado no painel com ofertas, fotos e Instagram;"
+            + " revogado, as fotos ficam para a retenção")
+    void fieldStallFromPanel() {
+        Api mod = fx().moderator();
+        String code = "c" + (System.nanoTime() % 100000);
+        Map<String, Object> body = new java.util.HashMap<>();
+        body.put("marketSlug", "feira-da-25");
+        body.put("sectorSlug", "roupas-e-armarinho");
+        body.put("code", code);
+        body.put("vendorName", "Feirante de teste");
+        body.put("showVendorName", true);
+        body.put("consentMethod", "SIGNED_FORM");
+        body.put("instagram", "https://www.instagram.com/Box.De_Teste/?igsh=abc");
+        JsonNode created = mod.post("/api/v1/admin/stalls", body).expect(201).json();
+        String id = created.path("stall").path("publicId").asString();
+        assertThat(created.path("stall").path("instagram").asString()).isEqualTo("box.de_teste");
+        assertThat(created.path("stall").path("demo").asBoolean()).isFalse();
+        assertThat(mod.post("/api/v1/admin/stalls", body).code()).isEqualTo("VALIDATION_ERROR");
+        body.put("code", code + "x");
+        body.put("instagram", "não é perfil");
+        assertThat(mod.post("/api/v1/admin/stalls", body).code()).isEqualTo("VALIDATION_ERROR");
+
+        mod.put(
+                        "/api/v1/admin/stalls/" + id + "/offerings/tomate",
+                        Map.of("price", "15", "priceUnit", "KG", "availability", "AVAILABLE"))
+                .expect(200);
+        JsonNode withOffering = mod.put(
+                        "/api/v1/admin/stalls/" + id + "/offerings/abacaxi",
+                        Map.of("priceUnit", "UNIT", "availability", "AVAILABLE"))
+                .expect(200)
+                .json();
+        assertThat(withOffering.path("offerings").size()).isEqualTo(2);
+        assertThat(mod.put(
+                                "/api/v1/admin/stalls/" + id + "/offerings/tomate",
+                                Map.of("price", "abc", "priceUnit", "KG", "availability", "AVAILABLE"))
+                        .code())
+                .isEqualTo("VALIDATION_ERROR");
+        mod.delete("/api/v1/admin/stalls/" + id + "/offerings/abacaxi").expect(200);
+
+        mod.upload("/api/v1/admin/stalls/" + id + "/photos?main=true", Fixtures.png(Color.ORANGE), "image/png", "x")
+                .expect(201);
+        JsonNode photos = mod.upload(
+                        "/api/v1/admin/stalls/" + id + "/photos", Fixtures.png(Color.GREEN), "image/png", "y")
+                .expect(201)
+                .json()
+                .path("photos");
+        assertThat(photos.size()).isEqualTo(2);
+        assertThat(photos.get(0).path("main").asBoolean()).isTrue();
+
+        JsonNode pub = api.get("/api/v1/stalls/" + id).expect(200).json();
+        assertThat(pub.path("vendorName").asString()).isEqualTo("Feirante de teste");
+        assertThat(pub.path("instagram").asString()).isEqualTo("box.de_teste");
+        assertThat(pub.path("demo").asBoolean()).isFalse();
+        assertThat(pub.path("photoUrl").asString()).startsWith("/api/v1/files/");
+        assertThat(pub.path("gallery").size()).isEqualTo(1);
+        assertThat(pub.path("offerings").get(0).path("price").path("amount").asString())
+                .isEqualTo("15.00");
+        String galleryUrl = pub.path("gallery").get(0).path("thumbUrl").asString();
+        api.get(galleryUrl).expect(200);
+        JsonNode found = api.get("/api/v1/search?q=tomate&market=feira-da-25")
+                .expect(200)
+                .json();
+        assertThat(found.toString()).contains(code);
+
+        String galleryFile = photos.get(1).path("fileId").asString();
+        JsonNode afterRemoval = mod.delete("/api/v1/admin/stalls/" + id + "/photos/" + galleryFile)
+                .expect(200)
+                .json();
+        assertThat(afterRemoval.path("photos").size()).isEqualTo(1);
+
+        mod.upload("/api/v1/admin/stalls/" + id + "/photos", Fixtures.png(Color.BLUE), "image/png", "z")
+                .expect(201);
+        mod.post("/api/v1/admin/stalls/" + id + "/consent/revoke", null).expect(200);
+        api.get("/api/v1/stalls/" + id).expect(404);
+
+        JsonNode market = mod.upload(
+                        "/api/v1/admin/markets/feira-da-25/cover", Fixtures.png(Color.CYAN), "image/png", "w")
+                .expect(200)
+                .json();
+        assertThat(market.path("coverThumbUrl").asString()).startsWith("/api/v1/files/");
+        JsonNode markets = api.get("/api/v1/markets").expect(200).json();
+        assertThat(markets.toString()).contains("coverUrl");
+    }
+
+    @Test
+    @Tag("RF-29")
+    @DisplayName("ADR-0018: os boxes do seed aparecem marcados como exemplo na vitrine, na busca e no snapshot")
+    void seedStallsAreMarkedAsDemo() {
+        JsonNode result = api.get("/api/v1/search?q=castanha").expect(200).json();
+        JsonNode stall = result.path("items")
+                .get(0)
+                .path("markets")
+                .get(0)
+                .path("stalls")
+                .get(0);
+        assertThat(stall.path("demo").asBoolean()).isTrue();
+        assertThat(api.get("/api/v1/stalls/" + stall.path("publicId").asString())
+                        .expect(200)
+                        .json()
+                        .path("demo")
+                        .asBoolean())
+                .isTrue();
+        JsonNode snapshot =
+                api.get("/api/v1/markets/ver-o-peso/snapshot").expect(200).json();
+        assertThat(snapshot.path("stalls").get(0).path("demo").asBoolean()).isTrue();
+    }
+
+    @Test
+    @Tag("RF-29")
     @DisplayName("RF-29 RF-30 RF-31: feiras, setores, boxes, categorias e produtos com controle de versão")
     void catalogAndMarkets() {
         Api admin = fx().admin();

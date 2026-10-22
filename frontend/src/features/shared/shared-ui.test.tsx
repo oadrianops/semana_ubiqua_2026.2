@@ -40,6 +40,7 @@ describe('RN-12 quadro de preços', () => {
           priceUnit: 'LITER',
           availability: 'AVAILABLE',
           lastVerifiedAt: daysAgo(3),
+          demo: false,
         },
         {
           publicId: 'b',
@@ -50,6 +51,7 @@ describe('RN-12 quadro de preços', () => {
           priceUnit: null,
           availability: 'OUT_OF_STOCK',
           lastVerifiedAt: daysAgo(0),
+          demo: false,
         },
         {
           publicId: 'c',
@@ -60,6 +62,7 @@ describe('RN-12 quadro de preços', () => {
           priceUnit: null,
           availability: 'SEASONAL',
           lastVerifiedAt: daysAgo(1),
+          demo: true,
         },
       ],
     };
@@ -74,6 +77,9 @@ describe('RN-12 quadro de preços', () => {
     expect(screen.getByText('da safra')).toBeInTheDocument();
     expect(screen.getByText('preço no box')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: /Box 142/ })).toHaveAttribute('href', '/stalls/a');
+    // ADR-0018: só o box fictício leva a marca de exemplo.
+    expect(screen.getAllByText('Exemplo')).toHaveLength(1);
+    expect(screen.getByRole('link', { name: /Box 10/ })).toHaveTextContent('Exemplo');
   });
 
   it('RN-12 RN-28 avisa dados antigos e cópia salva há mais de 7 dias', () => {
@@ -162,6 +168,9 @@ describe('RF-07 avisar informação errada', () => {
     lastVerifiedAt: null,
     outdated: false,
     version: 1,
+    demo: false,
+    instagram: null,
+    gallery: [],
     offerings: [
       {
         publicId: 'o',

@@ -140,7 +140,10 @@ public class DemoSeedService {
                         true,
                         translations,
                         null));
-                for (SeedData.SeedSector s : m.sectors()) {
+            }
+            // Setores novos do seed também chegam a bancos já carregados; os existentes ficam como o painel deixou.
+            for (SeedData.SeedSector s : m.sectors()) {
+                if (marketQuery.sector(market, s.slug()).isEmpty()) {
                     marketAdmin.upsertSector(m.slug(), new SectorCommand(s.slug(), s.sort(), true, s.names()));
                 }
             }
@@ -183,7 +186,9 @@ public class DemoSeedService {
         List<Stall> createdStale = new ArrayList<>();
         for (SeedStall s : data.stalls()) {
             Market market = markets.get(s.market());
-            if (stallAdmin.findByMarketAndCode(market, s.code()).isPresent()) {
+            Stall existing = stallAdmin.findByMarketAndCode(market, s.code()).orElse(null);
+            if (existing != null) {
+                stallAdmin.markDemo(existing, s.isDemo());
                 continue;
             }
             Sector sector = marketQuery.sector(market, s.sector()).orElse(null);
@@ -195,7 +200,9 @@ public class DemoSeedService {
                     s.vendorName(),
                     Boolean.TRUE.equals(s.showVendorName()),
                     ConsentMethod.valueOf(s.consentMethod()),
-                    admin);
+                    admin,
+                    null,
+                    s.isDemo());
             Instant verifiedAt = now.minus(Duration.ofDays(s.verifiedDaysAgo()));
             for (SeedOffering o : s.offerings()) {
                 stallAdmin.putOffering(

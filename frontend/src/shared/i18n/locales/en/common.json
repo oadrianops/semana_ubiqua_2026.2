@@ -20,7 +20,7 @@
     "profile": "Profile",
     "collaborator": "Collaborator navigation"
   },
-  "demoNotice": "Demo data: stalls and prices are fictional, only for trying the app.",
+  "demoNotice": "Demo data: stalls marked as example have made-up names and prices.",
   "footer": {
     "tagline": "Which market and which stall has what you are looking for at Ver-o-Peso and Feira da 25. Data kept by the community and reviewed before it goes live.",
     "contact": "Contact:",
@@ -121,5 +121,6 @@
     "placeholder": "E.g. Brazil nut, jambu",
     "submit": "Search",
     "suggestions": "Suggestions"
-  }
+  },
+  "demoTag": "Example"
 }
