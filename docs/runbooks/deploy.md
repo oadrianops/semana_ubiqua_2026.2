@@ -87,7 +87,29 @@ modo avião e conferir que a feira e a busca continuam funcionando, com a data d
 - **Desligar a demonstração:** `APP_SEED_ENABLED=false` e `WEB_DEMO_NOTICE=false`. O seed não apaga dados; para
   começar do zero com dados reais, restaure um banco vazio (ver `restore.md`).
 
-## 7. Backup
+## 7. Lançar um levantamento de campo (boxes reais)
+
+Boxes conferidos na feira entram pelo painel (Painel → Boxes → Cadastrar box) ou, para um lote, pelo script
+`infra/scripts/importar-campo.mjs` (ADR-0018). Nomes, fotos e termos **nunca** entram no repositório: o manifesto e as
+fotos ficam em `file/campo/` (ignorado pelo Git) e vão direto para o volume `uploads`.
+
+1. Fotos: sem pessoas de rosto (recorte ou desfoque antes), JPEG ou PNG até 5 MB; o servidor recodifica e tira o EXIF.
+2. Manifesto: feira (endereço, posição, horários, textos, setores novos e capa) e boxes (número, setor, nome do box,
+   nome do feirante só se o termo autorizar, forma do consentimento, Instagram, ofertas e fotos).
+3. Simule e depois rode, com a senha da administração em variável de ambiente (nunca na linha de comando):
+
+   ```bash
+   export NANDESK_ADMIN_PASSWORD='...'   # a de SEED_ADMIN_PASSWORD no Coolify
+   node infra/scripts/importar-campo.mjs file/campo/feira-da-25.json --api https://nandesk.com.br --dry-run
+   node infra/scripts/importar-campo.mjs file/campo/feira-da-25.json --api https://nandesk.com.br
+   unset NANDESK_ADMIN_PASSWORD
+   ```
+
+   Pode rodar de novo: box existente não é recriado, ofertas são regravadas e fotos só sobem para box sem foto.
+4. Se o feirante mudar de ideia: Painel → Boxes → o box → "Revogar consentimento e tirar do ar". O box sai na hora e
+   as fotos são apagadas pela retenção em até 30 dias (RN-13).
+
+## 8. Backup
 
 Os volumes `db-data` e `uploads` persistem entre deploys. Backup diário pelo cron do VPS, na pasta onde o Coolify
 clonou o projeto (veja o caminho em **Configuration → General**), ou num diretório com uma cópia do repositório:
@@ -98,7 +120,7 @@ clonou o projeto (veja o caminho em **Configuration → General**), ou num diret
 
 Retenção: 7 diários e 4 semanais. Copie a pasta `backups/` para fora do servidor. A restauração está em `restore.md`.
 
-## 8. Problemas comuns
+## 9. Problemas comuns
 
 | Sintoma | Causa provável | O que fazer |
 |---|---|---|

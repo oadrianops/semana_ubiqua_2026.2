@@ -21,3 +21,4 @@ Formato MADR resumido (Anexo D da especificação). Situação "aceito" salvo in
 | [ADR-0015](0015-orcamentos-de-performance.md) | Orçamentos de performance e perfil "Feira lotada" como critério de aceite no CI | aceito |
 | [ADR-0016](0016-direcao-de-design.md) | Direção de design "Lousa de preços" | aceito |
 | [ADR-0017](0017-modo-demonstracao.md) | Modo de demonstração: seed em produção, conta verificada sem SMTP e aviso de dados fictícios | aceito |
+| [ADR-0018](0018-dados-de-campo-fora-do-repositorio.md) | Dados de campo fora do repositório e boxes reais ao lado dos de exemplo | aceito |
