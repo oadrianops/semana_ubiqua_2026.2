@@ -35,7 +35,7 @@ export function StallPhotos({
         key={current.thumbUrl}
         src={full ?? current.thumbUrl}
         srcSet={full ? `${current.thumbUrl} 400w, ${full} 1600w` : undefined}
-        sizes="(min-width: 768px) 640px, 100vw"
+        sizes="(min-width: 768px) 352px, 100vw"
         width={1600}
         height={1200}
         loading={selected === 0 ? 'eager' : 'lazy'}

@@ -98,99 +98,97 @@ export function StallPage() {
   }
 
   const sorted = [...data.offerings].sort(sortOfferings);
+  const photos = [
+    ...(data.photoThumbUrl ? [{ url: data.photoUrl, thumbUrl: data.photoThumbUrl }] : []),
+    ...data.gallery.map((p) => ({ url: p.url, thumbUrl: p.thumbUrl })),
+  ];
 
   return (
-    <div className="safe-x mx-auto grid max-w-[var(--content-max)] gap-6 py-6 md:grid-cols-[1fr_18rem]">
-      <article className="grid content-start gap-5">
-        <header className="grid gap-2">
-          <p className="text-sm">
-            <Link to={`/markets/${data.market.slug}`} className="inline-flex min-h-11 items-center">
-              {data.market.name}
-            </Link>
-            {data.sector && <span className="text-support"> · {data.sector.name}</span>}
+    // Celular: título, fotos, lousa e aviso, nessa ordem. Tela larga: a lousa à esquerda; fotos e aviso ao lado.
+    <div className="safe-x mx-auto grid max-w-[var(--content-max)] gap-6 py-6 md:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] md:items-start md:gap-x-10">
+      <header className="grid gap-2 md:col-start-1 md:row-start-1">
+        <p className="text-sm">
+          <Link to={`/markets/${data.market.slug}`} className="inline-flex min-h-11 items-center">
+            {data.market.name}
+          </Link>
+          {data.sector && <span className="text-support"> · {data.sector.name}</span>}
+        </p>
+        <h1 className="flex flex-wrap items-baseline gap-x-3 text-3xl">
+          <span className="display tabular text-brand">{t('stall.code', { code: data.code })}</span>
+          {data.name && <span>{data.name}</span>}
+        </h1>
+        {data.vendorName && <p className="text-support">{t('stall.vendor', { name: data.vendorName })}</p>}
+        {data.instagram && (
+          <p>
+            <a
+              href={`https://www.instagram.com/${data.instagram}/`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center gap-1.5 font-semibold"
+            >
+              <AtSign size={18} aria-hidden="true" />
+              {t('stall.instagram', { handle: data.instagram })}
+              <ExternalLink size={14} aria-hidden="true" />
+              <span className="sr-only">{t('stall.newTab')}</span>
+            </a>
           </p>
-          <h1 className="flex flex-wrap items-baseline gap-x-3 text-3xl">
-            <span className="display tabular text-brand">{t('stall.code', { code: data.code })}</span>
-            <span>{data.name ?? t('stall.fallbackName', { code: data.code })}</span>
-          </h1>
-          {data.vendorName && <p className="text-support">{t('stall.vendor', { name: data.vendorName })}</p>}
-          {data.instagram && (
-            <p>
-              <a
-                href={`https://www.instagram.com/${data.instagram}/`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-11 items-center gap-1.5 font-semibold"
-              >
-                <AtSign size={18} aria-hidden="true" />
-                {t('stall.instagram', { handle: data.instagram })}
-                <ExternalLink size={14} aria-hidden="true" />
-                <span className="sr-only">{t('stall.newTab')}</span>
-              </a>
-            </p>
-          )}
-          {data.demo && (
-            <p className="flex flex-wrap items-center gap-2 text-sm text-support">
-              <DemoTag />
-              <span>{t('stall.demoNote')}</span>
-            </p>
-          )}
-          <p className="text-sm text-support">
-            {t('stall.verifiedLabel')}{' '}
-            <Verified at={data.lastVerifiedAt} className="font-semibold text-ink" />
+        )}
+        {data.demo && (
+          <p className="flex flex-wrap items-center gap-2 text-sm text-support">
+            <DemoTag />
+            <span>{t('stall.demoNote')}</span>
           </p>
-          {offline && <SavedDataNotice savedAt={offline.savedAt} />}
-        </header>
-
+        )}
+        <p className="text-sm text-support">
+          {t('stall.verifiedLabel')} <Verified at={data.lastVerifiedAt} className="font-semibold text-ink" />
+        </p>
+        {offline && <SavedDataNotice savedAt={offline.savedAt} />}
         {data.outdated && <OutdatedWarning />}
+      </header>
 
-        <StallPhotos
-          photos={[
-            ...(data.photoThumbUrl ? [{ url: data.photoUrl, thumbUrl: data.photoThumbUrl }] : []),
-            ...data.gallery.map((p) => ({ url: p.url, thumbUrl: p.thumbUrl })),
-          ]}
-          code={data.code}
-          market={data.market.name}
-        />
+      {photos.length > 0 && (
+        <div className="md:col-start-2 md:row-span-2 md:row-start-1">
+          <StallPhotos photos={photos} code={data.code} market={data.market.name} />
+        </div>
+      )}
 
-        <section aria-labelledby="board-title" className="grid">
-          <h2
-            id="board-title"
-            className="flex items-baseline justify-between border-b-2 border-ink pb-1 text-xl"
-          >
-            {t('stall.boardTitle')}
-            <span className="text-sm font-normal text-support">
-              <span className="sr-only">, </span>
-              {t('stall.productsCount', { count: data.offerings.length })}
-            </span>
-          </h2>
-          <ul className="divide-y divide-line">
-            {sorted.map((o) => (
-              <li key={o.publicId}>
-                <PriceRow
-                  fresh={fresh.has(o.publicId)}
-                  label={
-                    <Link to={`/products/${o.productSlug}`} className="text-ink no-underline hover:underline">
-                      {o.productName}
-                    </Link>
-                  }
-                  value={<PriceValue price={o.price} unit={o.priceUnit} availability={o.availability} />}
-                  muted={o.availability === 'OUT_OF_STOCK'}
-                  sub={
-                    <span className="flex flex-wrap gap-x-3">
-                      <AvailabilityNote availability={o.availability} />
-                      <Verified at={o.lastVerifiedAt} />
-                    </span>
-                  }
-                />
-              </li>
-            ))}
-          </ul>
-          <p className="pt-3 text-sm text-support">{t('stall.priceNote')}</p>
-        </section>
-      </article>
+      <section aria-labelledby="board-title" className="grid md:col-start-1 md:row-span-2 md:row-start-2">
+        <h2
+          id="board-title"
+          className="flex items-baseline justify-between border-b-2 border-ink pb-1 text-xl"
+        >
+          {t('stall.boardTitle')}
+          <span className="text-sm font-normal text-support">
+            <span className="sr-only">, </span>
+            {t('stall.productsCount', { count: data.offerings.length })}
+          </span>
+        </h2>
+        <ul className="divide-y divide-line">
+          {sorted.map((o) => (
+            <li key={o.publicId}>
+              <PriceRow
+                fresh={fresh.has(o.publicId)}
+                label={
+                  <Link to={`/products/${o.productSlug}`} className="text-ink no-underline hover:underline">
+                    {o.productName}
+                  </Link>
+                }
+                value={<PriceValue price={o.price} unit={o.priceUnit} availability={o.availability} />}
+                muted={o.availability === 'OUT_OF_STOCK'}
+                sub={
+                  <span className="flex flex-wrap gap-x-3">
+                    <AvailabilityNote availability={o.availability} />
+                    <Verified at={o.lastVerifiedAt} />
+                  </span>
+                }
+              />
+            </li>
+          ))}
+        </ul>
+        <p className="pt-3 text-sm text-support">{t('stall.priceNote')}</p>
+      </section>
 
-      <aside className="grid content-start gap-3">
+      <aside className="grid content-start gap-3 md:col-start-2 md:row-start-3">
         <div className="grid gap-2 rounded-[var(--radius-panel)] bg-soft p-4">
           <p className="font-semibold text-ink">{t('stall.wrongTitle')}</p>
           <p className="text-sm text-support">{t('stall.wrongBody')}</p>

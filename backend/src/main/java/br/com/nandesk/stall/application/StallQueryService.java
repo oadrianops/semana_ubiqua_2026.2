@@ -108,7 +108,9 @@ public class StallQueryService {
         Page<Stall> result = stalls.findPublicByMarket(
                 market.getId(),
                 sector == null ? null : sector.getId(),
-                PageRequest.of(Math.max(0, page), PageResponse.clampSize(size), Sort.by("code")));
+                // Boxes conferidos em campo antes dos de exemplo da demonstração (ADR-0018).
+                PageRequest.of(
+                        Math.max(0, page), PageResponse.clampSize(size), Sort.by("demo").and(Sort.by("code"))));
         Map<Long, Integer> counts = offeringCounts(result.getContent());
         return PageResponse.of(result, s -> summary(s, locale, counts.getOrDefault(s.getId(), 0)));
     }
