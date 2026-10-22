@@ -136,6 +136,19 @@ test.describe('J4 idiomas', () => {
       }
       await context.close();
     });
+
+    test(`RNF-02 RF-06 em ${locale} nada rola para o lado num celular de 360 px`, async ({ browser }) => {
+      // O cabeçalho em inglês ("Markets", "Sign in") empurrava a página 5 px além da tela em 390 px.
+      const context = await browser.newContext({ locale, viewport: { width: 360, height: 740 } });
+      const page = await context.newPage();
+      for (const path of ['/', '/markets', '/markets/ver-o-peso', '/search?q=jambu', '/login']) {
+        await page.goto(path);
+        await page.waitForLoadState('networkidle');
+        const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+        expect(scrollWidth, `${locale} ${path}`).toBeLessThanOrEqual(360);
+      }
+      await context.close();
+    });
   }
 });
 
