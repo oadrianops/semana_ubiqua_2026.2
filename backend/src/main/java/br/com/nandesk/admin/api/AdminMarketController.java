@@ -71,6 +71,8 @@ public class AdminMarketController {
             @NotNull StallStatus status,
             @Size(max = 80) String instagram,
             Boolean demo,
+            java.math.BigDecimal latitude,
+            java.math.BigDecimal longitude,
             int version) {}
 
     public record ConsentRequest(@NotNull ConsentMethod method) {}
@@ -141,6 +143,8 @@ public class AdminMarketController {
                 body.status(),
                 body.instagram(),
                 body.demo(),
+                body.latitude(),
+                body.longitude(),
                 body.version());
         audit.record(
                 actor().getId(),

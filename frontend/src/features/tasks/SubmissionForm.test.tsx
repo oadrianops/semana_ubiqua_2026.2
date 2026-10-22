@@ -279,6 +279,8 @@ describe('RF-18 RNF-03 envio pela fila', () => {
     demo: false,
     instagram: null,
     gallery: [],
+    latitude: null,
+    longitude: null,
     offerings: [
       {
         publicId: 'o1',

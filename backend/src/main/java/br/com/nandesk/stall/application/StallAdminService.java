@@ -88,7 +88,9 @@ public class StallAdminService {
             int version,
             boolean demo,
             String instagram,
-            String photoThumbUrl) {}
+            String photoThumbUrl,
+            BigDecimal latitude,
+            BigDecimal longitude) {}
 
     /** Foto no painel: a principal (capa do box) ou da galeria, com o id para remover. */
     public record AdminPhoto(UUID fileId, String url, String thumbUrl, boolean main) {}
@@ -210,6 +212,8 @@ public class StallAdminService {
             StallStatus status,
             String instagram,
             Boolean demo,
+            BigDecimal latitude,
+            BigDecimal longitude,
             int expectedVersion) {
         Stall stall = stalls.findByPublicId(publicId).orElseThrow(BusinessException::notFound);
         if (stall.getVersion() != expectedVersion) {
@@ -225,6 +229,9 @@ public class StallAdminService {
         }
         if (demo != null) {
             stall.setDemo(demo);
+        }
+        if (latitude != null || longitude != null) {
+            applyLocation(stall, latitude, longitude);
         }
         boolean wasPublic = stall.isPublic();
         stall.setStatus(status);
@@ -402,6 +409,26 @@ public class StallAdminService {
         return new AdminPhoto(file.getPublicId(), file.url(false), file.url(true), main);
     }
 
+    /**
+     * Posição do box (RF-34, "como chegar ao box"): latitude e longitude juntas, dentro dos limites do planeta; o
+     * check-in continua pela cerca da feira (RN-05).
+     */
+    @Transactional
+    public void setLocation(UUID publicId, BigDecimal latitude, BigDecimal longitude) {
+        applyLocation(require(publicId), latitude, longitude);
+    }
+
+    private static void applyLocation(Stall stall, BigDecimal latitude, BigDecimal longitude) {
+        if (latitude == null
+                || longitude == null
+                || latitude.abs().compareTo(BigDecimal.valueOf(90)) > 0
+                || longitude.abs().compareTo(BigDecimal.valueOf(180)) > 0) {
+            throw new BusinessException(ErrorCode.VALIDATION_ERROR);
+        }
+        stall.setLatitude(latitude.setScale(6, java.math.RoundingMode.HALF_EVEN));
+        stall.setLongitude(longitude.setScale(6, java.math.RoundingMode.HALF_EVEN));
+    }
+
     private static String instagram(String raw) {
         try {
             return InstagramHandle.normalize(raw).orElse(null);
@@ -475,6 +502,8 @@ public class StallAdminService {
                 s.getVersion(),
                 s.isDemo(),
                 s.getInstagramHandle(),
-                s.getPhoto() == null ? null : s.getPhoto().url(true));
+                s.getPhoto() == null ? null : s.getPhoto().url(true),
+                s.getLatitude(),
+                s.getLongitude());
     }
 }

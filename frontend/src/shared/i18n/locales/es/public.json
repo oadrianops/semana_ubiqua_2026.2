@@ -1,7 +1,7 @@
 {
   "home": {
     "title": "Mira en qué puesto venden lo que buscas.",
-    "lead": "Ver-o-Peso y Feira da 25: producto, feria, puesto y precio de referencia, con la fecha de la última verificación.",
+    "lead": "Ver-o-Peso, Feira da 25 y otras ferias de Belém: producto, feria, puesto y precio de referencia, con la fecha de la última verificación.",
     "quickLabel": "Más buscados:",
     "quick": {
       "jambu": "jambú",
@@ -44,7 +44,7 @@
   },
   "markets": {
     "title": "Ferias",
-    "lead": "Las ferias de la primera versión de NANDESK. Toca una feria para ver sectores y puestos.",
+    "lead": "Las ferias de Belém en NANDESK. Toca una feria para ver sectores y puestos.",
     "viewMode": "Ver como",
     "list": "Lista",
     "map": "Mapa",
@@ -97,7 +97,8 @@
     "newTab": "(se abre en otra pestaña)",
     "photosTitle": "Fotos del puesto",
     "photoShow": "Ver foto {{n}} de {{total}}",
-    "galleryAlt": "Foto {{n}} de {{total}} del puesto {{code}} — {{market}}"
+    "galleryAlt": "Foto {{n}} de {{total}} del puesto {{code}} — {{market}}",
+    "directions": "Cómo llegar al puesto"
   },
   "report": {
     "title": "Avisar sobre el puesto {{code}}",

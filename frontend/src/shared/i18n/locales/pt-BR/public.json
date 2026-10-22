@@ -1,7 +1,7 @@
 {
   "home": {
     "title": "Veja em qual box vende o que você procura.",
-    "lead": "Ver-o-Peso e Feira da 25: produto, feira, box e preço de referência, com a data da última conferência.",
+    "lead": "Ver-o-Peso, Feira da 25 e outras feiras de Belém: produto, feira, box e preço de referência, com a data da última conferência.",
     "quickLabel": "Procurados:",
     "quick": {
       "jambu": "jambu",
@@ -44,7 +44,7 @@
   },
   "markets": {
     "title": "Feiras",
-    "lead": "As feiras da primeira versão da NANDESK. Toque numa feira para ver setores e boxes.",
+    "lead": "As feiras de Belém na NANDESK. Toque numa feira para ver setores e boxes.",
     "viewMode": "Ver como",
     "list": "Lista",
     "map": "Mapa",
@@ -97,7 +97,8 @@
     "newTab": "(abre em outra aba)",
     "photosTitle": "Fotos do box",
     "photoShow": "Ver foto {{n}} de {{total}}",
-    "galleryAlt": "Foto {{n}} de {{total}} do box {{code}} — {{market}}"
+    "galleryAlt": "Foto {{n}} de {{total}} do box {{code}} — {{market}}",
+    "directions": "Como chegar ao box"
   },
   "report": {
     "title": "Avisar sobre o box {{code}}",

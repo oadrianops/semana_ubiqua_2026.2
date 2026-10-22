@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router';
 import { api, request } from '../../../shared/api/http';
 import type { Availability, OfferingView, PriceUnit } from '../../../shared/api/types';
+import { parsePosition } from '../../../shared/lib/geo';
 import { compressImage } from '../../../shared/lib/image-compress';
 import { Button } from '../../../shared/ui/Button';
 import { CheckboxField, SelectField, TextField } from '../../../shared/ui/Field';
@@ -88,6 +89,11 @@ function StallDataForm({ stall }: { stall: AdminStall }) {
   const [status, setStatus] = useState(stall.status);
   const [instagram, setInstagram] = useState(stall.instagram ? `@${stall.instagram}` : '');
   const [demo, setDemo] = useState(stall.demo);
+  const [location, setLocation] = useState(
+    stall.latitude !== null && stall.longitude !== null ? `${stall.latitude}, ${stall.longitude}` : '',
+  );
+  const position = parsePosition(location);
+  const locationError = location.trim() && !position ? t('stalls.locationError') : null;
   const save = useMutation({
     mutationFn: () =>
       api.patch(
@@ -100,6 +106,8 @@ function StallDataForm({ stall }: { stall: AdminStall }) {
           status,
           instagram: instagram.trim(),
           demo,
+          latitude: position?.[0] ?? null,
+          longitude: position?.[1] ?? null,
           version: stall.version,
         },
         { retries: 0 },
@@ -109,7 +117,7 @@ function StallDataForm({ stall }: { stall: AdminStall }) {
   });
   const submit = (e: FormEvent) => {
     e.preventDefault();
-    save.mutate();
+    if (!locationError) save.mutate();
   };
   return (
     <section aria-labelledby="stall-data" className="grid max-w-[var(--measure)] gap-4">
@@ -160,6 +168,15 @@ function StallDataForm({ stall }: { stall: AdminStall }) {
           <option value="ACTIVE">{t('stalls.status.ACTIVE')}</option>
           <option value="INACTIVE">{t('stalls.status.INACTIVE')}</option>
         </SelectField>
+        <TextField
+          label={t('stalls.location')}
+          hint={t('stalls.locationHint')}
+          error={locationError}
+          value={location}
+          inputMode="decimal"
+          autoComplete="off"
+          onChange={(e) => setLocation(e.target.value)}
+        />
         <div className="grid gap-1">
           <CheckboxField
             label={t('stalls.demo')}

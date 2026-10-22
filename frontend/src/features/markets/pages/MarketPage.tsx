@@ -141,7 +141,14 @@ export function MarketPage() {
           {fromSnapshot && stored && <SavedDataNotice savedAt={stored.savedAt} />}
         </header>
 
-        {detail.coverUrl && <MarketCover url={detail.coverUrl} name={detail.name} />}
+        {detail.coverUrl && (
+          <MarketCover
+            url={detail.coverUrl}
+            name={detail.name}
+            credit={detail.coverCredit}
+            creditUrl={detail.coverCreditUrl}
+          />
+        )}
 
         <section aria-labelledby="sectors" className="grid gap-2">
           <h2 id="sectors" className="sr-only">
@@ -306,21 +313,44 @@ function SectorChip({
 }
 
 /** Foto real da feira (14.6): miniatura com rede ruim ou economia de dados; nunca atrasa a lista de boxes. */
-function MarketCover({ url, name }: { url: string; name: string }) {
+function MarketCover({
+  url,
+  name,
+  credit,
+  creditUrl,
+}: {
+  url: string;
+  name: string;
+  credit: string | null;
+  creditUrl: string | null;
+}) {
   const { t } = useTranslation('public');
   const thumb = `${url}?variant=thumb`;
   const light = prefersLightImages();
   return (
-    <img
-      src={light ? thumb : url}
-      srcSet={light ? undefined : `${thumb} 400w, ${url} 1600w`}
-      sizes="(min-width: 1024px) 720px, 100vw"
-      width={1600}
-      height={900}
-      loading="lazy"
-      decoding="async"
-      alt={t('market.coverAlt', { name })}
-      className="aspect-[16/9] w-full rounded-[var(--radius-panel)] bg-soft object-cover"
-    />
+    <figure className="grid gap-1.5">
+      <img
+        src={light ? thumb : url}
+        srcSet={light ? undefined : `${thumb} 400w, ${url} 1600w`}
+        sizes="(min-width: 1024px) 720px, 100vw"
+        width={1600}
+        height={900}
+        loading="lazy"
+        decoding="async"
+        alt={t('market.coverAlt', { name })}
+        className="aspect-[16/9] w-full rounded-[var(--radius-panel)] bg-soft object-cover"
+      />
+      {credit && (
+        <figcaption className="text-sm text-support">
+          {creditUrl ? (
+            <a href={creditUrl} target="_blank" rel="noopener noreferrer" className="text-support">
+              {credit}
+            </a>
+          ) : (
+            credit
+          )}
+        </figcaption>
+      )}
+    </figure>
   );
 }

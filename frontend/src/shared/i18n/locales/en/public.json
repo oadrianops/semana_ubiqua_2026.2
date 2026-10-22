@@ -1,7 +1,7 @@
 {
   "home": {
     "title": "See which stall sells what you are looking for.",
-    "lead": "Ver-o-Peso and Feira da 25: product, market, stall and reference price, with the date it was last checked.",
+    "lead": "Ver-o-Peso, Feira da 25 and other Belém markets: product, market, stall and reference price, with the date it was last checked.",
     "quickLabel": "Popular:",
     "quick": {
       "jambu": "jambu",
@@ -44,7 +44,7 @@
   },
   "markets": {
     "title": "Markets",
-    "lead": "The markets in the first version of NANDESK. Tap a market to see its sections and stalls.",
+    "lead": "Belém's markets on NANDESK. Tap a market to see its sections and stalls.",
     "viewMode": "View as",
     "list": "List",
     "map": "Map",
@@ -97,7 +97,8 @@
     "newTab": "(opens in a new tab)",
     "photosTitle": "Stall photos",
     "photoShow": "Show photo {{n}} of {{total}}",
-    "galleryAlt": "Photo {{n}} of {{total}}, stall {{code}} — {{market}}"
+    "galleryAlt": "Photo {{n}} of {{total}}, stall {{code}} — {{market}}",
+    "directions": "Directions to the stall"
   },
   "report": {
     "title": "Report about stall {{code}}",

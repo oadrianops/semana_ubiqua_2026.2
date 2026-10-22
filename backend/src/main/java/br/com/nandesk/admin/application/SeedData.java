@@ -30,7 +30,10 @@ public record SeedData(
             int radius,
             List<OpeningHours> openingHours,
             Map<String, SeedTranslation> translations,
-            List<SeedSector> sectors) {}
+            List<SeedSector> sectors,
+            String cover,
+            String coverCredit,
+            String coverCreditUrl) {}
 
     public record SeedCategory(String slug, String icon, int sort, Map<String, String> names) {}
 

@@ -34,6 +34,8 @@ const detail: AdminStallDetail = {
     demo: false,
     instagram: 'fruteira',
     photoThumbUrl: '/api/v1/files/f1?variant=thumb',
+    latitude: null,
+    longitude: null,
   },
   offerings: [],
   photos: [{ fileId: 'f1', url: '/api/v1/files/f1', thumbUrl: '/api/v1/files/f1?variant=thumb', main: true }],

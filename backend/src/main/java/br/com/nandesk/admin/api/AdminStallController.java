@@ -94,7 +94,9 @@ public class AdminStallController {
             @Size(max = 120) String vendorName,
             boolean showVendorName,
             @NotNull ConsentMethod consentMethod,
-            @Size(max = 80) String instagram) {}
+            @Size(max = 80) String instagram,
+            BigDecimal latitude,
+            BigDecimal longitude) {}
 
     /** Preço de referência como string decimal (RN-24); vazio = sem preço (RN-15). */
     public record OfferingRequest(
@@ -121,6 +123,9 @@ public class AdminStallController {
                 actor,
                 body.instagram(),
                 false);
+        if (body.latitude() != null || body.longitude() != null) {
+            stalls.setLocation(stall.getPublicId(), body.latitude(), body.longitude());
+        }
         audit.record(
                 actor.getId(),
                 "STALL_CREATED",
@@ -187,10 +192,23 @@ public class AdminStallController {
 
     @Operation(summary = "Trocar a foto de capa da feira (RF-01, RF-29)")
     @PostMapping(value = "/api/v1/admin/markets/{slug}/cover", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    ResponseEntity<AdminMarketView> cover(@PathVariable String slug, @RequestPart("file") MultipartFile file)
+    ResponseEntity<AdminMarketView> cover(
+            @PathVariable String slug,
+            @RequestPart("file") MultipartFile file,
+            @RequestParam(required = false) String credit,
+            @RequestParam(required = false) String creditUrl)
             throws IOException {
         markets.require(slug);
-        AdminMarketView view = markets.setCover(slug, files.storePublic("markets", file.getBytes()), clock.instant());
+        if ((credit != null && credit.length() > 255)
+                || (creditUrl != null && !creditUrl.isBlank() && !creditUrl.matches("^https?://\\S{1,490}$"))) {
+            throw new BusinessException(ErrorCode.VALIDATION_ERROR);
+        }
+        AdminMarketView view = markets.setCover(
+                slug,
+                files.storePublic("markets", file.getBytes()),
+                blankToNull(credit),
+                creditUrl == null || creditUrl.isBlank() ? null : creditUrl.trim(),
+                clock.instant());
         audit.record(actor().getId(), "MARKET_COVER_SAVED", "market", slug);
         return ResponseEntity.ok(view);
     }

@@ -1,6 +1,7 @@
 import { useFreshRows } from '../../../shared/offline/seen';
 import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
-import { AtSign, ExternalLink, Flag } from 'lucide-react';
+import { AtSign, ExternalLink, Flag, Navigation } from 'lucide-react';
+import { directionsUrl } from '../../../shared/config';
 import { lazy, Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams } from 'react-router';
@@ -68,6 +69,8 @@ export function StallPage() {
           demo: found.demo ?? false,
           instagram: null,
           gallery: [],
+          latitude: null,
+          longitude: null,
         };
         return { detail, savedAt: s.savedAt };
       }
@@ -142,6 +145,20 @@ export function StallPage() {
         <p className="text-sm text-support">
           {t('stall.verifiedLabel')} <Verified at={data.lastVerifiedAt} className="font-semibold text-ink" />
         </p>
+        {data.latitude !== null && data.longitude !== null && (
+          <p>
+            <a
+              href={directionsUrl(data.latitude, data.longitude)}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex min-h-11 items-center gap-2 rounded-[var(--radius-control)] bg-brand px-4 font-semibold text-on-brand no-underline"
+            >
+              <Navigation size={18} aria-hidden="true" />
+              {t('stall.directions')}
+              <span className="sr-only">{t('stall.newTab')}</span>
+            </a>
+          </p>
+        )}
         {offline && <SavedDataNotice savedAt={offline.savedAt} />}
         {data.outdated && <OutdatedWarning />}
       </header>

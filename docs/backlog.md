@@ -21,6 +21,7 @@ Situação em 2026-10-21 (v1.1.0). Detalhe por requisito em `docs/rastreabilidad
 | Validação no Ver-o-Peso e mais boxes reais | Só a Feira da 25 foi visitada (2 boxes) | Nova ida com o roteiro e o termo |
 | Preço por lote ("3 por R$ 10,00") | Achado da validação; hoje só preço por unidade de venda (RN-15) | Campo de quantidade na oferta, com mudança de requisito |
 | Posição da Feira da 25 por GPS | Hoje tirada do OpenStreetMap | Conferir na feira e ajustar no painel → Feiras |
+| Conferir as sete feiras novas | Endereço, posição e horário de fontes públicas que divergem; boxes de exemplo | Visita com o roteiro; fotos próprias para as capas |
 | Revisão jurídica dos textos legais | Rascunhos | Revisão antes de lançamento público |
 | Revisão das traduções por falantes | Traduções feitas pela equipe | Pedir revisão EN/ES |
 | Matriz de aparelhos reais (15.5) | Sem os aparelhos durante o hackathon | Android de entrada, intermediário e iPhone |

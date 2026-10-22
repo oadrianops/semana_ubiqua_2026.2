@@ -1,4 +1,20 @@
-import { Cherry, Droplet, Fish, Leaf, Nut, Shapes, Soup, Tag, UtensilsCrossed, Wheat } from 'lucide-react';
+import {
+  Beef,
+  Carrot,
+  Cherry,
+  Droplet,
+  Fish,
+  Flower2,
+  Leaf,
+  Nut,
+  Scissors,
+  Shapes,
+  Shirt,
+  Soup,
+  Tag,
+  UtensilsCrossed,
+  Wheat,
+} from 'lucide-react';
 
 /** Ícone da categoria (lucide, traço 2 px), sempre acompanhado do nome (14.1); sem caixa em volta. */
 const ICONS = {
@@ -11,6 +27,11 @@ const ICONS = {
   utensils: UtensilsCrossed,
   fish: Fish,
   shapes: Shapes,
+  carrot: Carrot,
+  shirt: Shirt,
+  scissors: Scissors,
+  beef: Beef,
+  flower: Flower2,
 } as const;
 
 export function CategoryIcon({ name, size = 22 }: { name: string; size?: number }) {

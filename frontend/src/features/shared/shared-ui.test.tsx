@@ -171,6 +171,8 @@ describe('RF-07 avisar informação errada', () => {
     demo: false,
     instagram: null,
     gallery: [],
+    latitude: null,
+    longitude: null,
     offerings: [
       {
         publicId: 'o',

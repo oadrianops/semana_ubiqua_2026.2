@@ -207,7 +207,10 @@
     "coverNone": "No cover photo yet.",
     "coverUpload": "Upload cover photo",
     "coverSaved": "Cover updated.",
-    "coverAlt": "Current cover: {{name}}"
+    "coverAlt": "Current cover: {{name}}",
+    "coverCredit": "Photo credit (optional)",
+    "coverCreditHint": "Required when someone else took the photo: author and license, like \"Photo: Jane, CC BY-SA 4.0\".",
+    "coverCreditUrl": "Photo source link (optional)"
   },
   "stalls": {
     "title": "Stalls",
@@ -281,7 +284,10 @@
     "uploading": "Uploading photo…",
     "dataTitle": "Stall details",
     "codeRequired": "Enter the stall number.",
-    "productRequired": "Pick a product from the list."
+    "productRequired": "Pick a product from the list.",
+    "location": "Stall position (latitude, longitude)",
+    "locationHint": "Optional. Paste from a map, for example: -1.444643, -48.467934. Shows the \"Directions to the stall\" button.",
+    "locationError": "Use latitude and longitude separated by a comma, like -1.444643, -48.467934."
   },
   "catalog": {
     "title": "Catalog",

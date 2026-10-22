@@ -56,7 +56,8 @@ class PublicCatalogIT extends IntegrationTest {
                 out.add(Arguments.of(slug, terms, stalls));
             }
         }
-        assertThat(out).hasSize(26);
+        // CA-1 pede ao menos 20; o seed tem os 26 da especificação e os vistos nas feiras depois.
+        assertThat(out).hasSizeGreaterThanOrEqualTo(26);
         return out.stream();
     }
 
@@ -121,9 +122,13 @@ class PublicCatalogIT extends IntegrationTest {
     @DisplayName("RF-01 RF-03 RF-04 RF-05: feiras, setores, boxes, produto e categorias")
     void storefront() {
         JsonNode markets = api.get("/api/v1/markets").expect(200).json();
-        assertThat(markets.size()).isEqualTo(2);
+        assertThat(markets.size()).isEqualTo(9);
         JsonNode vop = api.get("/api/v1/markets/ver-o-peso").expect(200).json();
         assertThat(vop.path("sectors").size()).isPositive();
+        // ADR-0019: capa com licença livre sempre com o crédito do autor.
+        assertThat(vop.path("coverUrl").asString()).startsWith("/api/v1/files/");
+        assertThat(vop.path("coverCredit").asString()).contains("Wikimedia Commons");
+        api.get(vop.path("coverUrl").asString() + "?variant=thumb").expect(200);
         JsonNode stalls =
                 api.get("/api/v1/markets/ver-o-peso/stalls?size=50").expect(200).json();
         assertThat(stalls.path("totalItems").asInt()).isEqualTo(8);
@@ -133,7 +138,7 @@ class PublicCatalogIT extends IntegrationTest {
         assertThat(stall.path("lastVerifiedAt").isNull()).isFalse();
 
         JsonNode categories = api.get("/api/v1/categories").expect(200).json();
-        assertThat(categories.size()).isEqualTo(12);
+        assertThat(categories.size()).isEqualTo(14);
         String category = categories.get(0).path("slug").asString();
         api.get("/api/v1/categories/" + category + "/products").expect(200);
 

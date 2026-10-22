@@ -16,6 +16,8 @@ function snapshot(): MarketSnapshot {
       openingHours: [],
       publishedStalls: 2,
       coverUrl: null,
+      coverCredit: null,
+      coverCreditUrl: null,
       dataVersion: 3,
       sectors: [],
     },

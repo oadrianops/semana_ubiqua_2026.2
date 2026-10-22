@@ -20,7 +20,9 @@ public final class MarketViews {
             List<OpeningHours> openingHours,
             long publishedStalls,
             String coverUrl,
-            String coverThumbUrl) {}
+            String coverThumbUrl,
+            String coverCredit,
+            String coverCreditUrl) {}
 
     public record SectorView(String slug, String name, long stallCount) {}
 
@@ -37,7 +39,9 @@ public final class MarketViews {
             long publishedStalls,
             String coverUrl,
             long dataVersion,
-            List<SectorView> sectors) {}
+            List<SectorView> sectors,
+            String coverCredit,
+            String coverCreditUrl) {}
 
     public record MarketRef(String slug, String name) {}
 }

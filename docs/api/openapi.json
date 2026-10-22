@@ -55,6 +55,12 @@
           "address" : {
             "type" : "string"
           },
+          "coverCredit" : {
+            "type" : "string"
+          },
+          "coverCreditUrl" : {
+            "type" : "string"
+          },
           "coverThumbUrl" : {
             "type" : "string"
           },
@@ -248,6 +254,12 @@
           "lastVerifiedAt" : {
             "format" : "date-time",
             "type" : "string"
+          },
+          "latitude" : {
+            "type" : "number"
+          },
+          "longitude" : {
+            "type" : "number"
           },
           "marketSlug" : {
             "type" : "string"
@@ -852,6 +864,12 @@
           "address" : {
             "type" : "string"
           },
+          "coverCredit" : {
+            "type" : "string"
+          },
+          "coverCreditUrl" : {
+            "type" : "string"
+          },
           "coverUrl" : {
             "type" : "string"
           },
@@ -986,6 +1004,12 @@
       "MarketSummary" : {
         "properties" : {
           "address" : {
+            "type" : "string"
+          },
+          "coverCredit" : {
+            "type" : "string"
+          },
+          "coverCreditUrl" : {
             "type" : "string"
           },
           "coverThumbUrl" : {
@@ -2472,6 +2496,12 @@
             "minLength" : 0,
             "type" : "string"
           },
+          "latitude" : {
+            "type" : "number"
+          },
+          "longitude" : {
+            "type" : "number"
+          },
           "marketSlug" : {
             "minLength" : 1,
             "type" : "string"
@@ -2511,6 +2541,12 @@
           "lastVerifiedAt" : {
             "format" : "date-time",
             "type" : "string"
+          },
+          "latitude" : {
+            "type" : "number"
+          },
+          "longitude" : {
+            "type" : "number"
           },
           "market" : {
             "$ref" : "#/components/schemas/MarketRef"
@@ -2657,6 +2693,12 @@
             "maxLength" : 80,
             "minLength" : 0,
             "type" : "string"
+          },
+          "latitude" : {
+            "type" : "number"
+          },
+          "longitude" : {
+            "type" : "number"
           },
           "sectorSlug" : {
             "type" : "string"
@@ -3503,6 +3545,20 @@
           "in" : "path",
           "name" : "slug",
           "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "credit",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "in" : "query",
+          "name" : "creditUrl",
+          "required" : false,
           "schema" : {
             "type" : "string"
           }

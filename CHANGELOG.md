@@ -1,7 +1,7 @@
 # Changelog
 
 Formato [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e versões [SemVer](https://semver.org/lang/pt-BR/).
-IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.2.0).
+IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.3.0).
 
 ## [Não lançado]
 
@@ -10,6 +10,16 @@ IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.2.0).
 - Mapa interno da feira com a posição dos boxes (RF-34, Could).
 - Conferir por GPS a posição da Feira da 25.
 - Matriz de aparelhos reais, Lighthouse CI e k6 contra a produção.
+
+## [1.2.0] - 2026-10-22 — nove feiras e posição dos boxes
+
+### Adicionado
+- Sete feiras de Belém na demonstração (Cremação, Pedreira, Bandeira Branca, Icoaraci, Benguí, Mercado de São Brás e
+  Praça da República), com endereço, posição e horário pesquisados e 21 boxes de exemplo (ADR-0019).
+- Capas do Ver-o-Peso e do Mercado de São Brás do Wikimedia Commons, com o crédito do autor e da licença abaixo da
+  foto; o painel aceita o crédito ao enviar uma capa (`markets.cover_credit`, V6).
+- Posição do box no painel e botão "Como chegar ao box" (boxes 67 e 2 e 3 da Feira da 25).
+- Categorias "Carnes e frangos" e "Plantas e flores"; ícones das categorias novas.
 
 ## [1.1.0] - 2026-10-21 — primeiros boxes reais da Feira da 25
 
@@ -76,6 +86,7 @@ IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.2.0).
   local não liberava a origem `http://localhost:8081` no login, as tabelas que rolam para o lado no celular não
   recebiam foco pelo teclado e o Trivy apontava para uma versão retirada.
 
-[Não lançado]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.1.0...HEAD
+[Não lançado]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/oadrianops/semana_ubiqua_2026.2/releases/tag/v1.0.0

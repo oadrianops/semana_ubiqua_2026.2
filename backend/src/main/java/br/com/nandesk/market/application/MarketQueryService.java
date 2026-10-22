@@ -59,7 +59,9 @@ public class MarketQueryService {
                 publicStalls,
                 market.getCover() == null ? null : market.getCover().url(false),
                 market.getDataVersion(),
-                sectorViews);
+                sectorViews,
+                market.getCoverCredit(),
+                market.getCoverCreditUrl());
     }
 
     /** Feira ativa pelo slug; inexistente ou inativa responde "não encontrado". */
@@ -102,6 +104,8 @@ public class MarketQueryService {
                 m.getOpeningHours(),
                 stalls,
                 m.getCover() == null ? null : m.getCover().url(false),
-                m.getCover() == null ? null : m.getCover().url(true));
+                m.getCover() == null ? null : m.getCover().url(true),
+                m.getCoverCredit(),
+                m.getCoverCreditUrl());
     }
 }

@@ -22,3 +22,4 @@ Formato MADR resumido (Anexo D da especificação). Situação "aceito" salvo in
 | [ADR-0016](0016-direcao-de-design.md) | Direção de design "Lousa de preços" | aceito |
 | [ADR-0017](0017-modo-demonstracao.md) | Modo de demonstração: seed em produção, conta verificada sem SMTP e aviso de dados fictícios | aceito |
 | [ADR-0018](0018-dados-de-campo-fora-do-repositorio.md) | Dados de campo fora do repositório e boxes reais ao lado dos de exemplo | aceito |
+| [ADR-0019](0019-feiras-de-demonstracao-e-fotos-com-licenca-livre.md) | Mais feiras na demonstração e fotos de capa só com licença livre | aceito |

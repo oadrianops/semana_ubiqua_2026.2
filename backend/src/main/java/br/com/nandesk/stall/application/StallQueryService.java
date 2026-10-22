@@ -89,7 +89,9 @@ public class StallQueryService {
                 views,
                 stall.isDemo(),
                 stall.getInstagramHandle(),
-                gallery(stall));
+                gallery(stall),
+                stall.getLatitude(),
+                stall.getLongitude());
     }
 
     /** Galeria pública do box, na ordem definida no painel (RF-03). */
