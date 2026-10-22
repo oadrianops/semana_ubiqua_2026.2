@@ -87,6 +87,14 @@ public class Stall extends AuditableEntity {
     @Column(name = "last_verified_at")
     private Instant lastVerifiedAt;
 
+    /** Box fictício da demonstração (ADR-0017, ADR-0018): a interface o marca como exemplo. */
+    @Column(name = "demo", nullable = false)
+    private boolean demo;
+
+    /** Perfil do Instagram já normalizado ({@link InstagramHandle}), quando o feirante quis mostrar. */
+    @Column(name = "instagram_handle", length = 30)
+    private String instagramHandle;
+
     @OneToMany(mappedBy = "stall", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<StallOffering> offerings = new ArrayList<>();
 

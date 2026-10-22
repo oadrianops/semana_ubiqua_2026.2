@@ -69,6 +69,8 @@ public class AdminMarketController {
             boolean showVendorName,
             String sectorSlug,
             @NotNull StallStatus status,
+            @Size(max = 80) String instagram,
+            Boolean demo,
             int version) {}
 
     public record ConsentRequest(@NotNull ConsentMethod method) {}
@@ -137,6 +139,8 @@ public class AdminMarketController {
                 body.showVendorName(),
                 sector,
                 body.status(),
+                body.instagram(),
+                body.demo(),
                 body.version());
         audit.record(
                 actor().getId(),

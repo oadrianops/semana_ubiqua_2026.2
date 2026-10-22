@@ -1,5 +1,6 @@
 package br.com.nandesk.market.application;
 
+import br.com.nandesk.file.domain.StoredFile;
 import br.com.nandesk.market.domain.Market;
 import br.com.nandesk.market.domain.OpeningHours;
 import br.com.nandesk.market.domain.Sector;
@@ -11,6 +12,7 @@ import br.com.nandesk.shared.web.BusinessException;
 import br.com.nandesk.shared.web.ErrorCode;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import org.springframework.cache.annotation.CacheEvict;
@@ -57,7 +59,8 @@ public class MarketAdminService {
             long dataVersion,
             int version,
             Map<String, Translation> translations,
-            List<AdminSectorView> sectors) {}
+            List<AdminSectorView> sectors,
+            String coverThumbUrl) {}
 
     public record AdminSectorView(String slug, int sortOrder, boolean active, Map<String, String> names) {}
 
@@ -108,6 +111,34 @@ public class MarketAdminService {
         return saved;
     }
 
+    /**
+     * Capa da feira enviada pelo painel (RF-01, RF-29). A anterior fica para a retenção apagar, já que nenhuma
+     * outra tela a usa.
+     */
+    @Transactional
+    @CacheEvict(cacheNames = CacheConfig.SNAPSHOT, allEntries = true)
+    public AdminMarketView setCover(String slug, StoredFile cover, Instant now) {
+        Market market = require(slug);
+        StoredFile previous = market.getCover();
+        if (previous != null) {
+            previous.setDeleteAfter(now);
+        }
+        market.setCover(cover);
+        market.bumpDataVersion();
+        return view(market);
+    }
+
+    /** Seed: capa só quando a feira ainda não tem uma (não sobrescreve a escolhida no painel). */
+    @Transactional
+    @CacheEvict(cacheNames = CacheConfig.SNAPSHOT, allEntries = true)
+    public void coverIfMissing(String slug, java.util.function.Supplier<StoredFile> cover) {
+        Market market = require(slug);
+        if (market.getCover() == null) {
+            market.setCover(cover.get());
+            market.bumpDataVersion();
+        }
+    }
+
     @Transactional(readOnly = true)
     public List<AdminMarketView> listAll() {
         return markets.findAllByOrderByNameAsc().stream().map(this::view).toList();
@@ -147,7 +178,8 @@ public class MarketAdminService {
                 m.getDataVersion(),
                 m.getVersion(),
                 translations,
-                sectorViews);
+                sectorViews,
+                m.getCover() == null ? null : m.getCover().url(true));
     }
 
     private static BigDecimal scale(BigDecimal value) {

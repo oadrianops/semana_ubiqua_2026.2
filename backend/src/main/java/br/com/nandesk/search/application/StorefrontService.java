@@ -142,6 +142,7 @@ public class StorefrontService {
                 s.getPhoto() == null ? null : s.getPhoto().url(true),
                 s.getLastVerifiedAt(),
                 stalls.freshness().isOutdated(s.getLastVerifiedAt(), clock.instant()),
-                offeringViews);
+                offeringViews,
+                s.isDemo());
     }
 }

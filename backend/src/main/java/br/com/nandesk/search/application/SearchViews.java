@@ -22,7 +22,8 @@ public final class SearchViews {
             MoneyDto price,
             PriceUnit priceUnit,
             Availability availability,
-            Instant lastVerifiedAt) {}
+            Instant lastVerifiedAt,
+            boolean demo) {}
 
     public record MarketHits(MarketRef market, List<StallHit> stalls) {}
 

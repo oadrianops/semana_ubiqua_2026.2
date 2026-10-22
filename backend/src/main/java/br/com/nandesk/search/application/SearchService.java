@@ -173,7 +173,8 @@ public class SearchService {
                 MoneyDto.brl(o.getReferencePrice()),
                 o.getPriceUnit(),
                 o.getAvailability(),
-                o.getLastVerifiedAt());
+                o.getLastVerifiedAt(),
+                s.isDemo());
     }
 
     /** "Você quis dizer…?" (Could): até 3 termos com Jaro-Winkler ≥ 0,88. */

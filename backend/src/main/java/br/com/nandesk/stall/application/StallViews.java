@@ -15,6 +15,9 @@ public final class StallViews {
 
     public record SectorRef(String slug, String name) {}
 
+    /** Foto da galeria do box com as duas variantes (miniatura de 400 px e completa). */
+    public record PhotoView(String url, String thumbUrl, int width, int height) {}
+
     public record StallSummary(
             UUID publicId,
             String code,
@@ -23,7 +26,8 @@ public final class StallViews {
             String photoThumbUrl,
             Instant lastVerifiedAt,
             boolean outdated,
-            int offeringCount) {}
+            int offeringCount,
+            boolean demo) {}
 
     public record OfferingView(
             UUID publicId,
@@ -48,5 +52,8 @@ public final class StallViews {
             Instant lastVerifiedAt,
             boolean outdated,
             int version,
-            List<OfferingView> offerings) {}
+            List<OfferingView> offerings,
+            boolean demo,
+            String instagram,
+            List<PhotoView> gallery) {}
 }
