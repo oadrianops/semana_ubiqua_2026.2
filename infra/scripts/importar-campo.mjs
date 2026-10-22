@@ -10,7 +10,7 @@
 //     [--api https://nandesk.com.br] [--email admin@nandesk.local] [--dry-run]
 //
 // Pode rodar de novo: o box que já existe não é recriado, as ofertas e a posição são regravadas e as fotos só
-// sobem quando o box ainda não tem nenhuma.
+// sobem quando o box ainda não tem nenhuma. A capa só é trocada com "replaceCover": true no manifesto.
 import { readFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
@@ -106,7 +106,7 @@ for (const sector of m.sectors ?? []) {
     });
   }
 }
-if (m.cover && !market.coverThumbUrl) {
+if (m.cover && (!market.coverThumbUrl || m.replaceCover)) {
   step(`Capa da feira: ${m.cover}`);
   const credit = new URLSearchParams();
   if (m.coverCredit) credit.set('credit', m.coverCredit);
@@ -118,7 +118,7 @@ if (m.cover && !market.coverThumbUrl) {
 
 // 3. Boxes
 const summary = [];
-for (const s of manifest.stalls) {
+for (const s of manifest.stalls ?? []) {
   const found = await call('GET', `/admin/stalls?market=${m.slug}&q=${encodeURIComponent(s.code)}&size=100`);
   let stall = found.items.find((x) => x.code === s.code);
   if (!stall) {
