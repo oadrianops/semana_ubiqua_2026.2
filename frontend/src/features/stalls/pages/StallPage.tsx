@@ -103,7 +103,8 @@ export function StallPage() {
   const sorted = [...data.offerings].sort(sortOfferings);
   const photos = [
     ...(data.photoThumbUrl ? [{ url: data.photoUrl, thumbUrl: data.photoThumbUrl }] : []),
-    ...data.gallery.map((p) => ({ url: p.url, thumbUrl: p.thumbUrl })),
+    // `?? []`: box guardado no aparelho por uma versão anterior pode não ter a galeria.
+    ...(data.gallery ?? []).map((p) => ({ url: p.url, thumbUrl: p.thumbUrl })),
   ];
 
   return (
@@ -145,7 +146,7 @@ export function StallPage() {
         <p className="text-sm text-support">
           {t('stall.verifiedLabel')} <Verified at={data.lastVerifiedAt} className="font-semibold text-ink" />
         </p>
-        {data.latitude !== null && data.longitude !== null && (
+        {data.latitude != null && data.longitude != null && (
           <p>
             <a
               href={directionsUrl(data.latitude, data.longitude)}

@@ -2,6 +2,7 @@ import { Bell, ClipboardList, HandCoins, History, Search, Store, UserRound } fro
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, NavLink, Outlet, useLocation } from 'react-router';
+import { RouteErrorBoundary } from '../shared/ui/RouteErrorBoundary';
 import { useAuth } from '../shared/auth/AuthProvider';
 import { useUnreadCount } from '../features/notifications/useNotifications';
 import { cn } from '../shared/lib/cn';
@@ -98,7 +99,9 @@ export function AppLayout() {
         tabIndex={-1}
         className={cn('flex-1 outline-none', isCollaborator && 'pb-20 md:pb-0')}
       >
-        <Outlet />
+        <RouteErrorBoundary key={location.pathname}>
+          <Outlet />
+        </RouteErrorBoundary>
       </main>
       <PwaPrompts />
       <footer className="border-t border-line bg-soft">

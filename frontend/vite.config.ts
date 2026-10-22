@@ -30,6 +30,8 @@ function preloadTextFont(): Plugin {
 
 // PWA com injectManifest por causa do push (ADR-0011, seção 9.13); manifesto conforme RF-35.
 export default defineConfig({
+  // Muda a cada build: descarta no aparelho o cache de consultas da versão anterior (App.tsx).
+  define: { __BUILD_ID__: JSON.stringify(process.env.GITHUB_SHA ?? new Date().toISOString()) },
   plugins: [
     react(),
     tailwindcss(),
