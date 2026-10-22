@@ -231,7 +231,7 @@ public class StallAdminService {
             stall.setDemo(demo);
         }
         if (latitude != null || longitude != null) {
-            setLocation(stall, latitude, longitude);
+            applyLocation(stall, latitude, longitude);
         }
         boolean wasPublic = stall.isPublic();
         stall.setStatus(status);
@@ -414,7 +414,11 @@ public class StallAdminService {
      * check-in continua pela cerca da feira (RN-05).
      */
     @Transactional
-    public void setLocation(Stall stall, BigDecimal latitude, BigDecimal longitude) {
+    public void setLocation(UUID publicId, BigDecimal latitude, BigDecimal longitude) {
+        applyLocation(require(publicId), latitude, longitude);
+    }
+
+    private static void applyLocation(Stall stall, BigDecimal latitude, BigDecimal longitude) {
         if (latitude == null
                 || longitude == null
                 || latitude.abs().compareTo(BigDecimal.valueOf(90)) > 0

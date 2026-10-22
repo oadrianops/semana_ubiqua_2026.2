@@ -124,7 +124,7 @@ public class AdminStallController {
                 body.instagram(),
                 false);
         if (body.latitude() != null || body.longitude() != null) {
-            stalls.setLocation(stall, body.latitude(), body.longitude());
+            stalls.setLocation(stall.getPublicId(), body.latitude(), body.longitude());
         }
         audit.record(
                 actor.getId(),

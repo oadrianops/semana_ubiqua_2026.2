@@ -1451,6 +1451,8 @@ export interface components {
         AdminMarketView: {
             active?: boolean;
             address?: string;
+            coverCredit?: string;
+            coverCreditUrl?: string;
             coverThumbUrl?: string;
             /** Format: int64 */
             dataVersion?: number;
@@ -1524,6 +1526,8 @@ export interface components {
             instagram?: string;
             /** Format: date-time */
             lastVerifiedAt?: string;
+            latitude?: number;
+            longitude?: number;
             marketSlug?: string;
             photoThumbUrl?: string;
             /** Format: uuid */
@@ -1758,6 +1762,8 @@ export interface components {
         };
         MarketDetail: {
             address?: string;
+            coverCredit?: string;
+            coverCreditUrl?: string;
             coverUrl?: string;
             /** Format: int64 */
             dataVersion?: number;
@@ -1803,6 +1809,8 @@ export interface components {
         };
         MarketSummary: {
             address?: string;
+            coverCredit?: string;
+            coverCreditUrl?: string;
             coverThumbUrl?: string;
             coverUrl?: string;
             description?: string;
@@ -2373,6 +2381,8 @@ export interface components {
             consentMethod: "VERBAL" | "SIGNED_FORM";
             displayName?: string;
             instagram?: string;
+            latitude?: number;
+            longitude?: number;
             marketSlug: string;
             sectorSlug?: string;
             showVendorName?: boolean;
@@ -2385,6 +2395,8 @@ export interface components {
             instagram?: string;
             /** Format: date-time */
             lastVerifiedAt?: string;
+            latitude?: number;
+            longitude?: number;
             market?: components["schemas"]["MarketRef"];
             name?: string;
             offerings?: components["schemas"]["OfferingView"][];
@@ -2440,6 +2452,8 @@ export interface components {
             demo?: boolean;
             displayName?: string;
             instagram?: string;
+            latitude?: number;
+            longitude?: number;
             sectorSlug?: string;
             showVendorName?: boolean;
             /** @enum {string} */
@@ -2917,7 +2931,10 @@ export interface operations {
     };
     cover: {
         parameters: {
-            query?: never;
+            query?: {
+                credit?: string;
+                creditUrl?: string;
+            };
             header?: never;
             path: {
                 slug: string;
