@@ -9,8 +9,8 @@
 //   NANDESK_ADMIN_PASSWORD='...' node infra/scripts/importar-campo.mjs file/campo/feira-da-25.json \
 //     [--api https://nandesk.com.br] [--email admin@nandesk.local] [--dry-run]
 //
-// Pode rodar de novo: o box que já existe não é recriado, as ofertas são regravadas e as fotos só sobem quando
-// o box ainda não tem nenhuma.
+// Pode rodar de novo: o box que já existe não é recriado, as ofertas e a posição são regravadas e as fotos só
+// sobem quando o box ainda não tem nenhuma.
 import { readFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
@@ -108,7 +108,10 @@ for (const sector of m.sectors ?? []) {
 }
 if (m.cover && !market.coverThumbUrl) {
   step(`Capa da feira: ${m.cover}`);
-  if (!dry) await call('POST', `/admin/markets/${m.slug}/cover`, await photoForm(m.cover));
+  const credit = new URLSearchParams();
+  if (m.coverCredit) credit.set('credit', m.coverCredit);
+  if (m.coverCreditUrl) credit.set('creditUrl', m.coverCreditUrl);
+  if (!dry) await call('POST', `/admin/markets/${m.slug}/cover?${credit}`, await photoForm(m.cover));
 } else if (m.cover) {
   step('Capa da feira: já existe, mantida');
 }
@@ -148,7 +151,23 @@ for (const s of manifest.stalls) {
   }
   step(`Box ${s.code}: ${s.offerings?.length ?? 0} ofertas gravadas`);
 
-  const detail = await call('GET', `/admin/stalls/${stall.publicId}`);
+  let detail = await call('GET', `/admin/stalls/${stall.publicId}`);
+  const current = detail.stall;
+  if (s.latitude != null && s.longitude != null
+      && (current.latitude !== s.latitude || current.longitude !== s.longitude)) {
+    await call('PATCH', `/admin/stalls/${stall.publicId}`, {
+      displayName: current.displayName,
+      vendorName: current.vendorName,
+      showVendorName: current.showVendorName,
+      sectorSlug: current.sectorSlug,
+      status: current.status,
+      latitude: s.latitude,
+      longitude: s.longitude,
+      version: current.version,
+    });
+    step(`Box ${s.code}: posição ${s.latitude}, ${s.longitude}`);
+    detail = await call('GET', `/admin/stalls/${stall.publicId}`);
+  }
   if (detail.photos.length > 0) {
     step(`Box ${s.code}: já tem ${detail.photos.length} fotos, mantidas`);
   } else if (s.photos) {

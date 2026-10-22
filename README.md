@@ -2,7 +2,7 @@
   <img src="frontend/public/brand/svg/nandesk-logo.svg" alt="NANDESK" width="320" />
 </p>
 
-<p align="center"><strong>Em qual feira e em qual box encontrar o que você procura no Ver-o-Peso e na Feira da 25.</strong></p>
+<p align="center"><strong>Em qual feira e em qual box encontrar o que você procura nas feiras de Belém.</strong></p>
 
 <p align="center">
   <a href="https://nandesk.com.br">nandesk.com.br</a> ·
@@ -25,7 +25,9 @@ Hackathon Semana Ubíqua 2026.2 (UNAMA).
 
 > **Dados reais e de demonstração.** Os boxes 2 e 3 (uma fruteira) e 67 da Feira da 25 foram conferidos na feira em 21/10/2026, com
 > termo assinado pelos feirantes. Os demais boxes são fictícios, criados para a banca testar, e aparecem marcados
-> como **Exemplo**; o app avisa isso no topo de todas as páginas.
+> como **Exemplo**; o app avisa isso no topo de todas as páginas. Além do Ver-o-Peso e da Feira da 25, o mapa traz
+> mais sete feiras de Belém (Cremação, Pedreira, Bandeira Branca, Icoaraci, Benguí, Mercado de São Brás e Praça da
+> República) com endereço e horário pesquisados e boxes de exemplo.
 
 ## Objetivo
 
@@ -61,7 +63,8 @@ Em 21/10/2026 a equipe levou o app à Feira da 25 e cadastrou os dois primeiros 
 - Para cada produto: feiras, setores e boxes, com preço de referência e "verificado há N dias".
 - Página do box com fotos (principal e galeria), Instagram quando o feirante quis mostrar e marca "Exemplo" nos
   boxes fictícios.
-- Feiras com mapa (OpenStreetMap) e alternativa em lista, horários e "como chegar".
+- Nove feiras com mapa (OpenStreetMap) e alternativa em lista, horários, "como chegar" e capa com o crédito do autor.
+- "Como chegar ao box" quando a posição do box foi conferida em campo.
 - **Sem internet:** "Salvar para usar sem internet" guarda a feira no celular; a busca funciona offline e mostra
   a data dos dados.
 - "Informação errada?" para avisar sobre um box.
@@ -162,8 +165,10 @@ Deploy em produção no Coolify: [docs/runbooks/deploy.md](docs/runbooks/deploy.
   marcados como exemplo. O Ver-o-Peso ainda não teve visita de validação.
 - **Posição da Feira da 25** tirada do OpenStreetMap (entre a Tv. Antônio Baena e a Av. José Bonifácio), ainda não
   conferida por GPS na feira.
-- **Fotos** só dos dois boxes reais e da entrada da Feira da 25, sem pessoas de rosto. Não usamos banco de imagens
-  nem imagens geradas por IA.
+- **Fotos** só dos dois boxes reais e da entrada da Feira da 25 (sem pessoas de rosto) e duas capas do Wikimedia
+  Commons com licença livre e crédito ([créditos](docs/creditos-imagens.md)). Sem banco de imagens nem imagens geradas
+  por IA. Cinco feiras ainda não têm capa.
+- **Sete feiras novas** com endereço, posição e horário de fontes públicas que às vezes divergem; conferir em campo.
 - **Preço por lote** ("3 por R$ 10,00") ainda não é aceito: vale o preço da unidade (backlog).
 - **Comissões ilustrativas.** Não há parceiro financiador; o repasse é apenas registrado (sem pagamento online, por decisão de produto).
 - **Mapa interno da feira** (RF-34, Could) não foi feito; o mapa mostra as feiras.
