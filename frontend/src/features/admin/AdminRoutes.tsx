@@ -14,6 +14,7 @@ const SuggestionsPage = lazy(() => import('./pages/SuggestionsPage'));
 const TasksAdminPage = lazy(() => import('./pages/TasksAdminPage'));
 const MarketsAdminPage = lazy(() => import('./pages/MarketsAdminPage'));
 const StallsAdminPage = lazy(() => import('./pages/StallsAdminPage'));
+const StallEditorPage = lazy(() => import('./pages/StallEditorPage'));
 const CatalogAdminPage = lazy(() => import('./pages/CatalogAdminPage'));
 const FinancePage = lazy(() => import('./pages/FinancePage'));
 const UsersPage = lazy(() => import('./pages/UsersPage'));
@@ -90,6 +91,7 @@ export default function AdminRoutes() {
             <Route path="tasks" element={<TasksAdminPage />} />
             <Route path="markets" element={<MarketsAdminPage />} />
             <Route path="stalls" element={<StallsAdminPage />} />
+            <Route path="stalls/:publicId" element={<StallEditorPage />} />
             <Route path="catalog" element={<CatalogAdminPage />} />
             <Route path="finance" element={only(<FinancePage />)} />
             <Route path="users" element={only(<UsersPage />)} />

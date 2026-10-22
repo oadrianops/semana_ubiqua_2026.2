@@ -1,8 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { lazy, Suspense, useEffect, useState, type FormEvent } from 'react';
+import { ImagePlus } from 'lucide-react';
+import { lazy, Suspense, useEffect, useRef, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from '../../../shared/ui/toast';
-import { api } from '../../../shared/api/http';
+import { api, request } from '../../../shared/api/http';
+import { compressImage } from '../../../shared/lib/image-compress';
 import { formatNumber } from '../../../shared/lib/format';
 import { Button } from '../../../shared/ui/Button';
 import { CheckboxField, TextareaField, TextField } from '../../../shared/ui/Field';
@@ -14,7 +16,7 @@ const MapView = lazy(() => import('../../../shared/map/MapView'));
 
 /**
  * Feiras (RF-29): nome, endereço, posição e raio da cerca de check-in (RN-03), clicando no mapa ou digitando as
- * coordenadas (alternativa ao mapa — RNF-07). A Feira da 25 está com posição aproximada para conferir aqui.
+ * coordenadas (alternativa ao mapa — RNF-07), e a foto de capa.
  */
 export default function MarketsAdminPage() {
   const { t } = useTranslation('admin');
@@ -188,6 +190,7 @@ function MarketEditor({ market }: { market: AdminMarket }) {
         <p className="text-sm text-support">
           {t('markets.mapHint', { radius: formatNumber(radiusN || 0, i18n.language) })}
         </p>
+        <CoverSection market={market} />
         <section className="grid gap-2">
           <SectionTitle aside={t('markets.dataVersion', { version: market.dataVersion })}>
             {t('markets.sectors')}
@@ -205,5 +208,69 @@ function MarketEditor({ market }: { market: AdminMarket }) {
         </section>
       </div>
     </form>
+  );
+}
+
+/** Capa da feira (RF-01, RF-29): foto do lugar, sem pessoas de rosto; comprimida no aparelho antes de subir. */
+function CoverSection({ market }: { market: AdminMarket }) {
+  const { t } = useTranslation('admin');
+  const client = useQueryClient();
+  const input = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+
+  async function upload(file: File | undefined) {
+    if (!file) return;
+    setUploading(true);
+    try {
+      const form = new FormData();
+      form.append('file', await compressImage(file), 'capa.jpg');
+      await request<AdminMarket>(`/admin/markets/${market.slug}/cover`, { method: 'POST', form, retries: 0 });
+      toast.success(t('markets.coverSaved'));
+      void client.invalidateQueries({ queryKey: ['admin', 'markets'] });
+      void client.invalidateQueries({ queryKey: ['public'] });
+    } catch (e) {
+      toast.error(errorMessage(e, t('markets.error')));
+    } finally {
+      setUploading(false);
+      if (input.current) input.current.value = '';
+    }
+  }
+
+  return (
+    <section className="grid gap-2">
+      <SectionTitle>{t('markets.coverTitle')}</SectionTitle>
+      <p className="text-sm text-support">{t('markets.coverHint')}</p>
+      {market.coverThumbUrl ? (
+        <img
+          src={market.coverThumbUrl}
+          width={400}
+          height={225}
+          loading="lazy"
+          decoding="async"
+          alt={t('markets.coverAlt', { name: market.name })}
+          className="aspect-[16/9] w-full max-w-sm rounded-[var(--radius-control)] bg-soft object-cover"
+        />
+      ) : (
+        <p className="text-support">{t('markets.coverNone')}</p>
+      )}
+      <input
+        ref={input}
+        type="file"
+        accept="image/jpeg,image/png"
+        className="sr-only"
+        tabIndex={-1}
+        aria-label={t('markets.coverUpload')}
+        onChange={(e) => void upload(e.target.files?.[0])}
+      />
+      <Button
+        variant="secondary"
+        className="justify-self-start"
+        icon={<ImagePlus size={18} aria-hidden="true" />}
+        busy={uploading}
+        onClick={() => input.current?.click()}
+      >
+        {t('markets.coverUpload')}
+      </Button>
+    </section>
   );
 }
