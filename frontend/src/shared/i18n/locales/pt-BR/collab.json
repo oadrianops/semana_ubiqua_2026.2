@@ -64,7 +64,8 @@
     "pushError": "Não foi possível ativar as notificações agora.",
     "showMap": "Ver no mapa",
     "hideMap": "Esconder mapa",
-    "mapLabel": "Mapa das feiras com tarefas abertas"
+    "mapLabel": "Mapa das feiras com tarefas abertas",
+    "seeHistory": "Ver todos os envios e o resultado no histórico"
   },
   "step": {
     "label": "Etapas da tarefa",
@@ -213,7 +214,8 @@
   "submitted": {
     "received": "Recebido. Agora a moderação revisa.",
     "queued": "Na fila, aguardando sinal",
-    "back": "Voltar para as tarefas"
+    "back": "Voltar para as tarefas",
+    "track": "Acompanhar no histórico"
   },
   "outbox": {
     "DRAFT": "Rascunho",
@@ -239,7 +241,7 @@
   },
   "history": {
     "title": "Histórico",
-    "lead": "Suas tarefas, do aceite ao resultado da moderação.",
+    "lead": "Seus envios e tarefas, com o resultado da moderação: em revisão, aprovado ou recusado com o motivo.",
     "emptyTitle": "Nenhuma tarefa ainda",
     "emptyBody": "Quando você aceitar uma tarefa, ela aparece aqui com o resultado.",
     "seeTasks": "Ver tarefas abertas"

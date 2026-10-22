@@ -64,7 +64,8 @@
     "pushError": "We couldn't turn on notifications right now.",
     "showMap": "Show on map",
     "hideMap": "Hide map",
-    "mapLabel": "Map of markets with open tasks"
+    "mapLabel": "Map of markets with open tasks",
+    "seeHistory": "See all submissions and their result in the history"
   },
   "step": {
     "label": "Task steps",
@@ -213,7 +214,8 @@
   "submitted": {
     "received": "Received. Moderation will review it now.",
     "queued": "Queued, waiting for signal",
-    "back": "Back to tasks"
+    "back": "Back to tasks",
+    "track": "Follow it in the history"
   },
   "outbox": {
     "DRAFT": "Draft",
@@ -239,7 +241,7 @@
   },
   "history": {
     "title": "History",
-    "lead": "Your tasks, from acceptance to the moderation result.",
+    "lead": "Your submissions and tasks with the moderation result: in review, approved, or rejected with the reason.",
     "emptyTitle": "No tasks yet",
     "emptyBody": "When you accept a task, it shows up here with the result.",
     "seeTasks": "See open tasks"

@@ -204,4 +204,37 @@ describe('14.3 tarefas em andamento', () => {
     Object.defineProperty(navigator, 'onLine', { value: true, configurable: true });
     await removeItem('t9');
   });
+
+  it('RF-20 envio entregue fica "Em revisão" na lista, com caminho para o histórico', async () => {
+    server.use(
+      http.get('/api/v1/me/tasks', () =>
+        HttpResponse.json([
+          {
+            taskId: 't2',
+            type: 'UPDATE_STALL',
+            taskStatus: 'SUBMITTED',
+            marketName: 'Feira da 25',
+            stallCode: '67',
+            stallName: null,
+            commission: { amount: '4.00', currency: 'BRL' },
+            acceptedAt: '2026-10-22T10:00:00Z',
+            submittedAt: '2026-10-22T10:40:00Z',
+            outcome: null,
+            outcomeAt: null,
+            submissionStatus: 'PENDING',
+            rejectionReason: null,
+            reviewComment: null,
+          },
+        ]),
+      ),
+    );
+    renderWithProviders(<MyActiveTasks />);
+    const row = await screen.findByRole('link', { name: /Atualizar box · Feira da 25 · Box 67/ });
+    expect(row).toHaveTextContent('Em revisão');
+    expect(row).toHaveAttribute('href', '/collaborate/history');
+    expect(screen.getByRole('link', { name: /resultado no histórico/ })).toHaveAttribute(
+      'href',
+      '/collaborate/history',
+    );
+  });
 });

@@ -11,6 +11,14 @@ IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.3.0).
 - Conferir por GPS a posição da Feira da 25.
 - Matriz de aparelhos reais, Lighthouse CI e k6 contra a produção.
 
+## [1.2.2] - 2026-10-22
+
+### Corrigido
+- Sem como sair da conta nem chegar ao perfil no computador: o topo ganha o menu da conta (perfil, histórico,
+  ganhos e "Sair"), no celular e na tela larga.
+- Envio "sumia" depois de mandado: ele fica na lista "Em andamento" como "Em revisão" até a moderação decidir, a tela
+  de envio leva ao histórico e o histórico explica os resultados (em revisão, aprovado, recusado com o motivo).
+
 ## [1.2.1] - 2026-10-22
 
 ### Corrigido
@@ -94,7 +102,8 @@ IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.3.0).
   local não liberava a origem `http://localhost:8081` no login, as tabelas que rolam para o lado no celular não
   recebiam foco pelo teclado e o Trivy apontava para uma versão retirada.
 
-[Não lançado]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.2.1...HEAD
+[Não lançado]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/oadrianops/semana_ubiqua_2026.2/compare/v1.0.0...v1.1.0
