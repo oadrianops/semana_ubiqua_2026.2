@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.7
 # API da NANDESK (seção 16.3): build com JDK 21, runtime com JRE 21, usuário não-root e JAR em camadas.
 
-FROM eclipse-temurin:21.0.12_8-jdk-noble AS build
+FROM eclipse-temurin:24.0.2_12-jdk-noble AS build
 WORKDIR /workspace
 # Dependências primeiro: mudam pouco e ficam em cache entre builds.
 COPY mvnw pom.xml ./
@@ -11,7 +11,7 @@ COPY src src
 RUN ./mvnw -B -q -ntp -DskipTests package \
     && java -Djarmode=tools -jar target/nandesk-api-*.jar extract --layers --launcher --destination target/extracted
 
-FROM eclipse-temurin:21.0.12_8-jre-noble
+FROM eclipse-temurin:24.0.2_12-jre-noble
 LABEL org.opencontainers.image.title="nandesk-api" \
       org.opencontainers.image.description="API da NANDESK: feiras de Belém" \
       org.opencontainers.image.licenses="MIT" \
