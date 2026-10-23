@@ -8,7 +8,9 @@
   <a href="https://nandesk.com.br">nandesk.com.br</a> ·
   <a href="docs/ESPECIFICACAO.md">Especificação</a> ·
   <a href="docs/arquitetura.md">Arquitetura</a> ·
-  <a href="docs/runbooks/deploy.md">Deploy</a>
+  <a href="docs/runbooks/deploy.md">Deploy</a> ·
+  <a href="https://github.com/oadrianops/semana_ubiqua_2026.2/releases/download/v1.2.3/01-Documentacao-de-Solucao-e-Problema.pdf">Solução e Problema (PDF)</a> ·
+  <a href="https://github.com/oadrianops/semana_ubiqua_2026.2/releases/download/v1.2.3/02-Documentacao-Tecnica-do-Software.pdf">Documentação Técnica (PDF)</a>
 </p>
 
 ---
