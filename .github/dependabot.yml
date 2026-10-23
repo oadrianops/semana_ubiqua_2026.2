@@ -13,9 +13,27 @@ updates:
     groups:
       menores:
         update-types: [minor, patch]
+    # Linhas fixadas no ADR-0002: só minors e patches chegam sozinhos
+    ignore:
+      - dependency-name: eslint
+        update-types: [version-update:semver-major]
+      - dependency-name: "@eslint/js"
+        update-types: [version-update:semver-major]
+      - dependency-name: msw
+        update-types: [version-update:semver-major]
+      - dependency-name: react-router
+        update-types: [version-update:semver-major]
+      - dependency-name: "@types/node"
+        update-types: [version-update:semver-major]
   - package-ecosystem: docker
     directories: [/backend, /frontend]
     schedule: { interval: weekly, day: monday }
+    # Java 21 e Node 24 (LTS) fixados pela especificação (ADR-0002)
+    ignore:
+      - dependency-name: eclipse-temurin
+        update-types: [version-update:semver-major]
+      - dependency-name: node
+        update-types: [version-update:semver-major]
   - package-ecosystem: github-actions
     directory: /
     schedule: { interval: weekly, day: monday }
