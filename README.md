@@ -21,7 +21,7 @@ aparecer. O app foi feito para o celular e para a rede da feira: abre rápido co
 nas feiras salvas.
 
 Projeto da equipe **Adriano Pinheiro da Silva, Leonardo Farias de Souza e Victor Santiago dos Santos Abreu** para o
-Hackathon Semana Ubíqua 2026.2 (UNAMA).
+Hackathon Semana Ubíqua 2026.2 (UNAMA). Vídeo de pitch: https://youtu.be/1FcXBxfBEEg.
 
 > **Dados reais e de demonstração.** Os boxes 2 e 3 (uma fruteira) e 67 da Feira da 25 foram conferidos na feira em 21/10/2026, com
 > termo assinado pelos feirantes. Os demais boxes são fictícios, criados para a banca testar, e aparecem marcados
@@ -29,11 +29,49 @@ Hackathon Semana Ubíqua 2026.2 (UNAMA).
 > mais sete feiras de Belém (Cremação, Pedreira, Bandeira Branca, Icoaraci, Benguí, Mercado de São Brás e Praça da
 > República) com endereço e horário pesquisados e boxes de exemplo.
 
-## Objetivo
+## O problema
 
-Turistas e moradores perdem tempo (e os feirantes perdem vendas) porque não há como saber, antes de andar a feira
-inteira, onde está um produto. A NANDESK responde isso em segundos, em português, inglês ou espanhol, e dá
-visibilidade digital ao feirante sem tirar tempo dele.
+Belém tem produtos que só existem aqui — castanha-do-pará, jambu, tucupi, maniçoba, banho de cheiro, artesanato de
+miriti — espalhados por feiras grandes como o Ver-o-Peso e a Feira da 25, com centenas de boxes. Quem chega não sabe
+**em qual box está cada coisa**; o turista ainda esbarra no idioma; e o feirante, que passa o dia no balcão, não tem
+tempo nem costume de manter catálogo ou rede social. Na validação em campo, uma feirante contou que muita gente entra
+no box **só para perguntar onde comprar o que procura**, em outros boxes. Resultado: quem procura se perde e quem vende
+deixa de vender.
+
+## A solução
+
+A NANDESK responde em segundos "em qual feira e em qual box eu encontro isto?", em português, inglês ou espanhol, e
+dá visibilidade digital ao feirante sem tirar tempo dele. Quatro decisões sustentam o produto:
+
+1. **O feirante não opera a plataforma.** Os dados são levantados por colaboradores, no modelo de "corrida" de
+   aplicativo, e publicados só depois da moderação e com o consentimento do feirante registrado.
+2. **Confiança acima de volume.** Todo preço é "de referência" e todo dado mostra quando foi conferido ("verificado há
+   N dias"). Dados fictícios aparecem marcados como **Exemplo**.
+3. **Feito para a rede da feira.** O app abre do cache, salva a feira inteira no celular para buscar sem sinal e
+   guarda os envios dos colaboradores numa fila que segue sozinha quando a rede volta.
+4. **Multilíngue e local.** Termos regionais preservados e explicados; a busca entende sinônimos ("brazil nut",
+   "castaña de Brasil") e ignora acentos.
+
+Não há pagamento online, por decisão de produto: o app não cobra de quem procura nem de quem vende, e as comissões dos
+colaboradores são repassadas por PIX, fora do app, e apenas registradas no extrato.
+
+## Como funciona
+
+**Quem visita a feira** abre o app (sem conta), digita o produto e vê cada feira como uma "pedra de preços": box,
+setor, preço de referência, disponibilidade e a data da conferência. Na página do box estão as fotos (com zoom), o que
+ele vende, o Instagram quando o feirante quis mostrar e o botão "como chegar". Antes de entrar na feira, dá para
+salvar a feira para usar sem internet.
+
+**O colaborador** recebe uma tarefa (atualizar um box, cadastrar um box novo ou verificar uma denúncia) e a cumpre em
+três passos — **Aceitar → Fazer check-in → Enviar**. O check-in só vale dentro da cerca da feira (o GPS confirma que
+ele está lá); as fotos são comprimidas no aparelho e enviadas uma a uma; sem sinal, o envio espera na fila.
+
+**A moderação** compara o antes e o depois de cada envio, vê as fotos (restritas a ela), os alertas de GPS impreciso e
+os conflitos de versão, e aprova ou recusa com motivo. Ao aprovar, os dados entram no ar e a comissão vai para o
+extrato do colaborador; a reputação dele sobe ou desce conforme as decisões.
+
+**A administração** mantém feiras, setores, catálogo nos três idiomas, regras de comissão e orçamento, registra os
+repasses feitos por PIX e acompanha indicadores e auditoria.
 
 ## Validação na feira
 
@@ -63,6 +101,8 @@ Em 21/10/2026 a equipe levou o app à Feira da 25 e cadastrou os dois primeiros 
 - Para cada produto: feiras, setores e boxes, com preço de referência e "verificado há N dias".
 - Página do box com fotos (principal e galeria), Instagram quando o feirante quis mostrar e marca "Exemplo" nos
   boxes fictícios.
+- **Fotos ampliadas** em tela cheia, no celular e no computador: pinça, toque duplo, roda do mouse ou botões para
+  aproximar, arrastar para mover, deslizar ou setas para trocar de foto.
 - Nove feiras com mapa (OpenStreetMap) e alternativa em lista, horários, "como chegar" e capa com o crédito do autor.
 - "Como chegar ao box" quando a posição do box foi conferida em campo.
 - **Sem internet:** "Salvar para usar sem internet" guarda a feira no celular; a busca funciona offline e mostra
@@ -98,6 +138,54 @@ Em 21/10/2026 a equipe levou o app à Feira da 25 e cadastrou os dois primeiros 
 | Infra | Docker (imagens não-root), Nginx, Docker Compose, Coolify, GitHub Actions, Prometheus e Grafana |
 
 Versões exatas e justificativas no [ADR-0002](docs/adr/0002-versoes-da-stack.md).
+
+## Arquitetura
+
+Um **monólito modular** em Spring Boot (ADR-0003) atrás de um Nginx que serve o PWA, tudo em contêineres no Coolify.
+O detalhamento (contexto, contêineres, módulos e fluxos, no estilo C4) está em [docs/arquitetura.md](docs/arquitetura.md).
+
+```mermaid
+flowchart LR
+  subgraph Celular["Celular ou computador"]
+    pwa["PWA · React 19 + TypeScript<br/>service worker (Workbox)<br/>IndexedDB: feiras salvas e fila de envios"]
+  end
+  subgraph VPS["VPS com Coolify"]
+    proxy["Proxy do Coolify<br/>TLS e HTTP/2"]
+    web["web · Nginx não-root<br/>SPA, CSP e cabeçalhos de segurança"]
+    api["api · Spring Boot 4.1 / Java 21<br/>REST /api/v1, SSE e Web Push"]
+    db[("MySQL 8.4<br/>esquema por Flyway")]
+    files[("volume de fotos")]
+  end
+  osm[("OpenStreetMap<br/>tiles do mapa")]
+  push[("Serviços de push<br/>dos navegadores")]
+  pwa -- HTTPS --> proxy --> web
+  web -- "/api" --> api
+  api --> db
+  api --> files
+  pwa -. tiles .-> osm
+  api -. notificações cifradas .-> push
+```
+
+**Backend** (`backend/`, pacote `br.com.nandesk`): um módulo por funcionalidade — `market`, `catalog`, `stall`,
+`search`, `task`, `submission`, `commission`, `report`, `notification`, `user`, `auth`, `file`, `audit`, `admin` e
+`lgpd` — cada um com as camadas `api` (controllers e DTOs), `application` (serviços e transações), `domain`
+(entidades e regras puras, testadas uma a uma) e `infra` (repositórios). As fronteiras são verificadas por testes
+ArchUnit. Autenticação por JWT RS256 com refresh rotativo em cookie `HttpOnly`; limites de taxa por IP e por conta;
+erros no formato Problem Details com códigos de um catálogo único.
+
+**Frontend** (`frontend/`): rotas públicas no pacote inicial e as de conta, colaborador e painel sob demanda;
+dados do servidor via TanStack Query, com cliente tipado a partir do contrato OpenAPI; token de acesso só em memória.
+O modo offline tem três peças: o service worker guarda o app, o **snapshot** de cada feira salva vai para o
+IndexedDB (com busca local sobre ele) e a **fila de envios** (outbox) guarda fotos e dados do colaborador até a rede
+voltar, com uma `Idempotency-Key` por foto e por envio para nada chegar duas vezes.
+
+**Dados:** feiras, setores, categorias e produtos (com nomes e sinônimos nos três idiomas), boxes e ofertas com
+versão e data da conferência, tarefas, envios (o changeset do colaborador), extrato de comissões imutável e trilha de
+auditoria. O esquema só muda por migrações Flyway.
+
+**Entrega:** GitHub Actions roda os testes, a análise de segurança (CodeQL, Trivy, gitleaks e revisão de
+dependências) e as jornadas E2E a cada PR; uma tag `vX.Y.Z` publica as imagens no GHCR, e o Coolify faz o deploy
+com `docker-compose.prod.yml`.
 
 ## Demonstração
 
@@ -140,8 +228,8 @@ cd frontend && npm ci && npm run dev                                     # web e
 **Verificação completa:**
 
 ```bash
-cd backend && ./mvnw verify      # 128 unitários + 71 integração (MySQL 8.4), JaCoCo, ArchUnit, contrato OpenAPI
-cd frontend && npm run ci        # lint, tipos, 87 testes, build e orçamentos de performance
+cd backend && ./mvnw verify      # 143 unitários + 87 integração (MySQL 8.4), JaCoCo, ArchUnit, contrato OpenAPI
+cd frontend && npm run ci        # lint, tipos, 105 testes, build e orçamentos de performance
 cd frontend && npm run e2e       # jornadas J1 a J8 com Playwright e axe
 ```
 
@@ -154,7 +242,7 @@ Deploy em produção no Coolify: [docs/runbooks/deploy.md](docs/runbooks/deploy.
 | Busca encontra os 26 produtos do seed em PT e pelos sinônimos EN/ES (CA-1) | 26/26 |
 | Cobertura do backend (linhas) | 91% no total; todos os pacotes de regra ≥ 80% |
 | Cobertura do frontend (linhas) | 78,7% |
-| JavaScript inicial (gzip) | 143,3 KB (limite 150) |
+| JavaScript inicial (gzip) | 147,7 KB (limite 150) |
 | Primeira tela no perfil "Feira lotada" (400 ms, 400/150 kbps) | 1,4 s na 1ª visita · 0,9 s na 2ª |
 | Rede caindo no meio do envio | 1 upload e 1 envio, sem duplicar (J6) |
 | Acessibilidade (axe, "serious"/"critical") | 0 |

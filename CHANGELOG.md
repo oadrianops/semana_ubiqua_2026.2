@@ -11,6 +11,27 @@ IDs de requisitos conforme `docs/ESPECIFICACAO.md` (v1.3.0).
 - Conferir por GPS a posição da Feira da 25.
 - Matriz de aparelhos reais, Lighthouse CI e k6 contra a produção.
 
+## [1.2.3] - 2026-10-23
+
+### Adicionado
+- Fotos ampliadas em tela cheia (RF-03): a foto do box e a capa da feira abrem num visualizador com pinça, toque
+  duplo, roda do mouse e botões para aproximar (até 5x), arrastar para mover, deslizar ou setas para trocar de foto e
+  Esc para fechar. A versão cheia da foto só é baixada nesse pedido; o visualizador é carregado sob demanda.
+
+### Corrigido
+- A revisão de um envio já aprovado acusava "Os dados mudaram depois deste envio" com o próprio envio; o conflito
+  agora só vale antes da decisão e aparece pelo nome ("Dados do box", nome do produto), não pela chave interna
+  (RF-22, RN-26).
+- Sem sessão, o cabeçalho passava da largura da tela (5 px em inglês a 390 px, até 35 px a 360 px), criando rolagem
+  lateral: "Entrar" vira ícone abaixo de 420 px e "Feiras" abaixo de 375 px, com o rótulo para o leitor de tela
+  (RNF-02, RF-06).
+
+### Alterado
+- README com o problema, a solução, como funciona para cada perfil e a arquitetura (diagrama dos contêineres,
+  módulos, modo offline e entrega); link do vídeo de pitch.
+- Ações do GitHub atualizadas e Nginx 1.31.7; o Dependabot passa a ignorar os majors das linhas fixadas no ADR-0002
+  (ESLint, MSW, React Router, @types/node, Node e Java).
+
 ## [1.2.2] - 2026-10-22
 
 ### Corrigido

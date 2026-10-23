@@ -124,5 +124,18 @@
     "submit": "Search",
     "suggestions": "Suggestions"
   },
-  "demoTag": "Example"
+  "demoTag": "Example",
+  "viewer": {
+    "open": "Enlarge photo",
+    "openNamed": "Enlarge: {{alt}}",
+    "title": "Enlarged photo",
+    "hint": "Double-tap, use the buttons or pinch to zoom in. Drag to move.",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "reset": "See the whole photo",
+    "prev": "Previous photo",
+    "next": "Next photo",
+    "counter": "{{n}} of {{total}}",
+    "zoomLevel": "{{percent}}% zoom"
+  }
 }

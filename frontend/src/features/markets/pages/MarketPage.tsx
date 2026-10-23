@@ -1,5 +1,5 @@
 import { useDocumentTitle } from '../../../shared/lib/useDocumentTitle';
-import { Check, Download, Map as MapIcon, Navigation } from 'lucide-react';
+import { Check, Download, Map as MapIcon, Maximize2, Navigation } from 'lucide-react';
 import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useParams, useSearchParams } from 'react-router';
@@ -21,6 +21,7 @@ import { prefersLightImages } from '../../../shared/offline/network';
 import { OpeningHoursList } from '../OpeningHoursList';
 
 const MapView = lazy(() => import('../../../shared/map/MapView'));
+const ImageViewer = lazy(() => import('../../../shared/ui/ImageViewer'));
 
 /**
  * Página da feira (RF-01): descrição, horários, "Como chegar", setores e boxes publicados. Ao abrir, o snapshot
@@ -325,21 +326,48 @@ function MarketCover({
   creditUrl: string | null;
 }) {
   const { t } = useTranslation('public');
+  const { t: tc } = useTranslation();
+  const [open, setOpen] = useState(false);
   const thumb = `${url}?variant=thumb`;
   const light = prefersLightImages();
+  const alt = t('market.coverAlt', { name });
   return (
     <figure className="grid gap-1.5">
-      <img
-        src={light ? thumb : url}
-        srcSet={light ? undefined : `${thumb} 400w, ${url} 1600w`}
-        sizes="(min-width: 1024px) 720px, 100vw"
-        width={1600}
-        height={900}
-        loading="lazy"
-        decoding="async"
-        alt={t('market.coverAlt', { name })}
-        className="aspect-[16/9] w-full rounded-[var(--radius-panel)] bg-soft object-cover"
-      />
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-label={tc('viewer.openNamed', { alt })}
+        className="group relative block w-full cursor-zoom-in overflow-hidden rounded-[var(--radius-panel)]"
+      >
+        <img
+          src={light ? thumb : url}
+          srcSet={light ? undefined : `${thumb} 400w, ${url} 1600w`}
+          sizes="(min-width: 1024px) 720px, 100vw"
+          width={1600}
+          height={900}
+          loading="lazy"
+          decoding="async"
+          alt={alt}
+          className="aspect-[16/9] w-full bg-soft object-cover"
+        />
+        <span
+          aria-hidden="true"
+          className="absolute right-2 bottom-2 inline-flex min-h-9 items-center gap-1.5 rounded-[var(--radius-control)] bg-band/85 px-2.5 text-sm font-semibold text-on-band group-hover:bg-band"
+        >
+          <Maximize2 size={16} />
+          {tc('viewer.open')}
+        </span>
+      </button>
+      {open && (
+        <Suspense fallback={null}>
+          <ImageViewer
+            photos={[{ url, thumbUrl: thumb, alt }]}
+            index={0}
+            onIndexChange={() => undefined}
+            onClose={() => setOpen(false)}
+          />
+        </Suspense>
+      )}
       {credit && (
         <figcaption className="text-sm text-support">
           {creditUrl ? (
