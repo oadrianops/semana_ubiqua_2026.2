@@ -11,7 +11,7 @@ RUN npm run build \
     && find dist -type f \( -name '*.js' -o -name '*.mjs' -o -name '*.css' -o -name '*.html' -o -name '*.svg' -o -name '*.json' -o -name '*.webmanifest' \) \
        -size +1k -exec gzip -9 -k {} \;
 
-FROM nginxinc/nginx-unprivileged:1.30.6-alpine3.24
+FROM nginxinc/nginx-unprivileged:1.31.7-alpine3.24
 LABEL org.opencontainers.image.title="nandesk-web" \
       org.opencontainers.image.description="PWA da NANDESK: feiras de Belém" \
       org.opencontainers.image.licenses="MIT" \
