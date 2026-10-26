@@ -2,7 +2,7 @@
 # Web da NANDESK (seção 16.3): build com Node 24, runtime com Nginx não-root. O /config.js é gerado a cada
 # inicialização a partir das variáveis WEB_*, então a mesma imagem serve qualquer ambiente.
 
-FROM node:24.22.0-alpine3.24 AS build
+FROM node:24.22.1-alpine3.24 AS build
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
