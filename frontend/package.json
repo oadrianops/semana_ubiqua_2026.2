@@ -98,6 +98,17 @@
     "estimo": {
       "nanoid": "^5.1.11"
     },
+    "get-uri": {
+      "basic-ftp": "^6.2.4"
+    },
+    "@typescript-eslint/typescript-estree": {
+      "minimatch": "^11.0.1"
+    },
+    "glob@^11.0.0": {
+      "minimatch": "^11.0.1"
+    },
+    "body-parser": "^1.20.9",
+    "serialize-javascript": "^7.1.3",
     "tmp": "^0.2.6",
     "uuid": "^11.1.1"
   }
