@@ -20,7 +20,7 @@ Especificação completa: `docs/ESPECIFICACAO.md` — leia só as seções indic
 - Stack completo: `docker compose --profile app up -d --build` → http://localhost:8081
 - E2E: `cd frontend && npm run e2e`
 - Tipos da API: `cd frontend && npm run api:generate` (lê `docs/api/openapi.json`)
-- Detector de design: `npx impeccable@4.7.0 detect frontend/src`
+- Detector de design: `npx impeccable@4.8.2 detect frontend/src`
 - Windows: use Git Bash para os scripts `.sh`; `mvnw.cmd` no lugar de `./mvnw` no PowerShell.
 
 ## Sempre
